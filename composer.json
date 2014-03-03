@@ -1,0 +1,29 @@
+{
+    "name": "sonata-project/translation-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony SonataTranslationBundle",
+    "keywords": ["translation", "i18n"],
+    "homepage": "http://sonata-project.org/bundles/translation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Rabaix",
+            "email": "thomas.rabaix@sonata-project.org",
+            "homepage": "http://sonata-project.org"
+        },
+        {
+            "name": "Sonata Community",
+            "homepage": "https://github.com/sonata-project/SonataTranslationBundle/contributors"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": { "Sonata\\TranslationBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.3.x-dev"
+        }
+    }
+}
