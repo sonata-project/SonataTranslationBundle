@@ -30,6 +30,9 @@ class SonataTranslationExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('admin.xml');
+        $loader->load('block.xml');
+        $loader->load('listener.xml');
 
         $container->setParameter('sonata_translation.locales', $config['locales']);
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
