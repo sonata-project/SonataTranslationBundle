@@ -13,7 +13,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * @author Nicolas Bastien <nbastien@prestaconcept.net>
+ * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -25,6 +25,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('sonata_translation');
 
+        $rootNode
+            ->children()
+                ->arrayNode('locales')
+                    ->requiresAtLeastOneElement()
+                    ->prototype('scalar')->end()
+                ->end()
+                ->scalarNode('default_locale')->end()
+            ->end();
 
         return $treeBuilder;
     }

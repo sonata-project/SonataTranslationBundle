@@ -14,13 +14,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
-
-use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
 
 /**
- * @author Nicolas Bastien <nbastien@prestaconcept.net>
+ * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class SonataTranslationExtension extends Extension
 {
@@ -34,6 +30,8 @@ class SonataTranslationExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+
+        $container->setParameter('sonata_translation.locales', $config['locales']);
+        $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
     }
 }
