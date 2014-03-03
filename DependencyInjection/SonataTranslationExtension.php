@@ -33,6 +33,7 @@ class SonataTranslationExtension extends Extension
         $loader->load('admin.xml');
         $loader->load('block.xml');
         $loader->load('listener.xml');
+        $loader->load('twig.xml');
 
         $container->setParameter('sonata_translation.locales', $config['locales']);
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
