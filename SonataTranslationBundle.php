@@ -9,11 +9,23 @@
  */
 namespace Sonata\TranslationBundle;
 
+use Sonata\TranslationBundle\DependencyInjection\Compiler\GlobalVariablesCompilerPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 
 /**
- * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class SonataTranslationBundle extends Bundle
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new GlobalVariablesCompilerPass());
+    }
 }
