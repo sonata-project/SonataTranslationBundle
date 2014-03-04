@@ -12,7 +12,9 @@ namespace Sonata\TranslationBundle\Block;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
+use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -32,6 +34,17 @@ class LocaleSwitcherBlockService extends BaseBlockService
                 'template'  => 'SonataTranslationBundle:Block:block_locale_switcher.html.twig',
             )
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    {
+        return $this->renderPrivateResponse($blockContext->getTemplate(), array(
+            'block_context'  => $blockContext,
+            'block'          => $blockContext->getBlock(),
+        ), $response);
     }
 
     /**
