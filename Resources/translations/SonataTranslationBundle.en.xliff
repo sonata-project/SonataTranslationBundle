@@ -6,6 +6,10 @@
                 <source>sonata_translation</source>
                 <target>Translation</target>
             </trans-unit>
+            <trans-unit id="admin.locale_switcher.tooltip">
+                <source>admin.locale_switcher.tooltip</source>
+                <target>Switch language</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

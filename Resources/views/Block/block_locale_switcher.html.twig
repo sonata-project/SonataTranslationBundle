@@ -1,0 +1,23 @@
+{% set object = block_context.settings.object %}
+{% set admin  = block_context.settings.admin %}
+
+{% if (object is translatable) %}
+    <div class="locale_switcher">
+        {% spaceless %}
+            {% for locale in sonata_translation_locales %}
+                {% if (locale_switcher_route is not defined) %}
+                    {% if (object.id) %}
+                        {% set locale_switcher_route = 'edit' %}
+                    {% else %}
+                        {% set locale_switcher_route = 'create' %}
+                    {% endif %}
+                {% endif %}
+                <a href="{{ admin.generateUrl(locale_switcher_route, {'id': admin.id(object), 'tl': locale}) }}" accesskey=""
+                   class=" {% if (object.locale == locale) %} active {% endif %}"
+                   title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
+                    <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale ~ '.png')}}" />
+                </a>
+            {% endfor %}
+        {% endspaceless %}
+    </div>
+{% endif %}

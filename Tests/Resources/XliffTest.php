@@ -13,6 +13,9 @@ namespace Sonata\AdminBundle\Tests\Resources;
 
 use Sonata\CoreBundle\Test\XliffValidatorTestCase;
 
+/**
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ */
 class XliffTest extends XliffValidatorTestCase
 {
     /**

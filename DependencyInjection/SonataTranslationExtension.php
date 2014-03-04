@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Sonata project.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Sonata\TranslationBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -16,25 +14,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
-
-use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
 
 /**
- * SonataTranslationBundleExtension
- *
- * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class SonataTranslationExtension extends Extension
 {
     /**
-     * @throws \InvalidArgumentException
-     *
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -43,143 +30,12 @@ class SonataTranslationExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader->load('admin.xml');
+        $loader->load('block.xml');
+        $loader->load('listener.xml');
+        $loader->load('twig.xml');
 
-//        $this->registerDoctrineMapping($config, $container);
-//        $this->configureClass($config, $container);
-//        $this->configureAdmin($config, $container);
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    public function configureClass($config, ContainerBuilder $container)
-    {
-        // admin configuration
-        $container->setParameter('sonata.translation.admin.tag.entity',        $config['class']['tag']);
-        $container->setParameter('sonata.translation.admin.category.entity',   $config['class']['category']);
-        $container->setParameter('sonata.translation.admin.collection.entity', $config['class']['collection']);
-
-        // manager configuration
-        $container->setParameter('sonata.translation.manager.tag.entity',        $config['class']['tag']);
-        $container->setParameter('sonata.translation.manager.category.entity',   $config['class']['category']);
-        $container->setParameter('sonata.translation.manager.collection.entity', $config['class']['collection']);
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    public function configureAdmin($config, ContainerBuilder $container)
-    {
-        $container->setParameter('sonata.translation.admin.category.class',                $config['admin']['category']['class']);
-        $container->setParameter('sonata.translation.admin.category.controller',           $config['admin']['category']['controller']);
-        $container->setParameter('sonata.translation.admin.category.translation_domain',   $config['admin']['category']['translation']);
-
-        $container->setParameter('sonata.translation.admin.tag.class',                     $config['admin']['tag']['class']);
-        $container->setParameter('sonata.translation.admin.tag.controller',                $config['admin']['tag']['controller']);
-        $container->setParameter('sonata.translation.admin.tag.translation_domain',        $config['admin']['tag']['translation']);
-
-        $container->setParameter('sonata.translation.admin.collection.class',              $config['admin']['collection']['class']);
-        $container->setParameter('sonata.translation.admin.collection.controller',         $config['admin']['collection']['controller']);
-        $container->setParameter('sonata.translation.admin.collection.translation_domain', $config['admin']['collection']['translation']);
-    }
-
-    /**
-     * @param array $config
-     */
-    public function registerDoctrineMapping(array $config)
-    {
-
-        foreach ($config['class'] as $type => $class) {
-            if (!class_exists($class)) {
-                return;
-            }
-        }
-
-        $collector = DoctrineCollector::getInstance();
-
-        $collector->addAssociation($config['class']['category'], 'mapOneToMany', array(
-            'fieldName'     => 'children',
-            'targetEntity'  => $config['class']['category'],
-            'cascade'       => array(
-                'remove',
-                'persist',
-            ),
-            'mappedBy'      => 'parent',
-            'orphanRemoval' => true,
-            'orderBy'       => array(
-                'position'  => 'ASC',
-            ),
-        ));
-
-        $collector->addAssociation($config['class']['category'], 'mapManyToOne', array(
-            'fieldName'     => 'parent',
-            'targetEntity'  => $config['class']['category'],
-            'cascade'       => array(
-                'remove',
-                'persist',
-                'refresh',
-                'merge',
-                'detach',
-            ),
-            'mappedBy'      => NULL,
-            'inversedBy'    => NULL,
-            'joinColumns'   => array(
-                array(
-                 'name'     => 'parent_id',
-                 'referencedColumnName' => 'id',
-                 'onDelete' => 'CASCADE',
-                ),
-            ),
-            'orphanRemoval' => false,
-        ));
-
-        if (interface_exists('Sonata\MediaBundle\Model\MediaInterface')) {
-            $collector->addAssociation($config['class']['collection'], 'mapManyToOne', array(
-                'fieldName'     => 'media',
-                'targetEntity'  => $config['class']['media'],
-                'cascade'       => array(
-                    'remove',
-                    'persist',
-                    'refresh',
-                    'merge',
-                    'detach',
-                ),
-                'mappedBy'      => NULL,
-                'inversedBy'    => NULL,
-                'joinColumns'   => array(
-                    array(
-                     'name'     => 'media_id',
-                     'referencedColumnName' => 'id',
-                     'onDelete' => 'SET NULL',
-                    ),
-                ),
-                'orphanRemoval' => false,
-            ));
-
-            $collector->addAssociation($config['class']['category'], 'mapManyToOne', array(
-                'fieldName'     => 'media',
-                'targetEntity'  => $config['class']['media'],
-                'cascade'       => array(
-                    'remove',
-                    'persist',
-                    'refresh',
-                    'merge',
-                    'detach',
-                ),
-                'mappedBy'      => NULL,
-                'inversedBy'    => NULL,
-                'joinColumns'   => array(
-                    array(
-                     'name'     => 'media_id',
-                     'referencedColumnName' => 'id',
-                     'onDelete' => 'SET NULL',
-                    ),
-                ),
-                'orphanRemoval' => false,
-            ));
-        }
+        $container->setParameter('sonata_translation.locales', $config['locales']);
+        $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
     }
 }

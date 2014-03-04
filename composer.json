@@ -1,15 +1,15 @@
 {
     "name": "sonata-project/translation-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SonataTranslationBundle",
+    "description": "SonataTranslationBundle",
     "keywords": ["translation", "i18n"],
     "homepage": "http://sonata-project.org/bundles/translation",
     "license": "MIT",
     "authors": [
         {
-            "name": "Thomas Rabaix",
-            "email": "thomas.rabaix@sonata-project.org",
-            "homepage": "http://sonata-project.org"
+            "name": "Nicolas Bastien",
+            "email": "nbastien.pro@gmail.com",
+            "homepage": "https://github.com/nicolas-bastien"
         },
         {
             "name": "Sonata Community",
@@ -17,13 +17,20 @@
         }
     ],
     "require": {
+        "symfony/symfony": "~2.2",
+        "sonata-project/core-bundle": "~2.2"
     },
     "autoload": {
         "psr-4": { "Sonata\\TranslationBundle\\": "" }
     },
+    "suggest": {
+        "stof/doctrine-extensions-bundle": "1.1.*",
+        "sonata-project/doctrine-orm-admin-bundle":"2.2.*",
+        "sonata-project/doctrine-phpcr-admin-bundle": "1.*"
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }
