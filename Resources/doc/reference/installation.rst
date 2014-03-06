@@ -55,7 +55,7 @@ Installation
 
 Extends SonataAdmin layout if it's not already done and add sonata translation styles like this :
 
-.. code-block:: twig
+.. code-block:: jinja
 
     {% block stylesheets %}
         {{  parent() }}
