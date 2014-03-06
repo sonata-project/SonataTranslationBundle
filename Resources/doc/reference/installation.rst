@@ -43,7 +43,7 @@ Installation
 * **default_locale**: is simply the locale loaded by default in your forms
 
 
-4. import the ``sonata_translation.yml`` file in `app/config.yml`:
+4. Import the ``sonata_translation.yml`` file in `app/config.yml`:
 
 .. code-block:: yaml
 
@@ -51,3 +51,20 @@ Installation
         #...
         - { resource: bundles/sonata_translation.yml }
 
+5. Import styles
+
+Extends SonataAdmin layout if it's not already done and add sonata translation styles like this :
+
+.. code-block:: twig
+
+    {% block stylesheets %}
+        {{  parent() }}
+        {% stylesheets
+            '@SonataTranslationBundle/Resources/public/less/sonata-translation.less'
+        %}
+
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+**Note** To help users without less, we made a compiled css : `'@SonataTranslationBundle/Resources/public/css/sonata-translation.css'`
