@@ -6,8 +6,8 @@ Doctrine ORM models translations are handled by `Gedmo translatable extension <h
 
 Gedmo have two ways to handle translations.
 
-Either everything is saved in a unique table, this is easier to set up but can lead to bad performance if your project grows or it can have one translation table for every
-model table. This second way is called personal translation.
+Either everything is saved in a unique table, this is easier to set up but can lead to bad performance if your project
+grows or it can have one translation table for every model table. This second way is called personal translation.
 
 
 1. Implement TranslatableInterface
