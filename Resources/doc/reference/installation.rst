@@ -1,7 +1,7 @@
 Installation
 ============
 
-* Add SonataTranslationBundle to your vendor/bundles dir with the deps file:
+* Add SonataTranslationBundle to your vendor/bundles dir via composer:
 
 .. code-block:: php
 
