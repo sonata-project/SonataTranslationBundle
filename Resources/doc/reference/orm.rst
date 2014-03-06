@@ -88,6 +88,11 @@ Depends on how you want to save translations you can choose between :
 * `Sonata\TranslationBundle\Traits\Translatable`
 * `Sonata\TranslationBundle\Traits\PersonalTranslatable`
 
+But note that in this case you will have to customize the default configuration to plug the admin extension on your entities.
+
+Have a look at : `@SonataTranslationBundle/Resources/config/config.yml <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Resources/config/config.yml>`_
+
+
 **Here is the same class using traits :**
 
 .. code-block:: php

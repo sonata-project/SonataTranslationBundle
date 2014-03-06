@@ -31,6 +31,9 @@ Installation
 
 .. code-block:: yaml
 
+    imports:
+        - { resource: '@SonataTranslationBundle/Resources/config/config.yml'}
+
     sonata_translation:
         locales: [fr, en, it, nl, es]
         default_locale: fr
@@ -40,7 +43,7 @@ Installation
 * **default_locale**: is simply the locale loaded by default in your forms
 
 
-4. import the ``sonata_translation.yml`` file and enable json type for doctrine:
+4. import the ``sonata_translation.yml`` file in `app/config.yml`:
 
 .. code-block:: yaml
 
