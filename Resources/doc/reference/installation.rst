@@ -1,19 +1,19 @@
 Installation
 ============
 
-* Add SonataTranslationBundle to your vendor/bundles dir via composer:
+1. Add SonataTranslationBundle to your vendor/bundles dir via composer:
 
 .. code-block:: php
 
     //composer.json
     "require": {
     //...
-        "sonata-project/translation-bundle": "dev-master",
+        "sonata-project/translation-bundle": "2.3.*",
     //...
     }
 
 
-* Add SonataTranslationBundle to your application kernel:
+2. Add SonataTranslationBundle to your application kernel:
 
 .. code-block:: php
 
@@ -27,20 +27,24 @@ Installation
         );
     }
 
-* Create a configuration file : ``sonata_translation.yml``:
+3. Create a configuration file : ``bundles/sonata_translation.yml``:
 
 .. code-block:: yaml
 
     sonata_translation:
-        # ...
+        locales: [fr, en, it, nl, es]
+        default_locale: fr
 
 
+* **locales**: is the list of your frontend locales ie the locales in which your models will be translated.
+* **default_locale**: is simply the locale loaded by default in your forms
 
-* import the ``sonata_translation.yml`` file and enable json type for doctrine:
+
+4. import the ``sonata_translation.yml`` file and enable json type for doctrine:
 
 .. code-block:: yaml
 
     imports:
         #...
-        - { resource: sonata_translation.yml }
+        - { resource: bundles/sonata_translation.yml }
 
