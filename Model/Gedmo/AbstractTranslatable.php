@@ -13,8 +13,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * This is your based class if you want to use default gedmo translation with everything in the same table
+ * Not recommended if you have a lot of translations
+ * (just brings Gedmo locale mapping)
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
- * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md : Personal translations
+ * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md
  */
 abstract class AbstractTranslatable extends \Sonata\TranslationBundle\Model\AbstractTranslatable
 {
@@ -25,54 +29,4 @@ abstract class AbstractTranslatable extends \Sonata\TranslationBundle\Model\Abst
      * @var string
      */
     protected $locale;
-
-    /**
-     * @var ArrayCollection
-     */
-    protected $translations;
-
-    public function __construct()
-    {
-        $this->translations = new ArrayCollection();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getTranslations()
-    {
-        return $this->translations;
-    }
-
-    /**
-     * @param $field
-     * @param $locale
-     *
-     * @return null|string
-     */
-    public function getTranslation($field, $locale)
-    {
-        foreach ($this->getTranslations() as $translation) {
-            if (strcmp($translation->getField(), $field) === 0 && strcmp($translation->getLocale(), $locale) === 0) {
-                return $translation->getContent();
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @param AbstractTranslation $translation
-     *
-     * @return $this
-     */
-    public function addTranslation(AbstractTranslation $translation)
-    {
-        if (!$this->translations->contains($translation)) {
-            $translation->setObject($this);
-            $this->translations->add($translation);
-        }
-
-        return $this;
-    }
 }
