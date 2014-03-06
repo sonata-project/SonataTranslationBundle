@@ -23,6 +23,11 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
     const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
     /**
+     * @var string
+     */
+    protected $translatableLocale;
+
+    /**
      * @return ContainerInterface
      */
     protected function getContainer(AdminInterface $admin)

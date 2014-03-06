@@ -8,4 +8,7 @@ sonata_admin:
         sonata_translation.admin.extension.gedmo_translatable:
             extends:
                 - Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable
+        sonata_translation.admin.extension.phpcr_translatable:
+            implements:
+                - Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface
 

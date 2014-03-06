@@ -8,8 +8,7 @@ This bundle adds a locale switcher block in your edit forms.
 **Currently supported :**
 
 * **ORM** : integrates Doctrine ORM entities with Gedmo extensions
-
-`Currently working on PHPCR integration`
+* **PHPCR**: integrates Doctrine PHPCR ODM
 
 Reference Guide
 ---------------
@@ -20,3 +19,4 @@ Reference Guide
 
    reference/installation
    reference/orm
+   reference/phpcr
