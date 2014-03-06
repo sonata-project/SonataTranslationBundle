@@ -9,13 +9,13 @@
  */
 namespace Sonata\TranslationBundle\Model\Gedmo;
 
-use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation as GedmoAbstractPersonalTranslation;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md : Personal translations
  */
-class AbstractTranslation extends AbstractPersonalTranslation
+class AbstractPersonalTranslation extends GedmoAbstractPersonalTranslation
 {
     /**
      * Convenient constructor
