@@ -33,10 +33,12 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     public function alterObject(AdminInterface $admin, $object)
     {
-        $locale = $this->getTranslatableLocale($admin);
+        $locale             = $this->getTranslatableLocale($admin);
+        $documentManager    = $this->getDocumentManager($admin);
+        $unitOfWork         = $documentManager->getUnitOfWork();
 
-        if ($this->isTranslatable($object) && ($object->getLocale() != $locale)) {
-            $object = $this->getDocumentManager($admin)->findTranslation($admin->getClass(), $object->getId(), $locale);
+        if ($this->isTranslatable($object) && ($unitOfWork->getCurrentLocale($object) != $locale)) {
+            $documentManager->bindTranslation($object, $locale);
         }
     }
 }
