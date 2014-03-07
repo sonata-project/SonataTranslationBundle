@@ -11,6 +11,9 @@
     <services>
         <service id="sonata_translation.twig.sonata_translation_extension" class="%sonata_translation.twig.sonata_translation_extension.class%">
             <tag name="twig.extension" />
+            <call method="setTranslatableChecker">
+                <argument type="service" id="sonata_translation.checker.translatable" />
+            </call>
         </service>
     </services>
 

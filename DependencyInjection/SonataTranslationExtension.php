@@ -34,6 +34,7 @@ class SonataTranslationExtension extends Extension
 
         $isEnabled = false;
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('service.xml');
 
         $translationInterfaces = array();
         if ($config['gedmo']['enabled']) {
@@ -44,7 +45,6 @@ class SonataTranslationExtension extends Extension
                 array('Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'),
                 $config['gedmo']['interfaces']
             );
-
         }
         if ($config['phpcr']['enabled']) {
             $isEnabled = true;
@@ -63,5 +63,23 @@ class SonataTranslationExtension extends Extension
         }
 
         $container->setParameter('sonata_translation.interfaces', $translationInterfaces);
+
+        $this->configureChecker($container, $translationInterfaces);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $translationInterfaces
+     */
+    protected function configureChecker(ContainerBuilder $container, $translationInterfaces)
+    {
+        $translatableCheckerDefinition = $container->getDefinition('sonata_translation.checker.translatable');
+
+        $supportedInterfaces = array();
+        foreach ($translationInterfaces as $interfaces) {
+            $supportedInterfaces = array_merge($supportedInterfaces, $interfaces);
+        }
+
+        $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', array($supportedInterfaces));
     }
 }

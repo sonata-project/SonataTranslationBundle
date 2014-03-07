@@ -11,6 +11,9 @@
     <services>
         <service id="sonata_translation.admin.extension.gedmo_translatable" class="%sonata_translation.admin.extension.gedmo_translatable.class%">
             <tag name="sonata.admin.extension" />
+            <call method="setTranslatableChecker">
+                <argument type="service" id="sonata_translation.checker.translatable" />
+            </call>
         </service>
     </services>
 
