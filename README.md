@@ -24,3 +24,5 @@ License
 -------
 
 This bundle is available under the [MIT license](Resources/meta/LICENSE).
+
+This bundle uses [FamFamFam Flag icons][http://www.famfamfam.com/lab/icons/flags/].
