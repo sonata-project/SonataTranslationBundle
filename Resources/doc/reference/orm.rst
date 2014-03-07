@@ -13,7 +13,7 @@ grows or it can have one translation table for every model table. This second wa
 1. Implement TranslatableInterface
 ----------------------------------
 
-First step, your entities have to implement `TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/TranslatableInterface.php>`_.
+First step, your entities have to implement `TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/Gedmo/TranslatableInterface.php>`_.
 
 Todo do so SonataTranslationBundle brings some base classes you can extend.
 Depends on how you want to save translations you can choose between :
@@ -29,7 +29,7 @@ Depends on how you want to save translations you can choose between :
 
     use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
     use Gedmo\Mapping\Annotation as Gedmo;
-    use Sonata\TranslationBundle\Model\TranslatableInterface;
+    use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
 
@@ -88,10 +88,6 @@ Depends on how you want to save translations you can choose between :
 * `Sonata\TranslationBundle\Traits\Translatable`
 * `Sonata\TranslationBundle\Traits\PersonalTranslatable`
 
-But note that in this case you will have to customize the default configuration to plug the admin extension on your entities.
-
-Have a look at : `@SonataTranslationBundle/Resources/config/config.yml <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Resources/config/config.yml>`_
-
 
 **Here is the same class using traits :**
 
@@ -100,7 +96,7 @@ Have a look at : `@SonataTranslationBundle/Resources/config/config.yml <https://
     namespace Presta\CMSFAQBundle\Entity;
 
     use Gedmo\Mapping\Annotation as Gedmo;
-    use Sonata\TranslationBundle\Model\TranslatableInterface;
+    use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
     use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
