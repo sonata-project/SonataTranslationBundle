@@ -29,13 +29,39 @@ class SonataTranslationExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('admin.xml');
-        $loader->load('block.xml');
-        $loader->load('listener.xml');
-        $loader->load('twig.xml');
-
         $container->setParameter('sonata_translation.locales', $config['locales']);
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
+
+        $isEnabled = false;
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+
+        $translationInterfaces = array();
+        if ($config['gedmo']['enabled']) {
+            $isEnabled = true;
+            $loader->load('service_gedmo.xml');
+
+            $translationInterfaces['gedmo'] = array_merge(
+                array('Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'),
+                $config['gedmo']['interfaces']
+            );
+
+        }
+        if ($config['phpcr']['enabled']) {
+            $isEnabled = true;
+            $loader->load('service_phpcr.xml');
+
+            $translationInterfaces['phpcr'] = array_merge(
+                array('Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface'),
+                $config['phpcr']['interfaces']
+            );
+        }
+
+        if ($isEnabled === true) {
+            $loader->load('block.xml');
+            $loader->load('listener.xml');
+            $loader->load('twig.xml');
+        }
+
+        $container->setParameter('sonata_translation.interfaces', $translationInterfaces);
     }
 }

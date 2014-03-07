@@ -9,6 +9,7 @@
  */
 namespace Sonata\TranslationBundle;
 
+use Sonata\TranslationBundle\DependencyInjection\Compiler\AdminExtensionCompilerPass;
 use Sonata\TranslationBundle\DependencyInjection\Compiler\GlobalVariablesCompilerPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -27,5 +28,6 @@ class SonataTranslationBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new GlobalVariablesCompilerPass());
+        $container->addCompilerPass(new AdminExtensionCompilerPass());
     }
 }

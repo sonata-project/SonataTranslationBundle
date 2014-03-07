@@ -6,14 +6,10 @@
 
     <parameters>
         <parameter key="sonata_translation.admin.extension.gedmo_translatable.class">Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension</parameter>
-        <parameter key="sonata_translation.admin.extension.phpcr_translatable.class">Sonata\TranslationBundle\Admin\Extension\Phpcr\TranslatableAdminExtension</parameter>
     </parameters>
 
     <services>
         <service id="sonata_translation.admin.extension.gedmo_translatable" class="%sonata_translation.admin.extension.gedmo_translatable.class%">
-            <tag name="sonata.admin.extension" />
-        </service>
-        <service id="sonata_translation.admin.extension.phpcr_translatable" class="%sonata_translation.admin.extension.phpcr_translatable.class%">
             <tag name="sonata.admin.extension" />
         </service>
     </services>
