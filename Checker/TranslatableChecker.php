@@ -47,8 +47,12 @@ class TranslatableChecker
             return false;
         }
 
-        $objectInterfaces = class_implements($object);
+        $objectTraits = class_uses($object);
+        if (in_array('Sonata\TranslationBundle\Traits\Translatable', $objectTraits)) {
+            return true;
+        }
 
+        $objectInterfaces = class_implements($object);
         foreach ($this->getSupportedInterfaces() as $interface) {
             if (in_array($interface, $objectInterfaces)) {
                 return true;
