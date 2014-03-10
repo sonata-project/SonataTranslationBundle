@@ -20,7 +20,14 @@ before_script:
   - composer update --prefer-source $COMPOSER_FLAGS
   - sudo pip install -r Resources/doc/requirements.txt
 
-script: phpunit && cd Resources/doc && sphinx-build -W -b html -d _build/doctrees . _build/html
+script:
+  - phpunit --coverage-clover=coverage.clover
+  - cd Resources/doc
+  - sphinx-build -W -b html -d _build/doctrees . _build/html
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 notifications:
     webhooks: http://sonata-project.org/bundles/translation/master/travis
