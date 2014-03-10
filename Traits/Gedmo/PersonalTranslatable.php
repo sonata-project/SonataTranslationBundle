@@ -9,6 +9,7 @@
  */
 namespace Sonata\TranslationBundle\Traits\Gedmo;
 use Sonata\TranslationBundle\Traits\Translatable;
+use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 
 /**
  * If you don't want to use trait, you can extend AbstractPersonalTranslatable instead
@@ -45,11 +46,11 @@ trait PersonalTranslatable
     }
 
     /**
-     * @param AbstractTranslation $translation
+     * @param AbstractPersonalTranslation $translation
      *
      * @return $this
      */
-    public function addTranslation(AbstractTranslation $translation)
+    public function addTranslation(AbstractPersonalTranslation $translation)
     {
         if (!$this->translations->contains($translation)) {
             $translation->setObject($this);

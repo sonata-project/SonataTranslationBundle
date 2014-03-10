@@ -57,11 +57,11 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
     }
 
     /**
-     * @param AbstractTranslation $translation
+     * @param AbstractPersonalTranslation $translation
      *
      * @return $this
      */
-    public function addTranslation(AbstractTranslation $translation)
+    public function addTranslation(AbstractPersonalTranslation $translation)
     {
         if (!$this->translations->contains($translation)) {
             $translation->setObject($this);
