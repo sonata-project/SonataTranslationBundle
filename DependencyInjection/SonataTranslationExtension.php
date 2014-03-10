@@ -36,27 +36,29 @@ class SonataTranslationExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('service.xml');
 
-        $translationInterfaces = array();
+        $translationTargets = array();
         if ($config['gedmo']['enabled']) {
             $isEnabled = true;
             $loader->load('service_gedmo.xml');
 
-            $translationInterfaces['gedmo'] = array_merge(
+            $translationTargets['gedmo']['implements'] = array_merge(
                 array('Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'),
-                $config['gedmo']['interfaces']
+                $config['gedmo']['implements']
             );
+            $translationTargets['gedmo']['instanceof'] = $config['gedmo']['instanceof'];
         }
         if ($config['phpcr']['enabled']) {
             $isEnabled = true;
             $loader->load('service_phpcr.xml');
 
-            $translationInterfaces['phpcr'] = array_merge(
+            $translationTargets['phpcr']['implements'] = array_merge(
                 array(
                     'Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface',
                     'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface'
                 ),
-                $config['phpcr']['interfaces']
+                $config['phpcr']['implements']
             );
+            $translationTargets['phpcr']['instanceof'] = $config['phpcr']['instanceof'];
         }
 
         if ($isEnabled === true) {
@@ -65,24 +67,27 @@ class SonataTranslationExtension extends Extension
             $loader->load('twig.xml');
         }
 
-        $container->setParameter('sonata_translation.interfaces', $translationInterfaces);
+        $container->setParameter('sonata_translation.targets', $translationTargets);
 
-        $this->configureChecker($container, $translationInterfaces);
+        $this->configureChecker($container, $translationTargets);
     }
 
     /**
      * @param ContainerBuilder $container
-     * @param array            $translationInterfaces
+     * @param array            $translationTargets
      */
-    protected function configureChecker(ContainerBuilder $container, $translationInterfaces)
+    protected function configureChecker(ContainerBuilder $container, $translationTargets)
     {
         $translatableCheckerDefinition = $container->getDefinition('sonata_translation.checker.translatable');
 
         $supportedInterfaces = array();
-        foreach ($translationInterfaces as $interfaces) {
-            $supportedInterfaces = array_merge($supportedInterfaces, $interfaces);
+        $supportedModels = array();
+        foreach ($translationTargets as $targets) {
+            $supportedInterfaces = array_merge($supportedInterfaces, $targets['implements']);
+            $supportedModels = array_merge($supportedModels, $targets['instanceof']);
         }
 
         $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', array($supportedInterfaces));
+        $translatableCheckerDefinition->addMethodCall('setSupportedModels', array($supportedModels));
     }
 }

@@ -23,30 +23,41 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $translationInterfaces = $container->getParameter('sonata_translation.interfaces');
+        $translationTargets = $container->getParameter('sonata_translation.targets');
+        $adminExtensionReferences = $this->getAdminExtensionReferenceByTypes(array_keys($translationTargets));
 
         foreach ($container->findTaggedServiceIds('sonata.admin') as $id => $attributes) {
             $admin = $container->getDefinition($id);
             $modelClass = $container->getParameterBag()->resolveValue($admin->getArgument(1));
             $modelClassReflection = new \ReflectionClass($modelClass);
 
-            if (isset($translationInterfaces['gedmo'])) {
-                $adminExtensionReference = new Reference('sonata_translation.admin.extension.gedmo_translatable');
-                foreach ($translationInterfaces['gedmo'] as $interface) {
+            foreach ($adminExtensionReferences as $type => $reference) {
+                foreach ($translationTargets[$type]['implements'] as $interface) {
                     if ($modelClassReflection->implementsInterface($interface)) {
-                        $admin->addMethodCall('addExtension', array($adminExtensionReference));
+                        $admin->addMethodCall('addExtension', array($reference));
                     }
                 }
-            }
-
-            if (isset($translationInterfaces['phpcr'])) {
-                $adminExtensionReference = new Reference('sonata_translation.admin.extension.phpcr_translatable');
-                foreach ($translationInterfaces['phpcr'] as $interface) {
-                    if ($modelClassReflection->implementsInterface($interface)) {
-                        $admin->addMethodCall('addExtension', array($adminExtensionReference));
+                foreach ($translationTargets[$type]['instanceof'] as $class) {
+                    if ($modelClassReflection->getName() == $class || $modelClassReflection->isSubclassOf($class)) {
+                        $admin->addMethodCall('addExtension', array($reference));
                     }
                 }
             }
         }
+    }
+
+    /**
+     * @param array $types
+     *
+     * @return array
+     */
+    protected function getAdminExtensionReferenceByTypes(array $types)
+    {
+        $references = array();
+        foreach ($types as $type) {
+            $references[$type] = new Reference('sonata_translation.admin.extension.' . $type . '_translatable');
+        }
+
+        return $references;
     }
 }
