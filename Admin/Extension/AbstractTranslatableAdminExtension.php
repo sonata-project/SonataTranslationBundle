@@ -114,15 +114,4 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
-
-    /**
-     * Check if $object is translatable
-     *
-     * @param  mixed $object
-     * @return bool
-     */
-    protected function isTranslatable($object)
-    {
-        return $this->getTranslatableChecker()->isTranslatable($object);
-    }
 }

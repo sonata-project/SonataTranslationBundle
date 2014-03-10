@@ -37,7 +37,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         $documentManager    = $this->getDocumentManager($admin);
         $unitOfWork         = $documentManager->getUnitOfWork();
 
-        if ($this->isTranslatable($object) && ($unitOfWork->getCurrentLocale($object) != $locale)) {
+        if ($this->getTranslatableChecker()->isTranslatable($object) && ($unitOfWork->getCurrentLocale($object) != $locale)) {
             $documentManager->bindTranslation($object, $locale);
         }
     }

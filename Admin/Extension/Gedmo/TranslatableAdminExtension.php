@@ -42,7 +42,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     public function alterObject(AdminInterface $admin, $object)
     {
-        if ($this->isTranslatable($object)) {
+        if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
             $this->getTranslatableListener($admin)->setTranslationFallback('');
 
