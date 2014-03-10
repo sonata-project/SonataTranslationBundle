@@ -51,7 +51,10 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_phpcr.xml');
 
             $translationInterfaces['phpcr'] = array_merge(
-                array('Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface'),
+                array(
+                    'Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface',
+                    'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface'
+                ),
                 $config['phpcr']['interfaces']
             );
         }
