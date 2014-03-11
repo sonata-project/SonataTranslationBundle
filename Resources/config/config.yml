@@ -2,13 +2,3 @@
 sonata_block:
     blocks:
         sonata_translation.block.locale_switcher:
-
-sonata_admin:
-    extensions:
-        sonata_translation.admin.extension.gedmo_translatable:
-            implements:
-                - Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface
-        sonata_translation.admin.extension.phpcr_translatable:
-            implements:
-                - Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface
-

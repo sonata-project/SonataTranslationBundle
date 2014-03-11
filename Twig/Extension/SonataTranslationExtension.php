@@ -9,17 +9,45 @@
  */
 namespace Sonata\TranslationBundle\Twig\Extension;
 
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
+
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class SonataTranslationExtension extends \Twig_Extension
 {
     /**
+     * @var TranslatableChecker
+     */
+    protected $translatableChecker;
+
+    /**
      * {@inheritdoc}
      */
     public function getName()
     {
         return 'sonata_translation';
+    }
+
+    function __construct(TranslatableChecker $translatableChecker)
+    {
+        $this->translatableChecker = $translatableChecker;
+    }
+
+    /**
+     * @param TranslatableChecker $translatableChecker
+     */
+    public function setTranslatableChecker($translatableChecker)
+    {
+        $this->translatableChecker = $translatableChecker;
+    }
+
+    /**
+     * @return TranslatableChecker
+     */
+    public function getTranslatableChecker()
+    {
+        return $this->translatableChecker;
     }
 
     /**
@@ -40,15 +68,6 @@ class SonataTranslationExtension extends \Twig_Extension
      */
     public function isTranslatable($object)
     {
-        if (is_null($object)) {
-            return false;
-        }
-
-        return (
-            in_array(
-                'Sonata\TranslationBundle\Model\TranslatableInterface',
-                class_implements($object)
-            )
-        );
+        return $this->getTranslatableChecker()->isTranslatable($object);
     }
 }

@@ -11,6 +11,7 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 
 use Sonata\AdminBundle\Admin\AdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -26,6 +27,16 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
      * @var string
      */
     protected $translatableLocale;
+
+    /**
+     * @var TranslatableChecker
+     */
+    protected $translatableChecker;
+
+    function __construct(TranslatableChecker $translatableChecker)
+    {
+        $this->translatableChecker = $translatableChecker;
+    }
 
     /**
      * @return ContainerInterface
@@ -53,6 +64,22 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
     protected function getDefaultTranslationLocale(AdminInterface $admin)
     {
         return $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
+    }
+
+    /**
+     * @param TranslatableChecker $translatableChecker
+     */
+    public function setTranslatableChecker($translatableChecker)
+    {
+        $this->translatableChecker = $translatableChecker;
+    }
+
+    /**
+     * @return TranslatableChecker
+     */
+    public function getTranslatableChecker()
+    {
+        return $this->translatableChecker;
     }
 
     /**
@@ -91,25 +118,5 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
         if ($object->getLocale() === null) {
             $object->setLocale($this->getTranslatableLocale($admin));
         }
-    }
-
-    /**
-     * Check if $object is translatable
-     *
-     * @param  mixed $object
-     * @return bool
-     */
-    protected function isTranslatable($object)
-    {
-        if (is_null($object)) {
-            return false;
-        }
-
-        return (
-            in_array(
-                'Sonata\TranslationBundle\Model\TranslatableInterface',
-                class_implements($object)
-            )
-        );
     }
 }
