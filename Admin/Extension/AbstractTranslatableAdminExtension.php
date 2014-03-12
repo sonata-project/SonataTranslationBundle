@@ -33,7 +33,7 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
      */
     protected $translatableChecker;
 
-    function __construct(TranslatableChecker $translatableChecker)
+    public function __construct(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;
     }

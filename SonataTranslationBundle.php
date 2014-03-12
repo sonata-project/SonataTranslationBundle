@@ -14,7 +14,6 @@ use Sonata\TranslationBundle\DependencyInjection\Compiler\GlobalVariablesCompile
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
