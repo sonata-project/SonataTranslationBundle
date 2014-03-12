@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 namespace Sonata\TranslationBundle\Traits\Gedmo;
+
 use Sonata\TranslationBundle\Traits\Translatable;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 

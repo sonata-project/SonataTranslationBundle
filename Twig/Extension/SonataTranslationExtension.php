@@ -29,7 +29,7 @@ class SonataTranslationExtension extends \Twig_Extension
         return 'sonata_translation';
     }
 
-    function __construct(TranslatableChecker $translatableChecker)
+    public function __construct(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;
     }
