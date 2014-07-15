@@ -30,7 +30,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     {
         if ($this->translatableListener == null) {
             $this->translatableListener = $this->getContainer($admin)->get(
-                'stof_doctrine_extensions.listener.translatable'
+                'gedmo.listener.translatable'
             );
         }
 
