@@ -24,6 +24,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     protected $translatableListener;
 
     /**
+     * @param AdminInterface $admin
+     * 
      * @return TranslatableListener
      */
     protected function getTranslatableListener(AdminInterface $admin)
