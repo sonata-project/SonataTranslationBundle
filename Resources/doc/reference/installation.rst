@@ -59,6 +59,8 @@ To use the ``TranslationBundle``, add the following lines to your application co
             # here enable the types you need
             gedmo:
                 enabled: true
+            knplabs:
+                enabled: true
             #phpcr:
             #    enabled: true
 
@@ -87,7 +89,7 @@ Extend the `SonataAdminBundle layout`_ and add the SonataTranslationBundle style
 
     {% block stylesheets %}
         {{  parent() }}
-    
+
         {# If you're using less, you can also use the
            '@SonataTranslationBundle/Resources/public/less/sonata-translation.less' template #}
         {% stylesheets
@@ -96,7 +98,7 @@ Extend the `SonataAdminBundle layout`_ and add the SonataTranslationBundle style
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
-    
+
 .. code-block:: yaml
 
     # app/config/config.yml
