@@ -68,8 +68,10 @@ class TranslatableChecker
             return false;
         }
 
-        if (in_array('Sonata\TranslationBundle\Traits\Translatable', class_uses($object))) {
-            return true;
+        if (function_exists('class_uses')) {
+            if (in_array('Sonata\TranslationBundle\Traits\Translatable', class_uses($object))) {
+                return true;
+            }
         }
 
         $objectInterfaces = class_implements($object);
