@@ -58,45 +58,19 @@
             }
         }
     }
-    /** Here if somebody could find how to do it easily for all the flags it would be awesome */
-    &.locale_fr {
-        label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-            background-image: url('/bundles/sonatatranslation/img/flags/fr.png');
+    @languages: 'fr', 'en', 'it', 'es', 'nl';
+    @path: '/bundles/sonatatranslation/img/flags/';
+
+    .-(@i: length(@languages)) when (@i > 0) {
+        @language: e(extract(@languages, @i));
+        &.locale_@{language} {
+            label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
+                background-image: url('@{path}@{language}.png');
+            }
+            input[type="checkbox"].locale:before {
+                content: url('@{path}@{language}.png');
+            }
         }
-        input[type="checkbox"].locale:before {
-            content: url('/bundles/sonatatranslation/img/flags/fr.png');
-        }
-    }
-    &.locale_en {
-        label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-            background-image: url('/bundles/sonatatranslation/img/flags/en.png');
-        }
-        input[type="checkbox"].locale:before {
-            content: url('/bundles/sonatatranslation/img/flags/en.png');
-        }
-    }
-    &.locale_it {
-        label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-            background-image: url('/bundles/sonatatranslation/img/flags/it.png');
-        }
-        input[type="checkbox"].locale:before {
-            content: url('/bundles/sonatatranslation/img/flags/it.png');
-        }
-    }
-    &.locale_nl {
-        label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-            background-image: url('/bundles/sonatatranslation/img/flags/nl.png');
-        }
-        input[type="checkbox"].locale:before {
-            content: url('/bundles/sonatatranslation/img/flags/nl.png');
-        }
-    }
-    &.locale_es {
-        label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-            background-image: url('/bundles/sonatatranslation/img/flags/es.png');
-        }
-        input[type="checkbox"].locale:before {
-            content: url('/bundles/sonatatranslation/img/flags/es.png');
-        }
-    }
+        .-((@i - 1));
+    } .-;
 }
