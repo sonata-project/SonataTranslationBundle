@@ -1,6 +1,0 @@
-CHANGELOG
-=========
-
-### 2012-09-24
-
-* changed service parameters into options that come through the configuration with the old values as the new defaults.
