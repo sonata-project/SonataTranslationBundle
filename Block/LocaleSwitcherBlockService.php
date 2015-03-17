@@ -10,7 +10,6 @@
 namespace Sonata\TranslationBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
@@ -45,19 +44,5 @@ class LocaleSwitcherBlockService extends BaseBlockService
             'block_context'  => $blockContext,
             'block'          => $blockContext->getBlock(),
         ), $response);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
-    {
     }
 }
