@@ -8,7 +8,7 @@ Installation
     //composer.json
     "require": {
     //...
-        "sonata-project/translation-bundle": "2.3.*",
+        "sonata-project/translation-bundle": "~1.0",
     //...
     }
 
