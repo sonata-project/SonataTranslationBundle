@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\AdminBundle\Tests\Checker;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
@@ -44,7 +46,7 @@ class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedInterfaces(array(
-            'Sonata\TranslationBundle\Model\TranslatableInterface'
+            'Sonata\TranslationBundle\Model\TranslatableInterface',
         ));
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
@@ -62,7 +64,7 @@ class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedModels(array(
-            'Sonata\AdminBundle\Tests\Checker\ModelCustomTranslatable'
+            'Sonata\AdminBundle\Tests\Checker\ModelCustomTranslatable',
         ));
 
         $this->assertTrue($translatableChecker->isTranslatable($object));

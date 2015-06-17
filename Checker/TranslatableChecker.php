@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\Checker;
 
 /**
@@ -57,9 +59,10 @@ class TranslatableChecker
     }
 
     /**
-     * Check if $object is translatable
+     * Check if $object is translatable.
      *
-     * @param  mixed $object
+     * @param mixed $object
+     *
      * @return bool
      */
     public function isTranslatable($object)
@@ -89,4 +92,4 @@ class TranslatableChecker
 
         return false;
     }
-} 
+}

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,10 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\Traits;
 
 /**
- * If you don't want to use trait, you can extend AbstractTranslatable instead
+ * If you don't want to use trait, you can extend AbstractTranslatable instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
