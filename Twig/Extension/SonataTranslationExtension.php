@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\Twig\Extension;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
@@ -61,9 +63,10 @@ class SonataTranslationExtension extends \Twig_Extension
     }
 
     /**
-     * Check if $object is translatable
+     * Check if $object is translatable.
      *
-     * @param  mixed $object
+     * @param mixed $object
+     *
      * @return bool
      */
     public function isTranslatable($object)

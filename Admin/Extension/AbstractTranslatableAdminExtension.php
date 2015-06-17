@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\Admin\Extension;
 
 use Sonata\AdminBundle\Admin\AdminExtension;
@@ -19,7 +21,7 @@ use Sonata\TranslationBundle\Checker\TranslatableChecker;
 abstract class AbstractTranslatableAdminExtension extends AdminExtension
 {
     /**
-     * Request parameter
+     * Request parameter.
      */
     const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
@@ -47,7 +49,7 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
     }
 
     /**
-     * Return the list of possible locales for your models
+     * Return the list of possible locales for your models.
      *
      * @return array
      */
@@ -57,7 +59,7 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
     }
 
     /**
-     * Return the default locale if url parameter is not present
+     * Return the default locale if url parameter is not present.
      *
      * @return string
      */
@@ -84,7 +86,7 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
 
     /**
      * Return current translatable locale
-     * ie: the locale used to load object translations != current request locale
+     * ie: the locale used to load object translations != current request locale.
      *
      * @return string
      */

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,13 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\AdminBundle\Tests\Model;
 
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-
 
 class ModelTranslatable extends AbstractTranslatable implements TranslatableInterface
 {

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -33,7 +35,7 @@ class SonataTranslationExtension extends Extension
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
 
         $isEnabled = false;
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('service.xml');
 
         $translationTargets = array();
@@ -54,7 +56,7 @@ class SonataTranslationExtension extends Extension
             $translationTargets['phpcr']['implements'] = array_merge(
                 array(
                     'Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface',
-                    'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface'
+                    'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface',
                 ),
                 $config['phpcr']['implements']
             );

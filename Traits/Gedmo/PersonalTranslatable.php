@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Sonata\TranslationBundle\Traits\Gedmo;
 
-use Sonata\TranslationBundle\Traits\Translatable;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
+use Sonata\TranslationBundle\Traits\Translatable;
 
 /**
- * If you don't want to use trait, you can extend AbstractPersonalTranslatable instead
+ * If you don't want to use trait, you can extend AbstractPersonalTranslatable instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
@@ -43,7 +45,7 @@ trait PersonalTranslatable
             }
         }
 
-        return null;
+        return;
     }
 
     /**
