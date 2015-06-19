@@ -1,17 +1,14 @@
 /**
  * SonataTranslation: adds translations to your forms
  */
-.sonata-bc {
-  /** Here if somebody could find how to do it easily for all the flags it would be awesome */
-}
 .sonata-bc .sonata-ba-form .locale_switcher {
-  padding: 1px 0px 0px 0px;
+  padding: 1px 0 0 0;
   text-align: right;
   margin-right: 15px;
   float: right;
 }
 .sonata-bc .sonata-ba-form .locale_switcher a {
-  margin-right: 0px;
+  margin-right: 0;
   padding: 2px;
   opacity: 0.5;
 }
@@ -50,7 +47,7 @@
 }
 .sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"].locale {
   width: 65px;
-  background-position: 0px center;
+  background-position: 0 center;
 }
 .sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"]:before {
   margin-right: 35px;
