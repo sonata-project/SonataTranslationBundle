@@ -22,7 +22,7 @@
         "sonata-project/core-bundle": "^2.2.1"
     },
     "require-dev": {
-        "stof/doctrine-extensions-bundle": "1.1.*",
+        "stof/doctrine-extensions-bundle": "~1.1",
         "symfony/phpunit-bridge": "~2.7|~3.0",
         "fabpot/php-cs-fixer": "~0.5|~1.0"
     },
@@ -30,9 +30,9 @@
         "psr-4": { "Sonata\\TranslationBundle\\": "" }
     },
     "suggest": {
-        "stof/doctrine-extensions-bundle": "1.1.*",
-        "sonata-project/doctrine-orm-admin-bundle":"2.2.*",
-        "sonata-project/doctrine-phpcr-admin-bundle": "1.*"
+        "stof/doctrine-extensions-bundle": "~1.1",
+        "sonata-project/doctrine-orm-admin-bundle":"~2.2",
+        "sonata-project/doctrine-phpcr-admin-bundle": "~1.0"
     },
     "extra": {
         "branch-alias": {
