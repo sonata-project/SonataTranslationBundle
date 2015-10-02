@@ -1,30 +1,44 @@
 Translate PHPCR models
 ======================
 
-
 Doctrine PHPCR ODM handles translations natively so you don't need to install anything else.
 
+Implement the TranslatableInterface
+-----------------------------------
 
-1. Models
----------
+Todo do so ``SonataTranslationBundle`` brings the `Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface`you can implement.
 
-First step is to defined which fields you want to translate.
+Define translatable Fields
+--------------------------
 
-Please refer to the `Doctrine PHPCR ODM documentation <http://doctrine-phpcr-odm.readthedocs.org/en/latest/reference/multilang.html>`_
+Please check the `Doctrine PHPCR ODM documentation`_ how you can define your fields you want to translate.
 
-Then your model should just implement `Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface`.
-This can be done easily by using `Sonata\TranslationBundle\Traits\Translatable`.
+Advanced Configuration
+----------------------
 
-2. Configuration
-----------------
+If you already followed :doc:`Installation <reference/installation>`, you just have to pay attention to PHPCR fallback configuration.
 
-If you already followed Installation Step 3, you just have to pay attention to PHPCR fallback configuration.
+So if you configured ``SonataTranslation`` like this :
 
-So if you configured SonataTranslation like this :
+.. configuration-block::
 
-.. code-block:: yaml
+    .. code-block:: yaml
 
-    sonata_translation:
-        locales: [fr, en, it, nl, es]
+        # app/config/config.yml
 
-Then you should configure `doctrine_phpcr.odm.locales` for the same list.
+        sonata_translation:
+            locales: [fr, en, it, nl, es]
+
+Then you should configure ``doctrine_phpcr.odm.locales`` for the same list.
+
+.. configuration-block::
+
+    .. code-block:: yaml
+
+        # app/config/config.yml
+
+        doctrine_phpcr:
+            odm:
+                locales: [fr, en, it, nl, es]
+
+.. _Doctrine PHPCR ODM documentation: http://doctrine-phpcr-odm.readthedocs.org/en/latest/reference/multilang.html
