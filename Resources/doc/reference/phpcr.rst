@@ -6,7 +6,7 @@ Doctrine PHPCR ODM handles translations natively so you don't need to install an
 Implement the TranslatableInterface
 -----------------------------------
 
-Todo do so ``SonataTranslationBundle`` brings the `Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface`you can implement.
+Todo do so ``SonataTranslationBundle`` brings the ``Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface`` you can implement.
 
 Define translatable Fields
 --------------------------
@@ -16,7 +16,7 @@ Please check the `Doctrine PHPCR ODM documentation`_ how you can define your fie
 Advanced Configuration
 ----------------------
 
-If you already followed :doc:`Installation <reference/installation>`, you just have to pay attention to PHPCR fallback configuration.
+If you already followed :doc:`Installation </reference/installation>`, you just have to pay attention to PHPCR fallback configuration.
 
 So if you configured ``SonataTranslation`` like this :
 
