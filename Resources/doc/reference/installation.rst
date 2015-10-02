@@ -54,8 +54,8 @@ Key                     Description
 
 .. note::
 
-    If you are using ``SonatAdmin`` with SonataDoctrineORMAdminBundle_ you should read the :doc:`ORM Chapter <reference/orm>`,
-    if you are using SonataDoctrinePhpcrAdminBundle_ you should read the :doc:`PHPCR Chapter <reference/phpcr>`.
+    If you are using ``SonatAdmin`` with SonataDoctrineORMAdminBundle_ you should read the :doc:`ORM chapter </reference/orm>`,
+    if you are using SonataDoctrinePhpcrAdminBundle_ you should read the :doc:`PHPCR chapter </reference/phpcr>`.
 
 Import the Styles
 -----------------
