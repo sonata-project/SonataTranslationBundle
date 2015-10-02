@@ -18,5 +18,6 @@ Reference Guide
    :numbered:
 
    reference/installation
+   reference/advanced_configuration
    reference/orm
    reference/phpcr

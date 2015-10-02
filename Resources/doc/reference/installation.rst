@@ -1,23 +1,21 @@
 Installation
 ============
 
-1. Add SonataTranslationBundle to your vendor/bundles dir via composer:
+The easiest way to install ``SonataTimelineBundle`` is to require it with Composer:
+
+.. code-block:: bash
+
+    $ php composer.phar require sonata-project/translation-bundle
+
+Alternatively, you could add a dependency into your ``composer.json`` file directly.
+
+Now, enable the bundle in the kernel:
 
 .. code-block:: php
 
-    //composer.json
-    "require": {
-    //...
-        "sonata-project/translation-bundle": "~1.0",
-    //...
-    }
-
-
-2. Add SonataTranslationBundle to your application kernel:
-
-.. code-block:: php
-
+    <?php
     // app/AppKernel.php
+
     public function registerBundles()
     {
         return array(
@@ -27,57 +25,44 @@ Installation
         );
     }
 
-3. Create a configuration file : ``bundles/sonata_translation.yml``:
+Configuration
+-------------
 
-.. code-block:: yaml
+To use the ``TranslationBundle``, add the following lines to your application configuration file:
 
-    imports:
-        - { resource: '@SonataTranslationBundle/Resources/config/config.yml'}
+.. configuration-block::
 
-    sonata_translation:
-        locales: [fr, en, it, nl, es]
-        default_locale: fr
-        # here enable the types you need
-        gedmo:
-            enabled: true
-        phpcr:
-            enabled: true
+    .. code-block:: yaml
 
-* **locales**: is the list of your frontend locales ie the locales in which your models will be translated.
-* **default_locale**: is simply the locale loaded by default in your forms
+        # app/config/config.yml
 
-**Advanced configuration** :
+        sonata_translation:
+            locales: [en, fr, it, nl, es]
+            default_locale: en
+            # here enable the types you need
+            gedmo:
+                enabled: true
+            #phpcr:
+            #    enabled: true
 
-By default SonataTranslation provides a set of default interfaces you should implement to see your models
-automatically handled.
-If you have specific needs and can't use them, this bundle gives you other ways to use it.
+==================      ============================================================================
+Key                     Description
+==================      ============================================================================
+**locales**             The list of your frontend locales in which your models will be translatable.
+**default_locale**      The locale, loaded in your forms by default.
+==================      ============================================================================
 
-Here is an example with phpcr :
+.. note::
 
-.. code-block:: yaml
+    If you are using ``SonatAdmin`` with SonataDoctrineORMAdminBundle_ you should read the :doc:`ORM Chapter <reference/orm>`,
+    if you are using SonataDoctrinePhpcrAdminBundle_ you should read the :doc:`PHPCR Chapter <reference/phpcr>`.
 
-    sonata_translation:
-        phpcr:
-            enabled: true
-            implements:
-                - # list your custom interfaces here
-                - MyProject\MyBundle\Model\CustomTranslatableInterface
-            instanceof:
-                - # list your specific models or abstract classes here
-                - MyProject\MyBundle\Model\AbstractCustomTranslatable
+Import the Styles
+-----------------
 
+Extend ``SonataAdmin`` layout if it's not already done and add the ``SonataTranslation`` styles like this :
 
-4. Import the ``sonata_translation.yml`` file in `app/config.yml`:
-
-.. code-block:: yaml
-
-    imports:
-        #...
-        - { resource: bundles/sonata_translation.yml }
-
-5. Import styles
-
-Extends SonataAdmin layout if it's not already done and add sonata translation styles like this :
+If you are using less/sass use this one :
 
 .. code-block:: jinja
 
@@ -87,9 +72,25 @@ Extends SonataAdmin layout if it's not already done and add sonata translation s
             '@SonataTranslationBundle/Resources/public/less/sonata-translation.less'
         %}
 
-        <link rel="stylesheet" href="{{ asset_url }}" />
+            <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
 
-**Note** To help users without less, we made a compiled css : `'@SonataTranslationBundle/Resources/public/css/sonata-translation.css'`
+otherwise you could add the compiled css file :
 
+.. code-block:: php
+
+    {% block stylesheets %}
+        {{  parent() }}
+        {% stylesheets
+            '@SonataTranslationBundle/Resources/public/css/sonata-translation.css'
+        %}
+
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+And now, you're good to go !
+
+.. _SonataDoctrineORMAdminBundle: https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/index.html
+.. _SonataDoctrinePhpcrAdminBundle: https://sonata-project.org/bundles/doctrine-phpcr-admin/master/doc/index.html
