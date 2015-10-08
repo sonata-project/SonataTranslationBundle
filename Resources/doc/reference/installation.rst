@@ -1,7 +1,7 @@
 Installation
 ============
 
-The easiest way to install ``SonataTimelineBundle`` is to require it with Composer:
+The easiest way to install ``SonataTranslationBundle`` is to require it with Composer:
 
 .. code-block:: bash
 
