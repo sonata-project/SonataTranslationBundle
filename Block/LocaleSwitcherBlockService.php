@@ -15,12 +15,21 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class LocaleSwitcherBlockService extends BaseBlockService
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->configureSettings($resolver);
+    }
+
     /**
      * {@inheritdoc}
      */
