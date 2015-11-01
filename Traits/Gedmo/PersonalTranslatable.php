@@ -24,7 +24,7 @@ trait PersonalTranslatable
     use Translatable;
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|AbstractPersonalTranslation[]
      */
     public function getTranslations()
     {

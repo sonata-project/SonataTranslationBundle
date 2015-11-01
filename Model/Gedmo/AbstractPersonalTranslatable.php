@@ -25,17 +25,20 @@ use Gedmo\Mapping\Annotation as Gedmo;
 abstract class AbstractPersonalTranslatable extends AbstractTranslatable
 {
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|AbstractPersonalTranslation[]
      */
     protected $translations;
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->translations = new ArrayCollection();
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|AbstractPersonalTranslation[]
      */
     public function getTranslations()
     {
@@ -43,8 +46,8 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
     }
 
     /**
-     * @param $field
-     * @param $locale
+     * @param string $field
+     * @param string $locale
      *
      * @return null|string
      */
