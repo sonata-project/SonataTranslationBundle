@@ -20,7 +20,7 @@ use Sonata\BlockBundle\Model\Block;
 class LocaleSwitcherListener
 {
     /**
-     * @param BlockEvent
+     * @param BlockEvent $event
      */
     public function onBlock(BlockEvent $event)
     {
