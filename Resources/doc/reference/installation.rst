@@ -45,11 +45,11 @@ To use the ``TranslationBundle``, add the following lines to your application co
                 enabled: true
             #phpcr:
             #    enabled: true
-       stof_doctrine_extensions:
-           default_locale: %locale%
-           orm:
-               default:
-               translatable: true
+        stof_doctrine_extensions:
+                default_locale: %locale%
+                orm:
+                        default:
+                        translatable: true
 
 ==================      ============================================================================
 Key                     Description
