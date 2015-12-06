@@ -21,6 +21,7 @@ Now, enable the bundle in the kernel:
         return array(
             // ...
             new Sonata\TranslationBundle\SonataTranslationBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             // ...
         );
     }
@@ -44,6 +45,11 @@ To use the ``TranslationBundle``, add the following lines to your application co
                 enabled: true
             #phpcr:
             #    enabled: true
+       stof_doctrine_extensions:
+           default_locale: %locale%
+           orm:
+               default:
+               translatable: true
 
 ==================      ============================================================================
 Key                     Description

@@ -16,8 +16,8 @@ First step, your entities have to implement the `TranslatableInterface`_.
 Todo do so ``SonataTranslationBundle`` brings some base classes you can extend.
 Depends on how you want to save translations you can choose between :
 
-* `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`
-* `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`
+* `Sonata\\TranslationBundle\\Model\\Gedmo\\AbstractTranslatable`
+* `Sonata\\TranslationBundle\\Model\\Gedmo\\AbstractPersonalTranslatable`
 
 Define translatable Fields
 --------------------------
@@ -94,8 +94,8 @@ Example using Personal Translation
 
     If you prefer to use `traits`, we provide :
 
-    * `Sonata\TranslationBundle\Traits\Translatable`
-    * `Sonata\TranslationBundle\Traits\PersonalTranslatable`
+    * `Sonata\\TranslationBundle\\Traits\\Translatable`
+    * `Sonata\\TranslationBundle\\Traits\\PersonalTranslatable`
 
 Example using Personal Translation with Traits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
