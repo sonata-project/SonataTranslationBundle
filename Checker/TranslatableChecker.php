@@ -72,7 +72,11 @@ class TranslatableChecker
         }
 
         if (function_exists('class_uses')) {
-            if (in_array('Sonata\TranslationBundle\Traits\Translatable', class_uses($object))) {
+            $traits = class_uses($object);
+            if (in_array('Sonata\TranslationBundle\Traits\Translatable', $traits)) {
+                return true;
+            }
+            if (in_array('Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable', $traits)) {
                 return true;
             }
         }
