@@ -22,10 +22,15 @@ class LocaleSwitcherListener
     /**
      * @param BlockEvent $event
      */
-    public function onBlock(BlockEvent $event)
+    public function onBlock(BlockEvent $event, $eventName)
     {
+        $settings = $event->getSettings();
+        if ($eventName == 'sonata.block.event.sonata.admin.show.top') {
+            $settings['locale_switcher_route'] = 'show';
+        }
+
         $block = new Block();
-        $block->setSettings($event->getSettings());
+        $block->setSettings($settings);
         $block->setName('sonata_translation.block.locale_switcher');
         $block->setType('sonata_translation.block.locale_switcher');
 

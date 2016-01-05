@@ -11,6 +11,7 @@
     <services>
         <service id="sonata_translation.listener.locale_switcher" class="%sonata_translation.listener.locale_switcher.class%">
             <tag name="kernel.event_listener" event="sonata.block.event.sonata.admin.edit.form.top" method="onBlock"/>
+            <tag name="kernel.event_listener" event="sonata.block.event.sonata.admin.show.top" method="onBlock"/>                       
         </service>
     </services>
 

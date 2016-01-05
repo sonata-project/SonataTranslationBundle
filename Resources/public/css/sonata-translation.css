@@ -1,89 +1,75 @@
 /**
  * SonataTranslation: adds translations to your forms
  */
-.sonata-bc .sonata-ba-form .locale_switcher {
+.sonata-bc .sonata-ba-form .locale_switcher,
+.sonata-bc .sonata-ba-show .locale_switcher {
   padding: 1px 0 0 0;
   text-align: right;
   margin-right: 15px;
+  margin-bottom: 5px;
   float: right;
 }
-.sonata-bc .sonata-ba-form .locale_switcher a {
+.sonata-bc .sonata-ba-form .locale_switcher a,
+.sonata-bc .sonata-ba-show .locale_switcher a {
   margin-right: 0;
   padding: 2px;
   opacity: 0.5;
 }
-.sonata-bc .sonata-ba-form .locale_switcher a.active {
+.sonata-bc .sonata-ba-form .locale_switcher a.active,
+.sonata-bc .sonata-ba-show .locale_switcher a.active {
   opacity: 1;
 }
-.sonata-bc .sonata-ba-form .locale_switcher a:hover {
+.sonata-bc .sonata-ba-form .locale_switcher a:hover,
+.sonata-bc .sonata-ba-show .locale_switcher a:hover {
   opacity: 1;
 }
 .sonata-bc .sonata-ba-form label.wysiwyg.locale,
+.sonata-bc .sonata-ba-show label.wysiwyg.locale,
 .sonata-bc .sonata-ba-form label.checkbox.locale,
+.sonata-bc .sonata-ba-show label.checkbox.locale,
 .sonata-bc .sonata-ba-form input.locale,
+.sonata-bc .sonata-ba-show input.locale,
 .sonata-bc .sonata-ba-form textarea.locale,
+.sonata-bc .sonata-ba-show textarea.locale,
 .sonata-bc .sonata-ba-form select.locale,
-.sonata-bc .sonata-ba-form li.locale a {
+.sonata-bc .sonata-ba-show select.locale,
+.sonata-bc .sonata-ba-form li.locale a,
+.sonata-bc .sonata-ba-show li.locale a {
   background-repeat: no-repeat;
 }
 .sonata-bc .sonata-ba-form input[type="text"].locale,
-.sonata-bc .sonata-ba-form select.locale {
+.sonata-bc .sonata-ba-show input[type="text"].locale,
+.sonata-bc .sonata-ba-form select.locale,
+.sonata-bc .sonata-ba-show select.locale {
   padding-left: 35px !important;
   background-position: 5px center;
 }
-.sonata-bc .sonata-ba-form textarea.locale {
+.sonata-bc .sonata-ba-form textarea.locale,
+.sonata-bc .sonata-ba-show textarea.locale {
   padding-left: 35px;
   background-position: 5px 5px;
 }
 .sonata-bc .sonata-ba-form label.wysiwyg.locale,
-.sonata-bc .sonata-ba-form label.checkbox.locale {
+.sonata-bc .sonata-ba-show label.wysiwyg.locale,
+.sonata-bc .sonata-ba-form label.checkbox.locale,
+.sonata-bc .sonata-ba-show label.checkbox.locale {
   padding-right: 35px;
   background-position: right bottom;
 }
-.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"] {
+.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"],
+.sonata-bc .sonata-ba-show .form-horizontal .controls input[type="checkbox"] {
   /*top: 5px;*/
   position: relative;
   width: 15px;
 }
-.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"].locale {
+.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"].locale,
+.sonata-bc .sonata-ba-show .form-horizontal .controls input[type="checkbox"].locale {
   width: 65px;
   background-position: 0 center;
 }
-.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"]:before {
+.sonata-bc .sonata-ba-form .form-horizontal .controls input[type="checkbox"]:before,
+.sonata-bc .sonata-ba-show .form-horizontal .controls input[type="checkbox"]:before {
   margin-right: 35px;
-}
-.sonata-bc.locale_fr label.wysiwyg.locale,
-.sonata-bc.locale_fr label.checkbox.locale,
-.sonata-bc.locale_fr input.locale,
-.sonata-bc.locale_fr textarea.locale,
-.sonata-bc.locale_fr select.locale,
-.sonata-bc.locale_fr li.locale a {
-  background-image: url('/bundles/sonatatranslation/img/flags/fr.png');
-}
-.sonata-bc.locale_fr input[type="checkbox"].locale:before {
-  content: url('/bundles/sonatatranslation/img/flags/fr.png');
-}
-.sonata-bc.locale_en label.wysiwyg.locale,
-.sonata-bc.locale_en label.checkbox.locale,
-.sonata-bc.locale_en input.locale,
-.sonata-bc.locale_en textarea.locale,
-.sonata-bc.locale_en select.locale,
-.sonata-bc.locale_en li.locale a {
-  background-image: url('/bundles/sonatatranslation/img/flags/en.png');
-}
-.sonata-bc.locale_en input[type="checkbox"].locale:before {
-  content: url('/bundles/sonatatranslation/img/flags/en.png');
-}
-.sonata-bc.locale_it label.wysiwyg.locale,
-.sonata-bc.locale_it label.checkbox.locale,
-.sonata-bc.locale_it input.locale,
-.sonata-bc.locale_it textarea.locale,
-.sonata-bc.locale_it select.locale,
-.sonata-bc.locale_it li.locale a {
-  background-image: url('/bundles/sonatatranslation/img/flags/it.png');
-}
-.sonata-bc.locale_it input[type="checkbox"].locale:before {
-  content: url('/bundles/sonatatranslation/img/flags/it.png');
 }
 .sonata-bc.locale_nl label.wysiwyg.locale,
 .sonata-bc.locale_nl label.checkbox.locale,
@@ -106,4 +92,37 @@
 }
 .sonata-bc.locale_es input[type="checkbox"].locale:before {
   content: url('/bundles/sonatatranslation/img/flags/es.png');
+}
+.sonata-bc.locale_it label.wysiwyg.locale,
+.sonata-bc.locale_it label.checkbox.locale,
+.sonata-bc.locale_it input.locale,
+.sonata-bc.locale_it textarea.locale,
+.sonata-bc.locale_it select.locale,
+.sonata-bc.locale_it li.locale a {
+  background-image: url('/bundles/sonatatranslation/img/flags/it.png');
+}
+.sonata-bc.locale_it input[type="checkbox"].locale:before {
+  content: url('/bundles/sonatatranslation/img/flags/it.png');
+}
+.sonata-bc.locale_en label.wysiwyg.locale,
+.sonata-bc.locale_en label.checkbox.locale,
+.sonata-bc.locale_en input.locale,
+.sonata-bc.locale_en textarea.locale,
+.sonata-bc.locale_en select.locale,
+.sonata-bc.locale_en li.locale a {
+  background-image: url('/bundles/sonatatranslation/img/flags/en.png');
+}
+.sonata-bc.locale_en input[type="checkbox"].locale:before {
+  content: url('/bundles/sonatatranslation/img/flags/en.png');
+}
+.sonata-bc.locale_fr label.wysiwyg.locale,
+.sonata-bc.locale_fr label.checkbox.locale,
+.sonata-bc.locale_fr input.locale,
+.sonata-bc.locale_fr textarea.locale,
+.sonata-bc.locale_fr select.locale,
+.sonata-bc.locale_fr li.locale a {
+  background-image: url('/bundles/sonatatranslation/img/flags/fr.png');
+}
+.sonata-bc.locale_fr input[type="checkbox"].locale:before {
+  content: url('/bundles/sonatatranslation/img/flags/fr.png');
 }
