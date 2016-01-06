@@ -3,7 +3,11 @@ Translation Bundle
 
 SonataTranslationBundle allows you to easily translate your models in SonataAdmin in every locales you need on your frontend.
 
-This bundle adds a locale switcher block in your edit forms.
+This bundle adds a locale switcher block in :
+
+* edit forms
+* show actions
+* custom actions
 
 **Currently supported :**
 
@@ -21,3 +25,4 @@ Reference Guide
    reference/advanced_configuration
    reference/orm
    reference/phpcr
+   reference/custom_action
