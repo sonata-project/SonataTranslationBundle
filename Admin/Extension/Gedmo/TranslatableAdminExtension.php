@@ -14,6 +14,7 @@ namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -25,19 +26,19 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     protected $translatableListener;
 
+    public function __construct(TranslatableChecker $translatableChecker, TranslatableListener $translatableListener)
+    {
+        parent::__construct($translatableChecker);
+        $this->translatableListener = $translatableListener;
+    }
+
     /**
      * @param AdminInterface $admin
      *
      * @return TranslatableListener
      */
-    protected function getTranslatableListener(AdminInterface $admin)
+    protected function getTranslatableListener()
     {
-        if ($this->translatableListener == null) {
-            $this->translatableListener = $this->getContainer($admin)->get(
-                'stof_doctrine_extensions.listener.translatable'
-            );
-        }
-
         return $this->translatableListener;
     }
 
@@ -47,8 +48,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     public function alterObject(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $this->getTranslatableListener($admin)->setTranslationFallback('');
+            $this->getTranslatableListener()->setTranslatableLocale($this->getTranslatableLocale($admin));
+            $this->getTranslatableListener()->setTranslationFallback('');
 
             $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));

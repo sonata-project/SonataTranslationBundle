@@ -12,7 +12,9 @@
         <service id="sonata_translation.admin.extension.gedmo_translatable" class="%sonata_translation.admin.extension.gedmo_translatable.class%">
             <tag name="sonata.admin.extension" />
             <argument type="service" id="sonata_translation.checker.translatable" />
+            <argument type="service" id="sonata_translation.listener.translatable" />
         </service>
+        <service id="sonata_translation.listener.translatable" alias="stof_doctrine_extensions.listener.translatable" />
     </services>
 
 </container>
