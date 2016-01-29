@@ -98,7 +98,7 @@ object the same way as Sonata does in edit or show action.
                 throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
             }
     
-            return $this->render('admin/questionnaire/show_question_answer.html.twig, array(
+            return $this->render('admin/questionnaire/show_question_answer.html.twig', array(
                 'questionnaire' => $questionnaire,
             ));
         }    
