@@ -14,6 +14,7 @@ namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
+use \Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -44,7 +45,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * @param AdminInterface $admin
      * 
-     * @return \Doctrine\Common\Persistence\ObjectManager
+     * @return ObjectManager
      */
     protected function getManagerFromAdmin(AdminInterface $admin)
     {
