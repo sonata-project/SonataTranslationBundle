@@ -41,6 +41,22 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     {
         return $this->translatableListener;
     }
+    
+    /**
+     * @param AdminInterface $admin
+     * 
+     * @return \Doctrine\Common\Persistence\ObjectManager
+     */
+    protected function getManagerFromAdmin(AdminInterface $admin)
+    {
+        $service = $this->getContainer($admin)->get($admin->getManagerType());
+        
+        if (!$service) {
+            $service = $this->getContainer($admin)->get('doctrine');
+        }
+        
+        return $service->getManager();
+    }
 
     /**
      * {@inheritdoc}
@@ -51,7 +67,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             $this->getTranslatableListener()->setTranslatableLocale($this->getTranslatableLocale($admin));
             $this->getTranslatableListener()->setTranslationFallback('');
 
-            $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
+            $this->getManagerFromAdmin($admin)->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
