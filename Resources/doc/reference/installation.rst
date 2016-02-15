@@ -91,7 +91,7 @@ Extend the `SonataAdminBundle layout`_ and add the SonataTranslationBundle style
         {# If you're using less, you can also use the
            '@SonataTranslationBundle/Resources/public/less/sonata-translation.less' template #}
         {% stylesheets
-            '@SonataTranslationBundle/Resources/public/less/sonata-translation.css'
+            '@SonataTranslationBundle/Resources/public/css/sonata-translation.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
