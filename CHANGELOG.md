@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.1.0 (unreleased)
+------------------
+
+* **2016-03-30**: [gedmo translations] Added content language switcher to lists
+* **2016-03-30**: [gedmo translations] Added available translations filter
+
 1.0.2
 -----
 
