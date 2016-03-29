@@ -35,13 +35,21 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     public function alterObject(AdminInterface $admin, $object)
     {
-        $locale             = $this->getTranslatableLocale($admin);
-        $documentManager    = $this->getDocumentManager($admin);
-        $unitOfWork         = $documentManager->getUnitOfWork();
+        $locale = $this->getTranslatableLocale($admin);
+        $documentManager = $this->getDocumentManager($admin);
+        $unitOfWork = $documentManager->getUnitOfWork();
 
-        if ($this->getTranslatableChecker()->isTranslatable($object) && ($unitOfWork->getCurrentLocale($object) != $locale)) {
-            //@dbu : doesn't work - $documentManager->bindTranslation($object, $locale);
+        if (
+            $this->getTranslatableChecker()->isTranslatable($object)
+            && ($unitOfWork->getCurrentLocale($object) !== $locale)
+        ) {
             $object = $this->getDocumentManager($admin)->findTranslation($admin->getClass(), $object->getId(), $locale);
+
+            // if the translation did not yet exists, the locale will be
+            // the fallback locale. This makes sure the new locale is set.
+            if ($unitOfWork->getCurrentLocale($object) !== $locale) {
+                $documentManager->bindTranslation($object, $locale);
+            }
         }
     }
 }
