@@ -11,13 +11,12 @@
 
 namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -70,15 +69,16 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     /**
      * Search on normal field and on translation field
-     * To use with a doctrine_orm_callback filter type
+     * To use with a doctrine_orm_callback filter type.
      *
      * @param QueryBuilder $queryBuilder
-     * @param string $alias
-     * @param string $field
-     * @param string $value
+     * @param string       $alias
+     * @param string       $field
+     * @param string       $value
+     *
      * @return bool
      */
-    public static function translationFieldFilter($queryBuilder, $alias, $field, $value)
+    public static function translationFieldFilter(QueryBuilder $queryBuilder, $alias, $field, $value)
     {
         if (!$value['value']) {
             return;
@@ -97,18 +97,18 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
 
         if ($aliasAlreadyExists === false) {
-            $queryBuilder->leftJoin($alias . '.translations', 't');
+            $queryBuilder->leftJoin($alias.'.translations', 't');
         }
 
         // search on translation OR on normal field
         $queryBuilder->andWhere($queryBuilder->expr()->orX(
             $queryBuilder->expr()->andX(
                 $queryBuilder->expr()->eq('t.field', $queryBuilder->expr()->literal($field)),
-                $queryBuilder->expr()->like('t.content', $queryBuilder->expr()->literal('%' . $value['value'] . '%'))
+                $queryBuilder->expr()->like('t.content', $queryBuilder->expr()->literal('%'.$value['value'].'%'))
             ),
             $queryBuilder->expr()->like(
                 sprintf('%s.%s', $alias, $field),
-                $queryBuilder->expr()->literal('%' . $value['value'] . '%')
+                $queryBuilder->expr()->literal('%'.$value['value'].'%')
             )
         ));
 
