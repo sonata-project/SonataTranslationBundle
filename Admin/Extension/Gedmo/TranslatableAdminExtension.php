@@ -13,6 +13,8 @@ namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
@@ -40,11 +42,67 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $translatableListener = $this->getTranslatableListener($admin);
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $translatableListener->setTranslationFallback('');
+            $translatableListener->setTranslationFallback(false);
 
             $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
+    {
+        $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
+        $this->getTranslatableListener($admin)->setTranslationFallback(false);
+    }
+
+    /**
+     * Search on normal field and on translated field, use with a
+     * doctrine_orm_callback filter type.
+     *
+     * @param ProxyQuery $queryBuilder
+     * @param string     $alias
+     * @param string     $field
+     * @param string     $value
+     *
+     * @return bool|null
+     */
+    public static function translationFieldFilter(ProxyQuery $queryBuilder, $alias, $field, $value)
+    {
+        if (!$value['value']) {
+            return;
+        }
+
+        // verify if the join is not already done
+        $aliasAlreadyExists = false;
+        foreach ($queryBuilder->getDQLParts()['join'] as $joins) {
+            foreach ($joins as $join) {
+                if ($join->getAlias() === 't') {
+                    $aliasAlreadyExists = true;
+                    break 2;
+                }
+            }
+        }
+
+        if (!$aliasAlreadyExists) {
+            $queryBuilder->leftJoin($alias.'.translations', 't');
+        }
+
+        // search on translation OR on normal field
+        $queryBuilder->andWhere($queryBuilder->expr()->orX(
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->eq('t.field', $queryBuilder->expr()->literal($field)),
+                $queryBuilder->expr()->like('t.content', $queryBuilder->expr()->literal('%'.$value['value'].'%'))
+            ),
+            $queryBuilder->expr()->like(
+                sprintf('%s.%s', $alias, $field),
+                $queryBuilder->expr()->literal('%'.$value['value'].'%')
+            )
+        ));
+
+        return true;
     }
 
     /**
