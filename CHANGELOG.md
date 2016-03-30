@@ -1,10 +1,14 @@
 CHANGELOG
 =========
 
-1.0.1
+1.0.2
 -----
 
+* **2016-03-29**: Prepared Gedmo TranslatableAdminExtension for simplification in version 2.0
+  *Note*: If you used the dev version and extended TranslatableAdminExtension::getTranslatableListener(AdminInterface $admin) you might need some adaptions as the parameter was removed for a while.
 
+1.0.1
+-----
 
 1.0.0
 -----

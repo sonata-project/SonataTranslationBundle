@@ -26,19 +26,25 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     protected $translatableListener;
 
-    public function __construct(TranslatableChecker $translatableChecker, TranslatableListener $translatableListener)
+    public function __construct(TranslatableChecker $translatableChecker, TranslatableListener $translatableListener = null)
     {
         parent::__construct($translatableChecker);
         $this->translatableListener = $translatableListener;
     }
 
     /**
-     * @param AdminInterface $admin
+     * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead.
      *
      * @return TranslatableListener
      */
-    protected function getTranslatableListener()
+    protected function getTranslatableListener(AdminInterface $admin)
     {
+        if (null === $this->translatableListener) {
+            $this->translatableListener = $this->getContainer($admin)->get(
+                'stof_doctrine_extensions.listener.translatable'
+            );
+        }
+
         return $this->translatableListener;
     }
 
@@ -48,8 +54,9 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     public function alterObject(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $this->getTranslatableListener()->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $this->getTranslatableListener()->setTranslationFallback('');
+            $translatableListener = $this->getTranslatableListener($admin);
+            $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+            $translatableListener->setTranslationFallback('');
 
             $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
