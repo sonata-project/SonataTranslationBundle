@@ -11,10 +11,10 @@
 
 namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
-use Doctrine\DBAL\Query\QueryBuilder;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
@@ -71,14 +71,14 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      * Search on normal field and on translation field
      * To use with a doctrine_orm_callback filter type.
      *
-     * @param QueryBuilder $queryBuilder
-     * @param string       $alias
-     * @param string       $field
-     * @param string       $value
+     * @param ProxyQuery $queryBuilder
+     * @param string     $alias
+     * @param string     $field
+     * @param string     $value
      *
      * @return bool
      */
-    public static function translationFieldFilter(QueryBuilder $queryBuilder, $alias, $field, $value)
+    public static function translationFieldFilter(ProxyQuery $queryBuilder, $alias, $field, $value)
     {
         if (!$value['value']) {
             return;
