@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1 (unreleased)
+----------------
+
+* **2016-04-11**: Added support for Knplabs Doctrine Behaviours.
+
 1.0.2
 -----
 
