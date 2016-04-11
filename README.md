@@ -13,7 +13,7 @@ SonataTranslationBundle allows you to easily translate your models in SonataAdmi
 
 **Currently supported :**
 
-* **ORM** : integrates Doctrine ORM entities with Gedmo extensions
+* **ORM** : integrates Doctrine ORM entities with Gedmo extensions or KnpLabs Doctrine Behaviors
 * **PHPCR**: integrates Doctrine PHPCR ODM
 
 Check out the documentation on [http://sonata-project.org/bundles/translation/master/doc/index.html](http://sonata-project.org/bundles/translation/master/doc/index.html)
