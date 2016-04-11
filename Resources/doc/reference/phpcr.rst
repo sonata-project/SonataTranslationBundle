@@ -39,6 +39,11 @@ Then you should configure ``doctrine_phpcr.odm.locales`` for the same list.
 
         doctrine_phpcr:
             odm:
-                locales: [fr, en, it, nl, es]
+                locales:
+                    fr: [en, it]
+                    en: []
+                    it: [fr, en]
+                    nl: [en]
+                    es: [en, fr, it]
 
 .. _Doctrine PHPCR ODM documentation: http://doctrine-phpcr-odm.readthedocs.org/en/latest/reference/multilang.html
