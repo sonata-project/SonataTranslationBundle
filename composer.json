@@ -18,7 +18,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/symfony": "~2.2|~3.0",
+        "symfony/framework-bundle": "~2.2|~3.0",
+        "symfony/options-resolver": "~2.2|~3.0",
+        "symfony/twig-bridge": "~2.2|~3.0",
+        "sonata-project/admin-bundle": "~2.3",
         "sonata-project/core-bundle": "^2.2.1"
     },
     "require-dev": {
