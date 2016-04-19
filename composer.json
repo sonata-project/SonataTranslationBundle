@@ -18,20 +18,26 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/symfony": "~2.2|~3.0",
-        "sonata-project/core-bundle": "^2.2.1"
+        "sonata-project/admin-bundle": "^2.3.0|~2.4@dev",
+        "sonata-project/core-bundle": "^2.2.1",
+        "symfony/framework-bundle": "~2.2|~3.0",
+        "symfony/options-resolver": "~2.2|~3.0",
+        "twig/twig": "~1.23"
     },
     "require-dev": {
-        "stof/doctrine-extensions-bundle": "~1.1",
         "knplabs/doctrine-behaviors": "~1.0",
+        "stof/doctrine-extensions-bundle": "~1.1",
         "symfony/phpunit-bridge": "~2.7|~3.0"
     },
     "autoload": {
         "psr-4": { "Sonata\\TranslationBundle\\": "" }
     },
+    "config": {
+        "sort-packages": true
+    },
     "suggest": {
-        "stof/doctrine-extensions-bundle": "~1.1",
         "knplabs/doctrine-behaviors": "~1.0",
+        "stof/doctrine-extensions-bundle": "~1.1",
         "sonata-project/doctrine-orm-admin-bundle":"~2.2",
         "sonata-project/doctrine-phpcr-admin-bundle": "~1.0"
     },
