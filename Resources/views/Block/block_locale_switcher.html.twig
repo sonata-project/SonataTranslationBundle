@@ -1,6 +1,7 @@
 {% set object = block_context.settings.object %}
 {% set admin  = block_context.settings.admin %}
 {% set locale_switcher_route = block_context.settings.locale_switcher_route %}
+{% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
 
 {% if (object is translatable) %}
     <div class="locale_switcher">
@@ -13,7 +14,11 @@
                         {% set locale_switcher_route = 'create' %}
                     {% endif %}
                 {% endif %}
-                <a href="{{ admin.generateUrl(locale_switcher_route, {'id': admin.id(object), 'tl': locale}) }}" accesskey=""
+                <a href="{{ admin.generateUrl(
+                        locale_switcher_route,
+                        {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
+                    ) }}"
+                   accesskey=""
                    class=" {% if (object.locale == locale) %} active {% endif %}"
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
                     <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale ~ '.png')}}" />
