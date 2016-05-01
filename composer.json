@@ -17,17 +17,17 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "sonata-project/admin-bundle": "^2.3.0|~2.4@dev",
-        "sonata-project/core-bundle": "^2.2.1",
-        "symfony/framework-bundle": "~2.2|~3.0",
-        "symfony/options-resolver": "~2.2|~3.0",
-        "twig/twig": "~1.23"
+        "php": "^5.4 || ^7.0",
+        "sonata-project/admin-bundle": "^3.0",
+        "sonata-project/core-bundle": "^3.0",
+        "symfony/framework-bundle": "^2.3 || ^3.0",
+        "symfony/options-resolver": "^2.3 || ^3.0",
+        "twig/twig": "^1.23"
     },
     "require-dev": {
-        "knplabs/doctrine-behaviors": "~1.0",
-        "stof/doctrine-extensions-bundle": "~1.1",
-        "symfony/phpunit-bridge": "~2.7|~3.0",
+        "knplabs/doctrine-behaviors": "^1.0",
+        "stof/doctrine-extensions-bundle": "^1.1",
+        "symfony/phpunit-bridge": "^2.7 || ^3.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "autoload": {
@@ -37,14 +37,14 @@
         "sort-packages": true
     },
     "suggest": {
-        "knplabs/doctrine-behaviors": "~1.0",
-        "stof/doctrine-extensions-bundle": "~1.1",
-        "sonata-project/doctrine-orm-admin-bundle":"~2.2",
-        "sonata-project/doctrine-phpcr-admin-bundle": "~1.0"
+        "knplabs/doctrine-behaviors": "^1.0",
+        "stof/doctrine-extensions-bundle": "^1.1",
+        "sonata-project/doctrine-orm-admin-bundle":"^2.2",
+        "sonata-project/doctrine-phpcr-admin-bundle": "^1.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1.x-dev"
+            "dev-master": "2.x-dev"
         }
     }
 }
