@@ -27,7 +27,8 @@
     "require-dev": {
         "knplabs/doctrine-behaviors": "~1.0",
         "stof/doctrine-extensions-bundle": "~1.1",
-        "symfony/phpunit-bridge": "~2.7|~3.0"
+        "symfony/phpunit-bridge": "~2.7|~3.0",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "autoload": {
         "psr-4": { "Sonata\\TranslationBundle\\": "" }
