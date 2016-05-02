@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -41,7 +41,7 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
         $model = new ModelTranslatable();
         $model->setLocale('fr');
 
-        $this->assertEquals('fr', $model->getLocale());
+        $this->assertSame('fr', $model->getLocale());
         $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
     }
 
@@ -53,17 +53,17 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');
 
-        $this->assertEquals('fr', $model->getLocale());
+        $this->assertSame('fr', $model->getLocale());
         $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));
         $model->addTranslation(new ModelPersonalTranslation('es', 'title', 'Title es'));
 
-        $this->assertEquals('Title en', $model->getTranslation('title', 'en'));
-        $this->assertEquals('Title it', $model->getTranslation('title', 'it'));
-        $this->assertEquals('Title es', $model->getTranslation('title', 'es'));
+        $this->assertSame('Title en', $model->getTranslation('title', 'en'));
+        $this->assertSame('Title it', $model->getTranslation('title', 'it'));
+        $this->assertSame('Title es', $model->getTranslation('title', 'es'));
 
-        $this->assertEquals(3, count($model->getTranslations()));
+        $this->assertSame(3, count($model->getTranslations()));
     }
 }
