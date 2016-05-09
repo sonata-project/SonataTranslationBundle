@@ -37,10 +37,11 @@ class LocaleSwitcherBlockService extends BaseBlockService
     {
         $resolver->setDefaults(
             array(
-                'admin'                 => null,
-                'object'                => null,
-                'template'              => 'SonataTranslationBundle:Block:block_locale_switcher.html.twig',
-                'locale_switcher_route' => null,
+                'admin'                            => null,
+                'object'                           => null,
+                'template'                         => 'SonataTranslationBundle:Block:block_locale_switcher.html.twig',
+                'locale_switcher_route'            => null,
+                'locale_switcher_route_parameters' => array(),
             )
         );
     }

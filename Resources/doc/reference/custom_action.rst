@@ -121,7 +121,8 @@ If you are working on an edit action you should work with the edit block instead
         {{ sonata_block_render({ 'type': 'sonata_translation.block.locale_switcher' }, {
             'admin': admin,
             'object': questionnaire,
-            'locale_switcher_route': 'show_question_answer'
+            'locale_switcher_route': 'show_question_answer',
+            'locale_switcher_route_parameters': {'type': type}
         }) }}
         
         {# ... #}
