@@ -1,8 +1,8 @@
 Translate Doctrine ORM models
 =============================
 
-A. Using KnpLabs Doctrine Behaviours
-------------------------------------
+A. Using Gedmo Doctrine Extensions
+----------------------------------
 
 Doctrine ORM models translations are handled by `Gedmo translatable extension`_.
 
