@@ -24,19 +24,19 @@ class SonataTranslationExtension extends \Twig_Extension
     protected $translatableChecker;
 
     /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'sonata_translation';
-    }
-
-    /**
      * @param TranslatableChecker $translatableChecker
      */
     public function __construct(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'sonata_translation';
     }
 
     /**
