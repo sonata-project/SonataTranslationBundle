@@ -1,9 +1,10 @@
 CHANGELOG
 =========
 
-1.1 (unreleased)
-----------------
+1.1.0
+-----
 
+* **2016-05-09**:: The twig function `sonata_block_render` now accepts an argument `locale_switcher_route_parameters` to pass parameters to the language switch route.
 * **2016-04-11**: Added support for Knplabs Doctrine Behaviours.
 
 1.0.2
