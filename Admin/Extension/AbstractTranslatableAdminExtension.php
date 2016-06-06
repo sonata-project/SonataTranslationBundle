@@ -44,34 +44,6 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
     }
 
     /**
-     * @return ContainerInterface
-     */
-    protected function getContainer(AdminInterface $admin)
-    {
-        return $admin->getConfigurationPool()->getContainer();
-    }
-
-    /**
-     * Return the list of possible locales for your models.
-     *
-     * @return array
-     */
-    protected function getTranslationLocales(AdminInterface $admin)
-    {
-        return $this->getContainer($admin)->getParameter('sonata_translation.locales');
-    }
-
-    /**
-     * Return the default locale if url parameter is not present.
-     *
-     * @return string
-     */
-    protected function getDefaultTranslationLocale(AdminInterface $admin)
-    {
-        return $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
-    }
-
-    /**
      * @param TranslatableChecker $translatableChecker
      */
     public function setTranslatableChecker($translatableChecker)
@@ -123,5 +95,33 @@ abstract class AbstractTranslatableAdminExtension extends AdminExtension
         if ($object->getLocale() === null) {
             $object->setLocale($this->getTranslatableLocale($admin));
         }
+    }
+
+    /**
+     * @return ContainerInterface
+     */
+    protected function getContainer(AdminInterface $admin)
+    {
+        return $admin->getConfigurationPool()->getContainer();
+    }
+
+    /**
+     * Return the list of possible locales for your models.
+     *
+     * @return array
+     */
+    protected function getTranslationLocales(AdminInterface $admin)
+    {
+        return $this->getContainer($admin)->getParameter('sonata_translation.locales');
+    }
+
+    /**
+     * Return the default locale if url parameter is not present.
+     *
+     * @return string
+     */
+    protected function getDefaultTranslationLocale(AdminInterface $admin)
+    {
+        return $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
     }
 }

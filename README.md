@@ -1,34 +1,41 @@
-Sonata Translation Bundle
-=========================
+# Sonata Translation Bundle
 
-[![Build Status](https://secure.travis-ci.org/sonata-project/SonataTranslationBundle.png)](https://secure.travis-ci.org/#!/sonata-project/SonataTranslationBundle)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/sonata-project/SonataTranslationBundle/badges/quality-score.png?s=8c564406d2112cb7179c5faf56a3bcdc42f0cf59)](https://scrutinizer-ci.com/g/sonata-project/SonataTranslationBundle/)
-[![Latest Stable Version](https://poser.pugx.org/sonata-project/translation-bundle/v/stable.png)](https://packagist.org/packages/sonata-project/translation-bundle)
-[![Latest Unstable Version](https://poser.pugx.org/sonata-project/translation-bundle/v/unstable.svg)](//packagist.org/packages/sonata-project/translation-bundle)
-[![Total Downloads](https://poser.pugx.org/sonata-project/translation-bundle/downloads.png)](https://packagist.org/packages/sonata-project/translation-bundle)
+SonataTranslationBundle
 
-**Lead Developer** : [@nicolas-bastien](https://github.com/nicolas-bastien)
+[![Latest Stable Version](https://poser.pugx.org/sonata-project/translation-bundle/v/stable)](https://packagist.org/packages/sonata-project/translation-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/sonata-project/translation-bundle/v/unstable)](https://packagist.org/packages/sonata-project/translation-bundle)
+[![License](https://poser.pugx.org/sonata-project/translation-bundle/license)](https://packagist.org/packages/sonata-project/translation-bundle)
 
-SonataTranslationBundle allows you to easily translate your models in SonataAdmin in every locales you need on your frontend.
+[![Total Downloads](https://poser.pugx.org/sonata-project/translation-bundle/downloads)](https://packagist.org/packages/sonata-project/translation-bundle)
+[![Monthly Downloads](https://poser.pugx.org/sonata-project/translation-bundle/d/monthly)](https://packagist.org/packages/sonata-project/translation-bundle)
+[![Daily Downloads](https://poser.pugx.org/sonata-project/translation-bundle/d/daily)](https://packagist.org/packages/sonata-project/translation-bundle)
 
-**Currently supported :**
+Branch | Travis | Coveralls |
+------ | ------ | --------- |
+1.x   | [![Build Status][travis_stable_badge]][travis_stable_link]     | [![Coverage Status][coveralls_stable_badge]][coveralls_stable_link]     |
+master | [![Build Status][travis_unstable_badge]][travis_unstable_link] | [![Coverage Status][coveralls_unstable_badge]][coveralls_unstable_link] |
 
-* **ORM** : integrates Doctrine ORM entities with Gedmo extensions or KnpLabs Doctrine Behaviors
-* **PHPCR**: integrates Doctrine PHPCR ODM
+## Documentation
 
-Check out the documentation on [http://sonata-project.org/bundles/translation/master/doc/index.html](http://sonata-project.org/bundles/translation/master/doc/index.html)
+Check out the documentation on the [official website](https://sonata-project.org/bundles/translation).
 
-**Google Groups**: For questions and proposals you can post on this google groups
+## Support
 
-* [Sonata Users](https://groups.google.com/group/sonata-users): Only for user questions
-* [Sonata Devs](https://groups.google.com/group/sonata-devs): Only for devs
+For general support and questions, please use [StackOverflow](http://stackoverflow.com/questions/tagged/sonata).
 
-License
--------
+If you think you find a bug or you have a feature idea to propose, feel free to open a issue
+**after looking** at the [contributing guide](CONTRIBUTING.md).
 
-This bundle is available under the [MIT license](Resources/meta/LICENSE).
+## License
 
-This bundle uses [FamFamFam Flag icons](http://www.famfamfam.com/lab/icons/flags/).
+This package is available under the [MIT license](LICENSE).
 
+[travis_stable_badge]: https://travis-ci.org/sonata-project/SonataTranslationBundle.svg?branch=1.x
+[travis_stable_link]: https://travis-ci.org/sonata-project/SonataTranslationBundle
+[travis_unstable_badge]: https://travis-ci.org/sonata-project/SonataTranslationBundle.svg?branch=master
+[travis_unstable_link]: https://travis-ci.org/sonata-project/SonataTranslationBundle
 
-**Versioning**: we are following [Semantic Versioning guidelines](http://semver.org)
+[coveralls_stable_badge]: https://coveralls.io/repos/github/sonata-project/SonataTranslationBundle/badge.svg?branch=1.x
+[coveralls_stable_link]: https://coveralls.io/github/sonata-project/SonataTranslationBundle?branch=1.x
+[coveralls_unstable_badge]: https://coveralls.io/repos/github/sonata-project/SonataTranslationBundle/badge.svg?branch=master
+[coveralls_unstable_link]: https://coveralls.io/github/sonata-project/SonataTranslationBundle?branch=master
