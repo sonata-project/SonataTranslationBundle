@@ -33,6 +33,21 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function alterObject(AdminInterface $admin, $object)
+    {
+        if ($this->getTranslatableChecker()->isTranslatable($object)) {
+            $translatableListener = $this->getTranslatableListener($admin);
+            $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+            $translatableListener->setTranslationFallback('');
+
+            $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
+            $object->setLocale($this->getTranslatableLocale($admin));
+        }
+    }
+
+    /**
      * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead.
      *
      * @return TranslatableListener
@@ -46,20 +61,5 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
 
         return $this->translatableListener;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function alterObject(AdminInterface $admin, $object)
-    {
-        if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $translatableListener = $this->getTranslatableListener($admin);
-            $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $translatableListener->setTranslationFallback('');
-
-            $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
-            $object->setLocale($this->getTranslatableLocale($admin));
-        }
     }
 }

@@ -21,16 +21,6 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     /**
-     * @param AdminInterface $admin
-     *
-     * @return DocumentManager
-     */
-    protected function getDocumentManager(AdminInterface $admin)
-    {
-        return $admin->getModelManager()->getDocumentManager();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function alterObject(AdminInterface $admin, $object)
@@ -51,5 +41,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
                 $documentManager->bindTranslation($object, $locale);
             }
         }
+    }
+
+    /**
+     * @param AdminInterface $admin
+     *
+     * @return DocumentManager
+     */
+    protected function getDocumentManager(AdminInterface $admin)
+    {
+        return $admin->getModelManager()->getDocumentManager();
     }
 }
