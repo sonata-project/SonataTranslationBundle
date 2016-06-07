@@ -38,7 +38,7 @@
     },
     "conflict": {
         "knplabs/doctrine-behaviors": "<1.0 || >=2.0",
-        "sonata-project/doctrine-orm-admin-bundle": "<2.2 || >=3.0",
+        "sonata-project/doctrine-orm-admin-bundle": "<3.0 || >=4.0",
         "sonata-project/doctrine-phpcr-admin-bundle": "<2.0 || >=3.0",
         "stof/doctrine-extensions-bundle": "<1.1 || >=2.0"
     },
