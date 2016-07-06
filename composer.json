@@ -36,7 +36,7 @@
         "stof/doctrine-extensions-bundle": "if you translate orm entities with the gedmo extensions"
     },
     "conflict": {
-        "doctrine/phpcr-odm": ">=2.0",
+        "doctrine/phpcr-odm": ">=3.0",
         "knplabs/doctrine-behaviors": "<1.0 || >=2.0",
         "stof/doctrine-extensions-bundle": "<1.1 || >=2.0"
     },
