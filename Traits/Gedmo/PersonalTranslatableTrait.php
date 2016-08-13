@@ -12,7 +12,6 @@
 namespace Sonata\TranslationBundle\Traits\Gedmo;
 
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
-use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
  * If you don't want to use trait, you can extend AbstractPersonalTranslatable instead.
