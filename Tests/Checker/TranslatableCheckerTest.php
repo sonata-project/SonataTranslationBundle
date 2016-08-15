@@ -14,7 +14,7 @@ namespace Sonata\TranslationBundle\Tests\Checker;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\AbstractTranslatable;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Translatable;
+use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 class ModelTranslatable extends AbstractTranslatable implements TranslatableInterface
 {
@@ -26,7 +26,7 @@ class ModelCustomTranslatable
 
 class ModelUsingTraitTranslatable
 {
-    use Translatable;
+    use TranslatableTrait;
 }
 
 /**

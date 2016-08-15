@@ -14,17 +14,17 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
-use Sonata\TranslationBundle\Traits\Translatable;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
+use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 class ModelTranslatable implements TranslatableInterface
 {
-    use Translatable;
+    use TranslatableTrait;
 }
 
 class ModelPersonalTranslatable implements TranslatableInterface
 {
-    use PersonalTranslatable;
+    use PersonalTranslatableTrait;
 
     /**
      * @var ArrayCollection
@@ -47,7 +47,7 @@ class ModelPersonalTranslation extends AbstractPersonalTranslation
 class GedmoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @test Translatable
+     * @test TranslatableTrait
      */
     public function testTranslatableModel()
     {
@@ -59,7 +59,7 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test PersonalTranslatable
+     * @test PersonalTranslatableTrait
      */
     public function testPersonalTranslatableModel()
     {

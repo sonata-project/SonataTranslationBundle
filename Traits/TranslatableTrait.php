@@ -11,20 +11,31 @@
 
 namespace Sonata\TranslationBundle\Traits;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\Translatable class is deprecated since version 2.x and will be removed in 3.0.'.
-    'Use the '.__NAMESPACE__.'\TranslatableTrait class instead.',
-    E_USER_DEPRECATED
-);
-
 /**
  * If you don't want to use trait, you can extend AbstractTranslatable instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
- *
- * @deprecated since version 2.x and will be removed in 3.0
  */
-trait Translatable
+trait TranslatableTrait
 {
-    use TranslatableTrait;
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
 }
