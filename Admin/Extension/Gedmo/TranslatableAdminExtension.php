@@ -48,7 +48,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     }
 
     /**
-     * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead.
+     * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead
      *
      * @return TranslatableListener
      */
