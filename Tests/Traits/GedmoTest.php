@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\AdminBundle\Tests\Traits;
+namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
