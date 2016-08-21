@@ -11,22 +11,10 @@
 
 namespace Sonata\TranslationBundle\Tests\Model;
 
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-
-class ModelTranslatable extends AbstractTranslatable implements TranslatableInterface
-{
-}
-
-class ModelPersonalTranslatable extends AbstractPersonalTranslatable implements TranslatableInterface
-{
-}
-
-class ModelPersonalTranslation extends AbstractPersonalTranslation
-{
-}
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslation;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -42,7 +30,7 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
+        $this->assertTrue($model instanceof TranslatableInterface);
     }
 
     /**
@@ -54,7 +42,7 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
+        $this->assertTrue($model instanceof TranslatableInterface);
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));

@@ -97,8 +97,8 @@ Please check the docs in the `Gedmo translatable documentation`_.
 
     If you prefer to use `traits`, we provide :
 
-    * `Sonata\TranslationBundle\Traits\Translatable`
-    * `Sonata\TranslationBundle\Traits\PersonalTranslatable`
+    * `Sonata\TranslationBundle\Traits\TranslatableTrait`
+    * `Sonata\TranslationBundle\Traits\PersonalTranslatableTrait`
 
 2.2 Example using Personal Translation with Traits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -114,7 +114,7 @@ Please check the docs in the `Gedmo translatable documentation`_.
     use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
-    use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+    use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 
     /**
      * @author Nicolas Bastien <nbastien@prestaconcept.net>
@@ -125,7 +125,7 @@ Please check the docs in the `Gedmo translatable documentation`_.
      */
     class FAQCategory implements TranslatableInterface
     {
-        use PersonalTranslatable;
+        use PersonalTranslatableTrait;
 
         /**
          * @ORM\Id
