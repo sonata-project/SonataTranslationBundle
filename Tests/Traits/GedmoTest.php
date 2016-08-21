@@ -11,35 +11,11 @@
 
 namespace Sonata\TranslationBundle\Tests\Traits;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslation;
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelTranslatable;
 use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 use Sonata\TranslationBundle\Traits\TranslatableTrait;
-
-class ModelTranslatable implements TranslatableInterface
-{
-    use TranslatableTrait;
-}
-
-class ModelPersonalTranslatable implements TranslatableInterface
-{
-    use PersonalTranslatableTrait;
-
-    /**
-     * @var ArrayCollection
-     */
-    protected $translations;
-
-    public function __construct()
-    {
-        $this->translations = new ArrayCollection();
-    }
-}
-
-class ModelPersonalTranslation extends AbstractPersonalTranslation
-{
-}
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
