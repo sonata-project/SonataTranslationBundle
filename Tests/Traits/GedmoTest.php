@@ -11,35 +11,11 @@
 
 namespace Sonata\TranslationBundle\Tests\Traits;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
-use Sonata\TranslationBundle\Traits\Translatable;
-
-class ModelTranslatable implements TranslatableInterface
-{
-    use Translatable;
-}
-
-class ModelPersonalTranslatable implements TranslatableInterface
-{
-    use PersonalTranslatable;
-
-    /**
-     * @var ArrayCollection
-     */
-    protected $translations;
-
-    public function __construct()
-    {
-        $this->translations = new ArrayCollection();
-    }
-}
-
-class ModelPersonalTranslation extends AbstractPersonalTranslation
-{
-}
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslation;
+use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelTranslatable;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
+use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -47,7 +23,7 @@ class ModelPersonalTranslation extends AbstractPersonalTranslation
 class GedmoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @test Translatable
+     * @test TranslatableTrait
      */
     public function testTranslatableModel()
     {
@@ -59,7 +35,7 @@ class GedmoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test PersonalTranslatable
+     * @test PersonalTranslatableTrait
      */
     public function testPersonalTranslatableModel()
     {

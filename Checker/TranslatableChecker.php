@@ -72,11 +72,16 @@ class TranslatableChecker
         }
 
         if (function_exists('class_uses')) {
+            // NEXT_MAJOR: remove Translateable and PersonalTrait
+            $translateTraits = array(
+                'Sonata\TranslationBundle\Traits\Translatable',
+                'Sonata\TranslationBundle\Traits\TranslatableTrait',
+                'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable',
+                'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait',
+            );
+
             $traits = class_uses($object);
-            if (in_array('Sonata\TranslationBundle\Traits\Translatable', $traits)) {
-                return true;
-            }
-            if (in_array('Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable', $traits)) {
+            if (count(array_intersect($translateTraits, $traits)) > 0) {
                 return true;
             }
         }

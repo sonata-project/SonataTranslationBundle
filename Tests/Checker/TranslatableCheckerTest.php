@@ -12,22 +12,9 @@
 namespace Sonata\TranslationBundle\Tests\Checker;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\AbstractTranslatable;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Translatable;
-
-class ModelTranslatable extends AbstractTranslatable implements TranslatableInterface
-{
-}
-
-class ModelCustomTranslatable
-{
-}
-
-class ModelUsingTraitTranslatable
-{
-    use Translatable;
-}
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -64,7 +51,7 @@ class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedModels(array(
-            'Sonata\TranslationBundle\Tests\Checker\ModelCustomTranslatable',
+            'Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable',
         ));
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
