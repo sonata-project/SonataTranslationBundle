@@ -21,7 +21,7 @@
                    accesskey=""
                    class=" {% if (object.locale == locale) %} active {% endif %}"
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
-                    <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale ~ '.png')}}" />
+                    <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png')}}" />
                 </a>
             {% endfor %}
         {% endspaceless %}
