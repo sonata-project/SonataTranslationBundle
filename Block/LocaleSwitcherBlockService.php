@@ -25,7 +25,7 @@ class LocaleSwitcherBlockService extends BaseBlockService
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @deprecated since 3.x, will be removed in 4.0.
+     * @deprecated since 3.x, will be removed in 4.0
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
