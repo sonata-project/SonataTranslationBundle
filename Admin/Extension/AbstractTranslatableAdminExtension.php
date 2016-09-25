@@ -11,14 +11,14 @@
 
 namespace Sonata\TranslationBundle\Admin\Extension;
 
-use Sonata\AdminBundle\Admin\AdminExtension;
+use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-abstract class AbstractTranslatableAdminExtension extends AdminExtension
+abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 {
     /**
      * Request parameter.
