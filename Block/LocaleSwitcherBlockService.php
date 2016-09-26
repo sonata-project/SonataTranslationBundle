@@ -23,7 +23,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class LocaleSwitcherBlockService extends BaseBlockService
 {
     /**
-     * @deprecated Will be removed when upgrading to SonataBlockBundle 3
+     * NEXT_MAJOR: remove this method.
+     *
+     * @deprecated since 3.x, will be removed in 4.0
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
