@@ -20,6 +20,8 @@ namespace Sonata\TranslationBundle\Traits;
 /**
  * If you don't want to use trait, you can extend AbstractTranslatable instead.
  *
+ * NEXT_MAJOR: remove this trait.
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
  * @deprecated since version 2.x and will be removed in 3.0
