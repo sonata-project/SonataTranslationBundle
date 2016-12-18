@@ -173,6 +173,40 @@ you have to make a translation class to handle it.
         protected $object;
     }
 
+4. Configure search filter
+--------------------------
+
+**This step is optional**, but you can use the ``doctrine_orm_translation_field``
+filter to search on fields and on their translations.
+
+4.1 Example for configure search filter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: php
+
+    <?php
+
+    namespace AppBundle\Admin;
+
+    use Sonata\AdminBundle\Admin\AbstractAdmin;
+    use Sonata\AdminBundle\Datagrid\DatagridMapper;
+    use Sonata\AdminBundle\Datagrid\ListMapper;
+    use Sonata\AdminBundle\Form\FormMapper;
+    use Sonata\AdminBundle\Show\ShowMapper;
+    use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
+
+    class FAQCategoryAdmin extends AbstractAdmin
+    {
+        /**
+         * @param DatagridMapper $datagridMapper
+         */
+        protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+        {
+            $datagridMapper
+                // ...
+                ->add('title', TranslationFieldFilter::class); // or 'doctrine_orm_translation_field'
+        }
+
 B. Using KnpLabs Doctrine Behaviours
 ------------------------------------
 

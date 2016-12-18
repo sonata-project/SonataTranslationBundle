@@ -13,6 +13,7 @@ namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
@@ -40,11 +41,20 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $translatableListener = $this->getTranslatableListener($admin);
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $translatableListener->setTranslationFallback('');
+            $translatableListener->setTranslationFallback(false);
 
             $this->getContainer($admin)->get('doctrine')->getManager()->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
+    {
+        $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
+        $this->getTranslatableListener($admin)->setTranslationFallback(false);
     }
 
     /**
