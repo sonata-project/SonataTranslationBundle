@@ -14,7 +14,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
-use Sonata\DoctrineORMAdminBundle\Filter\CallbackFilter;
+use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 use Sonata\TranslationBundle\Test\DoctrineOrmTestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation;
@@ -86,18 +86,13 @@ class GedmoOrmTest extends DoctrineOrmTestCase
                        ->from(self::ARTICLE, 'o');
         $builder = new ProxyQuery($qb);
 
-        $filter = new CallbackFilter();
-        $filter->initialize('title', array(
-            'callback' => array(
-                'Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension',
-                'translationFieldFilter',
-            ),
-        ));
+        $filter = new TranslationFieldFilter();
+        $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => 'foo'));
         $this->assertEquals(
-            'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations t'
-            ." WHERE (t.field = 'title' AND t.content LIKE '%foo%') OR o.title LIKE '%foo%'",
+            'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
+            ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
         );
         $this->assertTrue($filter->isActive());
@@ -110,20 +105,15 @@ class GedmoOrmTest extends DoctrineOrmTestCase
                        ->from(self::ARTICLE, 'o');
         $builder = new ProxyQuery($qb);
 
-        $filter = new CallbackFilter();
-        $filter->initialize('title', array(
-            'callback' => array(
-                'Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension',
-                'translationFieldFilter',
-            ),
-        ));
+        $filter = new TranslationFieldFilter();
+        $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => null));
         $this->assertEquals(
             'SELECT o FROM '.self::ARTICLE.' o',
             $builder->getDQL()
         );
-        $this->assertNull($filter->isActive());
+        $this->assertFalse($filter->isActive());
     }
 
     public function testTranslationFieldFilterIfAlreadyJoined()
@@ -131,21 +121,16 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $qb = $this->em->createQueryBuilder()
                        ->select('o')
                        ->from(self::ARTICLE, 'o')
-                       ->leftJoin('o.translations', 't');
+                       ->leftJoin('o.translations', 'tff');
         $builder = new ProxyQuery($qb);
 
-        $filter = new CallbackFilter();
-        $filter->initialize('title', array(
-            'callback' => array(
-                'Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension',
-                'translationFieldFilter',
-            ),
-        ));
+        $filter = new TranslationFieldFilter();
+        $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => 'foo'));
         $this->assertEquals(
-            'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations t'
-            ." WHERE (t.field = 'title' AND t.content LIKE '%foo%') OR o.title LIKE '%foo%'",
+            'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
+            ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
         );
         $this->assertTrue($filter->isActive());

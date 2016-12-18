@@ -176,7 +176,7 @@ you have to make a translation class to handle it.
 4. Configure search filter
 --------------------------
 
-**This step is optional**, but you can use the ``translationFieldFilter`` callback method on ``doctrine_orm_callback``
+**This step is optional**, but you can use the ``doctrine_orm_translation_field``
 filter to search on fields and on their translations.
 
 4.1 Example for configure search filter
@@ -193,6 +193,7 @@ filter to search on fields and on their translations.
     use Sonata\AdminBundle\Datagrid\ListMapper;
     use Sonata\AdminBundle\Form\FormMapper;
     use Sonata\AdminBundle\Show\ShowMapper;
+    use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 
     class FAQCategoryAdmin extends AbstractAdmin
     {
@@ -203,12 +204,7 @@ filter to search on fields and on their translations.
         {
             $datagridMapper
                 // ...
-                ->add('title', 'doctrine_orm_callback', array(
-                    'callback' => array(
-                        'Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension',
-                        'translationFieldFilter',
-                    ),
-                ));
+                ->add('title', TranslationFieldFilter::class); // or 'doctrine_orm_translation_field'
         }
 
 B. Using KnpLabs Doctrine Behaviours
