@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.1.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.0.2...2.1.0) - 2017-01-17
 ### Added
-- Addded missing flag image `ja.png`
+- Added missing flag image `ja.png`
 
 ### Changed
 - Use `AbstractAdminExtension` instead of deprecated `AdminExtension`
