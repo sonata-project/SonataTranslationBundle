@@ -12,7 +12,7 @@
 namespace Sonata\TranslationBundle\Traits\Gedmo;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\PersonalTranslatable class is deprecated since version 2.x and will be removed in 3.0.'.
+    'The '.__NAMESPACE__.'\PersonalTranslatable class is deprecated since version 2.1 and will be removed in 3.0.'.
     'Use the '.__NAMESPACE__.'\PersonalTranslatableTrait class instead.',
     E_USER_DEPRECATED
 );
@@ -24,7 +24,7 @@ namespace Sonata\TranslationBundle\Traits\Gedmo;
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
- * @deprecated since version 2.x and will be removed in 3.0
+ * @deprecated since version 2.1 and will be removed in 3.0
  */
 trait PersonalTranslatable
 {
