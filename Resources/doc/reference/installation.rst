@@ -14,6 +14,20 @@ following command to download the latest stable version of this bundle:
 This command requires you to have Composer installed globally, as explained
 in the `installation chapter`_ of the Composer documentation.
 
+If you are facing composer errors because of dependency miss-match like:
+
+.. code-block:: bash
+    
+    Your requirements could not be resolved to an installable set of packages.
+    
+Then you should change bundle version to a compatible one, or remove it indicating latest version:
+
+.. code-block:: bash
+    
+    $ composer require sonata-project/translation-bundle
+
+
+
 Step 2: Enable the Bundle
 -------------------------
 
