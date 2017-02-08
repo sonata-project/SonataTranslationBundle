@@ -11,8 +11,8 @@
 
 namespace Sonata\TranslationBundle\Block;
 
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class LocaleSwitcherBlockService extends BaseBlockService
+class LocaleSwitcherBlockService extends AbstractBlockService
 {
     /**
      * NEXT_MAJOR: remove this method.
