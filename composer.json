@@ -23,7 +23,7 @@
         "sonata-project/core-bundle": "^3.0",
         "symfony/framework-bundle": "^2.3 || ^3.0",
         "symfony/options-resolver": "^2.3 || ^3.0",
-        "twig/twig": "^1.23"
+        "twig/twig": "^1.23 || ^2.0"
     },
     "require-dev": {
         "knplabs/doctrine-behaviors": "^1.0",
