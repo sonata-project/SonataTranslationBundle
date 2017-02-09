@@ -36,7 +36,11 @@ class SonataTranslationExtension extends Extension
 
         $isEnabled = false;
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('service.xml');
+
+        $bundles = $container->getParameter('kernel.bundles');
+        if (array_key_exists('SonataDoctrineOrmAdminBundle', $bundles)) {
+            $loader->load('service.xml');
+        }
 
         $translationTargets = array();
         if ($config['gedmo']['enabled']) {
