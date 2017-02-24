@@ -38,7 +38,7 @@ class SonataTranslationExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $bundles = $container->getParameter('kernel.bundles');
-        if (array_key_exists('SonataDoctrineOrmAdminBundle', $bundles)) {
+        if (array_key_exists('SonataDoctrineORMAdminBundle', $bundles)) {
             $loader->load('service_orm.xml');
         }
 
