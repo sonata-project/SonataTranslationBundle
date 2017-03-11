@@ -1,8 +1,9 @@
+=============================
 Translate Doctrine ORM models
 =============================
 
-A. Using Gedmo Doctrine Extensions
-----------------------------------
+Scenario A - Using Gedmo Doctrine Extensions
+============================================
 
 Doctrine ORM models translations are handled by `Gedmo translatable extension`_.
 
@@ -11,8 +12,8 @@ Gedmo has two ways to handle translations.
 Either everything is saved in a unique table, this is easier to set up but can lead to bad performance if your project
 grows or it can have one translation table for every model table. This second way is called personal translation.
 
-1. Implement the TranslatableInterface
---------------------------------------
+Implement the TranslatableInterface
+-----------------------------------
 
 First step, your entities have to implement the `TranslatableInterface`_.
 
@@ -22,13 +23,13 @@ Depends on how you want to save translations you can choose between :
 * `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`
 * `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`
 
-2. Define translatable Fields
------------------------------
+Define translatable Fields
+--------------------------
 
 Please check the docs in the `Gedmo translatable documentation`_.
 
-2.1 Example using Personal Translation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example using Personal Translation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: php
 
@@ -100,8 +101,8 @@ Please check the docs in the `Gedmo translatable documentation`_.
     * `Sonata\TranslationBundle\Traits\TranslatableTrait`
     * `Sonata\TranslationBundle\Traits\PersonalTranslatableTrait`
 
-2.2 Example using Personal Translation with Traits
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example using Personal Translation with Traits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: php
 
@@ -137,14 +138,14 @@ Please check the docs in the `Gedmo translatable documentation`_.
         // ...
     }
 
-3. Define your translation Table
---------------------------------
+Define your translation Table
+-----------------------------
 
 **This step is optional**, but if you choose Personal Translation,
 you have to make a translation class to handle it.
 
-3.1 Example for translation class for Personal Translation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example for translation class for Personal Translation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: php
 
@@ -173,14 +174,14 @@ you have to make a translation class to handle it.
         protected $object;
     }
 
-4. Configure search filter
---------------------------
+Configure search filter
+-----------------------
 
 **This step is optional**, but you can use the ``doctrine_orm_translation_field``
 filter to search on fields and on their translations.
 
-4.1 Example for configure search filter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example for configure search filter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: php
 
@@ -207,11 +208,11 @@ filter to search on fields and on their translations.
                 ->add('title', TranslationFieldFilter::class); // or 'doctrine_orm_translation_field'
         }
 
-B. Using KnpLabs Doctrine Behaviours
-------------------------------------
+Scenario B - Using KnpLabs Doctrine Behaviours
+==============================================
 
-1. Implement TranslatableInterface
-----------------------------------
+Implement TranslatableInterface
+-------------------------------
 
 Your entities have to implement `Model\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/TranslatableInterface.php>`_.
 
@@ -318,8 +319,8 @@ Your entities need to explicitly implement getter and setter methods for the knp
     }
 
 
-2. Define your translation table
---------------------------------
+Define your translation table
+-----------------------------
 
 Please refer to `KnpLabs Doctrine2 Behaviors Documentation <https://github.com/KnpLabs/DoctrineBehaviors#translatable>`_.
 
