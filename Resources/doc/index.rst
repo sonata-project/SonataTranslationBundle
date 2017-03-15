@@ -14,10 +14,9 @@ This bundle adds a locale switcher block in :
 * **ORM** : integrates Doctrine ORM entities with Gedmo extensions
 * **PHPCR**: integrates Doctrine PHPCR ODM
 
-Reference Guide
----------------
-
 .. toctree::
+   :caption: Reference Guide
+   :name: reference-guide
    :maxdepth: 1
    :numbered:
 
