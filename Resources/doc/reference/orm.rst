@@ -2,8 +2,12 @@
 Translate Doctrine ORM models
 =============================
 
-Scenario A - Using Gedmo Doctrine Extensions
-============================================
+You can either use :ref:`Gedmo Doctrine Extensions <gedmo_doctrine_extensions>` or :ref:`KnpLabs Doctrine Behaviours <knp_labs_doctrine_bahaviours>`.
+
+.. _gedmo_doctrine_extensions:
+
+Using Gedmo Doctrine Extensions
+===============================
 
 Doctrine ORM models translations are handled by `Gedmo translatable extension`_.
 
@@ -208,8 +212,10 @@ Example for configure search filter
                 ->add('title', TranslationFieldFilter::class); // or 'doctrine_orm_translation_field'
         }
 
-Scenario B - Using KnpLabs Doctrine Behaviours
-==============================================
+.. _knp_labs_doctrine_bahaviours:
+
+Using KnpLabs Doctrine Behaviours
+=================================
 
 Implement TranslatableInterface
 -------------------------------
