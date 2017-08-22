@@ -39,6 +39,7 @@ final class TranslationFieldFilter extends Filter
             foreach ($joins as $join) {
                 if ($join->getAlias() === $joinAlias) {
                     $aliasAlreadyExists = true;
+
                     break 2;
                 }
             }
