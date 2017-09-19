@@ -12,14 +12,28 @@
 namespace Sonata\TranslationBundle\Admin\Extension\Phpcr;
 
 use Doctrine\ODM\PHPCR\DocumentManager;
+use Doctrine\ODM\PHPCR\Translation\LocaleChooser\LocaleChooser;
 use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
+    /**
+     * @var LocaleChooser
+     */
+    private $localeChooser;
+
+    public function __construct(TranslatableChecker $translatableChecker, LocaleChooser $localeChooser)
+    {
+        parent::__construct($translatableChecker);
+        $this->localeChooser = $localeChooser;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +55,14 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
                 $documentManager->bindTranslation($object, $locale);
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
+    {
+        $this->localeChooser->setLocale($this->getTranslatableLocale($admin));
     }
 
     /**

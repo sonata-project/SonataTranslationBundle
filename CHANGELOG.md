@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.1.0...2.1.1) - 2017-04-04
+### Changed
+- use `Sonata\BlockBundle\Block\Service\AbstractBlockService` instead of deprecated `Sonata\BlockBundle\Block\BaseBlockService` in `LocaleSwitcherBlockService`
+- renamed `service.xml` to `service_orm.xml`
+- only load `service_orm.xml` if `SonataDoctrineORMAdminBundle` is registered
+
+### Fixed
+- Fixed typo in `SonataTranslationExtension`
+
 ## [2.1.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.0.2...2.1.0) - 2017-01-17
 ### Added
 - Added missing flag image `ja.png`
