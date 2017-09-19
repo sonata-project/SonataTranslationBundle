@@ -72,7 +72,7 @@ class TranslatableChecker
         }
 
         if (function_exists('class_uses')) {
-            // NEXT_MAJOR: remove Translateable and PersonalTrait
+            // NEXT_MAJOR: remove Translateable and PersonalTrait.
             $translateTraits = array(
                 'Sonata\TranslationBundle\Traits\Translatable',
                 'Sonata\TranslationBundle\Traits\TranslatableTrait',
