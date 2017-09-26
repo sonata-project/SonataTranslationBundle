@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.1.1...2.2.0) - 2017-09-26
+### Added
+- Support of Twig 2.0
+- Added phpcr lists translations
+
 ## [2.1.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.1.0...2.1.1) - 2017-04-04
 ### Changed
 - use `Sonata\BlockBundle\Block\Service\AbstractBlockService` instead of deprecated `Sonata\BlockBundle\Block\BaseBlockService` in `LocaleSwitcherBlockService`
