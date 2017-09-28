@@ -50,6 +50,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
 
         $this->admin = $this->prophesize('Sonata\AdminBundle\Admin\AdminInterface');
         $this->admin->getRequest()->willReturn($request->reveal());
+        $this->admin->hasRequest()->willReturn(true);
 
         $this->object = new TranslatableEntity();
     }
@@ -61,7 +62,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
         $this->assertEquals('es', $this->object->getLocale());
     }
 
-    public function testAlertObjectForTranslatableObject()
+    public function testAlterObjectForTranslatableObject()
     {
         $this->extension->alterObject($this->admin->reveal(), $this->object);
 
