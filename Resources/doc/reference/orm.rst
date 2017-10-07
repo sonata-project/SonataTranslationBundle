@@ -222,7 +222,7 @@ Implement TranslatableInterface
 
 Your entities have to implement `Model\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/TranslatableInterface.php>`_.
 
-Your entities need to explicitly implement getter and setter methods for the knp doctrine extensions. Due to Sonata internals, the `magic method <https://github.com/KnpLabs/DoctrineBehaviors#proxy-translations>`_ of Doctrine Behaviour does not work. For more background on that topic, see this `post <http://thewebmason.com/tutorial-using-sonata-admin-with-magic-__call-method/>`_
+Your entities need to explicitly implement getter and setter methods for the knp doctrine extensions. Due to Sonata internals, the `magic method <https://github.com/KnpLabs/DoctrineBehaviors#proxy-translations>`_ of Doctrine Behaviour does not work. For more background on that topic, see this `post <http://thewebmason.com/tutorial-using-sonata-admin-magic-__call-method/>`_
 
 .. code-block:: php
 
