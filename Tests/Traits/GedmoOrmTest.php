@@ -74,7 +74,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
 
         $this->em->clear();
 
-        $article = $this->em->find(self::ARTICLE, array('id' => 1));
+        $article = $this->em->find(self::ARTICLE, ['id' => 1]);
         $translations = $article->getTranslations();
         $this->assertCount(3, $translations);
     }
@@ -89,7 +89,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter();
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => 'foo'));
+        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
         $this->assertEquals(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
@@ -108,7 +108,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter();
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => null));
+        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => null]);
         $this->assertEquals(
             'SELECT o FROM '.self::ARTICLE.' o',
             $builder->getDQL()
@@ -127,7 +127,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter();
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', array('type' => null, 'value' => 'foo'));
+        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
         $this->assertEquals(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
@@ -138,9 +138,9 @@ class GedmoOrmTest extends DoctrineOrmTestCase
 
     protected function getUsedEntityFixtures()
     {
-        return array(
+        return [
             self::ARTICLE,
             self::TRANSLATION,
-        );
+        ];
     }
 }
