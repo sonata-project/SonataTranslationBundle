@@ -26,6 +26,7 @@
         "twig/twig": "^1.23 || ^2.0"
     },
     "require-dev": {
+        "doctrine/orm": "^2.4.5",
         "knplabs/doctrine-behaviors": "^1.0",
         "matthiasnoback/symfony-dependency-injection-test": "^0.5 || ^1.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
