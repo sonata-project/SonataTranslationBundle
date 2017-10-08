@@ -72,15 +72,15 @@ final class TranslationFieldFilter extends Filter
      */
     public function getDefaultOptions()
     {
-        return array(
+        return [
             'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                 ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
                 : 'text', // NEXT_MAJOR: Remove ternary (when requirement of Symfony is >= 2.8)
             'operator_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                 ? 'Symfony\Component\Form\Extension\Core\Type\HiddenType'
                 : 'hidden', // NEXT_MAJOR: Remove ternary (when requirement of Symfony is >= 2.8)
-            'operator_options' => array(),
-        );
+            'operator_options' => [],
+        ];
     }
 
     /**
@@ -93,13 +93,13 @@ final class TranslationFieldFilter extends Filter
             ? 'Sonata\AdminBundle\Form\Type\Filter\DefaultType'
             : 'sonata_type_filter_default';
 
-        return array($type, array(
+        return [$type, [
             'field_type' => $this->getFieldType(),
             'field_options' => $this->getFieldOptions(),
             'operator_type' => $this->getOption('operator_type'),
             'operator_options' => $this->getOption('operator_options'),
             'label' => $this->getLabel(),
-        ));
+        ]];
     }
 
     /**
@@ -109,6 +109,6 @@ final class TranslationFieldFilter extends Filter
     {
         $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());
 
-        return array($this->getOption('alias', $alias), $this->getFieldName());
+        return [$this->getOption('alias', $alias), $this->getFieldName()];
     }
 }

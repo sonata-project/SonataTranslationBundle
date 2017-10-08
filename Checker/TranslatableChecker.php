@@ -19,12 +19,12 @@ class TranslatableChecker
     /**
      * @var array
      */
-    protected $supportedInterfaces = array();
+    protected $supportedInterfaces = [];
 
     /**
      * @var array
      */
-    protected $supportedModels = array();
+    protected $supportedModels = [];
 
     /**
      * @param array $supportedInterfaces
@@ -73,12 +73,12 @@ class TranslatableChecker
 
         if (function_exists('class_uses')) {
             // NEXT_MAJOR: remove Translateable and PersonalTrait.
-            $translateTraits = array(
+            $translateTraits = [
                 'Sonata\TranslationBundle\Traits\Translatable',
                 'Sonata\TranslationBundle\Traits\TranslatableTrait',
                 'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable',
                 'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait',
-            );
+            ];
 
             $traits = class_uses($object);
             if (count(array_intersect($translateTraits, $traits)) > 0) {

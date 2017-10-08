@@ -21,7 +21,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered()
     {
-        $this->container->setParameter('kernel.bundles', array('SonataDoctrineORMAdminBundle' => 'whatever'));
+        $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
         $this->load();
         $this->assertContainerBuilderHasService(
             'sonata_translation.checker.translatable',
@@ -35,6 +35,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions()
     {
-        return array(new SonataTranslationExtension());
+        return [new SonataTranslationExtension()];
     }
 }
