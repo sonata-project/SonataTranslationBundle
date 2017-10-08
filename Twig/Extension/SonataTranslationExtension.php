@@ -60,9 +60,9 @@ class SonataTranslationExtension extends \Twig_Extension
      */
     public function getTests()
     {
-        return array(
-            new \Twig_SimpleTest('translatable', array($this, 'isTranslatable')),
-        );
+        return [
+            new \Twig_SimpleTest('translatable', [$this, 'isTranslatable']),
+        ];
     }
 
     /**

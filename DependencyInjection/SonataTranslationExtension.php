@@ -42,13 +42,13 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_orm.xml');
         }
 
-        $translationTargets = array();
+        $translationTargets = [];
         if ($config['gedmo']['enabled']) {
             $isEnabled = true;
             $loader->load('service_gedmo.xml');
 
             $translationTargets['gedmo']['implements'] = array_merge(
-                array('Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'),
+                ['Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'],
                 $config['gedmo']['implements']
             );
             $translationTargets['gedmo']['instanceof'] = $config['gedmo']['instanceof'];
@@ -58,7 +58,7 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_knplabs.xml');
 
             $translationTargets['knplabs']['implements'] = array_merge(
-                array('Sonata\TranslationBundle\Model\TranslatableInterface'),
+                ['Sonata\TranslationBundle\Model\TranslatableInterface'],
                 $config['knplabs']['implements']
             );
             $translationTargets['knplabs']['instanceof'] = $config['knplabs']['instanceof'];
@@ -68,10 +68,10 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_phpcr.xml');
 
             $translationTargets['phpcr']['implements'] = array_merge(
-                array(
+                [
                     'Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface',
                     'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface',
-                ),
+                ],
                 $config['phpcr']['implements']
             );
             $translationTargets['phpcr']['instanceof'] = $config['phpcr']['instanceof'];
@@ -96,14 +96,14 @@ class SonataTranslationExtension extends Extension
     {
         $translatableCheckerDefinition = $container->getDefinition('sonata_translation.checker.translatable');
 
-        $supportedInterfaces = array();
-        $supportedModels = array();
+        $supportedInterfaces = [];
+        $supportedModels = [];
         foreach ($translationTargets as $targets) {
             $supportedInterfaces = array_merge($supportedInterfaces, $targets['implements']);
             $supportedModels = array_merge($supportedModels, $targets['instanceof']);
         }
 
-        $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', array($supportedInterfaces));
-        $translatableCheckerDefinition->addMethodCall('setSupportedModels', array($supportedModels));
+        $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', [$supportedInterfaces]);
+        $translatableCheckerDefinition->addMethodCall('setSupportedModels', [$supportedModels]);
     }
 }

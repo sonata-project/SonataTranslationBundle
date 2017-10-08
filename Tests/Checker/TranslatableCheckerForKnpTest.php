@@ -30,9 +30,9 @@ class TranslatableCheckerForKnpTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
-        $translatableChecker->setSupportedInterfaces(array(
+        $translatableChecker->setSupportedInterfaces([
             'Sonata\TranslationBundle\Model\TranslatableInterface',
-        ));
+        ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
     }

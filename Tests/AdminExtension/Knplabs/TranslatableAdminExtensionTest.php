@@ -40,9 +40,9 @@ class TranslatableAdminExtensionTest extends WebTestCase
     protected function setUp()
     {
         $translatableChecker = new TranslatableChecker();
-        $translatableChecker->setSupportedInterfaces(array(
+        $translatableChecker->setSupportedInterfaces([
             'Sonata\TranslationBundle\Model\TranslatableInterface',
-        ));
+        ]);
         $this->extension = new TranslatableAdminExtension($translatableChecker);
 
         $request = $this->prophesize('Symfony\Component\HttpFoundation\Request');

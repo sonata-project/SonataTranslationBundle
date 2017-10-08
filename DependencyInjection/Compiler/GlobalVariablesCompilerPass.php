@@ -26,7 +26,7 @@ class GlobalVariablesCompilerPass implements CompilerPassInterface
     {
         $container->getDefinition('twig')->addMethodCall(
             'addGlobal',
-            array('sonata_translation_locales', $container->getParameter('sonata_translation.locales'))
+            ['sonata_translation_locales', $container->getParameter('sonata_translation.locales')]
         );
     }
 }
