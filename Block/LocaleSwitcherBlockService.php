@@ -38,13 +38,13 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'admin' => null,
                 'object' => null,
                 'template' => 'SonataTranslationBundle:Block:block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
-                'locale_switcher_route_parameters' => array(),
-            )
+                'locale_switcher_route_parameters' => [],
+            ]
         );
     }
 
@@ -53,9 +53,9 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderPrivateResponse($blockContext->getTemplate(), array(
+        return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'block_context' => $blockContext,
             'block' => $blockContext->getBlock(),
-        ), $response);
+        ], $response);
     }
 }

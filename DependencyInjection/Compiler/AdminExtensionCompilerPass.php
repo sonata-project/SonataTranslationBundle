@@ -39,12 +39,12 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
             foreach ($adminExtensionReferences as $type => $reference) {
                 foreach ($translationTargets[$type]['implements'] as $interface) {
                     if ($modelClassReflection->implementsInterface($interface)) {
-                        $admin->addMethodCall('addExtension', array($reference));
+                        $admin->addMethodCall('addExtension', [$reference]);
                     }
                 }
                 foreach ($translationTargets[$type]['instanceof'] as $class) {
                     if ($modelClassReflection->getName() == $class || $modelClassReflection->isSubclassOf($class)) {
-                        $admin->addMethodCall('addExtension', array($reference));
+                        $admin->addMethodCall('addExtension', [$reference]);
                     }
                 }
             }
@@ -58,7 +58,7 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
      */
     protected function getAdminExtensionReferenceByTypes(array $types)
     {
-        $references = array();
+        $references = [];
         foreach ($types as $type) {
             $references[$type] = new Reference('sonata_translation.admin.extension.'.$type.'_translatable');
         }

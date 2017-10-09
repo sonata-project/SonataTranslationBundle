@@ -47,10 +47,10 @@ abstract class DoctrineOrmTestCase extends \PHPUnit_Framework_TestCase
      */
     final protected function getMockSqliteEntityManager(EventManager $evm = null, Configuration $config = null)
     {
-        $conn = array(
+        $conn = [
             'driver' => 'pdo_sqlite',
             'memory' => true,
-        );
+        ];
 
         $em = EntityManager::create($conn, $config ?: $this->getMockAnnotatedConfig(), $evm ?: new EventManager());
 
@@ -59,7 +59,7 @@ abstract class DoctrineOrmTestCase extends \PHPUnit_Framework_TestCase
         }, (array) $this->getUsedEntityFixtures());
 
         $schemaTool = new SchemaTool($em);
-        $schemaTool->dropSchema(array());
+        $schemaTool->dropSchema([]);
         $schemaTool->createSchema($schema);
 
         return $this->em = $em;

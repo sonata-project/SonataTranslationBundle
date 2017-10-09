@@ -32,9 +32,9 @@ class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
-        $translatableChecker->setSupportedInterfaces(array(
+        $translatableChecker->setSupportedInterfaces([
             'Sonata\TranslationBundle\Model\TranslatableInterface',
-        ));
+        ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
     }
@@ -50,9 +50,9 @@ class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
-        $translatableChecker->setSupportedModels(array(
+        $translatableChecker->setSupportedModels([
             'Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable',
-        ));
+        ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
     }
