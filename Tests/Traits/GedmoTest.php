@@ -11,6 +11,7 @@
 
 namespace Sonata\TranslationBundle\Tests\Traits;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslation;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelTranslatable;
@@ -20,7 +21,7 @@ use Sonata\TranslationBundle\Traits\TranslatableTrait;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class GedmoTest extends \PHPUnit_Framework_TestCase
+class GedmoTest extends TestCase
 {
     /**
      * @test TranslatableTrait

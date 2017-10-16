@@ -11,6 +11,7 @@
 
 namespace Sonata\TranslationBundle\Tests\Checker;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
@@ -19,7 +20,7 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class TranslatableCheckerTest extends \PHPUnit_Framework_TestCase
+class TranslatableCheckerTest extends TestCase
 {
     /**
      * @test TranslatableChecker::isTranslatable

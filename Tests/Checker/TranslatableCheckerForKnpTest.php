@@ -11,13 +11,14 @@
 
 namespace Sonata\AdminBundle\Tests\Checker;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 
 /**
  * @author Alfonso Machado <email@alfonsomachado.com>
  */
-class TranslatableCheckerForKnpTest extends \PHPUnit_Framework_TestCase
+class TranslatableCheckerForKnpTest extends TestCase
 {
     /**
      * @test TranslatableChecker::isTranslatable
