@@ -77,7 +77,7 @@ class SonataTranslationExtension extends Extension
             $translationTargets['phpcr']['instanceof'] = $config['phpcr']['instanceof'];
         }
 
-        if ($isEnabled === true) {
+        if (true === $isEnabled) {
             $loader->load('block.xml');
             $loader->load('listener.xml');
             $loader->load('twig.xml');

@@ -67,7 +67,7 @@ class TranslatableChecker
      */
     public function isTranslatable($object)
     {
-        if ($object === null) {
+        if (null === $object) {
             return false;
         }
 
