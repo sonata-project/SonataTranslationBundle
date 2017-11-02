@@ -39,7 +39,7 @@ trait PersonalTranslatableTrait
     public function getTranslation($field, $locale)
     {
         foreach ($this->getTranslations() as $translation) {
-            if (strcmp($translation->getField(), $field) === 0 && strcmp($translation->getLocale(), $locale) === 0) {
+            if (0 === strcmp($translation->getField(), $field) && 0 === strcmp($translation->getLocale(), $locale)) {
                 return $translation->getContent();
             }
         }
