@@ -28,7 +28,7 @@ use Doctrine\ORM\Tools\SchemaTool;
  * Inspired by BaseTestCaseORM
  * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
  */
-abstract class DoctrineOrmTestCase extends \PHPUnit_Framework_TestCase
+abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EntityManager

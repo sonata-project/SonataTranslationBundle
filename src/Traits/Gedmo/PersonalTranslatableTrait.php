@@ -43,8 +43,6 @@ trait PersonalTranslatableTrait
                 return $translation->getContent();
             }
         }
-
-        return;
     }
 
     /**
