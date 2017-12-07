@@ -18,9 +18,9 @@
     ],
     "require": {
         "php": "^5.6 || ^7.0",
-        "sonata-project/admin-bundle": "^3.23",
-        "sonata-project/block-bundle": "^3.4",
-        "sonata-project/core-bundle": "^3.6",
+        "sonata-project/admin-bundle": "^3.28",
+        "sonata-project/block-bundle": "^3.8",
+        "sonata-project/core-bundle": "^3.7.1",
         "symfony/framework-bundle": "^2.8 || ^3.2",
         "symfony/options-resolver": "^2.8 || ^3.2",
         "twig/twig": "^1.35 || ^2.4"
@@ -29,8 +29,7 @@
         "doctrine/orm": "^2.5",
         "knplabs/doctrine-behaviors": "^1.4",
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.0",
-        "sonata-project/doctrine-orm-admin-bundle": "^3.1",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "stof/doctrine-extensions-bundle": "^1.1",
         "symfony/phpunit-bridge": "^3.3"
     },

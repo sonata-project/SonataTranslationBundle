@@ -58,8 +58,6 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
                 return $translation->getContent();
             }
         }
-
-        return;
     }
 
     /**
