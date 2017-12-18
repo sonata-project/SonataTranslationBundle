@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -36,7 +38,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function alterObject(AdminInterface $admin, $object)
+    public function alterObject(AdminInterface $admin, $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $translatableListener = $this->getTranslatableListener($admin);
@@ -51,7 +53,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
+    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list'): void
     {
         $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
         $this->getTranslatableListener($admin)->setTranslationFallback(false);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -27,7 +29,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      *
      * @deprecated since 3.x, will be removed in 4.0
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function setDefaultSettings(OptionsResolverInterface $resolver): void
     {
         $this->configureSettings($resolver);
     }
@@ -35,7 +37,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     /**
      * {@inheritdoc}
      */
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

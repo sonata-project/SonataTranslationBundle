@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ class TranslatableCheckerForKnpTest extends TestCase
     /**
      * @test TranslatableChecker::isTranslatable
      */
-    public function testIsTranslatableOnInterface()
+    public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
 

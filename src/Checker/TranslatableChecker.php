@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,7 +31,7 @@ class TranslatableChecker
     /**
      * @param array $supportedInterfaces
      */
-    public function setSupportedInterfaces(array $supportedInterfaces)
+    public function setSupportedInterfaces(array $supportedInterfaces): void
     {
         $this->supportedInterfaces = $supportedInterfaces;
     }
@@ -45,7 +47,7 @@ class TranslatableChecker
     /**
      * @param array $supportedModels
      */
-    public function setSupportedModels($supportedModels)
+    public function setSupportedModels($supportedModels): void
     {
         $this->supportedModels = $supportedModels;
     }
