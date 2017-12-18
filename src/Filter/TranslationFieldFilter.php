@@ -30,7 +30,7 @@ final class TranslationFieldFilter extends Filter
             return;
         }
 
-        $data['value'] = trim($data['value']);
+        $data['value'] = trim((string) $data['value']);
 
         if (0 == strlen($data['value'])) {
             return;
