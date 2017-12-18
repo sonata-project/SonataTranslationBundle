@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,7 +24,7 @@ class LocaleSwitcherListener
     /**
      * @param BlockEvent $event
      */
-    public function onBlock(BlockEvent $event, $eventName)
+    public function onBlock(BlockEvent $event, $eventName): void
     {
         $settings = $event->getSettings();
         if ('sonata.block.event.sonata.admin.show.top' == $eventName) {

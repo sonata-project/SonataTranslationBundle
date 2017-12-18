@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $translationTargets = $container->getParameter('sonata_translation.targets');
         $adminExtensionReferences = $this->getAdminExtensionReferenceByTypes(array_keys($translationTargets));

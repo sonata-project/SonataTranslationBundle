@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -37,7 +39,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
      */
     protected $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $translatableChecker = new TranslatableChecker();
         $translatableChecker->setSupportedInterfaces([
@@ -55,21 +57,21 @@ class TranslatableAdminExtensionTest extends WebTestCase
         $this->object = new TranslatableEntity();
     }
 
-    public function testSetLocaleForTranslatableObject()
+    public function testSetLocaleForTranslatableObject(): void
     {
         $this->extension->alterNewInstance($this->admin->reveal(), $this->object);
 
         $this->assertEquals('es', $this->object->getLocale());
     }
 
-    public function testAlterObjectForTranslatableObject()
+    public function testAlterObjectForTranslatableObject(): void
     {
         $this->extension->alterObject($this->admin->reveal(), $this->object);
 
         $this->assertEquals('es', $this->object->getLocale());
     }
 
-    public function testPreUpdate()
+    public function testPreUpdate(): void
     {
         $object = $this->prophesize('Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity');
         $object->mergeNewTranslations()->shouldBeCalled();
@@ -77,7 +79,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
         $this->extension->preUpdate($this->admin->reveal(), $object->reveal());
     }
 
-    public function testPrePersist()
+    public function testPrePersist(): void
     {
         $object = $this->prophesize('Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity');
         $object->mergeNewTranslations()->shouldBeCalled();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * Request parameter.
      */
-    const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
+    public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
     /**
      * @var string
@@ -46,7 +48,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * @param TranslatableChecker $translatableChecker
      */
-    public function setTranslatableChecker($translatableChecker)
+    public function setTranslatableChecker($translatableChecker): void
     {
         $this->translatableChecker = $translatableChecker;
     }
@@ -90,7 +92,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function alterNewInstance(AdminInterface $admin, $object)
+    public function alterNewInstance(AdminInterface $admin, $object): void
     {
         if (null === $object->getLocale()) {
             $object->setLocale($this->getTranslatableLocale($admin));
