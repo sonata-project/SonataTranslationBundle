@@ -7,7 +7,7 @@
         <service id="sonata_translation.block.locale_switcher" class="%sonata_translation.block.locale_switcher.class%">
             <tag name="sonata.block"/>
             <argument>sonata_translation.block.locale_switcher</argument>
-            <argument type="service" id="templating"/>
+            <argument type="service" id="sonata.templating"/>
         </service>
     </services>
 </container>
