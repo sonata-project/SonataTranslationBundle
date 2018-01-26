@@ -43,7 +43,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
             [
                 'admin' => null,
                 'object' => null,
-                'template' => 'SonataTranslationBundle:Block:block_locale_switcher.html.twig',
+                'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
             ]

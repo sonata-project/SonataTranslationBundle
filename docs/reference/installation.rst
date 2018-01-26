@@ -85,7 +85,7 @@ Extend the `SonataAdminBundle layout`_ and add the SonataTranslationBundle style
 .. code-block:: html+jinja
 
     {# app/Resources/views/admin/layout.html.twig #}
-    {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+    {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
     {% block stylesheets %}
         {{  parent() }}
