@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.2.0...2.3.0) - 2018-02-02
+### Added
+- Added Russian translations
+- Compatibility with Symfony4
+
+### Changed
+- Changed internal folder structure to `src`, `tests` and `docs`
+- Switch all templates references to Twig namespaced syntax
+- Switch from templating service to sonata.templating
+- Removed usage of old form type aliases
+
+### Fixed
+- Fix RuntimeException in sonata:admin:explain command
+
+### Removed
+- support for old versions of php and Symfony
+
 ## [2.2.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.1.1...2.2.0) - 2017-09-26
 ### Added
 - Support of Twig 2.0
