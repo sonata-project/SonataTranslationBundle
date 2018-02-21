@@ -99,30 +99,23 @@ Key                 Description
 Step 4: Import the Styles
 -------------------------
 
-Extend the `SonataAdminBundle layout`_ and add the SonataTranslationBundle stylesheet like this:
+Install SonataTranslationBundle web assets under your public web directory:
 
-.. code-block:: html+jinja
+.. code-block:: bash
 
-    {# templates/admin/layout.html.twig #}
-    {% extends '@SonataAdmin/standard_layout.html.twig' %}
+    $  bin/console assets:install
 
-    {% block stylesheets %}
-        {{  parent() }}
-
-         <link rel="stylesheet" href="{{ asset('@SonataTranslationBundle/Resources/public/css/sonata-translation.css') }}" />
-    {% endblock %}
-
-.. note::
-    If you are not using Symfony Flex, this template should be created
-    in ``app/Resources/views``.
+Add CSS file to your SonataAdminBundle config:
 
 .. code-block:: yaml
 
-    # config/packages/sonata.yaml
+    # config/packages/sonata_admin.yaml
+
     sonata_admin:
-        templates:
-            layout: admin/layout.html.twig
         # ...
+        assets:
+            extra_stylesheets:
+                - bundles/sonatatranslation/css/sonata-translation.css
 
 .. note::
     If you are not using Symfony Flex, this configuration should be added
@@ -133,4 +126,3 @@ Now, you're good to go!
 .. _installation chapter: https://getcomposer.org/doc/00-intro.md
 .. _SonataDoctrineORMAdminBundle: https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/index.html
 .. _SonataDoctrinePhpcrAdminBundle: https://sonata-project.org/bundles/doctrine-phpcr-admin/master/doc/index.html
-.. _SonataAdminBundle layout: https://sonata-project.org/bundles/admin/master/doc/reference/templates.html#configuring-templates
