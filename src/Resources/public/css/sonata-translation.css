@@ -3,6 +3,7 @@
  */
 .sonata-bc .sonata-ba-form .locale_switcher,
 .sonata-bc .sonata-ba-show .locale_switcher,
+.sonata-bc .modal .locale_switcher,
 .sonata-bc .box-primary .locale_switcher {
   padding: 1px 0 0 0;
   text-align: right;
@@ -12,6 +13,7 @@
 }
 .sonata-bc .sonata-ba-form .locale_switcher a,
 .sonata-bc .sonata-ba-show .locale_switcher a,
+.sonata-bc .modal .locale_switcher a,
 .sonata-bc .box-primary .locale_switcher a {
   margin-right: 0;
   padding: 2px;
@@ -19,11 +21,13 @@
 }
 .sonata-bc .sonata-ba-form .locale_switcher a.active,
 .sonata-bc .sonata-ba-show .locale_switcher a.active,
+.sonata-bc .modal .locale_switcher a.active,
 .sonata-bc .box-primary .locale_switcher a.active {
   opacity: 1;
 }
 .sonata-bc .sonata-ba-form .locale_switcher a:hover,
 .sonata-bc .sonata-ba-show .locale_switcher a:hover,
+.sonata-bc .modal .locale_switcher a:hover,
 .sonata-bc .box-primary .locale_switcher a:hover {
   opacity: 1;
 }
