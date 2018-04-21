@@ -102,8 +102,8 @@ Example using Personal Translation
 
     If you prefer to use `traits`, we provide :
 
-    * `Sonata\TranslationBundle\Traits\TranslatableTrait`
-    * `Sonata\TranslationBundle\Traits\PersonalTranslatableTrait`
+    * ``Sonata\TranslationBundle\Traits\TranslatableTrait``
+    * ``Sonata\TranslationBundle\Traits\PersonalTranslatableTrait``
 
 Example using Personal Translation with Traits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
