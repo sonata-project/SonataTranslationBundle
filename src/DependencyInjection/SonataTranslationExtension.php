@@ -94,6 +94,9 @@ class SonataTranslationExtension extends Extension
      */
     protected function configureChecker(ContainerBuilder $container, $translationTargets)
     {
+        if (!$container->hasDefinition('sonata_translation.checker.translatable')) {
+            return;
+        }
         $translatableCheckerDefinition = $container->getDefinition('sonata_translation.checker.translatable');
 
         $supportedInterfaces = [];
