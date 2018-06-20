@@ -33,6 +33,14 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    public function testLoadServiceDefinitionNoCheckerTranslatable()
+    {
+        $this->container->setParameter('kernel.bundles', []);
+        $this->load();
+
+        $this->assertContainerBuilderNotHasService('sonata_translation.checker.translatable');
+    }
+
     protected function getContainerExtensions()
     {
         return [new SonataTranslationExtension()];
