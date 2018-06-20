@@ -53,6 +53,6 @@ class GedmoTest extends TestCase
         $this->assertSame('Title it', $model->getTranslation('title', 'it'));
         $this->assertSame('Title es', $model->getTranslation('title', 'es'));
 
-        $this->assertSame(3, count($model->getTranslations()));
+        $this->assertCount(3, $model->getTranslations());
     }
 }
