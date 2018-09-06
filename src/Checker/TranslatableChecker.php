@@ -71,7 +71,7 @@ class TranslatableChecker
             return false;
         }
 
-        if (function_exists('class_uses')) {
+        if (\function_exists('class_uses')) {
             // NEXT_MAJOR: remove Translateable and PersonalTrait.
             $translateTraits = [
                 'Sonata\TranslationBundle\Traits\Translatable',
@@ -81,14 +81,14 @@ class TranslatableChecker
             ];
 
             $traits = class_uses($object);
-            if (count(array_intersect($translateTraits, $traits)) > 0) {
+            if (\count(array_intersect($translateTraits, $traits)) > 0) {
                 return true;
             }
         }
 
         $objectInterfaces = class_implements($object);
         foreach ($this->getSupportedInterfaces() as $interface) {
-            if (in_array($interface, $objectInterfaces)) {
+            if (\in_array($interface, $objectInterfaces)) {
                 return true;
             }
         }
