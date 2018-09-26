@@ -53,7 +53,7 @@ final class TranslationFieldFilter extends Filter
         }
 
         // search on translation OR on normal field
-        $queryBuilder->andWhere($queryBuilder->expr()->orX(
+        $this->applyWhere($queryBuilder, $queryBuilder->expr()->orX(
             $queryBuilder->expr()->andX(
                 $queryBuilder->expr()->eq($joinAlias.'.field', $queryBuilder->expr()->literal($field)),
                 $queryBuilder->expr()->like(
