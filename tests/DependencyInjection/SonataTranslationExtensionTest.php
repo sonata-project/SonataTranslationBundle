@@ -35,7 +35,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadServiceDefinitionNoCheckerTranslatable()
+    public function testLoadServiceDefinitionNoCheckerTranslatable(): void
     {
         $this->container->setParameter('kernel.bundles', []);
         $this->load();
