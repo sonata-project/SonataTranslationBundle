@@ -1,0 +1,45 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block sonata_top_nav_menu %}
+    {{ parent() }}
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            {% block sonata_top_nav_menu_locale_block %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-flag fa-fw" aria-hidden="true"></i>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu multi-column dropdown-add">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <ul class="dropdown-menu">
+                                    <li role="presentation" class="dropdown-header">
+                                        <i class="fa fa-language"></i>
+                                        {{ 'languages_title'|trans({}, 'SonataAdminBundle') }}
+                                    </li>
+                                    {% for locale in sonata_translation_locales %}
+                                    <li role="presentation" class="{{ app.request.locale == locale ? 'active' : '' }}">
+                                        <a role="menuitem" tabindex="-1" href="{{ path('locale', {'locale': locale}) }}">{{ locale|language|capitalize }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+{% endblock %}
