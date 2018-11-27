@@ -25,19 +25,6 @@ Override standard layout template with the one from the bundle:
         templates:
             layout: '@SonataTranslation/standard_layout.html.twig'
 
-Configure locale subscriber and user locale subscriber services:
-
-.. code-block:: yaml
-
-    # app/config/services.yaml
-
-    services:
-        ...
-        Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber:
-            arguments: ['%kernel.default_locale%']
-        Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber:
-            arguments: ~
-
 Configure route:
 
 .. code-block:: yaml
@@ -47,6 +34,16 @@ Configure route:
     ...
     sonata_translation:
         resource: '@SonataTranslationBundle/Resources/config/routes.yaml'
+
+Enable ``locale_switcher``:
+
+.. code-block:: yaml
+
+    # app/config/packages/sonata_translation.yaml
+
+    sonata_translation:
+        ...
+        locale_switcher: true
 
 How it looks
 ------------
