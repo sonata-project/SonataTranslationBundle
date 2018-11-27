@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Controller;
+namespace Sonata\TranslationBundle\Action;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Locale controller.
+ * Locale action.
  *
  * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
  */
-final class LocaleController
+final class LocaleAction
 {
     /**
      * Switch current locale.
