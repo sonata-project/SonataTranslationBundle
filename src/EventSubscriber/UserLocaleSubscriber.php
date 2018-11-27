@@ -22,11 +22,9 @@ use Symfony\Component\Security\Http\SecurityEvents;
  *
  * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
  */
-class UserLocaleSubscriber implements EventSubscriberInterface
+final class UserLocaleSubscriber implements EventSubscriberInterface
 {
     /**
-     * The default locale.
-     *
      * @var SessionInterface
      */
     private $session;
@@ -40,8 +38,6 @@ class UserLocaleSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Interactive login.
-     *
      * @param InteractiveLoginEvent $event
      */
     public function onInteractiveLogin(InteractiveLoginEvent $event)
@@ -54,14 +50,12 @@ class UserLocaleSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Subscribed events.
-     *
      * @return array
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             SecurityEvents::INTERACTIVE_LOGIN => 'onInteractiveLogin',
-        );
+        ];
     }
 }

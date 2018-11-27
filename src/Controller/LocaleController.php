@@ -27,7 +27,7 @@ final class LocaleController
      *
      * @return RedirectResponse
      */
-    public function index(Request $request, string $locale): RedirectResponse
+    public function index(Request $request, $locale)
     {
         $request->getSession()->set('_locale', $locale);
         return new RedirectResponse($request->headers->get('referer', '/'));

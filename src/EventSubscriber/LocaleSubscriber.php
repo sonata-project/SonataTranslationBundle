@@ -20,11 +20,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  *
  * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
  */
-class LocaleSubscriber implements EventSubscriberInterface
+final class LocaleSubscriber implements EventSubscriberInterface
 {
     /**
-     * The default locale.
-     *
      * @var string
      */
     private $defaultLocale;
@@ -32,14 +30,12 @@ class LocaleSubscriber implements EventSubscriberInterface
     /**
      * @param string $defaultLocale
      */
-    public function __construct(string $defaultLocale = 'en')
+    public function __construct($defaultLocale = 'en')
     {
         $this->defaultLocale = $defaultLocale;
     }
 
     /**
-     * Kernel request.
-     *
      * @param GetResponseEvent $event
      */
     public function onKernelRequest(GetResponseEvent $event)
@@ -52,22 +48,21 @@ class LocaleSubscriber implements EventSubscriberInterface
         // try to see if the locale has been set as a _locale routing parameter
         if ($locale = $request->attributes->get('_locale')) {
             $request->getSession()->set('_locale', $locale);
-        } else {
-            // if no explicit locale has been set on this request, use one from the session
-            $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
+            return;
         }
+
+        // if no explicit locale has been set on this request, use one from the session
+        $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
     }
 
     /**
-     * Subscribed events.
-     *
      * @return array
      */
     public static function getSubscribedEvents()
     {
         return array(
             // must be registered before (i.e. with a higher priority than) the default Locale listener
-            KernelEvents::REQUEST => array(array('onKernelRequest', 20)),
+            KernelEvents::REQUEST => [['onKernelRequest', 20]],
         );
     }
 }

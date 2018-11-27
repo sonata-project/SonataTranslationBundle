@@ -1,4 +1,4 @@
-locale:
+sonata.translation.locale:
     path: /locale/{locale}
     defaults:
         _controller: Sonata\TranslationBundle\Controller\LocaleController::index
