@@ -77,6 +77,9 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->booleanNode('locale_switcher')
+                    ->defaultFalse()
+                ->end()
             ->end();
 
         return $treeBuilder;

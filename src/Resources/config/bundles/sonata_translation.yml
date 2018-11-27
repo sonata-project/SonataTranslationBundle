@@ -8,3 +8,4 @@ imports:
 sonata_translation:
     locales: [fr, en, it, nl, es]
     default_locale: fr
+    locale_switcher: false
