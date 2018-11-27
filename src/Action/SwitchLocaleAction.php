@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  *
  * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
  */
-final class LocaleAction
+final class SwitchLocaleAction
 {
     /**
      * Switch current locale.
