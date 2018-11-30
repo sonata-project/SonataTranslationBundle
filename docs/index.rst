@@ -2,7 +2,7 @@ Translation Bundle
 ==================
 
 SonataTranslationBundle allows you to easily translate your models in SonataAdmin
-in every locales you need on your frontend.
+in every locale you need on your frontend.
 
 This bundle adds a locale switcher block in :
 

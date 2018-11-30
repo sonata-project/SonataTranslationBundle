@@ -14,7 +14,7 @@ Install the following Sonata dependencies:
 Configuration
 -------------
 
-Override standard layout template with the one from the bundle:
+Override the standard layout template with the one from the bundle:
 
 .. code-block:: yaml
 
@@ -49,7 +49,7 @@ How it looks
 ------------
 
 You are done and you probably want to know how this looks like in the admin
-interface. Well, let's find out by going to /admin
+interface. Well, let's find out by going to `/admin`
 
 .. image:: ../images/locale_switcher.png
    :align: center
