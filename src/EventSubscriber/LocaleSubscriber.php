@@ -16,9 +16,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Locale subscriber.
- *
- * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
+ * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
 final class LocaleSubscriber implements EventSubscriberInterface
 {

@@ -15,15 +15,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Locale action.
- *
- * @author Jonathan Vautrin <jonathan.vautrin@gmail.com>
+ * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
 final class SwitchLocaleAction
 {
     /**
-     * Switch current locale.
-     *
      * @return RedirectResponse
      */
     public function __invoke(Request $request, $locale)
