@@ -49,7 +49,7 @@ How it looks
 ------------
 
 You are done and you probably want to know how this looks like in the admin
-interface. Well, let's find out by going to /admin
+interface. Well, let's find out by going to `/admin`
 
 .. image:: ../images/locale_switcher.png
    :align: center
