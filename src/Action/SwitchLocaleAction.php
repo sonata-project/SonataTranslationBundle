@@ -11,9 +11,8 @@
 
 namespace Sonata\TranslationBundle\Action;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Locale action.
@@ -30,6 +29,7 @@ final class SwitchLocaleAction
     public function __invoke(Request $request, $locale)
     {
         $request->getSession()->set('_locale', $locale);
+
         return new RedirectResponse($request->headers->get('referer', '/'));
     }
 }

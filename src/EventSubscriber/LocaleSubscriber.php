@@ -11,9 +11,9 @@
 
 namespace Sonata\TranslationBundle\EventSubscriber;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Locale subscriber.
@@ -48,6 +48,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
         // try to see if the locale has been set as a _locale routing parameter
         if ($locale = $request->attributes->get('_locale')) {
             $request->getSession()->set('_locale', $locale);
+
             return;
         }
 
@@ -60,9 +61,9 @@ final class LocaleSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             // must be registered before (i.e. with a higher priority than) the default Locale listener
             KernelEvents::REQUEST => [['onKernelRequest', 20]],
-        );
+        ];
     }
 }
