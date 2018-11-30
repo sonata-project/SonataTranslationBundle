@@ -14,7 +14,7 @@ Install the following Sonata dependencies:
 Configuration
 -------------
 
-Override standard layout template with the one from the bundle:
+Override the standard layout template with the one from the bundle:
 
 .. code-block:: yaml
 
