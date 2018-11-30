@@ -27,7 +27,7 @@ file that was distributed with this source code.
                                 <ul class="dropdown-menu">
                                     <li role="presentation" class="dropdown-header">
                                         <i class="fa fa-language"></i>
-                                        {{ 'languages_title'|trans({}, 'SonataAdminBundle') }}
+                                        {{ 'languages'|trans({}, 'SonataTranslationBundle') }}
                                     </li>
                                     {% for locale in sonata_translation_locales %}
                                     <li role="presentation" class="{{ app.request.locale == locale ? 'active' : '' }}">
