@@ -10,6 +10,10 @@
                 <source>admin.locale_switcher.tooltip</source>
                 <target>Nyelvváltás</target>
             </trans-unit>
+            <trans-unit id="languages">
+                <source>languages</source>
+                <target>Nyelvek</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
