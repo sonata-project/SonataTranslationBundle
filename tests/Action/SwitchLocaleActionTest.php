@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Tests\Model;
+namespace Sonata\TranslationBundle\Tests\Action;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Action\SwitchLocaleAction;
