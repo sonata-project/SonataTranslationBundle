@@ -84,6 +84,6 @@ class LocaleSubscriberTest extends TestCase
             $this->createMock(HttpKernelInterface::class),
             $request,
             HttpKernelInterface::MASTER_REQUEST
-);
+        );
     }
 }
