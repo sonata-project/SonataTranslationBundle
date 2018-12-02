@@ -14,8 +14,8 @@ namespace Sonata\TranslationBundle\Tests\EventSubscriber;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 

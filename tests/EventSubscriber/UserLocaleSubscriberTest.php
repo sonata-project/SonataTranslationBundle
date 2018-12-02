@@ -14,11 +14,10 @@ namespace Sonata\TranslationBundle\Tests\EventSubscriber;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\Security\Http\SecurityEvents;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
@@ -44,6 +43,7 @@ class UserLocaleSubscriberTest extends TestCase
     private function getEvent(Request $request, User $user)
     {
         $token = new UsernamePasswordToken($user, null, 'dev', []);
+
         return new InteractiveLoginEvent($request, $token);
     }
 }
