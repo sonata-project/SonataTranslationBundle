@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="sonata_translation.locale_switcher.locale_subscriber.class">Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber</parameter>
+        <parameter key="sonata_translation.locale_switcher.user_locale_subscriber.class">Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber</parameter>
+    </parameters>
+    <services>
+        <service id="sonata_translation.locale_switcher.locale_subscriber" class="%sonata_translation.locale_switcher.locale_subscriber.class%">
+            <argument key="$defaultLocale">%kernel.default_locale%</argument>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="sonata_translation.locale_switcher.user_locale_subscriber" class="%sonata_translation.locale_switcher.user_locale_subscriber.class%">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
