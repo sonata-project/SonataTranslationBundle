@@ -11,7 +11,6 @@
 
 namespace Sonata\TranslationBundle\Tests\EventSubscriber;
 
-use Doctrine\Common\Cache\VoidCache;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**

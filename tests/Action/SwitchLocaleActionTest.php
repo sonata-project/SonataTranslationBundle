@@ -14,8 +14,8 @@ namespace Sonata\TranslationBundle\Tests\Action;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Action\SwitchLocaleAction;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
