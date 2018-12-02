@@ -80,6 +80,10 @@ class LocaleSubscriberTest extends TestCase
 
     private function getEvent(Request $request)
     {
-        return new GetResponseEvent($this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock(), $request, HttpKernelInterface::MASTER_REQUEST);
+        return new GetResponseEvent(
+            $this->createMock(HttpKernelInterface::class),
+            $request,
+            HttpKernelInterface::MASTER_REQUEST
+        );
     }
 }
