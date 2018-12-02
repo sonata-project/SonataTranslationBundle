@@ -81,8 +81,8 @@ class LocaleSubscriberTest extends TestCase
     private function getEvent(Request $request)
     {
         return new GetResponseEvent(
-            $this->createMock(HttpKernelInterface::class), 
-            $request, 
+            $this->createMock(HttpKernelInterface::class),
+            $request,
             HttpKernelInterface::MASTER_REQUEST
 );
     }
