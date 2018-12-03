@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,7 +24,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  */
 class SwitchLocaleActionTest extends TestCase
 {
-    public function testSwitchLocaleAction()
+    public function testSwitchLocaleAction(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');
