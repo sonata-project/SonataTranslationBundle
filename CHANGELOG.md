@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.3.1...2.4.0) - 2018-12-03
+
+### Added
+- Added global locale switcher
+
+### Fixed
+- Global search on translatable fields
+
 ## [2.3.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.3.0...2.3.1) - 2018-06-21
 ### Fixed
 - Added check if translatable checker service exists
