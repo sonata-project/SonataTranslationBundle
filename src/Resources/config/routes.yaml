@@ -1,0 +1,4 @@
+sonata.translation.locale:
+    path: /locale/{locale}
+    defaults:
+        _controller: Sonata\TranslationBundle\Action\SwitchLocaleAction

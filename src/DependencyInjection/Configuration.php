@@ -79,6 +79,10 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->booleanNode('locale_switcher')
+                    ->info('Enable the global locale switcher services.')
+                    ->defaultFalse()
+                ->end()
             ->end();
 
         return $treeBuilder;

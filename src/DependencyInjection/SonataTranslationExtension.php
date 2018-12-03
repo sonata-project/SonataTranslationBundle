@@ -39,6 +39,10 @@ class SonataTranslationExtension extends Extension
         $isEnabled = false;
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        if ($config['locale_switcher']) {
+            $loader->load('service_locale_switcher.xml');
+        }
+
         $bundles = $container->getParameter('kernel.bundles');
         if (array_key_exists('SonataDoctrineORMAdminBundle', $bundles)) {
             $loader->load('service_orm.xml');

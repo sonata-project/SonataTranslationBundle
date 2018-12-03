@@ -10,6 +10,10 @@
                 <source>admin.locale_switcher.tooltip</source>
                 <target>Zmień język</target>
             </trans-unit>
+            <trans-unit id="languages">
+                <source>languages</source>
+                <target>Języki</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
