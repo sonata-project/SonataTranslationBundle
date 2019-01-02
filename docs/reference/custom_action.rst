@@ -25,7 +25,6 @@ Add new route to your Admin
     
     class QuestionnaireAdmin extends AbstractAdmin
     {
-        
         protected function configureRoutes(RouteCollection $collection)
         {
             $collection
@@ -68,23 +67,17 @@ Then implement your controller.
 To benefit from Sonata powerful feature, we need to extend the class ``CRUDController`` and load our current
 object the same way as Sonata does in edit or show action::
 
-    // src/App/Controller/Admin/QuestionnaireController.php
+    // src/Controller/Admin/QuestionnaireController.php
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
 
     class QuestionnaireController extends CRUDController
     {
-        /**
-         * @param Request $request
-         *
-         * @return Response
-         */
-        public function showQuestionAnswerAction(Request $request)
+        public function showQuestionAnswerAction(Request $request): Response
         {
-            $id = $request->get($this->admin->getIdParameter());
-            /** @var Questionnaire $questionnaire */
-            $questionnaire = $this->admin->getObject($id);
+            /** @var App\Entity\Questionnaire $questionnaire */
+            $questionnaire = $this->admin->getSubject($id);
     
             if (!$questionnaire) {
                 $id = $request->get($this->admin->getIdParameter());

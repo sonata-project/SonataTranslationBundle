@@ -37,7 +37,6 @@ Example using Personal Translation
 
 .. code-block:: php
 
-    <?php
     // src/Entity/FAQCategory.php
 
     namespace Presta\CMSFAQBundle\Entity;
