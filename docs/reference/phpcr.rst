@@ -24,7 +24,7 @@ So if you configured ``SonataTranslation`` like this :
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_translation.yaml
 
         sonata_translation:
             locales: [fr, en, it, nl, es]
@@ -35,7 +35,7 @@ Then you should configure ``doctrine_phpcr.odm.locales`` for the same list.
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/doctrine_phpcr.yaml
 
         doctrine_phpcr:
             odm:

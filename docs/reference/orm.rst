@@ -38,7 +38,7 @@ Example using Personal Translation
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/FAQCategory.php
+    // src/Entity/FAQCategory.php
 
     namespace Presta\CMSFAQBundle\Entity;
 
@@ -60,7 +60,7 @@ Example using Personal Translation
          * @ORM\Column(type="integer")
          * @ORM\GeneratedValue(strategy="AUTO")
          */
-        protected $id;
+        private $id;
 
         /**
          * @var string $title
@@ -110,8 +110,7 @@ Example using Personal Translation with Traits
 
 .. code-block:: php
 
-    <?php
-    // src/AppBundle/Entity/FAQCategory.php
+    // src/Entity/FAQCategory.php
 
     namespace Presta\CMSFAQBundle\Entity;
 
@@ -122,8 +121,6 @@ Example using Personal Translation with Traits
     use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 
     /**
-     * @author Nicolas Bastien <nbastien@prestaconcept.net>
-     *
      * @ORM\Table(name="presta_cms_faq_category")
      * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
      * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
@@ -137,7 +134,7 @@ Example using Personal Translation with Traits
          * @ORM\Column(type="integer")
          * @ORM\GeneratedValue(strategy="AUTO")
          */
-        protected $id;
+        private $id;
 
         // ...
     }
@@ -153,8 +150,7 @@ Example for translation class for Personal Translation
 
 .. code-block:: php
 
-    <?php
-    // src/AppBundle/Entity/FAQCategory/Translation.php
+    // src/Entity/FAQCategory/Translation.php
 
     namespace Presta\CMSFAQBundle\Entity\FAQCategory;
 
@@ -189,9 +185,7 @@ Example for configure search filter
 
 .. code-block:: php
 
-    <?php
-
-    namespace AppBundle\Admin;
+    namespace App\Admin;
 
     use Sonata\AdminBundle\Admin\AbstractAdmin;
     use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -226,10 +220,9 @@ Your entities need to explicitly implement getter and setter methods for the knp
 
 .. code-block:: php
 
-    <?php
-    // src/AppBundle/Entity/TranslatableEntity.php
+    // src/Entity/TranslatableEntity.php
 
-    namespace AppBundle\Entity;
+    namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
     use Knp\DoctrineBehaviors\Model as ORMBehaviors;
@@ -330,14 +323,11 @@ Define your translation table
 
 Please refer to `KnpLabs Doctrine2 Behaviors Documentation <https://github.com/KnpLabs/DoctrineBehaviors#translatable>`_.
 
-Here is an example:
+Here is an example::
 
-.. code-block:: php
+    // src/Entity/TranslatableEntityTranslation.php
 
-    <?php
-    // src/AppBundle/Entity/TranslatableEntityTranslation.php
-
-    namespace AppBundle\Entity;
+    namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
     use Knp\DoctrineBehaviors\Model as ORMBehaviors;

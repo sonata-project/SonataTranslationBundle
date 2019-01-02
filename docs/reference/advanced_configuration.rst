@@ -11,7 +11,7 @@ Here is an example with PHPCR :
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_translation.yaml
 
         sonata_translation:
             phpcr:
