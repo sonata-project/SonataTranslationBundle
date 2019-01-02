@@ -189,21 +189,14 @@ Example for configure search filter
 
     use Sonata\AdminBundle\Admin\AbstractAdmin;
     use Sonata\AdminBundle\Datagrid\DatagridMapper;
-    use Sonata\AdminBundle\Datagrid\ListMapper;
-    use Sonata\AdminBundle\Form\FormMapper;
-    use Sonata\AdminBundle\Show\ShowMapper;
     use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 
     class FAQCategoryAdmin extends AbstractAdmin
     {
-        /**
-         * @param DatagridMapper $datagridMapper
-         */
         protected function configureDatagridFilters(DatagridMapper $datagridMapper)
         {
             $datagridMapper
-                // ...
-                ->add('title', TranslationFieldFilter::class); // or 'doctrine_orm_translation_field'
+                ->add('title', TranslationFieldFilter::class);
         }
 
 .. _knp_labs_doctrine_bahaviours:
@@ -333,7 +326,6 @@ Here is an example::
     use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
     /**
-     * @ORM\Table(name="app_translatable_entity_translation")
      * @ORM\Entity
      */
     class TranslatableEntityTranslation

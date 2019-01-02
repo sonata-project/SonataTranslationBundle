@@ -35,11 +35,9 @@ Add new route to your Admin
         // ...
     }
 
-
 .. note::
 
     Add a link to your new action. For example in you list screen an check the user rights.
-
 
 Create a custom controller with this actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -112,17 +110,13 @@ If you are working on an edit action you should work with the edit block instead
     {% extends ':admin:layout.html.twig' %}
 
     {% block show %}
-
         {{ sonata_block_render({ 'type': 'sonata_translation.block.locale_switcher' }, {
             'admin': admin,
             'object': questionnaire,
             'locale_switcher_route': 'show_question_answer',
             'locale_switcher_route_parameters': {'type': type}
         }) }}
-        
-        {# ... #}
     {% endblock %}
-
 
 At this point, you should have a working locale switcher in your actions.
 
