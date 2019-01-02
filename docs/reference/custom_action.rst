@@ -105,7 +105,7 @@ If you are working on an edit action you should work with the edit block instead
 
 .. code-block:: jinja
     
-    {# admin/questionnaire/show_question_answer.html.twig #}
+    {# templates/admin/questionnaire/show_question_answer.html.twig #}
     
     {% extends ':admin:layout.html.twig' %}
 
