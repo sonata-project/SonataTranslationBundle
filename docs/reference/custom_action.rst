@@ -19,14 +19,12 @@ Add new route to your Admin
 
 .. code-block:: php
 
-    <?php
-    // src/AppBundle/Admin/QuestionnaireAdmin.php
+    // src/Admin/QuestionnaireAdmin.php
     
     use Sonata\AdminBundle\Route\RouteCollection;
     
     class QuestionnaireAdmin extends AbstractAdmin
     {
-        
         protected function configureRoutes(RouteCollection $collection)
         {
             $collection
@@ -36,62 +34,50 @@ Add new route to your Admin
         // ...
     }
 
-
 .. note::
 
     Add a link to your new action. For example in you list screen an check the user rights.
 
-
 Create a custom controller with this actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First update your admin configuration to point to a custom controller :
+First update your admin configuration to point to a custom controller:
 
 .. configuration-block::
 
     .. code-block:: yaml
         
         admin.questionnaire:
-            class: AppBundle\Admin\QuestionnaireAdmin
-            arguments: [~, AppBundle\Entity\Questionnaire, AppBundle:Admin/Questionnaire]
+            class: App\Admin\QuestionnaireAdmin
+            arguments: [~, App\Entity\Questionnaire, App:Admin/Questionnaire]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: dashboard.label_questionnaire }
+                - { name: sonata.admin, manager_type: orm, label: 'dashboard.label_questionnaire' }
             
     .. code-block:: xml
     
-        <service id="admin.questionnaire" class="AppBundle\Admin\QuestionnaireAdmin">
-            <tag name="sonata.admin" manager_type="orm" label="dashboard.label_questionnaire"/>
-    
+        <service id="admin.questionnaire" class="App\Admin\QuestionnaireAdmin">
             <argument />
-            <argument>AppBundle\Entity\Questionnaire</argument>
-            <argument>AppBundle:Admin/Questionnaire</argument>
+            <argument>App\Entity\Questionnaire</argument>
+            <argument>App:Admin/Questionnaire</argument>
+            <tag name="sonata.admin" manager_type="orm" label="dashboard.label_questionnaire"/>
         </service>
 
 Then implement your controller. 
 
 To benefit from Sonata powerful feature, we need to extend the class ``CRUDController`` and load our current
-object the same way as Sonata does in edit or show action.
+object the same way as Sonata does in edit or show action::
 
-.. code-block:: php
-
-    <?php
-    // src/AppBundle/Controller/Admin/QuestionnaireController.php
+    // src/Controller/Admin/QuestionnaireController.php
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
 
     class QuestionnaireController extends CRUDController
     {
-        /**
-         * @param Request $request
-         *
-         * @return Response
-         */
-        public function showQuestionAnswerAction(Request $request)
+        public function showQuestionAnswerAction(Request $request): Response
         {
-            $id = $request->get($this->admin->getIdParameter());
-            /** @var Questionnaire $questionnaire */
-            $questionnaire = $this->admin->getObject($id);
+            /** @var App\Entity\Questionnaire $questionnaire */
+            $questionnaire = $this->admin->getSubject($id);
     
             if (!$questionnaire) {
                 $id = $request->get($this->admin->getIdParameter());
@@ -112,22 +98,18 @@ If you are working on an edit action you should work with the edit block instead
 
 .. code-block:: jinja
     
-    {# admin/questionnaire/show_question_answer.html.twig #}
+    {# templates/admin/questionnaire/show_question_answer.html.twig #}
     
     {% extends ':admin:layout.html.twig' %}
 
     {% block show %}
-
         {{ sonata_block_render({ 'type': 'sonata_translation.block.locale_switcher' }, {
             'admin': admin,
             'object': questionnaire,
             'locale_switcher_route': 'show_question_answer',
             'locale_switcher_route_parameters': {'type': type}
         }) }}
-        
-        {# ... #}
     {% endblock %}
-
 
 At this point, you should have a working locale switcher in your actions.
 

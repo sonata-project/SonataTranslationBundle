@@ -18,11 +18,7 @@ Step 2: Enable the Bundle
 -------------------------
 
 Then, enable the bundle by adding it to the list of registered bundles
-in ``bundles.php`` file of your project:
-
-.. code-block:: php
-
-    <?php
+in ``bundles.php`` file of your project::
 
     // config/bundles.php
 
@@ -32,12 +28,12 @@ in ``bundles.php`` file of your project:
     ];
 
 .. note::
+
     If you are not using Symfony Flex, you should enable bundle in your
     ``AppKernel.php``.
 
 .. code-block:: php
 
-    <?php
     // app/AppKernel.php
 
     // ...
@@ -50,11 +46,7 @@ in ``bundles.php`` file of your project:
 
                 new Sonata\TranslationBundle\SonataTranslationBundle(),
             );
-
-            // ...
         }
-
-        // ...
     }
 
 Step 3: Configure the Bundle
@@ -66,7 +58,7 @@ To use the ``TranslationBundle``, add the following lines to your application co
 
     .. code-block:: yaml
 
-        # config/packages/sonata.yaml
+        # config/packages/sonata_translation.yaml
 
         sonata_translation:
             locales: [en, fr, it, nl, es]
@@ -87,6 +79,7 @@ Key                 Description
 ==================  ============================================================================
 
 .. note::
+
     If you are not using Symfony Flex, this configuration should be added
     to ``app/config/config.yml``.
 
@@ -112,12 +105,12 @@ Add CSS file to your SonataAdminBundle config:
     # config/packages/sonata_admin.yaml
 
     sonata_admin:
-        # ...
         assets:
             extra_stylesheets:
                 - bundles/sonatatranslation/css/sonata-translation.css
 
 .. note::
+
     If you are not using Symfony Flex, this configuration should be added
     to ``app/config/config.yml``.
 
