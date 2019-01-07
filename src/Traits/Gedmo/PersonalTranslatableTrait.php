@@ -34,7 +34,7 @@ trait PersonalTranslatableTrait
      * @param $field
      * @param $locale
      *
-     * @return null|string
+     * @return string|null
      */
     public function getTranslation($field, $locale)
     {
