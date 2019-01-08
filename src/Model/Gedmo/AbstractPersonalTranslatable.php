@@ -31,9 +31,6 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
      */
     protected $translations;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -51,7 +48,7 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
      * @param string $field
      * @param string $locale
      *
-     * @return null|string
+     * @return string|null
      */
     public function getTranslation($field, $locale)
     {
