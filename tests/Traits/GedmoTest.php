@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,7 +28,7 @@ class GedmoTest extends TestCase
     /**
      * @test TranslatableTrait
      */
-    public function testTranslatableModel()
+    public function testTranslatableModel(): void
     {
         $model = new ModelTranslatable();
         $model->setLocale('fr');
@@ -38,7 +40,7 @@ class GedmoTest extends TestCase
     /**
      * @test PersonalTranslatableTrait
      */
-    public function testPersonalTranslatableModel()
+    public function testPersonalTranslatableModel(): void
     {
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');

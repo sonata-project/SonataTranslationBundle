@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
  */
 final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered()
+    public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered(): void
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
         $this->load();
@@ -33,7 +35,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadServiceDefinitionNoCheckerTranslatable()
+    public function testLoadServiceDefinitionNoCheckerTranslatable(): void
     {
         $this->container->setParameter('kernel.bundles', []);
         $this->load();

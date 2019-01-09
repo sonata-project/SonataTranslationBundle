@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,7 +24,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function alterNewInstance(AdminInterface $admin, $object)
+    public function alterNewInstance(AdminInterface $admin, $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $object->setLocale($this->getTranslatableLocale($admin));
@@ -32,7 +34,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function alterObject(AdminInterface $admin, $object)
+    public function alterObject(AdminInterface $admin, $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $object->setLocale($this->getTranslatableLocale($admin));
@@ -42,7 +44,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function preUpdate(AdminInterface $admin, $object)
+    public function preUpdate(AdminInterface $admin, $object): void
     {
         $object->mergeNewTranslations();
     }
@@ -50,7 +52,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * {@inheritdoc}
      */
-    public function prePersist(AdminInterface $admin, $object)
+    public function prePersist(AdminInterface $admin, $object): void
     {
         $object->mergeNewTranslations();
     }

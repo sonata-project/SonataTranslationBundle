@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -42,7 +44,7 @@ class SonataTranslationExtension extends \Twig_Extension
     /**
      * @param TranslatableChecker $translatableChecker
      */
-    public function setTranslatableChecker($translatableChecker)
+    public function setTranslatableChecker($translatableChecker): void
     {
         $this->translatableChecker = $translatableChecker;
     }

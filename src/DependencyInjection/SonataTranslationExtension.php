@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -25,7 +27,7 @@ class SonataTranslationExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -96,7 +98,7 @@ class SonataTranslationExtension extends Extension
      * @param ContainerBuilder $container
      * @param array            $translationTargets
      */
-    protected function configureChecker(ContainerBuilder $container, $translationTargets)
+    protected function configureChecker(ContainerBuilder $container, $translationTargets): void
     {
         if (!$container->hasDefinition('sonata_translation.checker.translatable')) {
             return;

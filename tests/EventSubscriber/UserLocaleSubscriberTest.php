@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -27,7 +29,7 @@ class UserLocaleSubscriberTest extends TestCase
     /**
      * Check if session locale is set to user locale at login.
      */
-    public function testUserLocaleSubscriber()
+    public function testUserLocaleSubscriber(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');
