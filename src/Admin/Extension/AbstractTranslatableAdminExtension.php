@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * Request parameter.
      */
-    const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
+    public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
     /**
      * @var string

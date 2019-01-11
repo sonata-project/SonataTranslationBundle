@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,8 +23,8 @@ use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatio
 
 class GedmoOrmTest extends DoctrineOrmTestCase
 {
-    const ARTICLE = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable';
-    const TRANSLATION = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation';
+    public const ARTICLE = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable';
+    public const TRANSLATION = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation';
 
     /** @var TranslatableListener */
     private $translatableListener;
