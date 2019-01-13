@@ -11,8 +11,12 @@ How to make custom actions with Sonata standard structure
 
 At this point you already have a working admin in your project.
 
-In this example, we have a ``QuestionnaireAdmin`` setup with a ``Questionnaire`` entity translatable. We will add a new action
-to display the list of the current questionnaire's questions with their possible answers. (Note that questions and anwsers are translatable too).
+In this example, we have a ``QuestionnaireAdmin`` setup with a ``Questionnaire`` entity translatable.
+We will add a new action to display the list of the current questionnaire's questions with their possible answers.
+
+.. note::
+
+    Note that questions and anwsers are translatable too!
 
 Add new route to your Admin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23,7 +27,7 @@ Add new route to your Admin
     
     use Sonata\AdminBundle\Route\RouteCollection;
     
-    class QuestionnaireAdmin extends AbstractAdmin
+    final class QuestionnaireAdmin extends AbstractAdmin
     {
         protected function configureRoutes(RouteCollection $collection)
         {
@@ -31,7 +35,6 @@ Add new route to your Admin
                 ->add('show_question_answer', sprintf('%s/show_question_answer', $this->getRouterIdParameter()))
             ;
         }
-        // ...
     }
 
 .. note::
@@ -46,6 +49,8 @@ First update your admin configuration to point to a custom controller:
 .. configuration-block::
 
     .. code-block:: yaml
+
+        # config/services.yaml
         
         admin.questionnaire:
             class: App\Admin\QuestionnaireAdmin
@@ -54,9 +59,11 @@ First update your admin configuration to point to a custom controller:
                 - { name: sonata.admin, manager_type: orm, label: 'dashboard.label_questionnaire' }
             
     .. code-block:: xml
+
+        <!-- config/services.xml -->
     
         <service id="admin.questionnaire" class="App\Admin\QuestionnaireAdmin">
-            <argument />
+            <argument/>
             <argument>App\Entity\Questionnaire</argument>
             <argument>App:Admin/Questionnaire</argument>
             <tag name="sonata.admin" manager_type="orm" label="dashboard.label_questionnaire"/>
@@ -81,12 +88,15 @@ object the same way as Sonata does in edit or show action::
     
             if (!$questionnaire) {
                 $id = $request->get($this->admin->getIdParameter());
-                throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
+                throw $this->createNotFoundException(sprintf(
+                    'Unable to find the object with id : %s',
+                    $id
+                ));
             }
     
-            return $this->render('admin/questionnaire/show_question_answer.html.twig', array(
+            return $this->render('admin/questionnaire/show_question_answer.html.twig', [
                 'questionnaire' => $questionnaire,
-            ));
+            ]);
         }    
     }
 
