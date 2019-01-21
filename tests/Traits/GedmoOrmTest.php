@@ -92,7 +92,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
-        $this->assertEquals(
+        $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
@@ -111,7 +111,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => null]);
-        $this->assertEquals(
+        $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o',
             $builder->getDQL()
         );
@@ -130,7 +130,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
-        $this->assertEquals(
+        $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
