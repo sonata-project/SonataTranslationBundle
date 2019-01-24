@@ -69,11 +69,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      */
     public function getTranslatableLocale(AdminInterface $admin)
     {
-        if (null == $this->translatableLocale) {
+        if (null === $this->translatableLocale) {
             if ($admin->hasRequest()) {
                 $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
             }
-            if (null == $this->translatableLocale) {
+            if (null === $this->translatableLocale) {
                 $this->translatableLocale = $this->getDefaultTranslationLocale($admin);
             }
         }

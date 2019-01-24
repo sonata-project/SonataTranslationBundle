@@ -45,7 +45,7 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
                     }
                 }
                 foreach ($translationTargets[$type]['instanceof'] as $class) {
-                    if ($modelClassReflection->getName() == $class || $modelClassReflection->isSubclassOf($class)) {
+                    if ($modelClassReflection->getName() === $class || $modelClassReflection->isSubclassOf($class)) {
                         $admin->addMethodCall('addExtension', [$reference]);
                     }
                 }

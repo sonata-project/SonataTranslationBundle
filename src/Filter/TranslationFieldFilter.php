@@ -26,13 +26,13 @@ final class TranslationFieldFilter extends Filter
      */
     public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $data): void
     {
-        if (!$data || !\is_array($data) || !array_key_exists('value', $data) || null == $data['value']) {
+        if (!$data || !\is_array($data) || !array_key_exists('value', $data) || null === $data['value']) {
             return;
         }
 
         $data['value'] = trim((string) $data['value']);
 
-        if (0 == \strlen($data['value'])) {
+        if (0 === \strlen($data['value'])) {
             return;
         }
 

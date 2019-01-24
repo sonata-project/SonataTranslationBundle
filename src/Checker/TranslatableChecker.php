@@ -90,7 +90,7 @@ class TranslatableChecker
 
         $objectInterfaces = class_implements($object);
         foreach ($this->getSupportedInterfaces() as $interface) {
-            if (\in_array($interface, $objectInterfaces)) {
+            if (\in_array($interface, $objectInterfaces, true)) {
                 return true;
             }
         }
