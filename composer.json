@@ -24,13 +24,13 @@
         "sonata-project/admin-bundle": "^3.43",
         "sonata-project/block-bundle": "^3.11",
         "sonata-project/core-bundle": "^3.12.0",
-        "symfony/config": "^2.8 || ^3.2 || ^4.0",
-        "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
-        "symfony/form": "^2.8 || ^3.2 || ^4.0",
-        "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
-        "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
-        "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
-        "twig/twig": "^1.35 || ^2.4"
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/form": "^3.4 || ^4.0",
+        "symfony/http-foundation": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/options-resolver": "^3.4 || ^4.0",
+        "twig/twig": "^2.4"
     },
     "conflict": {
         "doctrine/phpcr-odm": ">=3.0",
@@ -43,7 +43,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^3.0",
         "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "stof/doctrine-extensions-bundle": "^1.1",
-        "symfony/framework-bundle": "^3.2.5 || ^4.0",
+        "symfony/framework-bundle": "^3.4 || ^4.0",
         "symfony/phpunit-bridge": "^4.2"
     },
     "suggest": {
