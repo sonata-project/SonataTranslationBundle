@@ -44,7 +44,7 @@ class SonataTranslationExtension extends Extension
         }
 
         $bundles = $container->getParameter('kernel.bundles');
-        if (array_key_exists('SonataDoctrineORMAdminBundle', $bundles)) {
+        if (\array_key_exists('SonataDoctrineORMAdminBundle', $bundles)) {
             $loader->load('service_orm.xml');
         }
 
