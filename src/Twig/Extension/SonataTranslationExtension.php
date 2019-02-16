@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Twig\Extension;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\ResourceBundle\LocaleBundleInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -24,6 +26,11 @@ class SonataTranslationExtension extends \Twig_Extension
      * @var TranslatableChecker
      */
     protected $translatableChecker;
+
+    /**
+     * @var LocaleBundleInterface
+     */
+    private $localeBundle;
 
     /**
      * @param TranslatableChecker $translatableChecker
@@ -57,6 +64,11 @@ class SonataTranslationExtension extends \Twig_Extension
         return $this->translatableChecker;
     }
 
+    public function getLocaleBundle(): LocaleBundleInterface
+    {
+        return $this->localeBundle instanceof LocaleBundleInterface ? $this->localeBundle : ($this->localeBundle = Intl::getLocaleBundle());
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -64,6 +76,16 @@ class SonataTranslationExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleTest('translatable', [$this, 'isTranslatable']),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFilters()
+    {
+        return [
+            new \Twig_SimpleFilter('localeName', [$this, 'getLocaleName']),
         ];
     }
 
@@ -77,5 +99,10 @@ class SonataTranslationExtension extends \Twig_Extension
     public function isTranslatable($object)
     {
         return $this->getTranslatableChecker()->isTranslatable($object);
+    }
+
+    public function getLocaleName(string $locale, ?string $displayLocale = null): ?string
+    {
+        return $this->getLocaleBundle()->getLocaleName($locale, $displayLocale);
     }
 }

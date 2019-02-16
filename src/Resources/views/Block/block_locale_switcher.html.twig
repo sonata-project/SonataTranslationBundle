@@ -23,13 +23,14 @@
                     {% endif %}
                 {% endif %}
                 <a href="{{ admin.generateUrl(
-                        locale_switcher_route,
-                        {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
-                    ) }}"
+                    locale_switcher_route,
+                    {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
+                ) }}"
                    accesskey=""
-                   class=" {% if currentLocale == locale %} active {% endif %}"
+                   class="{% if currentLocale == locale %}active{% endif %}"
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
-                    <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png')}}" />
+                    {# NEXT_MAJOR: remove flag icons #}
+                    {{ locale|localeName(app.request.locale) }}
                 </a>
             {% endfor %}
         {% endspaceless %}
