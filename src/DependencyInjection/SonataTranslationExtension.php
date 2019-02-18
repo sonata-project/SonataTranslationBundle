@@ -35,7 +35,7 @@ class SonataTranslationExtension extends Extension
 
         $container->setParameter('sonata_translation.locales', $config['locales']);
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
-        $container->setParameter('sonata_translation.locale_switcher_use_flags', $config['locale_switcher_use_flags']);
+        $container->setParameter('sonata_translation.locale_switcher_show_country_flags', $config['locale_switcher_show_country_flags']);
 
         $isEnabled = false;
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

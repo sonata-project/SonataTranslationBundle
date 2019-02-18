@@ -6,9 +6,9 @@
     <services>
         <service id="sonata_translation.block.locale_switcher" class="%sonata_translation.block.locale_switcher.class%">
             <tag name="sonata.block"/>
-            <argument>%sonata_translation.locale_switcher_use_flags%</argument>
             <argument>sonata_translation.block.locale_switcher</argument>
             <argument type="service" id="sonata.templating"/>
+            <argument>%sonata_translation.locale_switcher_show_country_flags%</argument>
         </service>
     </services>
 </container>

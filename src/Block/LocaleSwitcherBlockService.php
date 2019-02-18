@@ -28,12 +28,12 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     /**
      * @var bool
      */
-    private $useFlags;
+    private $showCountryFlags;
 
-    public function __construct(bool $useFlags, ?string $name = null, EngineInterface $templating = null)
+    public function __construct(?string $name = null, EngineInterface $templating = null, ?bool $showCountryFlags = false)
     {
-        $this->useFlags = $useFlags;
         parent::__construct($name, $templating);
+        $this->showCountryFlags = $showCountryFlags;
     }
 
     /**
@@ -55,7 +55,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
                 'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
-                'locale_switcher_use_flags' => $this->useFlags,
+                'locale_switcher_show_country_flags' => $this->showCountryFlags,
             ]
         );
     }
