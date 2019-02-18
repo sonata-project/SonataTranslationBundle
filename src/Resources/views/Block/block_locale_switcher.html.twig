@@ -32,7 +32,7 @@
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
                     {% if locale_switcher_use_flags %}
                         {# There is no one-to-one relation between locales and countries. #}
-                        {# In order to show locale names instead of flags, set 'admin_locale_switcher_use_flags' to false in your sonata_translation config. #}
+                        {# In order to show locale names instead of flags, set 'locale_switcher_use_flags' to false in your sonata_translation config. #}
                         {# NEXT_MAJOR: Fix mapping of locales to countries or remove flags entirely #}
                         <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png')}}" />
                     {% else %}
