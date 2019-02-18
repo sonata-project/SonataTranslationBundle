@@ -89,6 +89,11 @@ class Configuration implements ConfigurationInterface
                     ->info('Enable the global locale switcher services.')
                     ->defaultFalse()
                 ->end()
+                // NEXT_MAJOR: Switch default value or remove the flags entirely if mapping of locales to countries has not been fixed.
+                ->booleanNode('locale_switcher_use_flags')
+                    ->info('Whether the language switcher should show languages as flags')
+                    ->defaultTrue()
+                ->end()
             ->end();
 
         return $treeBuilder;

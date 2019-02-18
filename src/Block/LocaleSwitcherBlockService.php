@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -25,6 +26,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class LocaleSwitcherBlockService extends AbstractBlockService
 {
     /**
+     * @var bool
+     */
+    private $useFlags;
+
+    public function __construct(bool $useFlags, ?string $name = null, EngineInterface $templating = null)
+    {
+        $this->useFlags = $useFlags;
+        parent::__construct($name, $templating);
+    }
+
+    /**
      * NEXT_MAJOR: remove this method.
      *
      * @deprecated since 3.x, will be removed in 4.0
@@ -34,9 +46,6 @@ class LocaleSwitcherBlockService extends AbstractBlockService
         $this->configureSettings($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
@@ -46,13 +55,11 @@ class LocaleSwitcherBlockService extends AbstractBlockService
                 'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
+                'locale_switcher_use_flags' => $this->useFlags,
             ]
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         return $this->renderPrivateResponse($blockContext->getTemplate(), [
