@@ -28,7 +28,7 @@
                     {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
                 ) }}"
                    accesskey=""
-                   class="{% if currentLocale == locale %}active{% endif %}"
+                   {% if currentLocale == locale %}class="active"{% endif %}
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
                     {% if locale_switcher_show_country_flags %}
                         {# There is no one-to-one relation between locales and countries. #}
