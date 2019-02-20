@@ -22,7 +22,7 @@ use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
 final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 {
     /**
-     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice
+     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
      *
      * @group legacy
      */
@@ -41,7 +41,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice
+     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
      *
      * @group legacy
      */
