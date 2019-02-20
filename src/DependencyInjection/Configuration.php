@@ -103,6 +103,7 @@ class Configuration implements ConfigurationInterface
                         'sonata_translation.locale_switcher_show_country_flags'
                     ), E_USER_DEPRECATED);
                     $v['locale_switcher_show_country_flags'] = $v['locale_switcher_show_country_flags'] ?? true;
+
                     return $v;
                 })
             ->end();
