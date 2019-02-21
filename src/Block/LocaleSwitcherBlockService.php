@@ -30,7 +30,11 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      */
     private $showCountryFlags;
 
-    public function __construct(?string $name = null, EngineInterface $templating = null, ?bool $showCountryFlags = false)
+    public function __construct(
+        ?string $name = null, 
+        EngineInterface $templating = null, 
+        ?bool $showCountryFlags = false
+    )
     {
         parent::__construct($name, $templating);
         $this->showCountryFlags = $showCountryFlags;
