@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.0...2.4.1) - 2019-02-28
+### Added
+- Feature flag to either keep using country flags or show locale names in language switcher
+
+### Fixed
+- Fix deprecation for symfony/config 4.2+
+
+### Changed
+- Replace country flags with locale names in language switcher
+
+### Removed
+- support for php 5 and php 7.0
+
 ## [2.4.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.3.1...2.4.0) - 2018-12-03
 
 ### Added
