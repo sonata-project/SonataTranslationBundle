@@ -8,6 +8,7 @@
             <tag name="sonata.block"/>
             <argument>sonata_translation.block.locale_switcher</argument>
             <argument type="service" id="sonata.templating"/>
+            <argument>%sonata_translation.locale_switcher_show_country_flags%</argument>
         </service>
     </services>
 </container>

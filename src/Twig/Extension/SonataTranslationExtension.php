@@ -14,56 +14,52 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Twig\Extension;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Symfony\Component\Intl\Intl;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigTest;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class SonataTranslationExtension extends \Twig_Extension
+class SonataTranslationExtension extends AbstractExtension
 {
     /**
      * @var TranslatableChecker
      */
     protected $translatableChecker;
 
-    /**
-     * @param TranslatableChecker $translatableChecker
-     */
     public function __construct(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_translation';
     }
 
-    /**
-     * @param TranslatableChecker $translatableChecker
-     */
-    public function setTranslatableChecker($translatableChecker)
+    public function setTranslatableChecker(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;
     }
 
-    /**
-     * @return TranslatableChecker
-     */
-    public function getTranslatableChecker()
+    public function getTranslatableChecker(): TranslatableChecker
     {
         return $this->translatableChecker;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTests()
     {
         return [
-            new \Twig_SimpleTest('translatable', [$this, 'isTranslatable']),
+            new TwigTest('translatable', [$this, 'isTranslatable']),
+        ];
+    }
+
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('localeName', [$this, 'getLocaleName']),
         ];
     }
 
@@ -74,8 +70,13 @@ class SonataTranslationExtension extends \Twig_Extension
      *
      * @return bool
      */
-    public function isTranslatable($object)
+    public function isTranslatable($object): bool
     {
         return $this->getTranslatableChecker()->isTranslatable($object);
+    }
+
+    public function getLocaleName(string $locale, ?string $displayLocale = null): ?string
+    {
+        return Intl::getLocaleBundle()->getLocaleName($locale, $displayLocale);
     }
 }

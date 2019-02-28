@@ -21,6 +21,11 @@ use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
  */
 final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 {
+    /**
+     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
+     *
+     * @group legacy
+     */
     public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered()
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
@@ -35,6 +40,11 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
+    /**
+     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
+     *
+     * @group legacy
+     */
     public function testLoadServiceDefinitionNoCheckerTranslatable()
     {
         $this->container->setParameter('kernel.bundles', []);
