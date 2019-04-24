@@ -56,7 +56,7 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
 
         $em = EntityManager::create($conn, $config ?: $this->getMockAnnotatedConfig(), $evm ?: new EventManager());
 
-        $schema = array_map(function ($class) use ($em) {
+        $schema = array_map(static function ($class) use ($em) {
             return $em->getClassMetadata($class);
         }, (array) $this->getUsedEntityFixtures());
 
