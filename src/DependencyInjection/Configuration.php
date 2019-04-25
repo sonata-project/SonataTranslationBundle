@@ -96,8 +96,8 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
             ->beforeNormalization()
-                ->ifTrue(function ($v) {return !isset($v['locale_switcher_show_country_flags']) || true === $v['locale_switcher_show_country_flags']; })
-                ->then(function ($v) {
+                ->ifTrue(static function ($v) {return !isset($v['locale_switcher_show_country_flags']) || true === $v['locale_switcher_show_country_flags']; })
+                ->then(static function ($v) {
                     @trigger_error(sprintf(
                         'Showing the country flags is deprecated. The flags will be removed in the next major version. Please set "%s" to false to avoid this message.',
                         'sonata_translation.locale_switcher_show_country_flags'
