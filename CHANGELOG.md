@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.2](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.1...2.4.2) - 2019-07-05
+### Fixed
+- Admin without entity shouldn't be restricted
+
 ## [2.4.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.0...2.4.1) - 2019-02-28
 ### Added
 - Feature flag to either keep using country flags or show locale names in language switcher
