@@ -96,8 +96,7 @@ class SonataTranslationExtension extends Extension
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param array            $translationTargets
+     * @param array $translationTargets
      */
     protected function configureChecker(ContainerBuilder $container, $translationTargets)
     {

@@ -68,8 +68,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     }
 
     /**
-     * @param AdminInterface $admin
-     *
      * @return DocumentManager
      */
     protected function getDocumentManager(AdminInterface $admin)

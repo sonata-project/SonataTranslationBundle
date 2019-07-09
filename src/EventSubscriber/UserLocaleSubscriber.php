@@ -31,17 +31,11 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
      */
     private $session;
 
-    /**
-     * @param SessionInterface $session
-     */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
 
-    /**
-     * @param InteractiveLoginEvent $event
-     */
     public function onInteractiveLogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();

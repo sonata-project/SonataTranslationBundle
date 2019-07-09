@@ -60,8 +60,6 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
     }
 
     /**
-     * @param AbstractPersonalTranslation $translation
-     *
      * @return $this
      */
     public function addTranslation(AbstractPersonalTranslation $translation)
