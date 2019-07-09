@@ -48,8 +48,6 @@ trait PersonalTranslatableTrait
     }
 
     /**
-     * @param AbstractPersonalTranslation $translation
-     *
      * @return $this
      */
     public function addTranslation(AbstractPersonalTranslation $translation)
