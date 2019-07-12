@@ -54,8 +54,6 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
     }
 
     /**
-     * @param array $types
-     *
      * @return Reference[]
      */
     protected function getAdminExtensionReferenceByTypes(array $types)
