@@ -18,29 +18,22 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
-class User implements UserInterface
+class LocalizedUser extends User implements UserInterface
 {
-    public function getRoles()
+    private $locale;
+
+    public function __construct(string $locale)
     {
-        return [];
+        $this->locale = $locale;
     }
 
-    public function getPassword()
+    public function getLocale()
     {
-        return null;
+        return $this->locale;
     }
 
-    public function getSalt()
+    public function setLocale($locale)
     {
-        return null;
-    }
-
-    public function getUsername()
-    {
-        return null;
-    }
-
-    public function eraseCredentials()
-    {
+        $this->locale = $locale;
     }
 }

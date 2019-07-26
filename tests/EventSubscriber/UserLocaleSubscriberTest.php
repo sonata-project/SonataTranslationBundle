@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
@@ -28,21 +29,30 @@ class UserLocaleSubscriberTest extends TestCase
 {
     /**
      * Check if session locale is set to user locale at login.
+     *
+     * @dataProvider userLocaleSubscriberDataProvider
      */
-    public function testUserLocaleSubscriber()
+    public function testUserLocaleSubscriber(UserInterface $user, string $expectedLocale): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');
         $request = new Request();
         $request->setSession($session);
-        $user = new User('fr');
         $event = $this->getEvent($request, $user);
         $userLocaleSubscriber = new UserLocaleSubscriber($session);
         $userLocaleSubscriber->onInteractiveLogin($event);
-        $this->assertSame('fr', $session->get('_locale'));
+        $this->assertSame($expectedLocale, $session->get('_locale'));
     }
 
-    private function getEvent(Request $request, User $user)
+    public function userLocaleSubscriberDataProvider(): array
+    {
+        return [
+            [new LocalizedUser('fr'), 'fr'],
+            [new User(), 'en'],
+        ];
+    }
+
+    private function getEvent(Request $request, UserInterface $user): InteractiveLoginEvent
     {
         $token = new UsernamePasswordToken($user, null, 'dev', []);
 
