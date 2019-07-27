@@ -40,7 +40,7 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
     {
         $user = $event->getAuthenticationToken()->getUser();
 
-        if (null !== $user->getLocale()) {
+        if (\is_callable([$user, 'getLocale']) && null !== $user->getLocale()) {
             $this->session->set('_locale', $user->getLocale());
         }
     }
