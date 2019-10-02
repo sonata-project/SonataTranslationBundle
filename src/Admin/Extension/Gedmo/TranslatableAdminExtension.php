@@ -45,7 +45,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
             $translatableListener->setTranslationFallback(false);
 
-            $this->getContainer($admin)->get('doctrine')->getManagerForClass(get_class($object))->refresh($object);
+            $this->getContainer($admin)->get('doctrine')->getManagerForClass(\get_class($object))->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
