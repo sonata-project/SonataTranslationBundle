@@ -13,6 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Checker;
 
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
+use Sonata\TranslationBundle\Traits\Translatable;
+use Sonata\TranslationBundle\Traits\TranslatableTrait;
+
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
@@ -70,19 +75,17 @@ class TranslatableChecker
             return false;
         }
 
-        if (\function_exists('class_uses')) {
-            // NEXT_MAJOR: remove Translateable and PersonalTrait.
-            $translateTraits = [
-                'Sonata\TranslationBundle\Traits\Translatable',
-                'Sonata\TranslationBundle\Traits\TranslatableTrait',
-                'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable',
-                'Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait',
-            ];
+        // NEXT_MAJOR: remove Translateable and PersonalTrait.
+        $translateTraits = [
+            Translatable::class,
+            TranslatableTrait::class,
+            PersonalTranslatable::class,
+            PersonalTranslatableTrait::class,
+        ];
 
-            $traits = class_uses($object);
-            if (\count(array_intersect($translateTraits, $traits)) > 0) {
-                return true;
-            }
+        $traits = class_uses($object);
+        if (\count(array_intersect($translateTraits, $traits)) > 0) {
+            return true;
         }
 
         $objectInterfaces = class_implements($object);
