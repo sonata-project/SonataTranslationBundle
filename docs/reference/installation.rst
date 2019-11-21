@@ -35,6 +35,8 @@ To use the ``TranslationBundle``, add the following lines to your application co
         sonata_translation:
             locales: [en, fr, it, nl, es]
             default_locale: en
+            # change default behavior for translated field filtering.
+            default_filter_mode: gedmo # must be either 'gedmo' or 'knplabs', default: gedmo
             # here enable the types you need
             gedmo:
                 enabled: true

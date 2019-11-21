@@ -6,6 +6,7 @@
     <services>
         <service id="sonata_translation.checker.translatable" class="%sonata_translation.checker.translatable.class%"/>
         <service id="sonata_translation.filter.type.translation_field" class="Sonata\TranslationBundle\Filter\TranslationFieldFilter">
+            <argument key="$filterMode">%sonata_translation.default_filter_mode%</argument>
             <tag name="sonata.admin.filter.type" alias="doctrine_orm_translation_field"/>
         </service>
     </services>
