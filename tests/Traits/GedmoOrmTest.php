@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 use Sonata\TranslationBundle\Test\DoctrineOrmTestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable;
@@ -88,7 +89,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
                        ->from(self::ARTICLE, 'o');
         $builder = new ProxyQuery($qb);
 
-        $filter = new TranslationFieldFilter();
+        $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
@@ -107,7 +108,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
                        ->from(self::ARTICLE, 'o');
         $builder = new ProxyQuery($qb);
 
-        $filter = new TranslationFieldFilter();
+        $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => null]);
@@ -126,7 +127,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
                        ->leftJoin('o.translations', 'tff');
         $builder = new ProxyQuery($qb);
 
-        $filter = new TranslationFieldFilter();
+        $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);

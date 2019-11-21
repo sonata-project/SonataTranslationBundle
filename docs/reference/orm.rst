@@ -178,7 +178,10 @@ Configure search filter
 -----------------------
 
 **This step is optional**, but you can use the ``doctrine_orm_translation_field``
-filter to search on fields and on their translations.
+filter to search on fields and on their translations. Depending on whether you choose to use **KnpLabs** or **Gedmo**,
+you should configure the ``default_filter_mode`` in the configuration. You can also configure how
+the filtering logic should work on a per-field basis by specifying an option named ``filter_mode`` on your field.
+An enumeration exposes the two supported modes: ``TranslationFilterMode::GEDMO`` and ``TranslationFilterMode::KNPLABS``
 
 Example for configure search filter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,13 +193,18 @@ Example for configure search filter
     use Sonata\AdminBundle\Admin\AbstractAdmin;
     use Sonata\AdminBundle\Datagrid\DatagridMapper;
     use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
+    use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 
     final class FAQCategoryAdmin extends AbstractAdmin
     {
         protected function configureDatagridFilters(DatagridMapper $datagridMapper)
         {
             $datagridMapper
-                ->add('title', TranslationFieldFilter::class);
+                ->add('title', TranslationFieldFilter::class, [
+                    // if not specified, it will default to the value
+                    // you set in `default_filter_mode`
+                    'filter_mode' => TranslationFilterMode::KNPLABS
+                ]);
         }
 
 .. _knp_labs_doctrine_bahaviours:
