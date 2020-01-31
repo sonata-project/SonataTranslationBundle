@@ -53,7 +53,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderNotHasService('sonata_translation.checker.translatable');
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [new SonataTranslationExtension()];
     }
