@@ -50,7 +50,7 @@ class ArticlePersonalTranslatable
         return $this->id;
     }
 
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }

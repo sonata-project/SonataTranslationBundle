@@ -27,7 +27,7 @@ class TranslatableCheckerTest extends TestCase
     /**
      * @test TranslatableChecker::isTranslatable
      */
-    public function testIsTranslatableOnInterface()
+    public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
 
@@ -45,7 +45,7 @@ class TranslatableCheckerTest extends TestCase
     /**
      * @test TranslatableChecker::isTranslatable
      */
-    public function testIsTranslatableOnModel()
+    public function testIsTranslatableOnModel(): void
     {
         $translatableChecker = new TranslatableChecker();
 
@@ -63,7 +63,7 @@ class TranslatableCheckerTest extends TestCase
     /**
      * @test TranslatableChecker::isTranslatable
      */
-    public function testIsTranslatableOnTrait()
+    public function testIsTranslatableOnTrait(): void
     {
         $translatableChecker = new TranslatableChecker();
 

@@ -29,7 +29,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
     /** @var TranslatableListener */
     private $translatableListener;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,7 +46,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $this->getMockSqliteEntityManager($evm);
     }
 
-    public function testPersonalTranslatableEntity()
+    public function testPersonalTranslatableEntity(): void
     {
         $article = new ArticlePersonalTranslatable();
         $article->setTitle('en');
@@ -81,7 +81,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $this->assertCount(3, $translations);
     }
 
-    public function testTranslationFieldFilter()
+    public function testTranslationFieldFilter(): void
     {
         $qb = $this->em->createQueryBuilder()
                        ->select('o')
@@ -100,7 +100,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $this->assertTrue($filter->isActive());
     }
 
-    public function testTranslationFieldFilterWithoutValue()
+    public function testTranslationFieldFilterWithoutValue(): void
     {
         $qb = $this->em->createQueryBuilder()
                        ->select('o')
@@ -118,7 +118,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $this->assertFalse($filter->isActive());
     }
 
-    public function testTranslationFieldFilterIfAlreadyJoined()
+    public function testTranslationFieldFilterIfAlreadyJoined(): void
     {
         $qb = $this->em->createQueryBuilder()
                        ->select('o')

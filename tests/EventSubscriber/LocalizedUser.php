@@ -32,7 +32,7 @@ class LocalizedUser extends User implements UserInterface
         return $this->locale;
     }
 
-    public function setLocale($locale)
+    public function setLocale($locale): void
     {
         $this->locale = $locale;
     }

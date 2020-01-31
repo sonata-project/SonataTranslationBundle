@@ -25,7 +25,7 @@ class TranslatableCheckerForKnpTest extends TestCase
     /**
      * @test TranslatableChecker::isTranslatable
      */
-    public function testIsTranslatableOnInterface()
+    public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
 
