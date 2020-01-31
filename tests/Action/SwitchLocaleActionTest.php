@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  */
 class SwitchLocaleActionTest extends TestCase
 {
-    public function testSwitchLocaleAction()
+    public function testSwitchLocaleAction(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');

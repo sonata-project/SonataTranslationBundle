@@ -30,7 +30,7 @@ class LocaleSubscriberTest extends TestCase
      * Check if LocaleSubscriber set the request locale to the session
      * locale if no locale has been set in the request.
      */
-    public function testLocaleSubscriberFromSession()
+    public function testLocaleSubscriberFromSession(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'fr');
@@ -48,7 +48,7 @@ class LocaleSubscriberTest extends TestCase
      * Check if LocaleSubscriber set the session locale to the request
      * _locale routing parameter.
      */
-    public function testLocaleSubscriberFromRequest()
+    public function testLocaleSubscriberFromRequest(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');
@@ -67,7 +67,7 @@ class LocaleSubscriberTest extends TestCase
      * Check if LocaleSubscriber set the request locale to default
      * value when no locale has been set in request and session.
      */
-    public function testLocaleSubscriberDefault()
+    public function testLocaleSubscriberDefault(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $request = new Request();
