@@ -3,7 +3,7 @@ Translate Doctrine ORM models
 =============================
 
 You can either use :ref:`Gedmo Doctrine Extensions <gedmo_doctrine_extensions>` or
-:ref:`KnpLabs Doctrine Behaviours <knp_labs_doctrine_bahaviors>`.
+:ref:`KnpLabs Doctrine Behaviors <knp_labs_doctrine_bahaviors>`.
 
 .. _gedmo_doctrine_extensions:
 
