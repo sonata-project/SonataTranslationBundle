@@ -142,7 +142,8 @@ final class TranslationFieldFilter extends Filter
      */
     private function applyKnplabsFilters(ProxyQueryInterface $queryBuilder, string $joinAlias, string $field, $data): void
     {
-        $this->applyWhere($queryBuilder,
+        $this->applyWhere(
+            $queryBuilder,
             $queryBuilder->expr()->andX(
                 $queryBuilder->expr()->like(
                     $joinAlias.".$field",
