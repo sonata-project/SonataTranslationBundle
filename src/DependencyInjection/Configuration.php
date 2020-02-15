@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\DependencyInjection;
 
+use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -45,6 +46,11 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('default_locale')
                     ->defaultValue('en')
                     ->info('The frontend locale that is used by default.')
+                ->end()
+                ->enumNode('default_filter_mode')
+                    ->values(TranslationFilterMode::AVAILABLE_FILTER_TYPES)
+                    ->defaultValue(TranslationFilterMode::GEDMO)
+                    ->info('The filter mode that is used by default.')
                 ->end()
                 ->arrayNode('gedmo')
                     ->canBeEnabled()

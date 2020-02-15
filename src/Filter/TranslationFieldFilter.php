@@ -16,11 +16,22 @@ namespace Sonata\TranslationBundle\Filter;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
 use Sonata\DoctrineORMAdminBundle\Filter\Filter;
+use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class TranslationFieldFilter extends Filter
 {
+    /**
+     * @var string
+     */
+    private $filterMode;
+
+    public function __construct(string $filterMode = TranslationFilterMode::GEDMO)
+    {
+        $this->filterMode = $filterMode;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -35,8 +46,8 @@ final class TranslationFieldFilter extends Filter
         if (0 === \strlen($data['value'])) {
             return;
         }
-
         $joinAlias = 'tff';
+        $filterMode = $this->getOption('filter_mode');
 
         // verify if the join is not already done
         $aliasAlreadyExists = false;
@@ -54,22 +65,19 @@ final class TranslationFieldFilter extends Filter
             $queryBuilder->leftJoin($alias.'.translations', $joinAlias);
         }
 
-        // search on translation OR on normal field
-        $this->applyWhere($queryBuilder, $queryBuilder->expr()->orX(
-            $queryBuilder->expr()->andX(
-                $queryBuilder->expr()->eq($joinAlias.'.field', $queryBuilder->expr()->literal($field)),
-                $queryBuilder->expr()->like(
-                    $joinAlias.'.content',
-                    $queryBuilder->expr()->literal('%'.$data['value'].'%')
-                )
-            ),
-            $queryBuilder->expr()->like(
-                sprintf('%s.%s', $alias, $field),
-                $queryBuilder->expr()->literal('%'.$data['value'].'%')
-            )
-        ));
+        if (TranslationFilterMode::GEDMO === $filterMode) {
+            // search on translation OR on normal field when using Gedmo
+            $this->applyGedmoFilters($queryBuilder, $joinAlias, $alias, $field, $data);
 
-        $this->active = true;
+            $this->active = true;
+        } elseif (TranslationFilterMode::KNPLABS === $filterMode) {
+            // search on translation OR on normal field when using Knp
+            $this->applyKnplabsFilters($queryBuilder, $joinAlias, $field, $data);
+
+            $this->active = true;
+        } else {
+            throw new \LogicException(sprintf('Invalid filter mode given: "%s"', $filterMode));
+        }
     }
 
     /**
@@ -80,6 +88,7 @@ final class TranslationFieldFilter extends Filter
         return [
             'field_type' => TextType::class,
             'operator_type' => HiddenType::class,
+            'filter_mode' => $this->filterMode,
             'operator_options' => [],
         ];
     }
@@ -106,5 +115,41 @@ final class TranslationFieldFilter extends Filter
         $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());
 
         return [$this->getOption('alias', $alias), $this->getFieldName()];
+    }
+
+    /**
+     * @param mixed[] $data
+     */
+    private function applyGedmoFilters(ProxyQueryInterface $queryBuilder, string $joinAlias, string $alias, string $field, $data): void
+    {
+        $this->applyWhere($queryBuilder, $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->eq($joinAlias.'.field', $queryBuilder->expr()->literal($field)),
+                $queryBuilder->expr()->like(
+                    $joinAlias.'.content',
+                    $queryBuilder->expr()->literal('%'.$data['value'].'%')
+                )
+            ),
+            $queryBuilder->expr()->like(
+                sprintf('%s.%s', $alias, $field),
+                $queryBuilder->expr()->literal('%'.$data['value'].'%')
+            )
+        ));
+    }
+
+    /**
+     * @param mixed[] $data
+     */
+    private function applyKnplabsFilters(ProxyQueryInterface $queryBuilder, string $joinAlias, string $field, $data): void
+    {
+        $this->applyWhere(
+            $queryBuilder,
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->like(
+                    $joinAlias.".$field",
+                    $queryBuilder->expr()->literal('%'.$data['value'].'%')
+                )
+            )
+        );
     }
 }
