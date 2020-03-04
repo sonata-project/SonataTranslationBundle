@@ -30,7 +30,7 @@
         "symfony/http-foundation": "^3.4 || ^4.2",
         "symfony/http-kernel": "^3.4 || ^4.2",
         "symfony/options-resolver": "^3.4 || ^4.2",
-        "twig/twig": "^1.35 || ^2.4"
+        "twig/twig": "^2.12"
     },
     "conflict": {
         "doctrine/phpcr-odm": ">=3.0",
