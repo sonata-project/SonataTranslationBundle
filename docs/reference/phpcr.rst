@@ -48,4 +48,4 @@ Then you should configure ``doctrine_phpcr.odm.locales`` for the same list.
                     nl: [en]
                     es: [en, fr, it]
 
-.. _Doctrine PHPCR ODM documentation: http://doctrine-phpcr-odm.readthedocs.org/en/latest/reference/multilang.html
+.. _Doctrine PHPCR ODM documentation: https://www.doctrine-project.org/projects/doctrine-phpcr-odm/en/latest/reference/multilang.html
