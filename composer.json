@@ -23,7 +23,6 @@
         "php": "^7.1",
         "sonata-project/admin-bundle": "^3.43",
         "sonata-project/block-bundle": "^3.11",
-        "sonata-project/core-bundle": "^3.12.0",
         "symfony/config": "^3.4 || ^4.2",
         "symfony/dependency-injection": "^3.4 || ^4.2",
         "symfony/form": "^3.4 || ^4.2",
