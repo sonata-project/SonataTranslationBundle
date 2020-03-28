@@ -22,11 +22,11 @@ Implement the TranslatableInterface
 
 First step, your entities have to implement the `TranslatableInterface`_.
 
-Todo do so ``SonataTranslationBundle`` brings some base classes you can extend.
-Depends on how you want to save translations you can choose between :
+To do so ``SonataTranslationBundle`` brings some base classes you can extend.
+Depending on how you want to save translations you can choose between:
 
-* `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`
-* `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`
+* ``Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable``
+* ``Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable``
 
 Define translatable Fields
 --------------------------
@@ -100,7 +100,7 @@ Example using Personal Translation
 
 .. note::
 
-    If you prefer to use `traits`, we provide :
+    If you prefer to use `traits`, we provide:
 
     * ``Sonata\TranslationBundle\Traits\TranslatableTrait``
     * ``Sonata\TranslationBundle\Traits\PersonalTranslatableTrait``
@@ -215,12 +215,12 @@ Using KnpLabs Doctrine Behaviors
 Implement TranslatableInterface
 -------------------------------
 
-Your entities have to implement`Model\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/TranslatableInterface.php>`_.
+Your entities have to implement `Model\\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/src/Model/TranslatableInterface.php>`_.
 
 Your entities need to explicitly implement getter and setter methods for the knp doctrine extensions.
 Due to Sonata internals, the `magic method <https://github.com/KnpLabs/DoctrineBehaviors#proxy-translations>`_
 of Doctrine Behavior does not work. For more background on that topic, see this
-`post <http://thewebmason.com/tutorial-using-sonata-admin-with-magic-__call-method/>`_::
+`post <https://web.archive.org/web/20150224121239/http://thewebmason.com/tutorial-using-sonata-admin-with-magic-__call-method/>`_::
 
     // src/Entity/TranslatableEntity.php
 
@@ -322,7 +322,7 @@ of Doctrine Behavior does not work. For more background on that topic, see this
 Define your translation table
 -----------------------------
 
-Please refer to `KnpLabs Doctrine2 Behaviors Documentation <https://github.com/KnpLabs/DoctrineBehaviors#translatable>`_.
+Please refer to `KnpLabs Doctrine2 Behaviors Documentation <https://github.com/KnpLabs/DoctrineBehaviors/blob/master/docs/translatable.md>`_.
 
 Here is an example::
 
@@ -378,4 +378,4 @@ Here is an example::
 
 .. _Gedmo translatable extension: https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md
 .. _Gedmo translatable documentation: https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md
-.. _TranslatableInterface: https://github.com/sonata-project/SonataTranslationBundle/blob/master/Model/Gedmo/TranslatableInterface.php
+.. _TranslatableInterface: https://github.com/sonata-project/SonataTranslationBundle/blob/master/src/Model/Gedmo/TranslatableInterface.php
