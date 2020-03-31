@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.5.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.2...2.5.0) - 2020-03-31
+### Added
+- Added a global option `default_filter_mode` to change every filter mode
+- Added `filter_mode` option for `TranslationFieldFilter` to change the
+  filtering mode based on the provider (either `knplabs` or `gedmo`)
+
+### Fixed
+- Check if method `getLocale` exists before to use it in `UserLocaleListener`
+- Fixed issue caused by always using the default entity manager
+
+### Removed
+- Removed `SonataCoreBundle`
+- Support for Symfony < 3.4
+- Support for Symfony >= 4, < 4.2
+
 ## [2.4.2](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.1...2.4.2) - 2019-07-05
 ### Fixed
 - Admin without entity shouldn't be restricted
