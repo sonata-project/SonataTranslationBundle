@@ -22,12 +22,12 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
  */
 final class KnplabsTest extends TestCase
 {
-    public function testTranslatableModel()
+    public function testTranslatableModel(): void
     {
         $model = new TranslatableEntity();
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof TranslatableInterface);
+        $this->assertInstanceOf(TranslatableInterface::class, $model);
     }
 }

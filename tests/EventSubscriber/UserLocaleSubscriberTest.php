@@ -25,7 +25,7 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
-class UserLocaleSubscriberTest extends TestCase
+final class UserLocaleSubscriberTest extends TestCase
 {
     /**
      * Check if session locale is set to user locale at login.

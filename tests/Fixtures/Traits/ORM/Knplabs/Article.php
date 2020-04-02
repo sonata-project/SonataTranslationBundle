@@ -42,7 +42,7 @@ final class Article extends TranslatableEntity
         $this->translations = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }

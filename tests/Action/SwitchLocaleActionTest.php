@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
-class SwitchLocaleActionTest extends TestCase
+final class SwitchLocaleActionTest extends TestCase
 {
     public function testSwitchLocaleAction(): void
     {

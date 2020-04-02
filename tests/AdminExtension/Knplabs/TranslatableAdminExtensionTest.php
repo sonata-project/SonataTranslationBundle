@@ -16,13 +16,15 @@ namespace Sonata\TranslationBundle\Tests\AdminExtension\Knplabs;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @group  translatable-knplabs
  */
-class TranslatableAdminExtensionTest extends WebTestCase
+final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**
      * @var AdminInterface
@@ -43,14 +45,14 @@ class TranslatableAdminExtensionTest extends WebTestCase
     {
         $translatableChecker = new TranslatableChecker();
         $translatableChecker->setSupportedInterfaces([
-            'Sonata\TranslationBundle\Model\TranslatableInterface',
+            TranslatableInterface::class,
         ]);
         $this->extension = new TranslatableAdminExtension($translatableChecker);
 
-        $request = $this->prophesize('Symfony\Component\HttpFoundation\Request');
+        $request = $this->prophesize(Request::class);
         $request->get('tl')->willReturn('es');
 
-        $this->admin = $this->prophesize('Sonata\AdminBundle\Admin\AdminInterface');
+        $this->admin = $this->prophesize(AdminInterface::class);
         $this->admin->getRequest()->willReturn($request->reveal());
         $this->admin->hasRequest()->willReturn(true);
 
@@ -73,7 +75,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
 
     public function testPreUpdate(): void
     {
-        $object = $this->prophesize('Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity');
+        $object = $this->prophesize(TranslatableEntity::class);
         $object->mergeNewTranslations()->shouldBeCalled();
 
         $this->extension->preUpdate($this->admin->reveal(), $object->reveal());
@@ -81,7 +83,7 @@ class TranslatableAdminExtensionTest extends WebTestCase
 
     public function testPrePersist(): void
     {
-        $object = $this->prophesize('Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity');
+        $object = $this->prophesize(TranslatableEntity::class);
         $object->mergeNewTranslations()->shouldBeCalled();
 
         $this->extension->prePersist($this->admin->reveal(), $object->reveal());
