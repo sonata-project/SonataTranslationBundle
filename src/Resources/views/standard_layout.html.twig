@@ -32,7 +32,7 @@ file that was distributed with this source code.
                                     {% for locale in sonata_translation_locales %}
                                     <li role="presentation" class="{{ app.request.locale == locale ? 'active' : '' }}">
                                         <a role="menuitem" tabindex="-1" href="{{ path('sonata.translation.locale', {'locale': locale}) }}">
-                                            {{ locale|language_name(locale)|capitalize }}
+                                            {{ locale|sonata_language_name(locale)|capitalize }}
                                         </a>
                                     </li>
                                     {% endfor %}

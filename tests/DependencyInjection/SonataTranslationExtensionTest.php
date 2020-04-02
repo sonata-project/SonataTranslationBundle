@@ -26,6 +26,24 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
      *
      * @group legacy
      */
+    public function testLoadTwigIntlExtension(): void
+    {
+        $this->container->setParameter('kernel.bundles', []);
+        $this->load([
+            'locale_switcher_show_country_flags' => false,
+        ]);
+
+        $this->assertContainerBuilderHasServiceDefinitionWithTag(
+            'sonata_translation.twig.intl_extension',
+            'twig.extension'
+        );
+    }
+
+    /**
+     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
+     *
+     * @group legacy
+     */
     public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered(): void
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);

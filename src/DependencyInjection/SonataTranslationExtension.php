@@ -40,6 +40,7 @@ class SonataTranslationExtension extends Extension
 
         $isEnabled = false;
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('twig_intl.xml');
 
         if ($config['locale_switcher']) {
             $loader->load('service_locale_switcher.xml');
