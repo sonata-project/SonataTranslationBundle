@@ -18,13 +18,13 @@ use Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
-class LocaleSubscriberTest extends TestCase
+final class LocaleSubscriberTest extends TestCase
 {
     /**
      * Check if LocaleSubscriber set the request locale to the session
@@ -80,9 +80,9 @@ class LocaleSubscriberTest extends TestCase
         $this->assertSame('fr', $request->getLocale());
     }
 
-    private function getEvent(Request $request)
+    private function getEvent(Request $request): RequestEvent
     {
-        return new GetResponseEvent(
+        return new RequestEvent(
             $this->createMock(HttpKernelInterface::class),
             $request,
             HttpKernelInterface::MASTER_REQUEST

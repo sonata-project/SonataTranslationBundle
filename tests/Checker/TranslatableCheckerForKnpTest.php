@@ -15,16 +15,14 @@ namespace Sonata\AdminBundle\Tests\Checker;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 
 /**
  * @author Alfonso Machado <email@alfonsomachado.com>
  */
-class TranslatableCheckerForKnpTest extends TestCase
+final class TranslatableCheckerForKnpTest extends TestCase
 {
-    /**
-     * @test TranslatableChecker::isTranslatable
-     */
     public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
@@ -34,7 +32,7 @@ class TranslatableCheckerForKnpTest extends TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedInterfaces([
-            'Sonata\TranslationBundle\Model\TranslatableInterface',
+            TranslatableInterface::class,
         ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));

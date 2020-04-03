@@ -22,30 +22,24 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class GedmoTest extends TestCase
+final class GedmoTest extends TestCase
 {
-    /**
-     * @test AbstractTranslatable
-     */
     public function testTranslatableModel(): void
     {
         $model = new ModelTranslatable();
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof TranslatableInterface);
+        $this->assertInstanceOf(TranslatableInterface::class, $model);
     }
 
-    /**
-     * @test AbstractPersonalTranslatable and AbstractPersonalTranslation
-     */
     public function testPersonalTranslatableModel(): void
     {
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof TranslatableInterface);
+        $this->assertInstanceOf(TranslatableInterface::class, $model);
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));
