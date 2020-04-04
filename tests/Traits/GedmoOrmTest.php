@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\EventManager;
+use Doctrine\ORM\Version;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -22,10 +23,10 @@ use Sonata\TranslationBundle\Test\DoctrineOrmTestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation;
 
-class GedmoOrmTest extends DoctrineOrmTestCase
+final class GedmoOrmTest extends DoctrineOrmTestCase
 {
-    public const ARTICLE = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable';
-    public const TRANSLATION = 'Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation';
+    public const ARTICLE = ArticlePersonalTranslatable::class;
+    public const TRANSLATION = ArticlePersonalTranslation::class;
 
     /** @var TranslatableListener */
     private $translatableListener;
@@ -34,7 +35,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
     {
         parent::setUp();
 
-        if (!class_exists('Doctrine\\ORM\\Version')) {
+        if (!class_exists(Version::class)) {
             $this->markTestSkipped('Doctrine ORM is not available.');
         }
 
@@ -139,7 +140,7 @@ class GedmoOrmTest extends DoctrineOrmTestCase
         $this->assertTrue($filter->isActive());
     }
 
-    protected function getUsedEntityFixtures()
+    protected function getUsedEntityFixtures(): array
     {
         return [
             self::ARTICLE,

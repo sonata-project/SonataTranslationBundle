@@ -14,7 +14,9 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
+use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
@@ -32,11 +34,11 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->load();
         $this->assertContainerBuilderHasService(
             'sonata_translation.checker.translatable',
-            'Sonata\TranslationBundle\Checker\TranslatableChecker'
+            TranslatableChecker::class
         );
         $this->assertContainerBuilderHasService(
             'sonata_translation.filter.type.translation_field',
-            'Sonata\TranslationBundle\Filter\TranslationFieldFilter'
+            TranslationFieldFilter::class
         );
     }
 

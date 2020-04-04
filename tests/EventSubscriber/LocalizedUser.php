@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\EventSubscriber;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
  */
-class LocalizedUser extends User implements UserInterface
+final class LocalizedUser extends User
 {
     private $locale;
 

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Twig\Extension;
 
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigTest;
@@ -75,6 +75,6 @@ class SonataTranslationExtension extends AbstractExtension
 
     public function getLocaleName(string $locale, ?string $displayLocale = null): ?string
     {
-        return Intl::getLocaleBundle()->getLocaleName($locale, $displayLocale);
+        return Locales::getName($locale, $displayLocale);
     }
 }

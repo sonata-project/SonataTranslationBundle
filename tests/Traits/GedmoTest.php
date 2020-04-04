@@ -14,39 +14,32 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Traits;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelPersonalTranslation;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelTranslatable;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class GedmoTest extends TestCase
 {
-    /**
-     * @test TranslatableTrait
-     */
     public function testTranslatableModel(): void
     {
         $model = new ModelTranslatable();
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
+        $this->assertInstanceOf(TranslatableInterface::class, $model);
     }
 
-    /**
-     * @test PersonalTranslatableTrait
-     */
     public function testPersonalTranslatableModel(): void
     {
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');
 
         $this->assertSame('fr', $model->getLocale());
-        $this->assertTrue($model instanceof \Sonata\TranslationBundle\Model\TranslatableInterface);
+        $this->assertInstanceOf(TranslatableInterface::class, $model);
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));

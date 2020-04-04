@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Tests\Checker;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
@@ -22,11 +23,8 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class TranslatableCheckerTest extends TestCase
+final class TranslatableCheckerTest extends TestCase
 {
-    /**
-     * @test TranslatableChecker::isTranslatable
-     */
     public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
@@ -36,15 +34,12 @@ class TranslatableCheckerTest extends TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedInterfaces([
-            'Sonata\TranslationBundle\Model\TranslatableInterface',
+            TranslatableInterface::class,
         ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
     }
 
-    /**
-     * @test TranslatableChecker::isTranslatable
-     */
     public function testIsTranslatableOnModel(): void
     {
         $translatableChecker = new TranslatableChecker();
@@ -54,15 +49,12 @@ class TranslatableCheckerTest extends TestCase
         $this->assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedModels([
-            'Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable',
+            ModelCustomTranslatable::class,
         ]);
 
         $this->assertTrue($translatableChecker->isTranslatable($object));
     }
 
-    /**
-     * @test TranslatableChecker::isTranslatable
-     */
     public function testIsTranslatableOnTrait(): void
     {
         $translatableChecker = new TranslatableChecker();

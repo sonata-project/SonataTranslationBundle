@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Twig\Environment;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -30,12 +31,17 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      */
     private $showCountryFlags;
 
+    /**
+     * NEXT_MAJOR: Remove `$templating` argument.
+     *
+     * @param Environment|string $templatingOrDeprecatedName
+     */
     public function __construct(
-        ?string $name = null,
+        $templatingOrDeprecatedName = null,
         EngineInterface $templating = null,
         ?bool $showCountryFlags = false
     ) {
-        parent::__construct($name, $templating);
+        parent::__construct($templatingOrDeprecatedName, $templating);
         $this->showCountryFlags = $showCountryFlags;
     }
 

@@ -45,6 +45,8 @@ trait PersonalTranslatableTrait
                 return $translation->getContent();
             }
         }
+
+        return null;
     }
 
     /**
