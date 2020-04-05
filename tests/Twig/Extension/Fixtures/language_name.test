@@ -1,0 +1,12 @@
+--TEST--
+"sonata_language_name" filter
+--TEMPLATE--
+{{ 'de'|sonata_language_name('fr') }}
+{{ 'fr'|sonata_language_name('fr_FR') }}
+{{ 'fr_CA'|sonata_language_name('fr_FR') }}
+--DATA--
+return [];
+--EXPECT--
+allemand
+français
+français canadien
