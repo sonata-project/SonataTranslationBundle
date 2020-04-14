@@ -47,7 +47,7 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
      *
      * @return EntityManager
      */
-    final protected function getMockSqliteEntityManager(EventManager $evm = null, Configuration $config = null)
+    final protected function getMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null)
     {
         $conn = [
             'driver' => 'pdo_sqlite',
