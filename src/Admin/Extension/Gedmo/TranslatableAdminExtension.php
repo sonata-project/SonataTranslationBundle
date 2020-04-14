@@ -29,7 +29,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     protected $translatableListener;
 
-    public function __construct(TranslatableChecker $translatableChecker, TranslatableListener $translatableListener = null)
+    public function __construct(TranslatableChecker $translatableChecker, ?TranslatableListener $translatableListener = null)
     {
         parent::__construct($translatableChecker);
         $this->translatableListener = $translatableListener;
