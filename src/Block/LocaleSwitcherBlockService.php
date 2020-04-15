@@ -38,7 +38,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      */
     public function __construct(
         $templatingOrDeprecatedName = null,
-        EngineInterface $templating = null,
+        ?EngineInterface $templating = null,
         ?bool $showCountryFlags = false
     ) {
         parent::__construct($templatingOrDeprecatedName, $templating);
@@ -69,7 +69,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
         );
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null)
     {
         return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'block_context' => $blockContext,
