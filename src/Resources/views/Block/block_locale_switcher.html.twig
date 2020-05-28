@@ -14,7 +14,7 @@
     {% endfor %}
 
     <div class="locale_switcher">
-        {% spaceless %}
+        {% apply spaceless %}
             {% for locale in sonata_translation_locales %}
                 {% if locale_switcher_route is empty %}
                     {% if object.id %}
@@ -40,6 +40,6 @@
                     {% endif %}
                 </a>
             {% endfor %}
-        {% endspaceless %}
+        {% endapply %}
     </div>
 {% endif %}
