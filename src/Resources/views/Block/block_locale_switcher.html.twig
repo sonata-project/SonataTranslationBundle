@@ -1,11 +1,12 @@
-{% set object = block_context.settings.object %}
 {% set admin  = block_context.settings.admin %}
-{% set locale_switcher_route = block_context.settings.locale_switcher_route %}
-{% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
-{% set locale_switcher_show_country_flags = block_context.settings.locale_switcher_show_country_flags %}
 
 {% if admin.class is translatable %}
+    {% set object = block_context.settings.object %}
     {% set currentLocale = object.locale|default(null) %}
+    {% set object_id = object ? admin.id(object) : null %}
+    {% set locale_switcher_route = block_context.settings.locale_switcher_route|default(object_id is not null ? 'edit' : 'create') %}
+    {% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
+    {% set locale_switcher_show_country_flags = block_context.settings.locale_switcher_show_country_flags %}
 
     {% for extension in admin.extensions %}
         {% if extension.translatableLocale is defined %}
@@ -14,18 +15,11 @@
     {% endfor %}
 
     <div class="locale_switcher">
-        {% spaceless %}
+        {% apply spaceless %}
             {% for locale in sonata_translation_locales %}
-                {% if locale_switcher_route is empty %}
-                    {% if object.id %}
-                        {% set locale_switcher_route = 'edit' %}
-                    {% else %}
-                        {% set locale_switcher_route = 'create' %}
-                    {% endif %}
-                {% endif %}
                 <a href="{{ admin.generateUrl(
                     locale_switcher_route,
-                    {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
+                    {'id': object_id, 'tl': locale}|merge(locale_switcher_route_parameters)
                 ) }}"
                    accesskey=""
                    {% if currentLocale == locale %}class="active"{% endif %}
@@ -40,6 +34,6 @@
                     {% endif %}
                 </a>
             {% endfor %}
-        {% endspaceless %}
+        {% endapply %}
     </div>
 {% endif %}
