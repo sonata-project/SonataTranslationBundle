@@ -20,15 +20,15 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "sonata-project/admin-bundle": "^3.58",
         "sonata-project/block-bundle": "^3.17",
-        "symfony/config": "^4.3",
-        "symfony/dependency-injection": "^4.3",
-        "symfony/form": "^4.3",
-        "symfony/http-foundation": "^4.3",
-        "symfony/http-kernel": "^4.3",
-        "symfony/options-resolver": "^4.3",
+        "symfony/config": "^4.4",
+        "symfony/dependency-injection": "^4.4",
+        "symfony/form": "^4.4",
+        "symfony/http-foundation": "^4.4",
+        "symfony/http-kernel": "^4.4",
+        "symfony/options-resolver": "^4.4",
         "twig/twig": "^2.12"
     },
     "conflict": {
@@ -43,8 +43,8 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "stof/doctrine-extensions-bundle": "^1.1",
-        "symfony/framework-bundle": "^4.3.4",
-        "symfony/phpunit-bridge": "^5.0"
+        "symfony/framework-bundle": "^4.4",
+        "symfony/phpunit-bridge": "^5.1"
     },
     "suggest": {
         "doctrine/phpcr-odm": "if you translate odm documents",
