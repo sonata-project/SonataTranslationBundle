@@ -1,39 +1,52 @@
-{% set admin  = block_context.settings.admin %}
+{% block main_translation_locale_switcher_block %}
+    {% set admin  = block_context.settings.admin %}
+    {% set display = block_context.settings.display %}
 
-{% if admin.class is translatable %}
-    {% set object = block_context.settings.object %}
-    {% set currentLocale = object.locale|default(null) %}
-    {% set object_id = object ? admin.id(object) : null %}
-    {% set locale_switcher_route = block_context.settings.locale_switcher_route|default(object_id is not null ? 'edit' : 'create') %}
-    {% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
-    {% set locale_switcher_show_country_flags = block_context.settings.locale_switcher_show_country_flags %}
+    {% if admin.class is translatable and display %}
 
-    {% for extension in admin.extensions %}
-        {% if extension.translatableLocale is defined %}
-            {% set currentLocale = extension.translatableLocale(admin) %}
-        {% endif %}
-    {% endfor %}
+        {% set object = block_context.settings.object %}
+        {% set admin  = block_context.settings.admin %}
+        {% set locale_switcher_route = block_context.settings.locale_switcher_route %}
+        {% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
+        {% set locale_switcher_show_country_flags = block_context.settings.locale_switcher_show_country_flags %}
+        {% set currentLocale = object.locale|default(null) %}
 
-    <div class="locale_switcher">
-        {% apply spaceless %}
-            {% for locale in sonata_translation_locales %}
-                <a href="{{ admin.generateUrl(
-                    locale_switcher_route,
-                    {'id': object_id, 'tl': locale}|merge(locale_switcher_route_parameters)
-                ) }}"
-                   accesskey=""
-                   {% if currentLocale == locale %}class="active"{% endif %}
-                   title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
-                    {% if locale_switcher_show_country_flags %}
-                        {# There is no one-to-one relation between locales and countries. #}
-                        {# In order to show locale names instead of flags, set 'locale_switcher_use_flags' to false in your sonata_translation config. #}
-                        {# NEXT_MAJOR: Fix mapping of locales to countries or remove flags entirely #}
-                        <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png')}}" />
-                    {% else %}
-                        {{ locale|localeName(app.request.locale) }}
-                    {% endif %}
-                </a>
-            {% endfor %}
-        {% endapply %}
-    </div>
-{% endif %}
+        {% for extension in admin.extensions %}
+            {% if extension.translatableLocale is defined %}
+                {% set currentLocale = extension.translatableLocale(admin) %}
+            {% endif %}
+        {% endfor %}
+
+        {% block translation_locale_switcher %}
+            <div class="locale_switcher">
+                {% spaceless %}
+                    {% for locale in sonata_translation_locales %}
+                        {% if locale_switcher_route is empty %}
+                            {% if object.id %}
+                                {% set locale_switcher_route = 'edit' %}
+                            {% else %}
+                                {% set locale_switcher_route = 'create' %}
+                            {% endif %}
+                        {% endif %}
+                        <a href="{{ admin.generateUrl(
+                            locale_switcher_route,
+                            {'id': admin.id(object), 'tl': locale}|merge(locale_switcher_route_parameters)
+                        ) }}"
+                           accesskey=""
+                           {% if currentLocale == locale %}class="active"{% endif %}
+                           title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
+                            {% if locale_switcher_show_country_flags %}
+                                {# There is no one-to-one relation between locales and countries. #}
+                                {# In order to show locale names instead of flags, set 'locale_switcher_use_flags' to false in your sonata_translation config. #}
+                                {# NEXT_MAJOR: Fix mapping of locales to countries or remove flags entirely #}
+                                <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png') }}"/>
+                            {% else %}
+                                {{ locale|localeName(app.request.locale) }}
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                {% endspaceless %}
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

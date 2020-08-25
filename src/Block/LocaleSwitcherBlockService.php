@@ -23,6 +23,7 @@ use Twig\Environment;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ * @author Rolland Csatari <rolland.csatari@gmail.com>
  */
 class LocaleSwitcherBlockService extends AbstractBlockService
 {
@@ -32,6 +33,16 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     private $showCountryFlags;
 
     /**
+     * @var bool
+     */
+    private $display;
+
+    /**
+     * @var string
+     */
+    private $template;
+
+    /**
      * NEXT_MAJOR: Remove `$templating` argument.
      *
      * @param Environment|string $templatingOrDeprecatedName
@@ -39,10 +50,14 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     public function __construct(
         $templatingOrDeprecatedName = null,
         ?EngineInterface $templating = null,
-        ?bool $showCountryFlags = false
+        ?bool $showCountryFlags = false,
+        ?bool $display = true,
+        ?string $template = null
     ) {
         parent::__construct($templatingOrDeprecatedName, $templating);
         $this->showCountryFlags = $showCountryFlags;
+        $this->display = $display;
+        $this->template = $template;
     }
 
     /**
@@ -61,10 +76,11 @@ class LocaleSwitcherBlockService extends AbstractBlockService
             [
                 'admin' => null,
                 'object' => null,
-                'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
+                'template' => $this->template ?? '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
                 'locale_switcher_show_country_flags' => $this->showCountryFlags,
+                'display' => $this->display,
             ]
         );
     }
