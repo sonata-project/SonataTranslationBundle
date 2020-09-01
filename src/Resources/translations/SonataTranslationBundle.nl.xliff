@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+            <trans-unit id="sonata_translation">
+                <source>sonata_translation</source>
+                <target>Vertaling</target>
+            </trans-unit>
+            <trans-unit id="admin.locale_switcher.tooltip">
+                <source>admin.locale_switcher.tooltip</source>
+                <target>Van taal wisselen</target>
+            </trans-unit>
+            <trans-unit id="languages">
+                <source>languages</source>
+                <target>Talen</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
