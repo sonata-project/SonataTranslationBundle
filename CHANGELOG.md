@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.6.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.5.0...2.6.0) - 2020-09-04
+### Added
+- [[#368](https://github.com/sonata-project/SonataTranslationBundle/pull/368)] Twig 3 compatibility ([@jorrit](https://github.com/jorrit))
+- [[#367](https://github.com/sonata-project/SonataTranslationBundle/pull/367)] Dutch translation ([@jorrit](https://github.com/jorrit))
+- [[#337](https://github.com/sonata-project/SonataTranslationBundle/pull/337)] Added `sonata_language_name` Twig filter ([@franmomu](https://github.com/franmomu))
+
+### Fixed
+- [[#369](https://github.com/sonata-project/SonataTranslationBundle/pull/369)] Fixed starting the session in `UserLocaleSubscriber::onInteractiveLogin()` when there is no previous session ([@phansys](https://github.com/phansys))
+- [[#348](https://github.com/sonata-project/SonataTranslationBundle/pull/348)] Deprecation notice about ModelManager::getNormalizedIdentifier() on list pages ([@jorrit](https://github.com/jorrit))
+- [[#345](https://github.com/sonata-project/SonataTranslationBundle/pull/345)] Deprecation notice caused by use of spaceless tag in block_locale_switcher.html.twig ([@jorrit](https://github.com/jorrit))
+- [[#337](https://github.com/sonata-project/SonataTranslationBundle/pull/337)] Use of undefined filter `language_name` ([@franmomu](https://github.com/franmomu))
+
+### Removed
+- [[#349](https://github.com/sonata-project/SonataTranslationBundle/pull/349)] Support for PHP < 7.2 ([@wbloszyk](https://github.com/wbloszyk))
+- [[#349](https://github.com/sonata-project/SonataTranslationBundle/pull/349)] Support for Symfony < 4.4 ([@wbloszyk](https://github.com/wbloszyk))
+- [[#336](https://github.com/sonata-project/SonataTranslationBundle/pull/336)] Support of Symfony < 4.3 ([@franmomu](https://github.com/franmomu))
+
 ## [2.5.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.4.2...2.5.0) - 2020-03-31
 ### Added
 - Added a global option `default_filter_mode` to change every filter mode
