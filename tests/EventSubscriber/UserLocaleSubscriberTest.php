@@ -36,10 +36,11 @@ final class UserLocaleSubscriberTest extends TestCase
     {
         $session = new Session(new MockArraySessionStorage());
         $session->set('_locale', 'en');
-        $request = new Request();
+        $request = new Request([], [], [], [$session->getName() => null]);
         $request->setSession($session);
         $event = $this->getEvent($request, $user);
         $userLocaleSubscriber = new UserLocaleSubscriber($session);
+        $this->assertTrue($session->isStarted());
         $userLocaleSubscriber->onInteractiveLogin($event);
         $this->assertSame($expectedLocale, $session->get('_locale'));
     }
@@ -50,6 +51,26 @@ final class UserLocaleSubscriberTest extends TestCase
             [new LocalizedUser('fr'), 'fr'],
             [new User(), 'en'],
         ];
+    }
+
+    /**
+     * Ensure session is not started if there is no previous session.
+     */
+    public function testUserLocaleSubscriberWithoutPreviousSession(): void
+    {
+        $user = new LocalizedUser('es_AR');
+        $session = new Session(new MockArraySessionStorage());
+        $request = new Request();
+        $request->setSession($session);
+        $event = $this->getEvent($request, $user);
+        $userLocaleSubscriber = new UserLocaleSubscriber($session);
+        $userLocaleSubscriber->onInteractiveLogin($event);
+        $this->assertFalse($session->isStarted());
+        $this->assertNull($session->get('_locale'));
+        $session->set('_locale', 'en');
+        $this->assertTrue($session->isStarted());
+        $userLocaleSubscriber->onInteractiveLogin($event);
+        $this->assertSame('en', $session->get('_locale'));
     }
 
     private function getEvent(Request $request, UserInterface $user): InteractiveLoginEvent
