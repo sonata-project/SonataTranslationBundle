@@ -79,10 +79,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return $this->translatableLocale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getPersistentParameters(AdminInterface $admin)
+    public function getPersistentParameters(AdminInterface $admin): array
     {
         return [self::TRANSLATABLE_LOCALE_PARAMETER => $this->getTranslatableLocale($admin)];
     }
