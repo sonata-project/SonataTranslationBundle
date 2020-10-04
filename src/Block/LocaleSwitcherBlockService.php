@@ -15,83 +15,14 @@ namespace Sonata\TranslationBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Twig\Environment;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class LocaleSwitcherBlockService extends AbstractBlockService
 {
-    /**
-     * @var bool
-     */
-    private $showCountryFlags;
-
-    /**
-     * NEXT_MAJOR: Change signature for (Environment $twig, bool $showCountryFlags = false).
-     *
-     * @param Environment|string $templatingOrDeprecatedName
-     */
-    public function __construct(
-        $templatingOrDeprecatedName = null,
-        $showCountryFlagsOrTemplating = null,
-        ?bool $showCountryFlags = false
-    ) {
-        // NEXT_MAJOR: Uncomment the following 2 lines and remove the rest.
-        // parent::__construct($twig);
-        // $this->showCountryFlags = $showCountryFlags;
-
-        if (\is_bool($showCountryFlagsOrTemplating)) {
-            if (!$templatingOrDeprecatedName instanceof Environment) {
-                throw new \TypeError(sprintf(
-                    'Argument 1 passed to "%s()" must be an instance of "%s", %s given.',
-                    __METHOD__,
-                    Environment::class,
-                    \is_object($templatingOrDeprecatedName)
-                        ? 'instance of "'.\get_class($templatingOrDeprecatedName).'"'
-                        : '"'.\gettype($templatingOrDeprecatedName).'"'
-                ));
-            }
-
-            parent::__construct($templatingOrDeprecatedName);
-            $this->showCountryFlags = $showCountryFlagsOrTemplating;
-        } elseif (null === $showCountryFlagsOrTemplating || $showCountryFlagsOrTemplating instanceof EngineInterface) {
-            @trigger_error(sprintf(
-                'Passing "%s" as argument 2 to "%s()" is deprecated since sonata-project/translation-bundle 2.x'
-                .' and will throw a "%s" error in version 3.0. You must pass a "bool" value instead.',
-                null === $showCountryFlagsOrTemplating ? 'null' : EngineInterface::class,
-                __METHOD__,
-                \TypeError::class
-            ), E_USER_DEPRECATED);
-
-            parent::__construct($templatingOrDeprecatedName, $showCountryFlagsOrTemplating);
-            $this->showCountryFlags = $showCountryFlags;
-        } else {
-            throw new \TypeError(sprintf(
-                'Argument 2 passed to "%s()" must be either a "bool" value, "null" or an instance of "%s", %s given.',
-                __METHOD__,
-                EngineInterface::class,
-                \is_object($templatingOrDeprecatedName)
-                    ? 'instance of "'.\get_class($templatingOrDeprecatedName).'"'
-                    : '"'.\gettype($templatingOrDeprecatedName).'"'
-            ));
-        }
-    }
-
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since 3.x, will be removed in 4.0
-     */
-    public function setDefaultSettings(OptionsResolverInterface $resolver): void
-    {
-        $this->configureSettings($resolver);
-    }
-
     public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
@@ -101,7 +32,6 @@ class LocaleSwitcherBlockService extends AbstractBlockService
                 'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
-                'locale_switcher_show_country_flags' => $this->showCountryFlags,
             ]
         );
     }

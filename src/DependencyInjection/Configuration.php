@@ -90,23 +90,6 @@ class Configuration implements ConfigurationInterface
                     ->info('Enable the global locale switcher services.')
                     ->defaultFalse()
                 ->end()
-                // NEXT_MAJOR: Fix locale to country flag mapping OR remove country flags entirely
-                ->booleanNode('locale_switcher_show_country_flags')
-                    ->info('Whether the language switcher should show languages as flags')
-                    ->defaultTrue()
-                ->end()
-            ->end()
-            ->beforeNormalization()
-                ->ifTrue(static function ($v) {return !isset($v['locale_switcher_show_country_flags']) || true === $v['locale_switcher_show_country_flags']; })
-                ->then(static function ($v) {
-                    @trigger_error(sprintf(
-                        'Showing the country flags is deprecated. The flags will be removed in the next major version. Please set "%s" to false to avoid this message.',
-                        'sonata_translation.locale_switcher_show_country_flags'
-                    ), E_USER_DEPRECATED);
-                    $v['locale_switcher_show_country_flags'] = $v['locale_switcher_show_country_flags'] ?? true;
-
-                    return $v;
-                })
             ->end();
 
         return $treeBuilder;
