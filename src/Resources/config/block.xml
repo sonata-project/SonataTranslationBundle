@@ -7,7 +7,6 @@
         <service id="sonata_translation.block.locale_switcher" class="%sonata_translation.block.locale_switcher.class%">
             <tag name="sonata.block"/>
             <argument type="service" id="twig"/>
-            <argument>%sonata_translation.locale_switcher_show_country_flags%</argument>
         </service>
     </services>
 </container>

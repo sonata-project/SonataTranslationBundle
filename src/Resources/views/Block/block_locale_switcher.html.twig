@@ -6,7 +6,6 @@
     {% set object_id = object ? admin.id(object) : null %}
     {% set locale_switcher_route = block_context.settings.locale_switcher_route|default(object_id is not null ? 'edit' : 'create') %}
     {% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
-    {% set locale_switcher_show_country_flags = block_context.settings.locale_switcher_show_country_flags %}
 
     {% for extension in admin.extensions %}
         {% if extension.translatableLocale is defined %}
@@ -24,14 +23,7 @@
                    accesskey=""
                    {% if currentLocale == locale %}class="active"{% endif %}
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
-                    {% if locale_switcher_show_country_flags %}
-                        {# There is no one-to-one relation between locales and countries. #}
-                        {# In order to show locale names instead of flags, set 'locale_switcher_use_flags' to false in your sonata_translation config. #}
-                        {# NEXT_MAJOR: Fix mapping of locales to countries or remove flags entirely #}
-                        <img src="{{ asset('bundles/sonatatranslation/img/flags/' ~ locale[-2:2]|lower ~ '.png')}}" />
-                    {% else %}
-                        {{ locale|localeName(app.request.locale) }}
-                    {% endif %}
+                    {{ locale|localeName(app.request.locale) }}
                 </a>
             {% endfor %}
         {% endapply %}

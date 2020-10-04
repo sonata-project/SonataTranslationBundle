@@ -23,17 +23,10 @@ use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
  */
 final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
-     *
-     * @group legacy
-     */
     public function testLoadTwigIntlExtension(): void
     {
         $this->container->setParameter('kernel.bundles', []);
-        $this->load([
-            'locale_switcher_show_country_flags' => false,
-        ]);
+        $this->load();
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag(
             'sonata_translation.twig.intl_extension',
@@ -41,11 +34,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    /**
-     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
-     *
-     * @group legacy
-     */
     public function testLoadServiceDefinitionWhenSonataDoctrineORMAdminBundleBundleIsRegistered(): void
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
@@ -60,11 +48,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    /**
-     * NEXT_MAJOR: remove this annotation and corresponding deprecation notice.
-     *
-     * @group legacy
-     */
     public function testLoadServiceDefinitionNoCheckerTranslatable(): void
     {
         $this->container->setParameter('kernel.bundles', []);
