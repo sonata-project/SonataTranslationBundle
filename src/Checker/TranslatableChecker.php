@@ -13,9 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Checker;
 
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatable;
 use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-use Sonata\TranslationBundle\Traits\Translatable;
 use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
@@ -75,11 +73,8 @@ class TranslatableChecker
             return false;
         }
 
-        // NEXT_MAJOR: remove Translateable and PersonalTrait.
         $translateTraits = [
-            Translatable::class,
             TranslatableTrait::class,
-            PersonalTranslatable::class,
             PersonalTranslatableTrait::class,
         ];
 
