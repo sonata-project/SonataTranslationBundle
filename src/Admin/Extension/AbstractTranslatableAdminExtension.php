@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
