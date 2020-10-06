@@ -80,10 +80,7 @@ final class TranslationFieldFilter extends Filter
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return [
             'field_type' => TextType::class,
@@ -93,10 +90,7 @@ final class TranslationFieldFilter extends Filter
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return [DefaultType::class, [
             'field_type' => $this->getFieldType(),
@@ -107,10 +101,7 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function association(ProxyQueryInterface $queryBuilder, $data)
+    protected function association(ProxyQueryInterface $queryBuilder, $data): array
     {
         $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());
 
