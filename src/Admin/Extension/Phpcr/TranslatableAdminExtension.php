@@ -21,6 +21,8 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
