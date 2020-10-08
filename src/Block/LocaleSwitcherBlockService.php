@@ -22,6 +22,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Twig\Environment;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class LocaleSwitcherBlockService extends AbstractBlockService

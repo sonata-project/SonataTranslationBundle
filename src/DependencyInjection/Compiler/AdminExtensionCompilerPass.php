@@ -18,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
 class AdminExtensionCompilerPass implements CompilerPassInterface

@@ -20,6 +20,8 @@ use Twig\TwigFilter;
 use Twig\TwigTest;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 class SonataTranslationExtension extends AbstractExtension
