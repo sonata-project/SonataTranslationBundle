@@ -17,6 +17,8 @@ use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
 class TranslatableChecker

@@ -17,6 +17,8 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 
 /**
+ * @final since sonata-project/translation-bundle 2.x
+ *
  * @author Alfonso Machado <email@alfonsomachado.com>
  */
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
