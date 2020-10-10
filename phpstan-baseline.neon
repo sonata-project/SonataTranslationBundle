@@ -1,12 +1,11 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+    ignoreErrors:
+        -
+            message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
-
+        -
+            message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
