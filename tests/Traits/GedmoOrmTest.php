@@ -19,7 +19,6 @@ use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
-use Sonata\TranslationBundle\Test\DoctrineOrmTestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation;
 
