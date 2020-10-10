@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -31,10 +32,43 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     protected $translatableListener;
 
-    public function __construct(TranslatableChecker $translatableChecker, ?TranslatableListener $translatableListener = null)
-    {
-        parent::__construct($translatableChecker);
+    /**
+     * @var ManagerRegistry|null
+     */
+    private $managerRegistry;
+
+    /**
+     * NEXT_MAJOR: Make $translatableListener, $defaultLocale and $managerRegistry mandatory.
+     */
+    public function __construct(
+        TranslatableChecker $translatableChecker,
+        ?TranslatableListener $translatableListener = null,
+        ?ManagerRegistry $managerRegistry = null,
+        ?string $defaultTranslationLocale = null
+    ) {
+        parent::__construct($translatableChecker, $defaultTranslationLocale);
+
+        if (null === $translatableListener) {
+            @trigger_error(sprintf(
+                'Not passing an instance of "%s" as argument 2 to "%s()" is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will be mandatory in 3.0.',
+                TranslatableListener::class,
+                __METHOD__
+            ), E_USER_DEPRECATED);
+        }
+
         $this->translatableListener = $translatableListener;
+
+        if (null === $managerRegistry) {
+            @trigger_error(sprintf(
+                'Not passing an instance of "%s" as argument 3 to "%s()" is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will be mandatory in 3.0.',
+                ManagerRegistry::class,
+                __METHOD__
+            ), E_USER_DEPRECATED);
+        }
+
+        $this->managerRegistry = $managerRegistry;
     }
 
     /**
@@ -47,7 +81,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
             $translatableListener->setTranslationFallback(false);
 
-            $this->getContainer($admin)->get('doctrine')->getManagerForClass(\get_class($object))->refresh($object);
+            // NEXT_MAJOR: Use $this->managerRegistry directly.
+            $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object))->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
@@ -62,12 +97,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     }
 
     /**
+     * NEXT_MAJOR: Remove $admin argument.
+     *
      * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead
      *
      * @return TranslatableListener
      */
     protected function getTranslatableListener(AdminInterface $admin)
     {
+        // NEXT_MAJOR: Remove this block.
         if (null === $this->translatableListener) {
             $this->translatableListener = $this->getContainer($admin)->get(
                 'stof_doctrine_extensions.listener.translatable'
@@ -75,5 +113,13 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
 
         return $this->translatableListener;
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method.
+     */
+    private function getManagerRegistry(AdminInterface $admin): ManagerRegistry
+    {
+        return $this->managerRegistry ?? $this->getContainer($admin)->get('doctrine');
     }
 }
