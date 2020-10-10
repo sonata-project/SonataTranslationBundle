@@ -11,30 +11,28 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Test;
+namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\SchemaTool;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Base test case contains common mock objects
  * and functionality among all tests using
  * ORM entity manager.
  *
- * NEXT_MAJOR: Remove this class.
- *
- * @deprecated since version 2.x, to be removed in 3.0. It has been moved to Tests namespace.
- *
  * @author Dariusz Markowicz <dmarkowicz77@gmail.com>
  *
  * Inspired by BaseTestCaseORM
  * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
  */
-abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
+abstract class DoctrineOrmTestCase extends TestCase
 {
     /**
      * @var EntityManager
@@ -45,13 +43,8 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
      * database in memory.
-     *
-     * @param EventManager  $evm
-     * @param Configuration $config
-     *
-     * @return EntityManager
      */
-    final protected function getMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null)
+    final protected function getMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null): EntityManager
     {
         $conn = [
             'driver' => 'pdo_sqlite',
@@ -60,9 +53,9 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
 
         $em = EntityManager::create($conn, $config ?: $this->getMockAnnotatedConfig(), $evm ?: new EventManager());
 
-        $schema = array_map(static function ($class) use ($em) {
+        $schema = array_map(static function (string $class) use ($em): ClassMetadata {
             return $em->getClassMetadata($class);
-        }, (array) $this->getUsedEntityFixtures());
+        }, $this->getUsedEntityFixtures());
 
         $schemaTool = new SchemaTool($em);
         $schemaTool->dropSchema([]);
@@ -73,10 +66,8 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * Creates default mapping driver.
-     *
-     * @return AnnotationDriver
      */
-    final protected function getMetadataDriverImplementation()
+    final protected function getMetadataDriverImplementation(): AnnotationDriver
     {
         return new AnnotationDriver(new AnnotationReader());
     }
@@ -84,16 +75,14 @@ abstract class DoctrineOrmTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Get a list of used fixture classes.
      *
-     * @return array
+     * @phpstan-return list<class-string>
      */
-    abstract protected function getUsedEntityFixtures();
+    abstract protected function getUsedEntityFixtures(): array;
 
     /**
      * Get annotation mapping configuration.
-     *
-     * @return Configuration
      */
-    final protected function getMockAnnotatedConfig()
+    final protected function getMockAnnotatedConfig(): Configuration
     {
         $config = new Configuration();
         $config->setProxyDir(sys_get_temp_dir().'/sonata-translation-bundle');

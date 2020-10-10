@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Tests\Model;
+namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\Version;
@@ -19,7 +19,6 @@ use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
-use Sonata\TranslationBundle\Test\DoctrineOrmTestCase;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\Article;
 use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\ArticleTranslation;
 
