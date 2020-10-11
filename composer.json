@@ -34,6 +34,7 @@
     "conflict": {
         "doctrine/annotations": "<1.8",
         "doctrine/phpcr-odm": ">=3.0",
+        "gedmo/doctrine-extensions": "<2.4.36",
         "knplabs/doctrine-behaviors": "<1.0 || >=2.0",
         "stof/doctrine-extensions-bundle": "<1.1 || >=2.0"
     },
