@@ -11,9 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Tests\AdminExtension\Knplabs;
+namespace Sonata\TranslationBundle\Tests\Admin\Extension\Knplabs;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
@@ -22,24 +23,24 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @group  translatable-knplabs
+ * @group translatable-knplabs
  */
 final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**
      * @var AdminInterface
      */
-    protected $admin;
+    private $admin;
 
     /**
      * @var TranslatableEntity
      */
-    protected $object;
+    private $object;
 
     /**
      * @var TranslatableAdminExtension
      */
-    protected $extension;
+    private $extension;
 
     protected function setUp(): void
     {
@@ -47,45 +48,45 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $translatableChecker->setSupportedInterfaces([
             TranslatableInterface::class,
         ]);
-        $this->extension = new TranslatableAdminExtension($translatableChecker);
+        $this->extension = new TranslatableAdminExtension($translatableChecker, 'es');
 
-        $request = $this->prophesize(Request::class);
-        $request->get('tl')->willReturn('es');
+        $request = new Request();
+        $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = $this->prophesize(AdminInterface::class);
-        $this->admin->getRequest()->willReturn($request->reveal());
-        $this->admin->hasRequest()->willReturn(true);
+        $this->admin = $this->createStub(AdminInterface::class);
+        $this->admin->method('getRequest')->willReturn($request);
+        $this->admin->method('hasRequest')->willReturn(true);
 
         $this->object = new TranslatableEntity();
     }
 
     public function testSetLocaleForTranslatableObject(): void
     {
-        $this->extension->alterNewInstance($this->admin->reveal(), $this->object);
+        $this->extension->alterNewInstance($this->admin, $this->object);
 
         $this->assertSame('es', $this->object->getLocale());
     }
 
     public function testAlterObjectForTranslatableObject(): void
     {
-        $this->extension->alterObject($this->admin->reveal(), $this->object);
+        $this->extension->alterObject($this->admin, $this->object);
 
         $this->assertSame('es', $this->object->getLocale());
     }
 
     public function testPreUpdate(): void
     {
-        $object = $this->prophesize(TranslatableEntity::class);
-        $object->mergeNewTranslations()->shouldBeCalled();
+        $object = $this->createMock(TranslatableEntity::class);
+        $object->expects($this->once())->method('mergeNewTranslations');
 
-        $this->extension->preUpdate($this->admin->reveal(), $object->reveal());
+        $this->extension->preUpdate($this->admin, $object);
     }
 
     public function testPrePersist(): void
     {
-        $object = $this->prophesize(TranslatableEntity::class);
-        $object->mergeNewTranslations()->shouldBeCalled();
+        $object = $this->createMock(TranslatableEntity::class);
+        $object->expects($this->once())->method('mergeNewTranslations');
 
-        $this->extension->prePersist($this->admin->reveal(), $object->reveal());
+        $this->extension->prePersist($this->admin, $object);
     }
 }

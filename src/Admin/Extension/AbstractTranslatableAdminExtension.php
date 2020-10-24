@@ -38,9 +38,28 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      */
     protected $translatableChecker;
 
-    public function __construct(TranslatableChecker $translatableChecker)
+    /**
+     * @var string|null
+     */
+    private $defaultTranslationLocale;
+
+    /**
+     * NEXT_MAJOR: Make $defaultTranslationLocale mandatory.
+     */
+    public function __construct(TranslatableChecker $translatableChecker, ?string $defaultTranslationLocale = null)
     {
         $this->translatableChecker = $translatableChecker;
+
+        // NEXT_MAJOR: Remove this block.
+        if (null === $defaultTranslationLocale) {
+            @trigger_error(sprintf(
+                'Omitting the argument 2 or passing other type than "string" to "%s()" is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.',
+                __METHOD__
+            ), E_USER_DEPRECATED);
+        }
+
+        $this->defaultTranslationLocale = $defaultTranslationLocale;
     }
 
     /**
@@ -72,7 +91,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
                 $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
             }
             if (null === $this->translatableLocale) {
-                $this->translatableLocale = $this->getDefaultTranslationLocale($admin);
+                // NEXT_MAJOR: Remove the call to $this->getDefaultTranslationLocale($admin).
+                $this->translatableLocale = $this->defaultTranslationLocale ?? $this->getDefaultTranslationLocale($admin);
             }
         }
 
@@ -95,24 +115,47 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @deprecated since version 2.x, to be removed in 3.0. Use dependency injection instead.
+     *
      * @return ContainerInterface
      */
     protected function getContainer(AdminInterface $admin)
     {
+        @trigger_error(sprintf(
+            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.'
+            .' Use dependency injection instead.',
+            __METHOD__
+        ), E_USER_DEPRECATED);
+
         return $admin->getConfigurationPool()->getContainer();
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @deprecated since version 2.x, to be removed in 3.0.
+     *
      * Return the list of possible locales for your models.
      *
      * @return array
      */
     protected function getTranslationLocales(AdminInterface $admin)
     {
+        @trigger_error(sprintf(
+            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.',
+            __METHOD__
+        ), E_USER_DEPRECATED);
+
         return $this->getContainer($admin)->getParameter('sonata_translation.locales');
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @deprecated since version 2.x, to be removed in 3.0.
+     *
      * Return the default locale if url parameter is not present.
      *
      * @return string
