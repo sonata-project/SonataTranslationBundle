@@ -15,12 +15,10 @@ namespace Sonata\TranslationBundle\Tests\Admin\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
-use Sonata\AdminBundle\Admin\Pool;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Request;
 
 final class AbstractTranslatableAdminExtensionTest extends TestCase
@@ -68,35 +66,5 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         $admin->method('hasRequest')->willReturn(false);
 
         $this->assertSame('es', $this->extension->getTranslatableLocale($admin));
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this test.
-     *
-     * @group legacy
-     */
-    public function testGetTranslatableLocaleFromContainer(): void
-    {
-        $admin = $this->getMockBuilder(AdminInterface::class)
-            ->addMethods(['getConfigurationPool'])
-            ->getMockForAbstractClass();
-        $admin->method('hasRequest')->willReturn(false);
-
-        $container = new Container();
-        $container->setParameter('sonata_translation.default_locale', 'es');
-
-        $pool = $this->createStub(Pool::class);
-        $pool->method('getContainer')->willReturn($container);
-
-        $admin
-            ->method('getConfigurationPool')
-            ->willReturn($pool);
-
-        $this->expectDeprecation('Omitting the argument 2 or passing other type than "string" to "Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.');
-
-        $extension = new class($this->translatableChecker) extends AbstractTranslatableAdminExtension {
-        };
-
-        $this->assertSame('es', $extension->getTranslatableLocale($admin));
     }
 }
