@@ -64,6 +64,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     /**
      * @param TranslatableChecker $translatableChecker
+     *
+     * @return void
      */
     public function setTranslatableChecker($translatableChecker)
     {

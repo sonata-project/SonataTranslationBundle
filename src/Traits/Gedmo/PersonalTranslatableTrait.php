@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Traits\Gedmo;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 
 /**

@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\DependencyInjection;
 
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
+use Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface as PHPCRTranslatableInterface;
+use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -56,7 +59,7 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_gedmo.xml');
 
             $translationTargets['gedmo']['implements'] = array_merge(
-                ['Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface'],
+                [GedmoTranslatableInterface::class],
                 $config['gedmo']['implements']
             );
             $translationTargets['gedmo']['instanceof'] = $config['gedmo']['instanceof'];
@@ -66,7 +69,7 @@ class SonataTranslationExtension extends Extension
             $loader->load('service_knplabs.xml');
 
             $translationTargets['knplabs']['implements'] = array_merge(
-                ['Sonata\TranslationBundle\Model\TranslatableInterface'],
+                [KNPTranslatableInterface::class],
                 $config['knplabs']['implements']
             );
             $translationTargets['knplabs']['instanceof'] = $config['knplabs']['instanceof'];
@@ -77,7 +80,7 @@ class SonataTranslationExtension extends Extension
 
             $translationTargets['phpcr']['implements'] = array_merge(
                 [
-                    'Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface',
+                    PHPCRTranslatableInterface::class,
                     'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface',
                 ],
                 $config['phpcr']['implements']
@@ -98,6 +101,8 @@ class SonataTranslationExtension extends Extension
 
     /**
      * @param array $translationTargets
+     *
+     * @return void
      */
     protected function configureChecker(ContainerBuilder $container, $translationTargets)
     {

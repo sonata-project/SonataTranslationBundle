@@ -23,6 +23,11 @@ use Sonata\BlockBundle\Model\Block;
  */
 class LocaleSwitcherListener
 {
+    /**
+     * @param string $eventName
+     *
+     * @return void
+     */
     public function onBlock(BlockEvent $event, $eventName)
     {
         $settings = $event->getSettings();
