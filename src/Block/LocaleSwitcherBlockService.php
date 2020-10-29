@@ -71,7 +71,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
             ), E_USER_DEPRECATED);
 
             parent::__construct($templatingOrDeprecatedName, $showCountryFlagsOrTemplating);
-            $this->showCountryFlags = $showCountryFlags;
+            $this->showCountryFlags = $showCountryFlags ?? false;
         } else {
             throw new \TypeError(sprintf(
                 'Argument 2 passed to "%s()" must be either a "bool" value, "null" or an instance of "%s", %s given.',
