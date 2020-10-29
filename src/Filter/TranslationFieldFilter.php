@@ -77,7 +77,7 @@ final class TranslationFieldFilter extends Filter
         }
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return [
             'field_type' => TextType::class,
@@ -87,7 +87,7 @@ final class TranslationFieldFilter extends Filter
         ];
     }
 
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return [DefaultType::class, [
             'field_type' => $this->getFieldType(),
@@ -98,7 +98,7 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    protected function association(ProxyQueryInterface $queryBuilder, $value)
+    protected function association(ProxyQueryInterface $queryBuilder, $value): array
     {
         $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());
 

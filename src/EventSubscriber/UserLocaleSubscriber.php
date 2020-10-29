@@ -25,7 +25,7 @@ use Symfony\Component\Security\Http\SecurityEvents;
  */
 final class UserLocaleSubscriber implements EventSubscriberInterface
 {
-    public function onInteractiveLogin(InteractiveLoginEvent $event)
+    public function onInteractiveLogin(InteractiveLoginEvent $event): void
     {
         if (!$event->getRequest()->hasPreviousSession()) {
             return;
@@ -38,10 +38,7 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
         }
     }
 
-    /**
-     * @return array
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SecurityEvents::INTERACTIVE_LOGIN => 'onInteractiveLogin',

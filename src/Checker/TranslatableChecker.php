@@ -26,22 +26,35 @@ use Sonata\TranslationBundle\Traits\TranslatableTrait;
 class TranslatableChecker
 {
     /**
-     * @var array
+     * @var string[]
+     *
+     * @phpstan-var class-string[]
      */
     protected $supportedInterfaces = [];
 
     /**
-     * @var array
+     * @var string[]
+     *
+     * @phpstan-var class-string[]
      */
     protected $supportedModels = [];
 
+    /**
+     * @param string[]
+     *
+     * @phpstan-param class-string[] $supportedInterfaces
+     *
+     * @return void
+     */
     public function setSupportedInterfaces(array $supportedInterfaces)
     {
         $this->supportedInterfaces = $supportedInterfaces;
     }
 
     /**
-     * @return array
+     * @return string[]
+     *
+     * @phpstan-return class-string[]
      */
     public function getSupportedInterfaces()
     {
@@ -49,7 +62,10 @@ class TranslatableChecker
     }
 
     /**
-     * @param array $supportedModels
+     * @param string[] $supportedModels
+     * @phpstan-param class-string[] $supportedModels
+     *
+     * @return void
      */
     public function setSupportedModels($supportedModels)
     {
@@ -57,7 +73,9 @@ class TranslatableChecker
     }
 
     /**
-     * @return array
+     * @return string[]
+     *
+     * @phpstan-return class-string[]
      */
     public function getSupportedModels()
     {
@@ -67,7 +85,7 @@ class TranslatableChecker
     /**
      * Check if $object is translatable.
      *
-     * @param mixed $object
+     * @param object|string|null $object
      *
      * @return bool
      */
