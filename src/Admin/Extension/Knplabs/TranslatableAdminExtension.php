@@ -23,9 +23,6 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
  */
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function alterNewInstance(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
@@ -33,9 +30,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function alterObject(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
@@ -43,17 +37,11 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function preUpdate(AdminInterface $admin, $object)
     {
         $object->mergeNewTranslations();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function prePersist(AdminInterface $admin, $object)
     {
         $object->mergeNewTranslations();
