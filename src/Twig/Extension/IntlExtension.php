@@ -20,7 +20,6 @@ use Twig\TwigFilter;
 
 final class IntlExtension extends AbstractExtension
 {
-    /** @return TwigFilter[] */
     public function getFilters(): array
     {
         return [

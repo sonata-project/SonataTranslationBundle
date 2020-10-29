@@ -32,10 +32,7 @@ final class TranslationFieldFilter extends Filter
         $this->filterMode = $filterMode;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value)
+    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
     {
         if (!$value || !\is_array($value) || !\array_key_exists('value', $value) || null === $value['value']) {
             return;
@@ -80,9 +77,6 @@ final class TranslationFieldFilter extends Filter
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultOptions()
     {
         return [
@@ -93,9 +87,6 @@ final class TranslationFieldFilter extends Filter
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRenderSettings()
     {
         return [DefaultType::class, [
@@ -107,9 +98,6 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function association(ProxyQueryInterface $queryBuilder, $value)
     {
         $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());

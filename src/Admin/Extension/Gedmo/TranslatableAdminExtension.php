@@ -71,9 +71,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         $this->managerRegistry = $managerRegistry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function alterObject(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
@@ -87,9 +84,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
     {
         $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));

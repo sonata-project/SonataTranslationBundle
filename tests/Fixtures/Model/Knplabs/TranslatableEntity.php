@@ -17,8 +17,6 @@ class TranslatableEntity implements TranslatableInterface
     }
 
     /**
-     * Returns object id.
-     *
      * @return integer
      */
     public function getId()
@@ -26,19 +24,11 @@ class TranslatableEntity implements TranslatableInterface
         return $this->id;
     }
 
-    /**
-     * @param string $locale
-     */
     public function setLocale($locale)
     {
         $this->setCurrentLocale($locale);
-
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLocale()
     {
         return $this->getCurrentLocale();

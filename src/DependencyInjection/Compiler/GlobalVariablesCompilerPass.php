@@ -23,9 +23,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class GlobalVariablesCompilerPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container)
     {
         $container->getDefinition('twig')->addMethodCall(

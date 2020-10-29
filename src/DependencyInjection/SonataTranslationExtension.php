@@ -26,9 +26,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataTranslationExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();
