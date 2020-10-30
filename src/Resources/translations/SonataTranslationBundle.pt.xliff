@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="admin.locale_switcher.tooltip">
                 <source>admin.locale_switcher.tooltip</source>
-                <target>Alterar Idioma</target>
+                <target>Alterar idioma</target>
             </trans-unit>
             <trans-unit id="languages">
                 <source>languages</source>
