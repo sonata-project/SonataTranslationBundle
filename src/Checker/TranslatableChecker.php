@@ -40,7 +40,7 @@ class TranslatableChecker
     protected $supportedModels = [];
 
     /**
-     * @param string[]
+     * @param string[] $supportedInterfaces
      *
      * @phpstan-param class-string[] $supportedInterfaces
      *
