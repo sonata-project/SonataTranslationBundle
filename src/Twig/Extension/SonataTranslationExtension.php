@@ -41,6 +41,9 @@ class SonataTranslationExtension extends AbstractExtension
         return 'sonata_translation';
     }
 
+    /**
+     * @return void
+     */
     public function setTranslatableChecker(TranslatableChecker $translatableChecker)
     {
         $this->translatableChecker = $translatableChecker;

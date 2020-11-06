@@ -42,6 +42,11 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         $object->mergeNewTranslations();
     }
 
+    /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
+     * @phpstan-param AdminInterface<object> $admin
+     */
     public function prePersist(AdminInterface $admin, $object)
     {
         $object->mergeNewTranslations();

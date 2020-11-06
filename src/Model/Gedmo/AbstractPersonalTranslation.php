@@ -31,8 +31,16 @@ class AbstractPersonalTranslation extends GedmoAbstractPersonalTranslation
      */
     public function __construct($locale = null, $field = null, $value = null)
     {
-        $this->setLocale($locale);
-        $this->setField($field);
-        $this->setContent($value);
+        if (null !== $locale) {
+            $this->setLocale($locale);
+        }
+
+        if (null !== $field) {
+            $this->setField($field);
+        }
+
+        if (null !== $value) {
+            $this->setContent($value);
+        }
     }
 }

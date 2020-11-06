@@ -29,6 +29,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataTranslationExtension extends Extension
 {
+    /**
+     * @return void
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();
@@ -54,6 +57,7 @@ class SonataTranslationExtension extends Extension
         }
 
         $translationTargets = [];
+
         if ($config['gedmo']['enabled']) {
             $isEnabled = true;
             $loader->load('service_gedmo.xml');
@@ -101,6 +105,8 @@ class SonataTranslationExtension extends Extension
 
     /**
      * @param array $translationTargets
+     *
+     * @phpstan-param iterable<array<string, class-string[]>> $translationTargets
      *
      * @return void
      */

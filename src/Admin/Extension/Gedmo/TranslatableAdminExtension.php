@@ -95,6 +95,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      *
      * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead
      *
+     * @phpstan-param AdminInterface<object> $admin
+     *
      * @return TranslatableListener
      */
     protected function getTranslatableListener(AdminInterface $admin)
@@ -104,6 +106,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             $this->translatableListener = $this->getContainer($admin)->get(
                 'stof_doctrine_extensions.listener.translatable'
             );
+
+            \assert($this->translatableListener instanceof TranslatableListener);
         }
 
         return $this->translatableListener;
@@ -111,9 +115,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     /**
      * NEXT_MAJOR: Remove this method.
+     *
+     * @phpstan-param AdminInterface<object> $admin
      */
     private function getManagerRegistry(AdminInterface $admin): ManagerRegistry
     {
-        return $this->managerRegistry ?? $this->getContainer($admin)->get('doctrine');
+        $managerRegistry = $this->managerRegistry ?? $this->getContainer($admin)->get('doctrine');
+
+        \assert($managerRegistry instanceof ManagerRegistry);
+
+        return $managerRegistry;
     }
 }

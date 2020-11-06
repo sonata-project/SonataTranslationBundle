@@ -1,11 +1,41 @@
 parameters:
-    ignoreErrors:
-        -
-            message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
-            count: 1
-            path: src/Block/LocaleSwitcherBlockService.php
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
+			count: 1
+			path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
 
-        -
-            message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
-            count: 1
-            path: src/Block/LocaleSwitcherBlockService.php
+		-
+			message: "#^Call to function is_object\\(\\) with string\\|null will always evaluate to false\\.$#"
+			count: 1
+			path: src/Block/LocaleSwitcherBlockService.php
+
+		-
+			message: "#^Result of \\|\\| is always true\\.$#"
+			count: 1
+			path: src/Block/LocaleSwitcherBlockService.php
+
+		-
+			message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
+			count: 1
+			path: src/Block/LocaleSwitcherBlockService.php
+
+		-
+			message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
+			count: 1
+			path: src/Block/LocaleSwitcherBlockService.php
+
+		-
+			message: "#^Parameter \\#1 \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:configureSettings\\(\\) expects Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolver, Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface given\\.$#"
+			count: 1
+			path: src/Block/LocaleSwitcherBlockService.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:.+\\(\\)\\.$#"
+			count: 13
+			path: src/Filter/TranslationFieldFilter.php
