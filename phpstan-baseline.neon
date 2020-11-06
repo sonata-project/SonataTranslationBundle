@@ -38,13 +38,6 @@ parameters:
             count: 1
             path: tests/Block/LocaleSwitcherBlockServiceTest.php
 
-        # This will be resolved when knplabs/doctrine-behaviors 2 is used
-
-        -
-            message: "#^Method Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity\\:\\:getLocale\\(\\) should return string but returns Knp\\\\DoctrineBehaviors\\\\Model\\\\Translatable\\\\Returns\\.$#"
-            count: 1
-            path: tests/Fixtures/Model/Knplabs/TranslatableEntity.php
-
         # Symfony issue
 
         -

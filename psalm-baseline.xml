@@ -24,16 +24,4 @@
             <code>children</code>
         </PossiblyUndefinedMethod>
     </file>
-    <!-- This will be resolved when knplabs/doctrine-behaviors 2 is used -->
-    <file src="tests/Fixtures/Model/Knplabs/TranslatableEntity.php">
-        <InvalidReturnStatement occurrences="1">
-            <code>$this-&gt;getCurrentLocale()</code>
-        </InvalidReturnStatement>
-        <InvalidReturnType occurrences="1">
-            <code>getLocale</code>
-        </InvalidReturnType>
-        <UndefinedDocblockClass occurrences="1">
-            <code>$this-&gt;getCurrentLocale()</code>
-        </UndefinedDocblockClass>
-    </file>
 </files>
