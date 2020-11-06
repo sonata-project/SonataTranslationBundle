@@ -46,6 +46,7 @@
         "knplabs/doctrine-behaviors": "^1.4",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/phpstan": "^0.12.48",
+        "phpstan/phpstan-symfony": "^0.12.11",
         "sonata-project/doctrine-orm-admin-bundle": "^3.2",
         "stof/doctrine-extensions-bundle": "^1.1",
         "symfony/framework-bundle": "^4.4",

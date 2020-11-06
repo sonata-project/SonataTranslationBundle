@@ -36,7 +36,8 @@ class LocaleSwitcherBlockService extends AbstractBlockService
     /**
      * NEXT_MAJOR: Change signature for (Environment $twig, bool $showCountryFlags = false).
      *
-     * @param Environment|string $templatingOrDeprecatedName
+     * @param Environment|string   $templatingOrDeprecatedName
+     * @param bool|EngineInterface $showCountryFlagsOrTemplating
      */
     public function __construct(
         $templatingOrDeprecatedName = null,
@@ -88,6 +89,8 @@ class LocaleSwitcherBlockService extends AbstractBlockService
      * NEXT_MAJOR: remove this method.
      *
      * @deprecated since 3.x, will be removed in 4.0
+     *
+     * @return void
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {

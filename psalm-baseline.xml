@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.16@d03e5ef057d6adc656c0ff7e166c50b73b4f48f3">
+<files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
+    <file src="src/Admin/Extension/Phpcr/TranslatableAdminExtension.php">
+        <UndefinedInterfaceMethod occurrences="1">
+            <code>getDocumentManager</code>
+        </UndefinedInterfaceMethod>
+    </file>
     <file src="src/Block/LocaleSwitcherBlockService.php">
+        <TooManyArguments occurrences="1">
+            <code>parent::__construct($templatingOrDeprecatedName, $showCountryFlagsOrTemplating)</code>
+        </TooManyArguments>
         <UndefinedClass occurrences="1">
             <code>OptionsResolverInterface</code>
         </UndefinedClass>

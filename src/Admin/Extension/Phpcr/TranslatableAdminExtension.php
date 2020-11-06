@@ -70,6 +70,9 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     }
 
     /**
+     * @template T of object
+     * @phpstan-param AdminInterface<T> $admin
+     *
      * @return DocumentManager
      */
     protected function getDocumentManager(AdminInterface $admin)
