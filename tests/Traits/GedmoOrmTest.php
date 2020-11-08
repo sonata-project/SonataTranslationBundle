@@ -78,6 +78,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $this->em->clear();
 
         $article = $this->em->find(self::ARTICLE, ['id' => 1]);
+        \assert($article instanceof ArticlePersonalTranslatable);
         $translations = $article->getTranslations();
         $this->assertCount(3, $translations);
     }

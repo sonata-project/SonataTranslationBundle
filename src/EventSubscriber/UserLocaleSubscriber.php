@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
@@ -33,7 +34,7 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
 
         $user = $event->getAuthenticationToken()->getUser();
 
-        if (\is_callable([$user, 'getLocale']) && null !== $user->getLocale()) {
+        if ($user instanceof UserInterface && \is_callable([$user, 'getLocale']) && null !== $user->getLocale()) {
             $event->getRequest()->getSession()->set('_locale', $user->getLocale());
         }
     }
