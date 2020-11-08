@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -28,7 +29,7 @@ use Sonata\TranslationBundle\Checker\TranslatableChecker;
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     /**
-     * @var TranslatableListener
+     * @var TranslatableListener|null
      */
     protected $translatableListener;
 
@@ -79,7 +80,11 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             $translatableListener->setTranslationFallback(false);
 
             // NEXT_MAJOR: Use $this->managerRegistry directly.
-            $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object))->refresh($object);
+            $objectManager = $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object));
+
+            \assert($objectManager instanceof ObjectManager);
+
+            $objectManager->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
@@ -103,11 +108,13 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     {
         // NEXT_MAJOR: Remove this block.
         if (null === $this->translatableListener) {
-            $this->translatableListener = $this->getContainer($admin)->get(
+            $translatableListener = $this->getContainer($admin)->get(
                 'stof_doctrine_extensions.listener.translatable'
             );
 
-            \assert($this->translatableListener instanceof TranslatableListener);
+            \assert($translatableListener instanceof TranslatableListener);
+
+            $this->translatableListener = $translatableListener;
         }
 
         return $this->translatableListener;
