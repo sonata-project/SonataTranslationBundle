@@ -62,34 +62,61 @@ class SonataTranslationExtension extends Extension
             $isEnabled = true;
             $loader->load('service_gedmo.xml');
 
-            $translationTargets['gedmo']['implements'] = array_merge(
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfInterfaces = array_merge(
                 [GedmoTranslatableInterface::class],
                 $config['gedmo']['implements']
             );
-            $translationTargets['gedmo']['instanceof'] = $config['gedmo']['instanceof'];
+            $translationTargets['gedmo']['implements'] = $listOfInterfaces;
+
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfClasses = $config['gedmo']['instanceof'];
+            $translationTargets['gedmo']['instanceof'] = $listOfClasses;
         }
         if ($config['knplabs']['enabled']) {
             $isEnabled = true;
             $loader->load('service_knplabs.xml');
 
-            $translationTargets['knplabs']['implements'] = array_merge(
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfInterfaces = array_merge(
                 [KNPTranslatableInterface::class],
                 $config['knplabs']['implements']
             );
-            $translationTargets['knplabs']['instanceof'] = $config['knplabs']['instanceof'];
+            $translationTargets['knplabs']['implements'] = $listOfInterfaces;
+
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfClasses = $config['knplabs']['instanceof'];
+            $translationTargets['knplabs']['instanceof'] = $listOfClasses;
         }
         if ($config['phpcr']['enabled']) {
             $isEnabled = true;
             $loader->load('service_phpcr.xml');
 
-            $translationTargets['phpcr']['implements'] = array_merge(
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfInterfaces = array_merge(
                 [
                     PHPCRTranslatableInterface::class,
                     'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface',
                 ],
                 $config['phpcr']['implements']
             );
-            $translationTargets['phpcr']['instanceof'] = $config['phpcr']['instanceof'];
+            $translationTargets['phpcr']['implements'] = $listOfInterfaces;
+
+            /**
+             * @phpstan-var list<class-string>
+             */
+            $listOfClasses = $config['phpcr']['instanceof'];
+            $translationTargets['phpcr']['instanceof'] = $listOfClasses;
         }
 
         if (true === $isEnabled) {
@@ -106,7 +133,11 @@ class SonataTranslationExtension extends Extension
     /**
      * @param array $translationTargets
      *
-     * @phpstan-param iterable<array<string, class-string[]>> $translationTargets
+     * @phpstan-param array{
+     *  gedmo?: array{implements: list<class-string>, instanceof: list<class-string>},
+     *  knplabs?: array{implements: list<class-string>, instanceof: list<class-string>},
+     *  phpcr?: array{implements: list<class-string>, instanceof: list<class-string>}
+     * } $translationTargets
      *
      * @return void
      */

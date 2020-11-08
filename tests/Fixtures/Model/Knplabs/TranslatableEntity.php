@@ -9,17 +9,12 @@ class TranslatableEntity implements TranslatableInterface
 {
     use Model\Translatable\Translatable;
 
+    /**
+     * @var int|null
+     */
     private $id;
 
-    public function __call($method, $arguments)
-    {
-        return $this->proxyCurrentLocaleTranslation($method, $arguments);
-    }
-
-    /**
-     * @return integer
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

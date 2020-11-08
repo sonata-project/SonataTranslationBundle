@@ -14,6 +14,8 @@ final class ArticleTranslation
     use Translation;
 
     /**
+     * @var int|null
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -21,7 +23,7 @@ final class ArticleTranslation
     protected $id;
 
     /**
-     * @var Article
+     * @var Article|null
      *
      * @ORM\ManyToOne(
      *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\ArticleTranslation",
@@ -34,15 +36,17 @@ final class ArticleTranslation
 
     /**
      * @ORM\Column(length=128)
+     *
+     * @var string|null
      */
     protected $title;
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
