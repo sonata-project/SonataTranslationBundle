@@ -37,7 +37,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return null;
+        return 'username';
     }
 
     public function eraseCredentials(): void

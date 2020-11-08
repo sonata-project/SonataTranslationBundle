@@ -8,14 +8,17 @@ class TranslatableEntityTranslation
 {
     use Model\Translatable\Translation;
 
+    /**
+     * @var string|null
+     */
     private $title;
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }

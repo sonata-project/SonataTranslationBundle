@@ -50,7 +50,7 @@ final class XliffTest extends TestCase
     }
 
     /**
-     * @return array List all path to validate xliff
+     * @return string[][] List all path to validate xliff
      */
     public function getXliffPaths(): array
     {

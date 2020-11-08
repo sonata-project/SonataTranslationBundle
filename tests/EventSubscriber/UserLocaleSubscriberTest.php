@@ -39,12 +39,15 @@ final class UserLocaleSubscriberTest extends TestCase
         $request = new Request([], [], [], [$session->getName() => null]);
         $request->setSession($session);
         $event = $this->getEvent($request, $user);
-        $userLocaleSubscriber = new UserLocaleSubscriber($session);
+        $userLocaleSubscriber = new UserLocaleSubscriber();
         $this->assertTrue($session->isStarted());
         $userLocaleSubscriber->onInteractiveLogin($event);
         $this->assertSame($expectedLocale, $session->get('_locale'));
     }
 
+    /**
+     * @return array{array{0: UserInterface, 1: string}}
+     */
     public function userLocaleSubscriberDataProvider(): array
     {
         return [
@@ -63,7 +66,7 @@ final class UserLocaleSubscriberTest extends TestCase
         $request = new Request();
         $request->setSession($session);
         $event = $this->getEvent($request, $user);
-        $userLocaleSubscriber = new UserLocaleSubscriber($session);
+        $userLocaleSubscriber = new UserLocaleSubscriber();
         $userLocaleSubscriber->onInteractiveLogin($event);
         $this->assertFalse($session->isStarted());
         $this->assertNull($session->get('_locale'));

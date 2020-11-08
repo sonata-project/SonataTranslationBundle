@@ -39,7 +39,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
     use ExpectDeprecationTrait;
 
     /**
-     * @var AdminInterface
+     * @var AdminInterface<object>
      */
     private $admin;
 

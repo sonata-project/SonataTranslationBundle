@@ -18,6 +18,9 @@ namespace Sonata\TranslationBundle\Tests\EventSubscriber;
  */
 final class LocalizedUser extends User
 {
+    /**
+     * @var string
+     */
     private $locale;
 
     public function __construct(string $locale)
@@ -25,12 +28,12 @@ final class LocalizedUser extends User
         $this->locale = $locale;
     }
 
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
 
-    public function setLocale($locale): void
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }

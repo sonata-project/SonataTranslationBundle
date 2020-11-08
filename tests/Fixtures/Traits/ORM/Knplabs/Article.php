@@ -16,11 +16,13 @@ final class Article extends TranslatableEntity
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection<array-key, ArticleTranslation>
      *
      * @ORM\OneToMany(
      *     indexBy="locale",

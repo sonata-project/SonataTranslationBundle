@@ -26,7 +26,9 @@ trait PersonalTranslatableTrait
     use TranslatableTrait;
 
     /**
-     * @return ArrayCollection|AbstractPersonalTranslation[]
+     * @return ArrayCollection
+     *
+     * @phpstan-return ArrayCollection<array-key, AbstractPersonalTranslation>
      */
     public function getTranslations()
     {
@@ -34,8 +36,8 @@ trait PersonalTranslatableTrait
     }
 
     /**
-     * @param $field
-     * @param $locale
+     * @param string $field
+     * @param string $locale
      *
      * @return string|null
      */
