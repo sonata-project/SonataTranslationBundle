@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Admin\Extension;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
@@ -77,9 +78,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
      */
     public function testGetTranslatableLocaleFromContainer(): void
     {
-        $admin = $this->getMockBuilder(AdminInterface::class)
-            ->addMethods(['getConfigurationPool'])
-            ->getMockForAbstractClass();
+        $admin = $this->createStub(AbstractAdmin::class);
         $admin->method('hasRequest')->willReturn(false);
 
         $container = new Container();
