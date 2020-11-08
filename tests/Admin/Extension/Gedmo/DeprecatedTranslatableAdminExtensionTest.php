@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Admin\Extension\Gedmo;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Translatable\TranslatableListener;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -76,9 +77,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = $this->getMockBuilder(AdminInterface::class)
-            ->addMethods(['getConfigurationPool'])
-            ->getMockForAbstractClass();
+        $this->admin = $this->createStub(AbstractAdmin::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
 

@@ -1,41 +1,53 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
+    ignoreErrors:
+        -
+            # sonata-project/doctrine-phpcr-admin-bundle cannot be currently installed because it is not compatible with sonata-project/block-bundle 4
+            message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
+            count: 1
+            path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
 
-		-
-			message: "#^Call to function is_object\\(\\) with string\\|null will always evaluate to false\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+        # src/Block/LocaleSwitcherBlockService.php issues will be solved in next major version
 
-		-
-			message: "#^Result of \\|\\| is always true\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+        -
+            message: "#^Call to function is_object\\(\\) with string\\|null will always evaluate to false\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+        -
+            message: "#^Result of \\|\\| is always true\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+        -
+            message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Parameter \\#1 \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:configureSettings\\(\\) expects Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolver, Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface given\\.$#"
-			count: 1
-			path: src/Block/LocaleSwitcherBlockService.php
+        -
+            message: "#^Parameter \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:setDefaultSettings\\(\\) has invalid typehint type Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
-			count: 1
-			path: src/DependencyInjection/Configuration.php
+        -
+            message: "#^Parameter \\#1 \\$resolver of method Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService\\:\\:configureSettings\\(\\) expects Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolver, Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolverInterface given\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php
 
-		-
-			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:.+\\(\\)\\.$#"
-			count: 13
-			path: src/Filter/TranslationFieldFilter.php
+        -
+            message: "#^Parameter \\#2 \\$showCountryFlagsOrTemplating of class Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService constructor expects bool\\|Symfony\\\\Bundle\\\\FrameworkBundle\\\\Templating\\\\EngineInterface\\|null, stdClass given\\.$#"
+            count: 1
+            path: tests/Block/LocaleSwitcherBlockServiceTest.php
+
+        # This will be resolved when knplabs/doctrine-behaviors 2 is used
+
+        -
+            message: "#^Method Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity\\:\\:getLocale\\(\\) should return string but returns Knp\\\\DoctrineBehaviors\\\\Model\\\\Translatable\\\\Returns\\.$#"
+            count: 1
+            path: tests/Fixtures/Model/Knplabs/TranslatableEntity.php
+
+        # Symfony issue
+
+        -
+            message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+            count: 1
+            path: src/DependencyInjection/Configuration.php
