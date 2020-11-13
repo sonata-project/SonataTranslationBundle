@@ -52,7 +52,7 @@
         "symfony/framework-bundle": "^4.4",
         "symfony/phpunit-bridge": "^5.1.8",
         "symfony/templating": "^4.4 || ^5.1",
-        "vimeo/psalm": "^3.16"
+        "vimeo/psalm": "^4.1"
     },
     "suggest": {
         "doctrine/phpcr-odm": "if you translate odm documents",
