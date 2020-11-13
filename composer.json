@@ -44,6 +44,7 @@
         "doctrine/phpcr-odm": "^1.5",
         "jackalope/jackalope-doctrine-dbal": "^1.5",
         "knplabs/doctrine-behaviors": "^1.4",
+        "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/phpstan": "^0.12.48",
         "phpstan/phpstan-symfony": "^0.12.11",
