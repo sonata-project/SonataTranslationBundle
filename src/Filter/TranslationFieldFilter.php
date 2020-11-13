@@ -32,7 +32,7 @@ final class TranslationFieldFilter extends Filter
         $this->filterMode = $filterMode;
     }
 
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
+    public function filter(ProxyQueryInterface $queryBuilder, string $alias, string $field, $value): void
     {
         if (!$value || !\is_array($value) || !\array_key_exists('value', $value) || null === $value['value']) {
             return;

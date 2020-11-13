@@ -29,9 +29,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataTranslationExtension extends Extension
 {
-    /**
-     * @return void
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
@@ -106,8 +103,6 @@ class SonataTranslationExtension extends Extension
      * @param array $translationTargets
      *
      * @phpstan-param iterable<array<string, class-string[]>> $translationTargets
-     *
-     * @return void
      */
     protected function configureChecker(ContainerBuilder $container, $translationTargets): void
     {

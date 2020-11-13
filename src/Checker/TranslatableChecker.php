@@ -60,8 +60,6 @@ class TranslatableChecker
     /**
      * @param string[] $supportedModels
      * @phpstan-param class-string[] $supportedModels
-     *
-     * @return void
      */
     public function setSupportedModels($supportedModels): void
     {

@@ -12,5 +12,5 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:.+\\(\\)\\.$#"
-			count: 13
+			count: 14
 			path: src/Filter/TranslationFieldFilter.php

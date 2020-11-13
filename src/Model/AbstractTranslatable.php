@@ -27,8 +27,6 @@ abstract class AbstractTranslatable
 
     /**
      * @param string $locale
-     *
-     * @return void
      */
     public function setLocale($locale): void
     {

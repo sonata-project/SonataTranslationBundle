@@ -23,21 +23,21 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
  */
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
-    public function alterNewInstance(AdminInterface $admin, $object): void
+    public function alterNewInstance(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
 
-    public function alterObject(AdminInterface $admin, $object): void
+    public function alterObject(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
             $object->setLocale($this->getTranslatableLocale($admin));
         }
     }
 
-    public function preUpdate(AdminInterface $admin, $object): void
+    public function preUpdate(AdminInterface $admin, object $object): void
     {
         $object->mergeNewTranslations();
     }
@@ -47,7 +47,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      *
      * @phpstan-param AdminInterface<object> $admin
      */
-    public function prePersist(AdminInterface $admin, $object): void
+    public function prePersist(AdminInterface $admin, object $object): void
     {
         $object->mergeNewTranslations();
     }

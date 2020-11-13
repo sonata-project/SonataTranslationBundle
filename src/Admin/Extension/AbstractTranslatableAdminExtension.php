@@ -64,8 +64,6 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     /**
      * @param TranslatableChecker $translatableChecker
-     *
-     * @return void
      */
     public function setTranslatableChecker($translatableChecker): void
     {
@@ -108,7 +106,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return [self::TRANSLATABLE_LOCALE_PARAMETER => $this->getTranslatableLocale($admin)];
     }
 
-    public function alterNewInstance(AdminInterface $admin, $object): void
+    public function alterNewInstance(AdminInterface $admin, object $object): void
     {
         if (null === $object->getLocale()) {
             $object->setLocale($this->getTranslatableLocale($admin));

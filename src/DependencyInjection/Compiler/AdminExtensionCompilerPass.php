@@ -24,9 +24,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AdminExtensionCompilerPass implements CompilerPassInterface
 {
-    /**
-     * @return void
-     */
     public function process(ContainerBuilder $container): void
     {
         $translationTargets = $container->getParameter('sonata_translation.targets');
