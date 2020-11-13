@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "sonata-project/admin-bundle": "^3.58",
         "sonata-project/block-bundle": "^3.17 || ^4.0",
         "symfony/config": "^4.4",
