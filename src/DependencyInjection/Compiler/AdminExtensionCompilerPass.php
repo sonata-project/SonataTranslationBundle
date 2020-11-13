@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class AdminExtensionCompilerPass implements CompilerPassInterface
 {
     /**
-     * {@inheritdoc}
+     * @return void
      */
     public function process(ContainerBuilder $container): void
     {
@@ -56,6 +56,8 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
     }
 
     /**
+     * @param list<int|string> $types
+     *
      * @return Reference[]
      */
     protected function getAdminExtensionReferenceByTypes(array $types)

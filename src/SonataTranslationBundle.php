@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class SonataTranslationBundle extends Bundle
 {
     /**
-     * {@inheritdoc}
+     * @return void
      */
     public function build(ContainerBuilder $container): void
     {

@@ -64,6 +64,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     /**
      * @param TranslatableChecker $translatableChecker
+     *
+     * @return void
      */
     public function setTranslatableChecker($translatableChecker): void
     {
@@ -81,6 +83,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * Return current translatable locale
      * ie: the locale used to load object translations != current request locale.
+     *
+     * @phpstan-param AdminInterface<object> $admin
      *
      * @return string
      */
@@ -104,9 +108,6 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return [self::TRANSLATABLE_LOCALE_PARAMETER => $this->getTranslatableLocale($admin)];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function alterNewInstance(AdminInterface $admin, $object): void
     {
         if (null === $object->getLocale()) {
@@ -119,6 +120,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * @deprecated since version 2.x, to be removed in 3.0. Use dependency injection instead.
      *
+     * @phpstan-param AdminInterface<object> $admin
+     *
      * @return ContainerInterface
      */
     protected function getContainer(AdminInterface $admin)
@@ -129,6 +132,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
             __METHOD__
         ), E_USER_DEPRECATED);
 
+        \assert(\is_callable([$admin, 'getConfigurationPool']));
+
         return $admin->getConfigurationPool()->getContainer();
     }
 
@@ -137,9 +142,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * @deprecated since version 2.x, to be removed in 3.0.
      *
+     * @phpstan-param AdminInterface<object> $admin
+     *
      * Return the list of possible locales for your models.
      *
-     * @return array
+     * @return string[]
      */
     protected function getTranslationLocales(AdminInterface $admin)
     {
@@ -157,6 +164,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      * @deprecated since version 2.x, to be removed in 3.0.
      *
      * Return the default locale if url parameter is not present.
+     *
+     * @phpstan-param AdminInterface<object> $admin
      *
      * @return string
      */

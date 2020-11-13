@@ -44,9 +44,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         $this->localeChooser = $localeChooser;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function alterObject(AdminInterface $admin, $object): void
     {
         $locale = $this->getTranslatableLocale($admin);
@@ -67,15 +64,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list'): void
     {
         $this->localeChooser->setLocale($this->getTranslatableLocale($admin));
     }
 
     /**
+     * @template T of object
+     * @phpstan-param AdminInterface<T> $admin
+     *
      * @return DocumentManager
      */
     protected function getDocumentManager(AdminInterface $admin)
