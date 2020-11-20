@@ -16,7 +16,6 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -39,26 +38,13 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected $translatableChecker;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $defaultTranslationLocale;
 
-    /**
-     * NEXT_MAJOR: Make $defaultTranslationLocale mandatory.
-     */
-    public function __construct(TranslatableChecker $translatableChecker, ?string $defaultTranslationLocale = null)
+    public function __construct(TranslatableChecker $translatableChecker, string $defaultTranslationLocale)
     {
         $this->translatableChecker = $translatableChecker;
-
-        // NEXT_MAJOR: Remove this block.
-        if (null === $defaultTranslationLocale) {
-            @trigger_error(sprintf(
-                'Omitting the argument 2 or passing other type than "string" to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.',
-                __METHOD__
-            ), E_USER_DEPRECATED);
-        }
-
         $this->defaultTranslationLocale = $defaultTranslationLocale;
     }
 
@@ -93,8 +79,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
                 $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
             }
             if (null === $this->translatableLocale) {
-                // NEXT_MAJOR: Remove the call to $this->getDefaultTranslationLocale($admin).
-                $this->translatableLocale = $this->defaultTranslationLocale ?? $this->getDefaultTranslationLocale($admin);
+                $this->translatableLocale = $this->defaultTranslationLocale;
             }
         }
 
@@ -111,64 +96,5 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         if (null === $object->getLocale()) {
             $object->setLocale($this->getTranslatableLocale($admin));
         }
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since version 2.7, to be removed in 3.0. Use dependency injection instead.
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     *
-     * @return ContainerInterface
-     */
-    protected function getContainer(AdminInterface $admin)
-    {
-        @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.'
-            .' Use dependency injection instead.',
-            __METHOD__
-        ), E_USER_DEPRECATED);
-
-        \assert(\is_callable([$admin, 'getConfigurationPool']));
-
-        return $admin->getConfigurationPool()->getContainer();
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since version 2.7, to be removed in 3.0.
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     *
-     * Return the list of possible locales for your models.
-     *
-     * @return string[]
-     */
-    protected function getTranslationLocales(AdminInterface $admin)
-    {
-        @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.',
-            __METHOD__
-        ), E_USER_DEPRECATED);
-
-        return $this->getContainer($admin)->getParameter('sonata_translation.locales');
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since version 2.7, to be removed in 3.0.
-     *
-     * Return the default locale if url parameter is not present.
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     *
-     * @return string
-     */
-    protected function getDefaultTranslationLocale(AdminInterface $admin)
-    {
-        return $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
     }
 }

@@ -29,58 +29,35 @@ use Sonata\TranslationBundle\Checker\TranslatableChecker;
 class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     /**
-     * @var TranslatableListener|null
+     * @var TranslatableListener
      */
     protected $translatableListener;
 
     /**
-     * @var ManagerRegistry|null
+     * @var ManagerRegistry
      */
     private $managerRegistry;
 
-    /**
-     * NEXT_MAJOR: Make $translatableListener, $defaultLocale and $managerRegistry mandatory.
-     */
     public function __construct(
         TranslatableChecker $translatableChecker,
-        ?TranslatableListener $translatableListener = null,
-        ?ManagerRegistry $managerRegistry = null,
-        ?string $defaultTranslationLocale = null
+        TranslatableListener $translatableListener,
+        ManagerRegistry $managerRegistry,
+        string $defaultTranslationLocale
     ) {
         parent::__construct($translatableChecker, $defaultTranslationLocale);
 
-        if (null === $translatableListener) {
-            @trigger_error(sprintf(
-                'Not passing an instance of "%s" as argument 2 to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
-                TranslatableListener::class,
-                __METHOD__
-            ), E_USER_DEPRECATED);
-        }
-
         $this->translatableListener = $translatableListener;
-
-        if (null === $managerRegistry) {
-            @trigger_error(sprintf(
-                'Not passing an instance of "%s" as argument 3 to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
-                ManagerRegistry::class,
-                __METHOD__
-            ), E_USER_DEPRECATED);
-        }
-
         $this->managerRegistry = $managerRegistry;
     }
 
     public function alterObject(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $translatableListener = $this->getTranslatableListener($admin);
+            $translatableListener = $this->getTranslatableListener();
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
             $translatableListener->setTranslationFallback(false);
 
-            // NEXT_MAJOR: Use $this->managerRegistry directly.
-            $objectManager = $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object));
+            $objectManager = $this->managerRegistry->getManagerForClass(\get_class($object));
 
             \assert($objectManager instanceof ObjectManager);
 
@@ -91,46 +68,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query): void
     {
-        $this->getTranslatableListener($admin)->setTranslatableLocale($this->getTranslatableLocale($admin));
-        $this->getTranslatableListener($admin)->setTranslationFallback(false);
+        $this->getTranslatableListener()->setTranslatableLocale($this->getTranslatableLocale($admin));
+        $this->getTranslatableListener()->setTranslationFallback(false);
     }
 
     /**
-     * NEXT_MAJOR: Remove $admin argument.
-     *
-     * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     *
      * @return TranslatableListener
      */
-    protected function getTranslatableListener(AdminInterface $admin)
+    protected function getTranslatableListener()
     {
-        // NEXT_MAJOR: Remove this block.
-        if (null === $this->translatableListener) {
-            $translatableListener = $this->getContainer($admin)->get(
-                'stof_doctrine_extensions.listener.translatable'
-            );
-
-            \assert($translatableListener instanceof TranslatableListener);
-
-            $this->translatableListener = $translatableListener;
-        }
-
         return $this->translatableListener;
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     */
-    private function getManagerRegistry(AdminInterface $admin): ManagerRegistry
-    {
-        $managerRegistry = $this->managerRegistry ?? $this->getContainer($admin)->get('doctrine');
-
-        \assert($managerRegistry instanceof ManagerRegistry);
-
-        return $managerRegistry;
     }
 }
