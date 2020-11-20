@@ -24,12 +24,8 @@ class AbstractPersonalTranslation extends GedmoAbstractPersonalTranslation
 {
     /**
      * Convenient constructor.
-     *
-     * @param string $locale
-     * @param string $field
-     * @param string $value
      */
-    public function __construct($locale = null, $field = null, $value = null)
+    public function __construct(?string $locale = null, ?string $field = null, ?string $value = null)
     {
         if (null !== $locale) {
             $this->setLocale($locale);

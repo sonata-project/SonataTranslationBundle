@@ -23,11 +23,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class SonataTranslationExtension extends Extension
+final class SonataTranslationExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -127,15 +125,13 @@ class SonataTranslationExtension extends Extension
     }
 
     /**
-     * @param array $translationTargets
-     *
      * @phpstan-param array{
      *  gedmo?: array{implements: list<class-string>, instanceof: list<class-string>},
      *  knplabs?: array{implements: list<class-string>, instanceof: list<class-string>},
      *  phpcr?: array{implements: list<class-string>, instanceof: list<class-string>}
      * } $translationTargets
      */
-    protected function configureChecker(ContainerBuilder $container, $translationTargets): void
+    private function configureChecker(ContainerBuilder $container, array $translationTargets): void
     {
         if (!$container->hasDefinition('sonata_translation.checker.translatable')) {
             return;

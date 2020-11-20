@@ -21,10 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class SwitchLocaleAction
 {
-    /**
-     * @param string $locale
-     */
-    public function __invoke(Request $request, $locale): RedirectResponse
+    public function __invoke(Request $request, string $locale): RedirectResponse
     {
         $request->getSession()->set('_locale', $locale);
 

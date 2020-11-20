@@ -48,18 +48,12 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         $this->defaultTranslationLocale = $defaultTranslationLocale;
     }
 
-    /**
-     * @param TranslatableChecker $translatableChecker
-     */
-    public function setTranslatableChecker($translatableChecker): void
+    public function setTranslatableChecker(TranslatableChecker $translatableChecker): void
     {
         $this->translatableChecker = $translatableChecker;
     }
 
-    /**
-     * @return TranslatableChecker
-     */
-    public function getTranslatableChecker()
+    public function getTranslatableChecker(): TranslatableChecker
     {
         return $this->translatableChecker;
     }
@@ -69,10 +63,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      * ie: the locale used to load object translations != current request locale.
      *
      * @phpstan-param AdminInterface<object> $admin
-     *
-     * @return string
      */
-    public function getTranslatableLocale(AdminInterface $admin)
+    public function getTranslatableLocale(AdminInterface $admin): string
     {
         if (null === $this->translatableLocale) {
             if ($admin->hasRequest()) {

@@ -17,16 +17,11 @@ use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class LocaleSwitcherListener
+final class LocaleSwitcherListener
 {
-    /**
-     * @param string $eventName
-     */
-    public function onBlock(BlockEvent $event, $eventName): void
+    public function onBlock(BlockEvent $event, string $eventName): void
     {
         $settings = $event->getSettings();
         if ('sonata.block.event.sonata.admin.show.top' === $eventName) {

@@ -22,16 +22,14 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
+final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     /**
      * @var TranslatableListener
      */
-    protected $translatableListener;
+    private $translatableListener;
 
     /**
      * @var ManagerRegistry
@@ -53,9 +51,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     public function alterObject(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $translatableListener = $this->getTranslatableListener();
-            $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
-            $translatableListener->setTranslationFallback(false);
+            $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+            $this->translatableListener->setTranslationFallback(false);
 
             $objectManager = $this->managerRegistry->getManagerForClass(\get_class($object));
 
@@ -68,15 +65,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query): void
     {
-        $this->getTranslatableListener()->setTranslatableLocale($this->getTranslatableLocale($admin));
-        $this->getTranslatableListener()->setTranslationFallback(false);
-    }
-
-    /**
-     * @return TranslatableListener
-     */
-    protected function getTranslatableListener()
-    {
-        return $this->translatableListener;
+        $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+        $this->translatableListener->setTranslationFallback(false);
     }
 }
