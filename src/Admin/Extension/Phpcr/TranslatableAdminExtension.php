@@ -32,13 +32,10 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      */
     private $localeChooser;
 
-    /**
-     * NEXT_MAJOR: Make $defaultLocale mandatory.
-     */
     public function __construct(
         TranslatableChecker $translatableChecker,
         LocaleChooser $localeChooser,
-        ?string $defaultTranslationLocale = null
+        string $defaultTranslationLocale
     ) {
         parent::__construct($translatableChecker, $defaultTranslationLocale);
         $this->localeChooser = $localeChooser;
