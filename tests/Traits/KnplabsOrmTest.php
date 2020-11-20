@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\EventManager;
-use Doctrine\ORM\Version;
+use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -37,7 +37,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
     {
         parent::setUp();
 
-        if (!class_exists(Version::class)) {
+        if (!class_exists(EntityManager::class)) {
             $this->markTestSkipped('Doctrine ORM is not available.');
         }
 

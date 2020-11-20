@@ -1,12 +1,16 @@
 includes:
     - phpstan-baseline.neon
-    - vendor/phpstan/phpstan-symfony/extension.neon
 
 parameters:
     level: 6
 
     paths:
         - src
+        - tests
 
     excludes_analyse:
         - src/Test/DoctrineOrmTestCase.php
+        # Remove these lines when dropping support for KnpLabs/DoctrineBehaviors < 2.0
+        - tests/Fixtures/Model/Knplabs/TranslatableEntity.php
+        - tests/Fixtures/Model/Knplabs/TranslatableEntityTranslation.php
+        - tests/Fixtures/Traits/ORM/Knplabs/ArticleTranslation.php

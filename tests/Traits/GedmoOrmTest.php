@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Traits;
 
 use Doctrine\Common\EventManager;
-use Doctrine\ORM\Version;
+use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -34,7 +34,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
     {
         parent::setUp();
 
-        if (!class_exists(Version::class)) {
+        if (!class_exists(EntityManager::class)) {
             $this->markTestSkipped('Doctrine ORM is not available.');
         }
 
@@ -78,6 +78,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $this->em->clear();
 
         $article = $this->em->find(self::ARTICLE, ['id' => 1]);
+        \assert($article instanceof ArticlePersonalTranslatable);
         $translations = $article->getTranslations();
         $this->assertCount(3, $translations);
     }

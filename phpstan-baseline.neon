@@ -1,16 +1,20 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
-			count: 1
-			path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
+    ignoreErrors:
+        -
+            # sonata-project/doctrine-phpcr-admin-bundle cannot be currently installed because it is not compatible with sonata-project/block-bundle 4
+            message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
+            count: 1
+            path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
 
-		-
-			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
-			count: 1
-			path: src/DependencyInjection/Configuration.php
+        -
+            # this is inherit from sonata-project/doctrine-orm-admin-bundle
+            message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:entityJoin\\(\\)\\.$#"
+            count: 1
+            path: src/Filter/TranslationFieldFilter.php
 
-		-
-			message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:.+\\(\\)\\.$#"
-			count: 14
-			path: src/Filter/TranslationFieldFilter.php
+        # Symfony issue
+
+        -
+            message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+            count: 1
+            path: src/DependencyInjection/Configuration.php

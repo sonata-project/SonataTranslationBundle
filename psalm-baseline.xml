@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
+    <!-- sonata-project/doctrine-phpcr-admin-bundle cannot be currently installed because it is not compatible with sonata-project/block-bundle 4 -->
     <file src="src/Admin/Extension/Phpcr/TranslatableAdminExtension.php">
+        <PossiblyNullReference occurrences="1">
+            <code>getDocumentManager</code>
+        </PossiblyNullReference>
         <UndefinedInterfaceMethod occurrences="1">
             <code>getDocumentManager</code>
         </UndefinedInterfaceMethod>
     </file>
-    <file src="src/Block/LocaleSwitcherBlockService.php">
-        <TooManyArguments occurrences="1">
-            <code>parent::__construct($templatingOrDeprecatedName, $showCountryFlagsOrTemplating)</code>
-        </TooManyArguments>
-        <UndefinedClass occurrences="1">
-            <code>OptionsResolverInterface</code>
-        </UndefinedClass>
-    </file>
-    <file src="src/Test/DoctrineOrmTestCase.php">
-        <UndefinedClass occurrences="1">
-            <code>\PHPUnit\Framework\TestCase</code>
-        </UndefinedClass>
+    <!-- Symfony issue -->
+    <file src="src/DependencyInjection/Configuration.php">
+        <PossiblyUndefinedMethod occurrences="1">
+            <code>children</code>
+        </PossiblyUndefinedMethod>
     </file>
 </files>

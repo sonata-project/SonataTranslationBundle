@@ -3,52 +3,37 @@
 namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 
-/**
- * @ORM\Table(name="article_translation")
- * @ORM\Entity
- */
-final class ArticleTranslation
-{
-    use Translation;
-
+// @todo Remove check and else part when dropping support for knplabs/doctrine-behaviors < 2.0
+if (interface_exists(TranslationInterface::class)) {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Table(name="article_translation")
+     * @ORM\Entity
      */
-    protected $id;
-
-    /**
-     * @var Article
-     *
-     * @ORM\ManyToOne(
-     *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\ArticleTranslation",
-     *     inversedBy="translations",
-     *     cascade={"persist", "merge"}
-     * )
-     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $translatable;
-
-    /**
-     * @ORM\Column(length=128)
-     */
-    protected $title;
-
-    public function getTitle()
+    final class ArticleTranslation extends AbstractArticleTranslation implements TranslationInterface
     {
-        return $this->title;
+        use TranslationTrait;
+
+        public static function getTranslatableEntityClass(): string
+        {
+            return Article::class;
+        }
     }
-
-    public function setTitle($title): void
+} else {
+    /**
+     * @ORM\Table(name="article_translation")
+     * @ORM\Entity
+     */
+    final class ArticleTranslation extends AbstractArticleTranslation
     {
-        $this->title = $title;
-    }
+        use Translation;
 
-    public static function getTranslatableEntityClass(): string
-    {
-        return Article::class;
+        public static function getTranslatableEntityClass(): string
+        {
+            return Article::class;
+        }
     }
 }

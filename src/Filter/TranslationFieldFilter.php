@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Filter;
 
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\DoctrineORMAdminBundle\Filter\Filter;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -38,13 +39,15 @@ final class TranslationFieldFilter extends Filter
             return;
         }
 
-        $data['value'] = trim((string) $value['value']);
+        $value['value'] = trim((string) $value['value']);
 
         if (0 === \strlen($value['value'])) {
             return;
         }
         $joinAlias = 'tff';
         $filterMode = $this->getOption('filter_mode');
+
+        \assert($queryBuilder instanceof ProxyQuery);
 
         // verify if the join is not already done
         $aliasAlreadyExists = false;
@@ -108,7 +111,7 @@ final class TranslationFieldFilter extends Filter
     /**
      * @param mixed[] $value
      */
-    private function applyGedmoFilters(ProxyQueryInterface $queryBuilder, string $joinAlias, string $alias, string $field, $value): void
+    private function applyGedmoFilters(ProxyQuery $queryBuilder, string $joinAlias, string $alias, string $field, $value): void
     {
         $this->applyWhere($queryBuilder, $queryBuilder->expr()->orX(
             $queryBuilder->expr()->andX(
@@ -128,7 +131,7 @@ final class TranslationFieldFilter extends Filter
     /**
      * @param mixed[] $value
      */
-    private function applyKnplabsFilters(ProxyQueryInterface $queryBuilder, string $joinAlias, string $field, $value): void
+    private function applyKnplabsFilters(ProxyQuery $queryBuilder, string $joinAlias, string $field, $value): void
     {
         $this->applyWhere(
             $queryBuilder,

@@ -29,7 +29,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $translatableLocale;
 
