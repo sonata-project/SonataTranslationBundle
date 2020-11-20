@@ -134,8 +134,6 @@ class SonataTranslationExtension extends Extension
      *  knplabs?: array{implements: list<class-string>, instanceof: list<class-string>},
      *  phpcr?: array{implements: list<class-string>, instanceof: list<class-string>}
      * } $translationTargets
-     *
-     * @return void
      */
     protected function configureChecker(ContainerBuilder $container, $translationTargets): void
     {
