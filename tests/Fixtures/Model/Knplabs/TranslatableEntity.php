@@ -2,30 +2,60 @@
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs;
 
-use Knp\DoctrineBehaviors\Model;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
 
-class TranslatableEntity implements TranslatableInterface
-{
-    use Model\Translatable\Translatable;
-
-    /**
-     * @var int|null
-     */
-    private $id;
-
-    public function getId(): ?int
+// @todo Remove check and else part when dropping support for knplabs/doctrine-behaviors < 2.0
+if (interface_exists(KNPTranslatableInterface::class)) {
+    class TranslatableEntity implements TranslatableInterface, KNPTranslatableInterface
     {
-        return $this->id;
+        use TranslatableTrait;
+
+        /**
+         * @var int|null
+         */
+        private $id;
+
+        public function getId(): ?int
+        {
+            return $this->id;
+        }
+
+        public function setLocale($locale)
+        {
+            $this->setCurrentLocale($locale);
+        }
+
+        public function getLocale()
+        {
+            return $this->getCurrentLocale();
+        }
     }
-
-    public function setLocale($locale)
+} else {
+    class TranslatableEntity implements TranslatableInterface
     {
-        $this->setCurrentLocale($locale);
-    }
+        use Translatable;
 
-    public function getLocale()
-    {
-        return $this->getCurrentLocale();
+        /**
+         * @var int|null
+         */
+        private $id;
+
+        public function getId(): ?int
+        {
+            return $this->id;
+        }
+
+        public function setLocale($locale)
+        {
+            $this->setCurrentLocale($locale);
+        }
+
+        public function getLocale()
+        {
+            return $this->getCurrentLocale();
+        }
     }
 }

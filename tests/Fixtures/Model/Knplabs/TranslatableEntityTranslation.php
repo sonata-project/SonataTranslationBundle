@@ -1,25 +1,50 @@
 <?php
 
-namespace Sonata\TranslationBundle\Tests\Functional\Fixtures\Model\Knplabs;
+namespace Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs;
 
-use Knp\DoctrineBehaviors\Model;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 
-class TranslatableEntityTranslation
-{
-    use Model\Translatable\Translation;
-
-    /**
-     * @var string|null
-     */
-    private $title;
-
-    public function getTitle(): ?string
+// @todo Remove check and else part when dropping support for knplabs/doctrine-behaviors < 2.0
+if (interface_exists(TranslationInterface::class)) {
+    class TranslatableEntityTranslation implements TranslationInterface
     {
-        return $this->title;
+        use TranslationTrait;
+
+        /**
+         * @var string|null
+         */
+        private $title;
+
+        public function getTitle(): ?string
+        {
+            return $this->title;
+        }
+
+        public function setTitle(string $title): void
+        {
+            $this->title = $title;
+        }
     }
-
-    public function setTitle(string $title): void
+} else {
+    class TranslatableEntityTranslation
     {
-        $this->title = $title;
+        use Translation;
+
+        /**
+         * @var string|null
+         */
+        private $title;
+
+        public function getTitle(): ?string
+        {
+            return $this->title;
+        }
+
+        public function setTitle(string $title): void
+        {
+            $this->title = $title;
+        }
     }
 }
