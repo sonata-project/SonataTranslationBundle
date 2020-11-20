@@ -22,7 +22,7 @@ use Sonata\TranslationBundle\Tests\Fixtures\Traits\ModelTranslatable;
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class GedmoTest extends TestCase
+final class GedmoTest extends TestCase
 {
     public function testTranslatableModel(): void
     {

@@ -16,16 +16,16 @@ namespace Sonata\TranslationBundle\Tests\Twig\Extension;
 use Sonata\TranslationBundle\Twig\Extension\IntlExtension;
 use Twig\Test\IntegrationTestCase;
 
-class IntlExtensionTest extends IntegrationTestCase
+final class IntlExtensionTest extends IntegrationTestCase
 {
-    public function getExtensions()
+    protected function getExtensions(): array
     {
         return [
             new IntlExtension(),
         ];
     }
 
-    public function getFixturesDir()
+    protected function getFixturesDir(): string
     {
         return __DIR__.'/Fixtures/';
     }

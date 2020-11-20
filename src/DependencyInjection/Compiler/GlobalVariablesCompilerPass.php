@@ -17,11 +17,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class GlobalVariablesCompilerPass implements CompilerPassInterface
+final class GlobalVariablesCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {

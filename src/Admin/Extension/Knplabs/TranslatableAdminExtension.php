@@ -17,11 +17,9 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Alfonso Machado <email@alfonsomachado.com>
  */
-class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
+final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     public function alterNewInstance(AdminInterface $admin, object $object): void
     {

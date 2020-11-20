@@ -20,11 +20,9 @@ use Twig\TwigFilter;
 use Twig\TwigTest;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class SonataTranslationExtension extends AbstractExtension
+final class SonataTranslationExtension extends AbstractExtension
 {
     /**
      * @var TranslatableChecker
@@ -51,14 +49,14 @@ class SonataTranslationExtension extends AbstractExtension
         return $this->translatableChecker;
     }
 
-    public function getTests()
+    public function getTests(): array
     {
         return [
             new TwigTest('translatable', [$this, 'isTranslatable']),
         ];
     }
 
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('localeName', [$this, 'getLocaleName']),

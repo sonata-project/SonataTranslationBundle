@@ -21,11 +21,9 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
+final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
     /**
      * @var LocaleChooser
@@ -69,10 +67,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * @template T of object
      * @phpstan-param AdminInterface<T> $admin
-     *
-     * @return DocumentManager
      */
-    protected function getDocumentManager(AdminInterface $admin)
+    private function getDocumentManager(AdminInterface $admin): DocumentManager
     {
         return $admin->getModelManager()->getDocumentManager();
     }

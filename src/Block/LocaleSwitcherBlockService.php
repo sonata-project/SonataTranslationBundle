@@ -19,11 +19,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
-class LocaleSwitcherBlockService extends AbstractBlockService
+final class LocaleSwitcherBlockService extends AbstractBlockService
 {
     public function configureSettings(OptionsResolver $resolver): void
     {

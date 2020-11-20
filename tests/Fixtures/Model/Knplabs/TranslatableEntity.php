@@ -23,12 +23,12 @@ if (interface_exists(KNPTranslatableInterface::class)) {
             return $this->id;
         }
 
-        public function setLocale($locale)
+        public function setLocale($locale): void
         {
             $this->setCurrentLocale($locale);
         }
 
-        public function getLocale()
+        public function getLocale(): string
         {
             return $this->getCurrentLocale();
         }
@@ -48,12 +48,12 @@ if (interface_exists(KNPTranslatableInterface::class)) {
             return $this->id;
         }
 
-        public function setLocale($locale)
+        public function setLocale($locale): void
         {
             $this->setCurrentLocale($locale);
         }
 
-        public function getLocale()
+        public function getLocale(): string
         {
             return $this->getCurrentLocale();
         }

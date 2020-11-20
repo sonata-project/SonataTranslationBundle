@@ -48,13 +48,7 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
         return $this->translations;
     }
 
-    /**
-     * @param string $field
-     * @param string $locale
-     *
-     * @return string|null
-     */
-    public function getTranslation($field, $locale)
+    public function getTranslation(string $field, string $locale): ?string
     {
         foreach ($this->getTranslations() as $translation) {
             if (0 === strcmp($translation->getField(), $field) && 0 === strcmp($translation->getLocale(), $locale)) {
@@ -65,10 +59,7 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
         return null;
     }
 
-    /**
-     * @return $this
-     */
-    public function addTranslation(AbstractPersonalTranslation $translation)
+    public function addTranslation(AbstractPersonalTranslation $translation): self
     {
         if (!$this->translations->contains($translation)) {
             $translation->setObject($this);

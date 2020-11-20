@@ -17,25 +17,23 @@ use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class TranslatableChecker
+final class TranslatableChecker
 {
     /**
      * @var string[]
      *
      * @phpstan-var class-string[]
      */
-    protected $supportedInterfaces = [];
+    private $supportedInterfaces = [];
 
     /**
      * @var string[]
      *
      * @phpstan-var class-string[]
      */
-    protected $supportedModels = [];
+    private $supportedModels = [];
 
     /**
      * @param string[] $supportedInterfaces
@@ -52,7 +50,7 @@ class TranslatableChecker
      *
      * @phpstan-return class-string[]
      */
-    public function getSupportedInterfaces()
+    public function getSupportedInterfaces(): array
     {
         return $this->supportedInterfaces;
     }
@@ -61,7 +59,7 @@ class TranslatableChecker
      * @param string[] $supportedModels
      * @phpstan-param class-string[] $supportedModels
      */
-    public function setSupportedModels($supportedModels): void
+    public function setSupportedModels(array $supportedModels): void
     {
         $this->supportedModels = $supportedModels;
     }
@@ -71,7 +69,7 @@ class TranslatableChecker
      *
      * @phpstan-return class-string[]
      */
-    public function getSupportedModels()
+    public function getSupportedModels(): array
     {
         return $this->supportedModels;
     }
@@ -80,10 +78,8 @@ class TranslatableChecker
      * Check if $object is translatable.
      *
      * @param object|string|null $object
-     *
-     * @return bool
      */
-    public function isTranslatable($object)
+    public function isTranslatable($object): bool
     {
         if (null === $object) {
             return false;

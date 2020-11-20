@@ -18,11 +18,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * @final since sonata-project/translation-bundle 2.7
- *
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class AdminExtensionCompilerPass implements CompilerPassInterface
+final class AdminExtensionCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
@@ -57,7 +55,7 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
      *
      * @return Reference[]
      */
-    protected function getAdminExtensionReferenceByTypes(array $types)
+    private function getAdminExtensionReferenceByTypes(array $types): array
     {
         $references = [];
         foreach ($types as $type) {
