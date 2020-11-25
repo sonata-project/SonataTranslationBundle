@@ -2,6 +2,49 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.7.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.6.0...2.7.0) - 2020-11-25
+### Added
+- [[#416](https://github.com/sonata-project/SonataTranslationBundle/pull/416)]
+  Added support for `knplabs/doctrine-behaviors` 2.
+([@franmomu](https://github.com/franmomu))
+- [[#405](https://github.com/sonata-project/SonataTranslationBundle/pull/405)]
+  Added `SonataTranslationBundle.pt.xliff` to support Portuguese(Portugal)
+language. ([@joelpro2](https://github.com/joelpro2))
+- [[#375](https://github.com/sonata-project/SonataTranslationBundle/pull/375)]
+  Add support for SonataBlockBundle 4.0
+([@franmomu](https://github.com/franmomu))
+
+### Changed
+- [[#408](https://github.com/sonata-project/SonataTranslationBundle/pull/408)]
+  Replaced deprecated `GetResponseEvent` with `RequestEvent`.
+([@franmomu](https://github.com/franmomu))
+- [[#391](https://github.com/sonata-project/SonataTranslationBundle/pull/391)]
+  Mark classes as final ([@franmomu](https://github.com/franmomu))
+
+### Deprecated
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated `Sonata\TranslationBundle\Test\DoctrineOrmTestCase`.
+([@franmomu](https://github.com/franmomu))
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated constructing `AbstractTranslatableAdminExtension` without the
+default translation locale. ([@franmomu](https://github.com/franmomu))
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated protected `AbstractTranslatableAdminExtension::getContainer()`
+method. ([@franmomu](https://github.com/franmomu))
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated protected
+`AbstractTranslatableAdminExtension::getTranslationLocales()` method.
+([@franmomu](https://github.com/franmomu))
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated protected
+`AbstractTranslatableAdminExtension::getDefaultTranslationLocale()` method.
+([@franmomu](https://github.com/franmomu))
+- [[#393](https://github.com/sonata-project/SonataTranslationBundle/pull/393)]
+  Deprecated constructing
+`Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension`
+without an instance of `TranslatableListener` and `ManagerRegistry`.
+([@franmomu](https://github.com/franmomu))
+
 ## [2.6.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.5.0...2.6.0) - 2020-09-04
 ### Added
 - [[#368](https://github.com/sonata-project/SonataTranslationBundle/pull/368)] Twig 3 compatibility ([@jorrit](https://github.com/jorrit))

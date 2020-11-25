@@ -54,7 +54,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         if (null === $defaultTranslationLocale) {
             @trigger_error(sprintf(
                 'Omitting the argument 2 or passing other type than "string" to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.',
+                .' since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.',
                 __METHOD__
             ), E_USER_DEPRECATED);
         }
@@ -118,7 +118,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * NEXT_MAJOR: Remove this method.
      *
-     * @deprecated since version 2.x, to be removed in 3.0. Use dependency injection instead.
+     * @deprecated since version 2.7, to be removed in 3.0. Use dependency injection instead.
      *
      * @phpstan-param AdminInterface<object> $admin
      *
@@ -127,7 +127,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected function getContainer(AdminInterface $admin)
     {
         @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.'
+            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.'
             .' Use dependency injection instead.',
             __METHOD__
         ), E_USER_DEPRECATED);
@@ -140,7 +140,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * NEXT_MAJOR: Remove this method.
      *
-     * @deprecated since version 2.x, to be removed in 3.0.
+     * @deprecated since version 2.7, to be removed in 3.0.
      *
      * @phpstan-param AdminInterface<object> $admin
      *
@@ -151,7 +151,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected function getTranslationLocales(AdminInterface $admin)
     {
         @trigger_error(sprintf(
-            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.',
+            'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.',
             __METHOD__
         ), E_USER_DEPRECATED);
 
@@ -161,7 +161,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     /**
      * NEXT_MAJOR: Remove this method.
      *
-     * @deprecated since version 2.x, to be removed in 3.0.
+     * @deprecated since version 2.7, to be removed in 3.0.
      *
      * Return the default locale if url parameter is not present.
      *

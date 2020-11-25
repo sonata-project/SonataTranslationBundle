@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * @final since sonata-project/translation-bundle 2.x
+ * @final since sonata-project/translation-bundle 2.7
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */

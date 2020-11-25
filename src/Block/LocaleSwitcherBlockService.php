@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Twig\Environment;
 
 /**
- * @final since sonata-project/translation-bundle 2.x
+ * @final since sonata-project/translation-bundle 2.7
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
@@ -64,7 +64,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
             $this->showCountryFlags = $showCountryFlagsOrTemplating;
         } elseif (null === $showCountryFlagsOrTemplating || $showCountryFlagsOrTemplating instanceof EngineInterface) {
             @trigger_error(sprintf(
-                'Passing "%s" as argument 2 to "%s()" is deprecated since sonata-project/translation-bundle 2.x'
+                'Passing "%s" as argument 2 to "%s()" is deprecated since sonata-project/translation-bundle 2.7'
                 .' and will throw a "%s" error in version 3.0. You must pass a "bool" value instead.',
                 null === $showCountryFlagsOrTemplating ? 'null' : EngineInterface::class,
                 __METHOD__,

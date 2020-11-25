@@ -64,7 +64,7 @@ final class LocaleSwitcherBlockServiceTest extends BlockServiceTestCase
         $showCountryFlags = true;
         $this->expectDeprecation(
             'Passing "null" as argument 2 to "Sonata\TranslationBundle\Block\LocaleSwitcherBlockService::__construct()"'
-            .' is deprecated since sonata-project/translation-bundle 2.x and will throw a "TypeError" error in version 3.0.'
+            .' is deprecated since sonata-project/translation-bundle 2.7 and will throw a "TypeError" error in version 3.0.'
             .' You must pass a "bool" value instead.'
         );
         $localeSwitcherBlock = new LocaleSwitcherBlockService($environment, null, $showCountryFlags);
