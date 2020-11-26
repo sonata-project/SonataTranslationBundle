@@ -22,7 +22,7 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 
 /**
- * @final since sonata-project/translation-bundle 2.x
+ * @final since sonata-project/translation-bundle 2.7
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
@@ -52,7 +52,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if (null === $translatableListener) {
             @trigger_error(sprintf(
                 'Not passing an instance of "%s" as argument 2 to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will be mandatory in 3.0.',
+                .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
                 TranslatableListener::class,
                 __METHOD__
             ), E_USER_DEPRECATED);
@@ -63,7 +63,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if (null === $managerRegistry) {
             @trigger_error(sprintf(
                 'Not passing an instance of "%s" as argument 3 to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will be mandatory in 3.0.',
+                .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
                 ManagerRegistry::class,
                 __METHOD__
             ), E_USER_DEPRECATED);

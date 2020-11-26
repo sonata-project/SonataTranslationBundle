@@ -20,7 +20,7 @@ use Twig\TwigFilter;
 use Twig\TwigTest;
 
 /**
- * @final since sonata-project/translation-bundle 2.x
+ * @final since sonata-project/translation-bundle 2.7
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */

@@ -27,7 +27,7 @@ use Doctrine\ORM\Tools\SchemaTool;
  *
  * NEXT_MAJOR: Remove this class.
  *
- * @deprecated since version 2.x, to be removed in 3.0. It has been moved to Tests namespace.
+ * @deprecated since version 2.7, to be removed in 3.0. It has been moved to Tests namespace.
  *
  * @author Dariusz Markowicz <dmarkowicz77@gmail.com>
  *
