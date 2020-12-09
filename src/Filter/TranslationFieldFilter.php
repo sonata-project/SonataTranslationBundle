@@ -33,25 +33,25 @@ final class TranslationFieldFilter extends Filter
         $this->filterMode = $filterMode;
     }
 
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
+    public function filter(ProxyQueryInterface $query, $alias, $field, $data): void
     {
-        if (!$value || !\is_array($value) || !\array_key_exists('value', $value) || null === $value['value']) {
+        if (!$data || !\is_array($data) || !\array_key_exists('value', $data) || null === $data['value']) {
             return;
         }
 
-        $value['value'] = trim($value['value']);
+        $data['value'] = trim($data['value']);
 
-        if (0 === \strlen($value['value'])) {
+        if (0 === \strlen($data['value'])) {
             return;
         }
         $joinAlias = 'tff';
         $filterMode = $this->getOption('filter_mode');
 
-        \assert($queryBuilder instanceof ProxyQuery);
+        \assert($query instanceof ProxyQuery);
 
         // verify if the join is not already done
         $aliasAlreadyExists = false;
-        foreach ($queryBuilder->getDQLParts()['join'] as $joins) {
+        foreach ($query->getQueryBuilder()->getDQLParts()['join'] as $joins) {
             foreach ($joins as $join) {
                 if ($join->getAlias() === $joinAlias) {
                     $aliasAlreadyExists = true;
@@ -62,17 +62,17 @@ final class TranslationFieldFilter extends Filter
         }
 
         if (!$aliasAlreadyExists) {
-            $queryBuilder->leftJoin($alias.'.translations', $joinAlias);
+            $query->getQueryBuilder()->leftJoin($alias.'.translations', $joinAlias);
         }
 
         if (TranslationFilterMode::GEDMO === $filterMode) {
             // search on translation OR on normal field when using Gedmo
-            $this->applyGedmoFilters($queryBuilder, $joinAlias, $alias, $field, $value);
+            $this->applyGedmoFilters($query, $joinAlias, $alias, $field, $data);
 
             $this->active = true;
         } elseif (TranslationFilterMode::KNPLABS === $filterMode) {
             // search on translation OR on normal field when using Knp
-            $this->applyKnplabsFilters($queryBuilder, $joinAlias, $field, $value);
+            $this->applyKnplabsFilters($query, $joinAlias, $field, $data);
 
             $this->active = true;
         } else {
@@ -109,36 +109,36 @@ final class TranslationFieldFilter extends Filter
     }
 
     /**
-     * @param mixed[] $value
+     * @param mixed[] $data
      */
-    private function applyGedmoFilters(ProxyQuery $queryBuilder, string $joinAlias, string $alias, string $field, $value): void
+    private function applyGedmoFilters(ProxyQuery $query, string $joinAlias, string $alias, string $field, $data): void
     {
-        $this->applyWhere($queryBuilder, $queryBuilder->expr()->orX(
-            $queryBuilder->expr()->andX(
-                $queryBuilder->expr()->eq($joinAlias.'.field', $queryBuilder->expr()->literal($field)),
-                $queryBuilder->expr()->like(
+        $this->applyWhere($query, $query->getQueryBuilder()->expr()->orX(
+            $query->getQueryBuilder()->expr()->andX(
+                $query->getQueryBuilder()->expr()->eq($joinAlias.'.field', $query->getQueryBuilder()->expr()->literal($field)),
+                $query->getQueryBuilder()->expr()->like(
                     $joinAlias.'.content',
-                    $queryBuilder->expr()->literal('%'.$value['value'].'%')
+                    $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
                 )
             ),
-            $queryBuilder->expr()->like(
+            $query->getQueryBuilder()->expr()->like(
                 sprintf('%s.%s', $alias, $field),
-                $queryBuilder->expr()->literal('%'.$value['value'].'%')
+                $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
             )
         ));
     }
 
     /**
-     * @param mixed[] $value
+     * @param mixed[] $data
      */
-    private function applyKnplabsFilters(ProxyQuery $queryBuilder, string $joinAlias, string $field, $value): void
+    private function applyKnplabsFilters(ProxyQuery $query, string $joinAlias, string $field, $data): void
     {
         $this->applyWhere(
-            $queryBuilder,
-            $queryBuilder->expr()->andX(
-                $queryBuilder->expr()->like(
+            $query,
+            $query->getQueryBuilder()->expr()->andX(
+                $query->getQueryBuilder()->expr()->like(
                     $joinAlias.".$field",
-                    $queryBuilder->expr()->literal('%'.$value['value'].'%')
+                    $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
                 )
             )
         );
