@@ -108,9 +108,6 @@ final class TranslationFieldFilter extends Filter
         return [$this->getOption('alias', $alias), $this->getFieldName()];
     }
 
-    /**
-     * @param mixed[] $value
-     */
     private function applyGedmoFilters(ProxyQuery $query, string $joinAlias, string $alias, string $field, $data): void
     {
         $this->applyWhere($query, $query->getQueryBuilder()->expr()->orX(
