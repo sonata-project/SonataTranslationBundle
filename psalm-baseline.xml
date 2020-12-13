@@ -6,7 +6,7 @@
             <code>getDocumentManager</code>
         </UndefinedInterfaceMethod>
     </file>
-    <!-- NEXT_MAJOR: Remove this file configuration -->
+    <!-- NEXT_MAJOR: Remove these errors -->
     <file src="src/Block/LocaleSwitcherBlockService.php">
         <PossiblyInvalidArgument occurrences="1">
             <code>$templatingOrDeprecatedName</code>
