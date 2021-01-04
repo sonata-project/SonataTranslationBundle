@@ -48,18 +48,19 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.48",
+        "phpstan/phpstan-doctrine": "^0.12.26",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-symfony": "^0.12.11",
         "phpunit/phpunit": "^9.4.0",
-        "psalm/plugin-phpunit": "^0.12",
-        "psalm/plugin-symfony": "^1.5",
+        "psalm/plugin-phpunit": "^0.15.0",
+        "psalm/plugin-symfony": "^2.0",
         "sonata-project/doctrine-orm-admin-bundle": "4.x-dev",
         "stof/doctrine-extensions-bundle": "^1.1",
         "symfony/framework-bundle": "^4.4 || ^5.1",
         "symfony/phpunit-bridge": "^5.1.8",
         "symfony/templating": "^4.4 || ^5.1",
-        "vimeo/psalm": "^3.16",
-        "weirdan/doctrine-psalm-plugin": "^0.11.3"
+        "vimeo/psalm": "^4.3.2",
+        "weirdan/doctrine-psalm-plugin": "^1.0"
     },
     "suggest": {
         "doctrine/phpcr-odm": "if you translate odm documents",

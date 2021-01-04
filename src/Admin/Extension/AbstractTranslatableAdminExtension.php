@@ -16,9 +16,12 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @phpstan-extends AbstractAdminExtension<TranslatableInterface>
  */
 abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 {
@@ -62,7 +65,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      * Return current translatable locale
      * ie: the locale used to load object translations != current request locale.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      */
     public function getTranslatableLocale(AdminInterface $admin): string
     {

@@ -49,6 +49,14 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
             $this->getTranslatableChecker()->isTranslatable($object)
             && ($unitOfWork->getCurrentLocale($object) !== $locale)
         ) {
+            if (!\is_callable([$object, 'getId'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'The object passed to "%s()" method MUST be properly configured using'
+                    .' "doctrine/phpcr-odm" in order to have a "getId" method.',
+                    __METHOD__
+                ));
+            }
+
             $object = $this->getDocumentManager($admin)->findTranslation($admin->getClass(), $object->getId(), $locale);
 
             // if the translation did not yet exists, the locale will be

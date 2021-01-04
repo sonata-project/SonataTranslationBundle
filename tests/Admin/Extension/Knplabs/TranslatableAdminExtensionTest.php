@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**
-     * @var AdminInterface<object>
+     * @var AdminInterface<TranslatableInterface>
      */
     private $admin;
 
