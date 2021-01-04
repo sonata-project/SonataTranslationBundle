@@ -20,6 +20,7 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 
 /**
  * @final since sonata-project/translation-bundle 2.7
@@ -100,7 +101,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
      *
      * @param AdminInterface $admin Deprecated, set TranslatableListener in the constructor instead
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      *
      * @return TranslatableListener
      */
@@ -123,7 +124,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     /**
      * NEXT_MAJOR: Remove this method.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      */
     private function getManagerRegistry(AdminInterface $admin): ManagerRegistry
     {

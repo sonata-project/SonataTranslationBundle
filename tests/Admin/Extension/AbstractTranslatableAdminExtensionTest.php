@@ -96,6 +96,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         $extension = new class($this->translatableChecker) extends AbstractTranslatableAdminExtension {
         };
 
+        /* @phpstan-ignore-next-line */
         $this->assertSame('es', $extension->getTranslatableLocale($admin));
     }
 }

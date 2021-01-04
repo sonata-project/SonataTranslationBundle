@@ -26,7 +26,7 @@ interface TranslatableInterface
     public function setLocale($locale);
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLocale();
 }

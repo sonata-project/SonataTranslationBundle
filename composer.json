@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": "^7.3",
-        "sonata-project/admin-bundle": "^3.58",
+        "sonata-project/admin-bundle": "^3.85",
         "sonata-project/block-bundle": "^3.17 || ^4.0",
         "symfony/config": "^4.4",
         "symfony/dependency-injection": "^4.4",
@@ -48,6 +48,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.48",
+        "phpstan/phpstan-doctrine": "^0.12.26",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-symfony": "^0.12.11",
         "phpunit/phpunit": "^9.4.0",
