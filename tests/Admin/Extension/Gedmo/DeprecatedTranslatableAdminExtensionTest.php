@@ -17,7 +17,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
@@ -40,7 +39,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
     use ExpectDeprecationTrait;
 
     /**
-     * @var AdminInterface<object>
+     * @var AbstractAdmin<TranslatableInterface>
      */
     private $admin;
 

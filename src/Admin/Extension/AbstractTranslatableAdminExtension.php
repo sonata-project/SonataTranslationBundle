@@ -16,10 +16,13 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @phpstan-extends AbstractAdminExtension<TranslatableInterface>
  */
 abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 {
@@ -84,7 +87,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      * Return current translatable locale
      * ie: the locale used to load object translations != current request locale.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      *
      * @return string
      */
@@ -120,7 +123,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * @deprecated since version 2.7, to be removed in 3.0. Use dependency injection instead.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      *
      * @return ContainerInterface
      */
@@ -142,7 +145,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * @deprecated since version 2.7, to be removed in 3.0.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      *
      * Return the list of possible locales for your models.
      *
@@ -165,7 +168,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * Return the default locale if url parameter is not present.
      *
-     * @phpstan-param AdminInterface<object> $admin
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
      *
      * @return string
      */

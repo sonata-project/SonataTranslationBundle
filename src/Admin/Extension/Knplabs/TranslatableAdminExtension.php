@@ -39,16 +39,27 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     public function preUpdate(AdminInterface $admin, $object)
     {
+        if (!\is_callable([$object, 'mergeNewTranslations'])) {
+            throw new \InvalidArgumentException(sprintf(
+                'The object passed to "%s()" method MUST be properly configured using'
+                .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
+                __METHOD__
+            ));
+        }
+
         $object->mergeNewTranslations();
     }
 
-    /**
-     * @psalm-suppress MoreSpecificImplementedParamType
-     *
-     * @phpstan-param AdminInterface<object> $admin
-     */
     public function prePersist(AdminInterface $admin, $object)
     {
+        if (!\is_callable([$object, 'mergeNewTranslations'])) {
+            throw new \InvalidArgumentException(sprintf(
+                'The object passed to "%s()" method MUST be properly configured using'
+                .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
+                __METHOD__
+            ));
+        }
+
         $object->mergeNewTranslations();
     }
 }
