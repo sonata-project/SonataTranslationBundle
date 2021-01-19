@@ -101,7 +101,7 @@ class Configuration implements ConfigurationInterface
                     @trigger_error(sprintf(
                         'Showing the country flags is deprecated. The flags will be removed in the next major version. Please set "%s" to false to avoid this message.',
                         'sonata_translation.locale_switcher_show_country_flags'
-                    ), E_USER_DEPRECATED);
+                    ), \E_USER_DEPRECATED);
                     $v['locale_switcher_show_country_flags'] = $v['locale_switcher_show_country_flags'] ?? true;
 
                     return $v;

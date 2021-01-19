@@ -16,7 +16,7 @@ namespace Sonata\TranslationBundle\Traits;
 @trigger_error(
     'The '.__NAMESPACE__.'\Translatable class is deprecated since version 2.1 and will be removed in 3.0.'.
     'Use the '.__NAMESPACE__.'\TranslatableTrait class instead.',
-    E_USER_DEPRECATED
+    \E_USER_DEPRECATED
 );
 
 /**
