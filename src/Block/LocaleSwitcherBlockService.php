@@ -69,7 +69,7 @@ class LocaleSwitcherBlockService extends AbstractBlockService
                 null === $showCountryFlagsOrTemplating ? 'null' : EngineInterface::class,
                 __METHOD__,
                 \TypeError::class
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
 
             parent::__construct($templatingOrDeprecatedName, $showCountryFlagsOrTemplating);
             $this->showCountryFlags = $showCountryFlags ?? false;

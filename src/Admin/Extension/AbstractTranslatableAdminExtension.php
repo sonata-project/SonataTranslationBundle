@@ -59,7 +59,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
                 'Omitting the argument 2 or passing other type than "string" to "%s()" is deprecated'
                 .' since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.',
                 __METHOD__
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
         }
 
         $this->defaultTranslationLocale = $defaultTranslationLocale;
@@ -133,7 +133,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
             'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.'
             .' Use dependency injection instead.',
             __METHOD__
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
 
         \assert(\is_callable([$admin, 'getConfigurationPool']));
 
@@ -156,7 +156,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         @trigger_error(sprintf(
             'The "%s()" method is deprecated since sonata-project/translation-bundle 2.7 and will be removed in 3.0.',
             __METHOD__
-        ), E_USER_DEPRECATED);
+        ), \E_USER_DEPRECATED);
 
         return $this->getContainer($admin)->getParameter('sonata_translation.locales');
     }
