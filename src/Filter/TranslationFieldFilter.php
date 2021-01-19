@@ -101,9 +101,9 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    protected function association(ProxyQueryInterface $queryBuilder, $value): array
+    protected function association(ProxyQueryInterface $query, $data): array
     {
-        $alias = $queryBuilder->entityJoin($this->getParentAssociationMappings());
+        $alias = $query->entityJoin($this->getParentAssociationMappings());
 
         return [$this->getOption('alias', $alias), $this->getFieldName()];
     }
