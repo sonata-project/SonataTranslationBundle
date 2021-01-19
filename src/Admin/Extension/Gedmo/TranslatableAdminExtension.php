@@ -56,7 +56,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
                 .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
                 TranslatableListener::class,
                 __METHOD__
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
         }
 
         $this->translatableListener = $translatableListener;
@@ -67,7 +67,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
                 .' since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.',
                 ManagerRegistry::class,
                 __METHOD__
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
         }
 
         $this->managerRegistry = $managerRegistry;
