@@ -178,7 +178,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected function getDefaultTranslationLocale(AdminInterface $admin)
     {
         $locale = $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
-        assert(is_string($locale));
+        \assert(\is_string($locale));
 
         return $locale;
     }
