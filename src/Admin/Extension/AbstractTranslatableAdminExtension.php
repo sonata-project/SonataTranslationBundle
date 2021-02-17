@@ -158,7 +158,10 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
             __METHOD__
         ), \E_USER_DEPRECATED);
 
-        return $this->getContainer($admin)->getParameter('sonata_translation.locales');
+        /** @var string[] $locales */
+        $locales = $this->getContainer($admin)->getParameter('sonata_translation.locales');
+
+        return $locales;
     }
 
     /**
@@ -174,6 +177,9 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      */
     protected function getDefaultTranslationLocale(AdminInterface $admin)
     {
-        return $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
+        $locale = $this->getContainer($admin)->getParameter('sonata_translation.default_locale');
+        assert(is_string($locale));
+
+        return $locale;
     }
 }

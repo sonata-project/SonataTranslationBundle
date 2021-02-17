@@ -22,8 +22,6 @@ final class Article extends TranslatableEntity
     private $id;
 
     /**
-     * @var ArrayCollection<array-key, ArticleTranslation>
-     *
      * @ORM\OneToMany(
      *     indexBy="locale",
      *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\ArticleTranslation",
