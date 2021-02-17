@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,7 +18,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation;
 
 /**
  * @Gedmo\TranslationEntity(class="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation")
@@ -17,6 +27,17 @@ use Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatio
 class ArticlePersonalTranslatable
 {
     use PersonalTranslatableTrait;
+
+    /**
+     * @var ArrayCollection<array-key, AbstractPersonalTranslation>
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
 
     /**
      * @var int|null
@@ -34,17 +55,6 @@ class ArticlePersonalTranslatable
      * @ORM\Column(length=128)
      */
     private $title;
-
-    /**
-     * @var ArrayCollection<array-key, AbstractPersonalTranslation>
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation",
-     *     mappedBy="object",
-     *     cascade={"persist", "remove"}
-     * )
-     */
-    protected $translations;
 
     public function __construct()
     {
