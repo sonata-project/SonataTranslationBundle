@@ -37,10 +37,3 @@ parameters:
             message: "#^Parameter \\#2 \\$showCountryFlagsOrTemplating of class Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService constructor expects bool\\|Symfony\\\\Bundle\\\\FrameworkBundle\\\\Templating\\\\EngineInterface\\|null, stdClass given\\.$#"
             count: 1
             path: tests/Block/LocaleSwitcherBlockServiceTest.php
-
-        # Symfony issue
-
-        -
-            message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
-            count: 1
-            path: src/DependencyInjection/Configuration.php
