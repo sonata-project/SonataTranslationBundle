@@ -61,6 +61,9 @@ class SonataTranslationExtension extends Extension
 
         if ($config['gedmo']['enabled']) {
             $isEnabled = true;
+
+            $container->setAlias('sonata_translation.listener.translatable', $config['gedmo']['translatable_listener_service']);
+
             $loader->load('service_gedmo.xml');
 
             /**
