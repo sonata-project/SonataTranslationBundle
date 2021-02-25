@@ -1,6 +1,34 @@
 UPGRADE 2.x
 ===========
 
+UPGRADE FROM 2.x to 2.x
+=======================
+
+If you are using this bundle with "gedmo/doctrine-extensions", you MUST to specify the translatable listener service
+name in the configuration.
+
+Before:
+```yaml
+# config/packages/sonata_translation.yaml
+
+sonata_translation:
+    gedmo:
+      enabled: true
+```
+After:
+```yaml
+# config/packages/sonata_translation.yaml
+
+sonata_translation:
+    gedmo:
+        enabled: true
+        # in case you are using stof/doctrine-extensions-bundle
+        translatable_listener_service: stof_doctrine_extensions.listener.translatable
+```
+
+UPGRADE FROM 2.1 to 2.7
+=======================
+
 ### Added support for sonata-project/block-bundle ^4.0
 
 If you are using `sonata-project/block-bundle`, you MUST declare explicitly the dependency with this package on your `composer.json` in order to avoid unwanted upgrades.
