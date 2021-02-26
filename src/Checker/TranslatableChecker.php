@@ -104,11 +104,13 @@ class TranslatableChecker
         ];
 
         $traits = class_uses($object);
+        \assert(\is_array($traits));
         if (\count(array_intersect($translateTraits, $traits)) > 0) {
             return true;
         }
 
         $objectInterfaces = class_implements($object);
+        \assert(\is_array($objectInterfaces));
         foreach ($this->getSupportedInterfaces() as $interface) {
             if (\in_array($interface, $objectInterfaces, true)) {
                 return true;
