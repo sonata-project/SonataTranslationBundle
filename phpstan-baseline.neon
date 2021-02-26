@@ -37,3 +37,8 @@ parameters:
             message: "#^Parameter \\#2 \\$showCountryFlagsOrTemplating of class Sonata\\\\TranslationBundle\\\\Block\\\\LocaleSwitcherBlockService constructor expects bool\\|Symfony\\\\Bundle\\\\FrameworkBundle\\\\Templating\\\\EngineInterface\\|null, stdClass given\\.$#"
             count: 1
             path: tests/Block/LocaleSwitcherBlockServiceTest.php
+
+        -
+            message: "#^Parameter \\#1 \\$twig of method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) expects Twig\\\\Environment, string\\|Twig\\\\Environment\\|null given\\.$#"
+            count: 1
+            path: src/Block/LocaleSwitcherBlockService.php

@@ -77,6 +77,8 @@ final class XliffTest extends TestCase
     {
         $files = glob(sprintf('%s/*.xliff', $path));
 
+        \assert(\is_array($files));
+
         foreach ($files as $file) {
             $this->validateXliff($file);
         }
