@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\DependencyInjection;
 
+use Gedmo\Translatable\TranslatableListener;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
 use Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface as PHPCRTranslatableInterface;
 use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInterface;
@@ -62,7 +63,7 @@ class SonataTranslationExtension extends Extension
         if ($config['gedmo']['enabled']) {
             $isEnabled = true;
 
-            $container->setAlias('sonata_translation.listener.translatable', $config['gedmo']['translatable_listener_service']);
+            $this->registerTranslatableListener($container, $config['gedmo']);
 
             $loader->load('service_gedmo.xml');
 
@@ -161,5 +162,28 @@ class SonataTranslationExtension extends Extension
 
         $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', [$supportedInterfaces]);
         $translatableCheckerDefinition->addMethodCall('setSupportedModels', [$supportedModels]);
+    }
+
+    /**
+     * @param array{enabled: bool, translatable_listener_service?: string, implements: list<class-string>, instanceof: list<class-string>} $gedmoConfig
+     */
+    private function registerTranslatableListener(ContainerBuilder $container, array $gedmoConfig): void
+    {
+        if (isset($gedmoConfig['translatable_listener_service'])) {
+            $container->setAlias(
+                'sonata_translation.listener.translatable',
+                $gedmoConfig['translatable_listener_service']
+            );
+
+            return;
+        }
+
+        // Registration based on the documentation
+        // see https://github.com/doctrine-extensions/DoctrineExtensions/blob/7c0d5aeab0f840d2a18a18c3dc10b0117c597a42/doc/symfony4.md#doctrine-extension-listener-services
+        $container->register('sonata_translation.listener.translatable', TranslatableListener::class)
+            ->addMethodCall('setAnnotationReader', ['@annotation_reader'])
+            ->addMethodCall('setDefaultLocale', ['%locale%'])
+            ->addMethodCall('setTranslationFallback', [false])
+            ->addTag('doctrine.event_subscriber');
     }
 }

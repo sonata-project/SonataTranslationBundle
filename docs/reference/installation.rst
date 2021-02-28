@@ -43,7 +43,7 @@ To use the ``TranslationBundle``, add the following lines to your application co
                 # when using gedmo/doctrine-extensions, you have to register a translatable listener
                 # service or if you are using a bundle that integrates the library, it will be registered
                 # by the bundle (e.g. "stof_doctrine_extensions.listener.translatable" for "stof/doctrine-extensions-bundle").
-                # here you must specify the translatable listener service name.
+                # here you can provide a custom translatable listener service name.
                 translatable_listener_service: Gedmo\Translatable\TranslatableListener
             knplabs:
                 enabled: true

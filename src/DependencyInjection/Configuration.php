@@ -58,9 +58,7 @@ class Configuration implements ConfigurationInterface
                             ->prototype('scalar')->end()
                         ->end()
                         ->scalarNode('translatable_listener_service')
-                            ->isRequired()
-                            ->cannotBeEmpty()
-                            ->info('The translatable listener service that has to be registered when using gedmo/doctrine-extensions')
+                            ->info('Custom translatable listener service name when using gedmo/doctrine-extensions')
                             // NEXT_MAJOR: Remove default value.
                             ->defaultValue(static function (): string {
                                 @trigger_error(
