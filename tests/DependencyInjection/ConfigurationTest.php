@@ -59,21 +59,6 @@ final class ConfigurationTest extends TestCase
         );
     }
 
-    /**
-     * NEXT_MAJOR: remove this annotation.
-     *
-     * @group legacy
-     */
-    public function testGedmoTranslatableListenerServiceNameIsRequiredWhenGedmoIsEnabled(): void
-    {
-        $this->assertConfigurationIsInvalid(
-            [
-                ['gedmo' => true],
-            ],
-            'translatable_listener_service'
-        );
-    }
-
     protected function getConfiguration(): Configuration
     {
         return new Configuration();
