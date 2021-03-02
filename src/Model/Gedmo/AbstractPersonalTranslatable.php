@@ -29,7 +29,7 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
     /**
      * @var ArrayCollection|AbstractPersonalTranslation[]
      *
-     * @phpstan-var ArrayCollection<array-key, AbstractPersonalTranslation>
+     * @phpstan-var ArrayCollection<int, AbstractPersonalTranslation>
      */
     protected $translations;
 
@@ -41,7 +41,7 @@ abstract class AbstractPersonalTranslatable extends AbstractTranslatable
     /**
      * @return ArrayCollection|AbstractPersonalTranslation[]
      *
-     * @phpstan-return ArrayCollection<array-key, AbstractPersonalTranslation>
+     * @phpstan-return ArrayCollection<int, AbstractPersonalTranslation>
      */
     public function getTranslations()
     {

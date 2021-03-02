@@ -55,6 +55,21 @@ final class Configuration implements ConfigurationInterface
                             ->requiresAtLeastOneElement()
                             ->prototype('scalar')->end()
                         ->end()
+                        ->scalarNode('translatable_listener_service')
+                            ->info('Custom translatable listener service name when using gedmo/doctrine-extensions')
+                            // NEXT_MAJOR: Remove default value.
+                            ->defaultValue(static function (): string {
+                                @trigger_error(
+                                    'Not specifying the translatable listener service when using'
+                                    .' gedmo/doctrine-extensions is deprecated since sonata-project/translation-bundle 2.x.'
+                                    .' If you are using a bundle that integrates this library, it is likely that it'
+                                    .' registers that service for you. In case of "stof/doctrine-extensions-bundle", it is:'
+                                    .' "stof_doctrine_extensions.listener.translatable".'
+                                );
+
+                                return 'stof_doctrine_extensions.listener.translatable';
+                            })
+                        ->end()
                     ->end()
                 ->end()
                 ->arrayNode('knplabs')

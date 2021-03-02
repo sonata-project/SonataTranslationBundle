@@ -25,6 +25,7 @@ final class AdminExtensionCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         $translationTargets = $container->getParameter('sonata_translation.targets');
+        \assert(\is_array($translationTargets));
         $adminExtensionReferences = $this->getAdminExtensionReferenceByTypes(array_keys($translationTargets));
 
         foreach ($container->findTaggedServiceIds('sonata.admin') as $id => $attributes) {

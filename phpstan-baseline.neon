@@ -12,9 +12,7 @@ parameters:
             count: 1
             path: src/Filter/TranslationFieldFilter.php
 
-        # Symfony issue
-
         -
-            message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+            message: "#^Parameter \\#1 \\$twig of method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) expects Twig\\\\Environment, string\\|Twig\\\\Environment\\|null given\\.$#"
             count: 1
-            path: src/DependencyInjection/Configuration.php
+            path: src/Block/LocaleSwitcherBlockService.php

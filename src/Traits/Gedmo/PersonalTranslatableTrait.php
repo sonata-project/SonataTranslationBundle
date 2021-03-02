@@ -28,7 +28,7 @@ trait PersonalTranslatableTrait
     /**
      * @return ArrayCollection
      *
-     * @phpstan-return ArrayCollection<array-key, AbstractPersonalTranslation>
+     * @phpstan-return ArrayCollection<int, AbstractPersonalTranslation>
      */
     public function getTranslations()
     {

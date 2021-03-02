@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\DependencyInjection;
 
+use Gedmo\Translatable\TranslatableListener;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
@@ -54,6 +55,48 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertContainerBuilderNotHasService('sonata_translation.checker.translatable');
+    }
+
+    /**
+     * NEXT_MAJOR: remove this annotation.
+     *
+     * @group legacy
+     */
+    public function testCreatesAnAliasWhenUsingGedmo(): void
+    {
+        $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
+        $this->load([
+            'gedmo' => [
+                'enabled' => true,
+                'translatable_listener_service' => 'stof_doctrine_extensions.listener.translatable',
+            ],
+        ]);
+        $this->assertContainerBuilderHasAlias(
+            'sonata_translation.listener.translatable',
+            'stof_doctrine_extensions.listener.translatable'
+        );
+    }
+
+    /**
+     * NEXT_MAJOR: remove this annotation.
+     *
+     * @group legacy
+     */
+    public function testRegistersTranslatableListenerWhenUsingGedmo(): void
+    {
+        $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
+        $this->load([
+            'gedmo' => [
+                'enabled' => true,
+                // NEXT_MAJOR: Remove next line.
+                'translatable_listener_service' => null,
+            ],
+        ]);
+
+        $this->assertContainerBuilderHasService(
+            'sonata_translation.listener.translatable',
+            TranslatableListener::class
+        );
     }
 
     protected function getContainerExtensions(): array

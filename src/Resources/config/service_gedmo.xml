@@ -11,6 +11,5 @@
             <argument type="service" id="doctrine"/>
             <argument>%sonata_translation.default_locale%</argument>
         </service>
-        <service id="sonata_translation.listener.translatable" alias="stof_doctrine_extensions.listener.translatable"/>
     </services>
 </container>
