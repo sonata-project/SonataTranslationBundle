@@ -81,9 +81,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return $this->translatableLocale;
     }
 
-    public function getPersistentParameters(AdminInterface $admin): array
+    public function configurePersistentParameters(AdminInterface $admin, array $parameters): array
     {
-        return [self::TRANSLATABLE_LOCALE_PARAMETER => $this->getTranslatableLocale($admin)];
+        $parameters[self::TRANSLATABLE_LOCALE_PARAMETER] = $this->getTranslatableLocale($admin);
+
+        return $parameters;
     }
 
     public function alterNewInstance(AdminInterface $admin, object $object): void

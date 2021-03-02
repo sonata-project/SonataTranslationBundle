@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Filter;
 
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\Filter;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -33,8 +33,7 @@ final class TranslationFieldFilter extends Filter
         $this->filterMode = $filterMode;
     }
 
-    // NEXT_MAJOR: Add type declarations when added in sonata-project/doctrine-orm-admin-bundle.
-    public function filter(ProxyQueryInterface $query, $alias, $field, $data): void
+    public function filter(ProxyQueryInterface $query, string $alias, string $field, array $data): void
     {
         if (!$data || !\is_array($data) || !\array_key_exists('value', $data) || null === $data['value']) {
             return;
@@ -102,7 +101,7 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    protected function association(ProxyQueryInterface $query, $data): array
+    protected function association(ProxyQueryInterface $query, array $data): array
     {
         $alias = $query->entityJoin($this->getParentAssociationMappings());
 
@@ -112,7 +111,7 @@ final class TranslationFieldFilter extends Filter
     /**
      * @param mixed[] $data
      */
-    private function applyGedmoFilters(ProxyQuery $query, string $joinAlias, string $alias, string $field, $data): void
+    private function applyGedmoFilters(ProxyQueryInterface $query, string $joinAlias, string $alias, string $field, array $data): void
     {
         $this->applyWhere($query, $query->getQueryBuilder()->expr()->orX(
             $query->getQueryBuilder()->expr()->andX(
@@ -132,7 +131,7 @@ final class TranslationFieldFilter extends Filter
     /**
      * @param mixed[] $data
      */
-    private function applyKnplabsFilters(ProxyQuery $query, string $joinAlias, string $field, $data): void
+    private function applyKnplabsFilters(ProxyQueryInterface $query, string $joinAlias, string $field, array $data): void
     {
         $this->applyWhere(
             $query,

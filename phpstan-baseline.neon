@@ -5,14 +5,3 @@ parameters:
             message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
             count: 1
             path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
-
-        -
-            # this is inherit from sonata-project/doctrine-orm-admin-bundle
-            message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Datagrid\\\\ProxyQueryInterface\\:\\:entityJoin\\(\\)\\.$#"
-            count: 1
-            path: src/Filter/TranslationFieldFilter.php
-
-        -
-            message: "#^Parameter \\#1 \\$twig of method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) expects Twig\\\\Environment, string\\|Twig\\\\Environment\\|null given\\.$#"
-            count: 1
-            path: src/Block/LocaleSwitcherBlockService.php

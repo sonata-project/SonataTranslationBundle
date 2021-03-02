@@ -35,7 +35,6 @@ final class ConfigurationTest extends TestCase
             [
                 'default_locale' => 'en',
                 'default_filter_mode' => 'gedmo',
-                'locale_switcher_show_country_flags' => true,
                 'locale_switcher' => false,
                 'locales' => [],
                 'gedmo' => [
