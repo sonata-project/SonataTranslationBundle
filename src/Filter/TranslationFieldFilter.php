@@ -35,7 +35,7 @@ final class TranslationFieldFilter extends Filter
 
     public function filter(ProxyQueryInterface $query, string $alias, string $field, array $data): void
     {
-        if (!$data || !\is_array($data) || !\array_key_exists('value', $data) || null === $data['value']) {
+        if (!$data || !\array_key_exists('value', $data) || null === $data['value']) {
             return;
         }
 
