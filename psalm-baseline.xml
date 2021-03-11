@@ -18,6 +18,15 @@
             <code>OptionsResolverInterface</code>
         </UndefinedClass>
     </file>
+    <file src="src/Filter/TranslationFieldFilter.php">
+        <RedundantCondition occurrences="1">
+            <code>\assert($query instanceof ProxyQuery)</code>
+        </RedundantCondition>
+        <TypeDoesNotContainType occurrences="2">
+            <code>!$data || !\is_array($data)</code>
+            <code>!\is_array($data)</code>
+        </TypeDoesNotContainType>
+    </file>
     <!-- Symfony issue -->
     <file src="src/DependencyInjection/Configuration.php">
         <PossiblyUndefinedMethod occurrences="1">
