@@ -38,7 +38,11 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
 
     public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
-        return $this->renderPrivateResponse($blockContext->getTemplate(), [
+        $template = $blockContext->getTemplate();
+
+        \assert(\is_string($template));
+
+        return $this->renderPrivateResponse($template, [
             'block_context' => $blockContext,
             'block' => $blockContext->getBlock(),
         ], $response);
