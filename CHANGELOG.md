@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [[#464](https://github.com/sonata-project/SonataTranslationBundle/pull/464)] Added `sonata_translation.gedmo.translatable_listener_service` option to specify the translatable listener service name ([@franmomu](https://github.com/franmomu))
 
 ### Deprecated
-- [[#464](https://github.com/sonata-project/SonataTranslationBundle/pull/464)] Deprecated not setting `sonata_translation.gedmo.translatable_listener_service` option when using gedmo. ([@franmomu](https://github.com/franmomu))
+- [[#464](https://github.com/sonata-project/SonataTranslationBundle/pull/464)] Deprecated not setting `sonata_translation.gedmo.translatable_listener_service` option when using gedmo ([@franmomu](https://github.com/franmomu))
 
 ## [2.7.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.6.0...2.7.0) - 2020-11-25
 ### Added
