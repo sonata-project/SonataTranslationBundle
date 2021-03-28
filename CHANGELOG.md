@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.8.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.7.0...2.8.0) - 2021-03-28
+### Added
+- [[#453](https://github.com/sonata-project/SonataTranslationBundle/pull/453)] Add support for PHP 8.x ([@Yozhef](https://github.com/Yozhef))
+- [[#464](https://github.com/sonata-project/SonataTranslationBundle/pull/464)] Added `sonata_translation.gedmo.translatable_listener_service` option to specify the translatable listener service name ([@franmomu](https://github.com/franmomu))
+
+### Deprecated
+- [[#464](https://github.com/sonata-project/SonataTranslationBundle/pull/464)] Deprecated not setting `sonata_translation.gedmo.translatable_listener_service` option when using gedmo ([@franmomu](https://github.com/franmomu))
+
 ## [2.7.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.6.0...2.7.0) - 2020-11-25
 ### Added
 - [[#416](https://github.com/sonata-project/SonataTranslationBundle/pull/416)]
