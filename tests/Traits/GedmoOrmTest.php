@@ -63,8 +63,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
             ->setField('title')
             ->setContent('lt')
             ->setObject($article)
-            ->setLocale('lt')
-        ;
+            ->setLocale('lt');
         $this->em->persist($ltTranslation);
         $this->em->persist($article);
         $this->em->flush();
