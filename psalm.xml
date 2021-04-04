@@ -7,6 +7,14 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <NonInvariantDocblockPropertyType>
+            <errorLevel type="suppress">
+                <!-- We specify a more specific type for $object property -->
+                <file name="tests/Fixtures/Traits/ORM/ArticlePersonalTranslation.php"/>
+            </errorLevel>
+        </NonInvariantDocblockPropertyType>
+    </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
