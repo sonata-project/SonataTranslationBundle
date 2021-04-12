@@ -22,7 +22,7 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "sonata-project/admin-bundle": "4.x-dev",
-        "sonata-project/block-bundle": "^3.17 || ^4.0",
+        "sonata-project/block-bundle": "^4.0",
         "symfony/config": "^4.4 || ^5.1",
         "symfony/dependency-injection": "^4.4 || ^5.1",
         "symfony/form": "^4.4 || ^5.1",
