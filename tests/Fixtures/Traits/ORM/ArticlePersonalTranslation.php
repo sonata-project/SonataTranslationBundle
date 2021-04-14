@@ -23,7 +23,7 @@ use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 class ArticlePersonalTranslation extends AbstractPersonalTranslation
 {
     /**
-     * @var ArticlePersonalTranslatable
+     * @var ArticlePersonalTranslatable|null
      *
      * @ORM\ManyToOne(targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslatable", inversedBy="translations")
      * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")

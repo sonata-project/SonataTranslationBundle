@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Filter;
 
+use Doctrine\ORM\Query\Expr\Join;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
@@ -39,18 +40,20 @@ final class TranslationFieldFilter extends Filter
             return;
         }
 
-        $data['value'] = trim((string) $data['value']);
+        $value = trim((string) $data['value']);
 
-        if (0 === \strlen($data['value'])) {
+        if (0 === \strlen($value)) {
             return;
         }
         $joinAlias = 'tff';
-        $filterMode = $this->getOption('filter_mode');
+        $filterMode = (string) $this->getOption('filter_mode');
 
         \assert($query instanceof ProxyQuery);
 
         // verify if the join is not already done
         $aliasAlreadyExists = false;
+
+        /** @var Join[] $joins */
         foreach ($query->getQueryBuilder()->getDQLParts()['join'] as $joins) {
             foreach ($joins as $join) {
                 if ($join->getAlias() === $joinAlias) {
@@ -67,12 +70,12 @@ final class TranslationFieldFilter extends Filter
 
         if (TranslationFilterMode::GEDMO === $filterMode) {
             // search on translation OR on normal field when using Gedmo
-            $this->applyGedmoFilters($query, $joinAlias, $alias, $field, $data);
+            $this->applyGedmoFilters($query, $joinAlias, $alias, $field, $value);
 
             $this->active = true;
         } elseif (TranslationFilterMode::KNPLABS === $filterMode) {
             // search on translation OR on normal field when using Knp
-            $this->applyKnplabsFilters($query, $joinAlias, $field, $data);
+            $this->applyKnplabsFilters($query, $joinAlias, $field, $value);
 
             $this->active = true;
         } else {
@@ -108,37 +111,31 @@ final class TranslationFieldFilter extends Filter
         return [$this->getOption('alias', $alias), $this->getFieldName()];
     }
 
-    /**
-     * @param mixed[] $data
-     */
-    private function applyGedmoFilters(ProxyQueryInterface $query, string $joinAlias, string $alias, string $field, array $data): void
+    private function applyGedmoFilters(ProxyQueryInterface $query, string $joinAlias, string $alias, string $field, string $value): void
     {
         $this->applyWhere($query, $query->getQueryBuilder()->expr()->orX(
             $query->getQueryBuilder()->expr()->andX(
                 $query->getQueryBuilder()->expr()->eq($joinAlias.'.field', $query->getQueryBuilder()->expr()->literal($field)),
                 $query->getQueryBuilder()->expr()->like(
                     $joinAlias.'.content',
-                    $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
+                    $query->getQueryBuilder()->expr()->literal('%'.$value.'%')
                 )
             ),
             $query->getQueryBuilder()->expr()->like(
                 sprintf('%s.%s', $alias, $field),
-                $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
+                $query->getQueryBuilder()->expr()->literal('%'.$value.'%')
             )
         ));
     }
 
-    /**
-     * @param mixed[] $data
-     */
-    private function applyKnplabsFilters(ProxyQueryInterface $query, string $joinAlias, string $field, array $data): void
+    private function applyKnplabsFilters(ProxyQueryInterface $query, string $joinAlias, string $field, string $value): void
     {
         $this->applyWhere(
             $query,
             $query->getQueryBuilder()->expr()->andX(
                 $query->getQueryBuilder()->expr()->like(
                     $joinAlias.".$field",
-                    $query->getQueryBuilder()->expr()->literal('%'.$data['value'].'%')
+                    $query->getQueryBuilder()->expr()->literal('%'.$value.'%')
                 )
             )
         );

@@ -21,7 +21,7 @@ namespace Sonata\TranslationBundle\Traits;
 trait TranslatableTrait
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $locale;
 
@@ -34,7 +34,7 @@ trait TranslatableTrait
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLocale()
     {

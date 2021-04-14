@@ -66,7 +66,7 @@ final class SonataTranslationExtension extends AbstractExtension
     /**
      * Check if $object is translatable.
      *
-     * @param mixed $object
+     * @param object|string|null $object
      */
     public function isTranslatable($object): bool
     {

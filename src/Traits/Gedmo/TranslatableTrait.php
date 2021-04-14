@@ -25,7 +25,7 @@ trait TranslatableTrait
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      *
-     * @var string
+     * @var string|null
      */
     protected $locale;
 
@@ -38,7 +38,7 @@ trait TranslatableTrait
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLocale()
     {

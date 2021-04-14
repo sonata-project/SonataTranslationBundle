@@ -38,18 +38,20 @@ final class Article extends TranslatableEntity
      * )
      */
     protected $translations;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      *
-     * @var int
+     * @var int|null
      */
     private $id;
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->newTranslations = new ArrayCollection();
     }
 
     public static function getTranslationEntityClass(): string
@@ -57,7 +59,7 @@ final class Article extends TranslatableEntity
         return ArticleTranslation::class;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

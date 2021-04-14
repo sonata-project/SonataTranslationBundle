@@ -21,7 +21,7 @@ namespace Sonata\TranslationBundle\Model;
 abstract class AbstractTranslatable
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $locale;
 
@@ -34,7 +34,7 @@ abstract class AbstractTranslatable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLocale()
     {

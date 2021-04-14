@@ -54,7 +54,7 @@ final class SonataTranslationExtension extends Extension
 
         $translationTargets = [];
 
-        if ($config['gedmo']['enabled']) {
+        if ($this->isConfigEnabled($container, $config['gedmo'])) {
             $isEnabled = true;
 
             $this->registerTranslatableListener($container, $config['gedmo']);
@@ -76,7 +76,8 @@ final class SonataTranslationExtension extends Extension
             $listOfClasses = $config['gedmo']['instanceof'];
             $translationTargets['gedmo']['instanceof'] = $listOfClasses;
         }
-        if ($config['knplabs']['enabled']) {
+
+        if ($this->isConfigEnabled($container, $config['knplabs'])) {
             $isEnabled = true;
             $loader->load('service_knplabs.xml');
 
@@ -95,7 +96,8 @@ final class SonataTranslationExtension extends Extension
             $listOfClasses = $config['knplabs']['instanceof'];
             $translationTargets['knplabs']['instanceof'] = $listOfClasses;
         }
-        if ($config['phpcr']['enabled']) {
+
+        if ($this->isConfigEnabled($container, $config['phpcr'])) {
             $isEnabled = true;
             $loader->load('service_phpcr.xml');
 
