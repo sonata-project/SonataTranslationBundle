@@ -31,7 +31,7 @@ abstract class AbstractTranslatable extends \Sonata\TranslationBundle\Model\Abst
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      *
-     * @var string
+     * @var string|null
      */
     protected $locale;
 }

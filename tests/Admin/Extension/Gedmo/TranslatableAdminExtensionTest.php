@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Admin\Extension\Gedmo;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Translatable\TranslatableListener;
+use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
@@ -29,7 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**
-     * @var AdminInterface<TranslatableInterface>
+     * @var AdminInterface<TranslatableInterface>&Stub
      */
     private $admin;
 
@@ -72,7 +73,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = $this->createMock(AdminInterface::class);
+        $this->admin = $this->createStub(AdminInterface::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
 

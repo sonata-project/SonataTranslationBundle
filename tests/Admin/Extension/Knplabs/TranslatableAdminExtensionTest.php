@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Admin\Extension\Knplabs;
 
+use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
@@ -28,7 +29,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**
-     * @var AdminInterface<TranslatableInterface>
+     * @var AdminInterface<TranslatableInterface>&Stub
      */
     private $admin;
 

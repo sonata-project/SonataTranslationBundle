@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd" autoloader="vendor/bin/.phpunit/phpunit/vendor/autoload.php" errorBaseline="psalm-baseline.xml" errorLevel="3">
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd" autoloader="vendor/bin/.phpunit/phpunit/vendor/autoload.php" errorBaseline="psalm-baseline.xml" errorLevel="2">
     <projectFiles>
         <directory name="src"/>
         <directory name="tests"/>
@@ -14,6 +14,15 @@
                 <file name="tests/Fixtures/Traits/ORM/ArticlePersonalTranslation.php"/>
             </errorLevel>
         </NonInvariantDocblockPropertyType>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <!-- False positive, see https://github.com/vimeo/psalm/issues/5593 -->
+                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$id"/>
+                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$locale"/>
+                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$field"/>
+                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$content"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
