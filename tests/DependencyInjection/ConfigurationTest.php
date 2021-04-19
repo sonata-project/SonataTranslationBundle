@@ -21,11 +21,6 @@ final class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    /**
-     * NEXT_MAJOR: remove this annotation.
-     *
-     * @group legacy
-     */
     public function testDefaultConfiguration(): void
     {
         $this->assertProcessedConfigurationEquals(
@@ -41,8 +36,6 @@ final class ConfigurationTest extends TestCase
                     'enabled' => false,
                     'implements' => [],
                     'instanceof' => [],
-                    // NEXT_MAJOR: Remove next line.
-                    'translatable_listener_service' => 'stof_doctrine_extensions.listener.translatable',
                 ],
                 'phpcr' => [
                     'enabled' => false,

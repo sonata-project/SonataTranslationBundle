@@ -57,11 +57,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderNotHasService('sonata_translation.checker.translatable');
     }
 
-    /**
-     * NEXT_MAJOR: remove this annotation.
-     *
-     * @group legacy
-     */
     public function testCreatesAnAliasWhenUsingGedmo(): void
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
@@ -77,11 +72,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    /**
-     * NEXT_MAJOR: remove this annotation.
-     *
-     * @group legacy
-     */
     public function testRegistersTranslatableListenerWhenUsingGedmo(): void
     {
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
