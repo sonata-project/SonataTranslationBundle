@@ -10,6 +10,3 @@ parameters:
     paths:
         - src
         - tests
-
-    excludes_analyse:
-        - src/Test/DoctrineOrmTestCase.php
