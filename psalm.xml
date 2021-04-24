@@ -21,6 +21,7 @@
                 <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$locale"/>
                 <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$field"/>
                 <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$content"/>
+                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$object"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>
