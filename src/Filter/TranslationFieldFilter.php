@@ -105,7 +105,7 @@ final class TranslationFieldFilter extends Filter
     {
         $alias = $query->entityJoin($this->getParentAssociationMappings());
 
-        return [$this->getOption('alias', $alias), $this->getFieldName()];
+        return [(string) $this->getOption('alias', $alias), $this->getFieldName()];
     }
 
     /**
