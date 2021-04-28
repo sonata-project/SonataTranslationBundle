@@ -13,7 +13,6 @@ This bundle adds a locale switcher block in :
 **Currently supported :**
 
 * **ORM** : integrates Doctrine ORM entities with Gedmo extensions
-* **PHPCR**: integrates Doctrine PHPCR ODM
 
 In addition, it provides a nice global locale switcher for your admin.
 
@@ -26,6 +25,5 @@ In addition, it provides a nice global locale switcher for your admin.
    reference/installation
    reference/advanced_configuration
    reference/orm
-   reference/phpcr
    reference/custom_action
    reference/global_locale_switcher

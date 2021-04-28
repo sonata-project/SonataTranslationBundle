@@ -47,8 +47,6 @@ To use the ``TranslationBundle``, add the following lines to your application co
                 translatable_listener_service: Gedmo\Translatable\TranslatableListener
             knplabs:
                 enabled: true
-            #phpcr:
-            #    enabled: true
 
 ==================  ============================================================================
 Key                 Description
@@ -60,8 +58,7 @@ Key                 Description
 .. note::
 
     If you are using the SonatAdminBundle with the SonataDoctrineORMAdminBundle_, you should
-    read the :doc:`ORM chapter </reference/orm>`. If you are using SonataDoctrinePhpcrAdminBundle_,
-    you should read the :doc:`PHPCR chapter </reference/phpcr>`.
+    read the :doc:`ORM chapter </reference/orm>`.
 
 Import the Styles
 -----------------
@@ -87,4 +84,3 @@ Now, you're good to go!
 
 .. _installation chapter: https://getcomposer.org/doc/00-intro.md
 .. _SonataDoctrineORMAdminBundle: https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/index.html
-.. _SonataDoctrinePhpcrAdminBundle: https://sonata-project.org/bundles/doctrine-phpcr-admin/master/doc/index.html

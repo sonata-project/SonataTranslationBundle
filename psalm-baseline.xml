@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
-    <!-- sonata-project/doctrine-phpcr-admin-bundle cannot be currently installed because it is not compatible with sonata-project/block-bundle 4 -->
-    <file src="src/Admin/Extension/Phpcr/TranslatableAdminExtension.php">
-        <PossiblyNullReference occurrences="1">
-            <code>getDocumentManager</code>
-        </PossiblyNullReference>
-        <UndefinedInterfaceMethod occurrences="1">
-            <code>getDocumentManager</code>
-        </UndefinedInterfaceMethod>
-    </file>
     <!-- Symfony issue -->
     <file src="src/DependencyInjection/Configuration.php">
         <PossiblyUndefinedMethod occurrences="1">

@@ -37,11 +37,6 @@ final class ConfigurationTest extends TestCase
                     'implements' => [],
                     'instanceof' => [],
                 ],
-                'phpcr' => [
-                    'enabled' => false,
-                    'implements' => [],
-                    'instanceof' => [],
-                ],
                 'knplabs' => [
                     'enabled' => false,
                     'implements' => [],

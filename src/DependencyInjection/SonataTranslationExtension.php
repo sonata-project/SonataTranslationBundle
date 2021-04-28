@@ -15,7 +15,6 @@ namespace Sonata\TranslationBundle\DependencyInjection;
 
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
-use Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface as PHPCRTranslatableInterface;
 use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
@@ -97,29 +96,6 @@ final class SonataTranslationExtension extends Extension
             $translationTargets['knplabs']['instanceof'] = $listOfClasses;
         }
 
-        if ($this->isConfigEnabled($container, $config['phpcr'])) {
-            $isEnabled = true;
-            $loader->load('service_phpcr.xml');
-
-            /**
-             * @phpstan-var list<class-string>
-             */
-            $listOfInterfaces = array_merge(
-                [
-                    PHPCRTranslatableInterface::class,
-                    'Symfony\Cmf\Bundle\CoreBundle\Translatable\TranslatableInterface',
-                ],
-                $config['phpcr']['implements']
-            );
-            $translationTargets['phpcr']['implements'] = $listOfInterfaces;
-
-            /**
-             * @phpstan-var list<class-string>
-             */
-            $listOfClasses = $config['phpcr']['instanceof'];
-            $translationTargets['phpcr']['instanceof'] = $listOfClasses;
-        }
-
         if (true === $isEnabled) {
             $loader->load('block.xml');
             $loader->load('listener.xml');
@@ -135,7 +111,6 @@ final class SonataTranslationExtension extends Extension
      * @phpstan-param array{
      *  gedmo?: array{implements: list<class-string>, instanceof: list<class-string>},
      *  knplabs?: array{implements: list<class-string>, instanceof: list<class-string>},
-     *  phpcr?: array{implements: list<class-string>, instanceof: list<class-string>}
      * } $translationTargets
      */
     private function configureChecker(ContainerBuilder $container, array $translationTargets): void

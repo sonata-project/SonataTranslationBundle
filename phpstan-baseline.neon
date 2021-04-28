@@ -1,7 +1,0 @@
-parameters:
-    ignoreErrors:
-        -
-            # sonata-project/doctrine-phpcr-admin-bundle cannot be currently installed because it is not compatible with sonata-project/block-bundle 4
-            message: "#^Call to an undefined method Sonata\\\\AdminBundle\\\\Model\\\\ModelManagerInterface\\:\\:getDocumentManager\\(\\)\\.$#"
-            count: 1
-            path: src/Admin/Extension/Phpcr/TranslatableAdminExtension.php
