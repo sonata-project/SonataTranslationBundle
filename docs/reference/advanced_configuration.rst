@@ -5,7 +5,7 @@ By default ``SonataTranslation`` provides a set of default interfaces you should
 automatically handled.
 If you have specific needs and can't use them, but this bundle gives you other ways to use it.
 
-Here is an example with PHPCR :
+Here is an example with Gedmo :
 
 .. configuration-block::
 
@@ -14,7 +14,7 @@ Here is an example with PHPCR :
         # config/packages/sonata_translation.yaml
 
         sonata_translation:
-            phpcr:
+            gedmo:
                 enabled: true
                 implements:
 

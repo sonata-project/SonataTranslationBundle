@@ -34,7 +34,6 @@
     "conflict": {
         "doctrine/annotations": "<1.8",
         "doctrine/persistence": "<2.0",
-        "doctrine/phpcr-odm": ">=3.0",
         "gedmo/doctrine-extensions": "<2.4.36",
         "knplabs/doctrine-behaviors": "<2.0 || >=3.0",
         "sonata-project/doctrine-orm-admin-bundle": "<4.0"
@@ -42,9 +41,7 @@
     "require-dev": {
         "doctrine/orm": "^2.5",
         "doctrine/persistence": "^2.0",
-        "doctrine/phpcr-odm": "^1.5",
         "gedmo/doctrine-extensions": "^2.3.36 || ^3.0",
-        "jackalope/jackalope-doctrine-dbal": "^1.5",
         "knplabs/doctrine-behaviors": "^2.0",
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
@@ -63,7 +60,6 @@
         "weirdan/doctrine-psalm-plugin": "^1.0"
     },
     "suggest": {
-        "doctrine/phpcr-odm": "if you translate odm documents",
         "gedmo/doctrine-extensions": "if you translate orm entities with the gedmo extensions",
         "knplabs/doctrine-behaviors": "if you translate orm entities with the knplabs behaviours",
         "sonata-project/doctrine-orm-admin-bundle": "if you translate orm entities and search on translated fields"
