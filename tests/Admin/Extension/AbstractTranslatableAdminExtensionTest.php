@@ -39,8 +39,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             TranslatableInterface::class,
         ]);
 
-        $this->extension = new class($this->translatableChecker, 'es') extends AbstractTranslatableAdminExtension {
-        };
+        $this->extension = new class($this->translatableChecker, 'en') extends AbstractTranslatableAdminExtension {};
     }
 
     public function testGetTranslatableLocaleFromRequest(): void
@@ -56,12 +55,24 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         $this->assertSame('es', $this->extension->getTranslatableLocale($admin));
     }
 
+    public function testGetTranslatableLocaleFromDefaultWithRequestWithNoLocale(): void
+    {
+        $request = new Request();
+
+        $admin = $this->createStub(AdminInterface::class);
+
+        $admin->method('getRequest')->willReturn($request);
+        $admin->method('hasRequest')->willReturn(true);
+
+        $this->assertSame('en', $this->extension->getTranslatableLocale($admin));
+    }
+
     public function testGetTranslatableLocaleFromDefault(): void
     {
         $admin = $this->createStub(AdminInterface::class);
 
         $admin->method('hasRequest')->willReturn(false);
 
-        $this->assertSame('es', $this->extension->getTranslatableLocale($admin));
+        $this->assertSame('en', $this->extension->getTranslatableLocale($admin));
     }
 }
