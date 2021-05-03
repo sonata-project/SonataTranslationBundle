@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
+use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
@@ -92,7 +93,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
+        $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
         $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
@@ -111,7 +112,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => null]);
+        $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => null]));
         $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o',
             $builder->getDQL()
@@ -130,7 +131,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::GEDMO);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'o', 'title', ['type' => null, 'value' => 'foo']);
+        $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
         $this->assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
