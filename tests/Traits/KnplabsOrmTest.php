@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
+use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
@@ -60,7 +61,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::KNPLABS);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => 'foo']);
+        $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
         $this->assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",
@@ -79,7 +80,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::KNPLABS);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => null]);
+        $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => null]));
         $this->assertSame(
             'SELECT a FROM '.self::ARTICLE.' a',
             $builder->getDQL()
@@ -98,7 +99,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter = new TranslationFieldFilter(TranslationFilterMode::KNPLABS);
         $filter->initialize('title');
 
-        $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => 'foo']);
+        $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
         $this->assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",

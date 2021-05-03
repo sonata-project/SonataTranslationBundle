@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Filter;
 
 use Doctrine\ORM\Query\Expr\Join;
+use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
@@ -34,13 +35,13 @@ final class TranslationFieldFilter extends Filter
         $this->filterMode = $filterMode;
     }
 
-    public function filter(ProxyQueryInterface $query, string $alias, string $field, array $data): void
+    public function filter(ProxyQueryInterface $query, string $alias, string $field, FilterData $data): void
     {
-        if (!$data || !\array_key_exists('value', $data) || null === $data['value']) {
+        if (!$data->hasValue() || null === $data->getValue()) {
             return;
         }
 
-        $value = trim((string) $data['value']);
+        $value = trim((string) $data->getValue());
 
         if (0 === \strlen($value)) {
             return;
@@ -104,7 +105,7 @@ final class TranslationFieldFilter extends Filter
         ]];
     }
 
-    protected function association(ProxyQueryInterface $query, array $data): array
+    protected function association(ProxyQueryInterface $query, FilterData $data): array
     {
         $alias = $query->entityJoin($this->getParentAssociationMappings());
 
