@@ -18,13 +18,10 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
-use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 final class AbstractTranslatableAdminExtensionTest extends TestCase
 {
-    use ExpectDeprecationTrait;
-
     /**
      * @var AbstractTranslatableAdminExtension
      */
