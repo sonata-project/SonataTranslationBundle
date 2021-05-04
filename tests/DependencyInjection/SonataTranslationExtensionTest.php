@@ -18,6 +18,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
@@ -86,6 +87,12 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService(
             'sonata_translation.listener.translatable',
             TranslatableListener::class
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sonata_translation.listener.translatable',
+            'setAnnotationReader',
+            [new Reference('annotation_reader')]
         );
     }
 
