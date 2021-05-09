@@ -73,12 +73,12 @@ final class TranslationFieldFilter extends Filter
             // search on translation OR on normal field when using Gedmo
             $this->applyGedmoFilters($query, $joinAlias, $alias, $field, $value);
 
-            $this->active = true;
+            $this->setActive(true);
         } elseif (TranslationFilterMode::KNPLABS === $filterMode) {
             // search on translation OR on normal field when using Knp
             $this->applyKnplabsFilters($query, $joinAlias, $field, $value);
 
-            $this->active = true;
+            $this->setActive(true);
         } else {
             throw new \LogicException(sprintf('Invalid filter mode given: "%s"', $filterMode));
         }
