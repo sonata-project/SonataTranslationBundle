@@ -48,6 +48,10 @@ To use the ``TranslationBundle``, add the following lines to your application co
             knplabs:
                 enabled: true
 
+        sonata_block:
+            blocks:
+                sonata_translation.block.locale_switcher:
+
 ==================  ============================================================================
 Key                 Description
 ==================  ============================================================================
