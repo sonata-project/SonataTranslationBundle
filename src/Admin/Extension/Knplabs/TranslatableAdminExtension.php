@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Knplabs;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 
@@ -37,7 +38,7 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
 
     public function preUpdate(AdminInterface $admin, object $object): void
     {
-        if (!\is_callable([$object, 'mergeNewTranslations'])) {
+        if (!$object instanceof TranslatableInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'The object passed to "%s()" method MUST be properly configured using'
                 .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
@@ -50,7 +51,7 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
 
     public function prePersist(AdminInterface $admin, object $object): void
     {
-        if (!\is_callable([$object, 'mergeNewTranslations'])) {
+        if (!$object instanceof TranslatableInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'The object passed to "%s()" method MUST be properly configured using'
                 .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
