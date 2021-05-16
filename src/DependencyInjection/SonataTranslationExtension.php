@@ -19,7 +19,7 @@ use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInter
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -39,17 +39,17 @@ final class SonataTranslationExtension extends Extension
         $container->setParameter('sonata_translation.default_locale', $config['default_locale']);
 
         $isEnabled = false;
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('twig_intl.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('twig_intl.php');
 
         if ($config['locale_switcher']) {
-            $loader->load('service_locale_switcher.xml');
+            $loader->load('service_locale_switcher.php');
         }
 
         $bundles = $container->getParameter('kernel.bundles');
         \assert(\is_array($bundles));
         if (\array_key_exists('SonataDoctrineORMAdminBundle', $bundles)) {
-            $loader->load('service_orm.xml');
+            $loader->load('service_orm.php');
         }
 
         $translationTargets = [];
@@ -59,7 +59,7 @@ final class SonataTranslationExtension extends Extension
 
             $this->registerTranslatableListener($container, $config['gedmo']);
 
-            $loader->load('service_gedmo.xml');
+            $loader->load('service_gedmo.php');
 
             /**
              * @phpstan-var list<class-string>
@@ -79,7 +79,7 @@ final class SonataTranslationExtension extends Extension
 
         if ($this->isConfigEnabled($container, $config['knplabs'])) {
             $isEnabled = true;
-            $loader->load('service_knplabs.xml');
+            $loader->load('service_knplabs.php');
 
             /**
              * @phpstan-var list<class-string>
@@ -98,9 +98,9 @@ final class SonataTranslationExtension extends Extension
         }
 
         if (true === $isEnabled) {
-            $loader->load('block.xml');
-            $loader->load('listener.xml');
-            $loader->load('twig.xml');
+            $loader->load('block.php');
+            $loader->load('listener.php');
+            $loader->load('twig.php');
         }
 
         $container->setParameter('sonata_translation.targets', $translationTargets);
