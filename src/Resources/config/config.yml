@@ -1,3 +1,0 @@
-sonata_block:
-    blocks:
-        sonata_translation.block.locale_switcher:
