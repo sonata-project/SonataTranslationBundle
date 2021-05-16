@@ -177,7 +177,7 @@ Example for translation class for Personal Translation
 Configure search filter
 -----------------------
 
-**This step is optional**, but you can use the ``doctrine_orm_translation_field``
+**This step is optional**, but you can use the ``TranslationFieldFilter::class``
 filter to search on fields and on their translations. Depending on whether you choose to use **KnpLabs** or **Gedmo**,
 you should configure the ``default_filter_mode`` in the configuration. You can also configure how
 the filtering logic should work on a per-field basis by specifying an option named ``filter_mode`` on your field.
