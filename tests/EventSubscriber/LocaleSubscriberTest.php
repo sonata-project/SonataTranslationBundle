@@ -80,12 +80,18 @@ final class LocaleSubscriberTest extends TestCase
         $this->assertSame('fr', $request->getLocale());
     }
 
+    /**
+     * @psalm-suppress DeprecatedConstant
+     */
     private function getEvent(Request $request): RequestEvent
     {
         return new RequestEvent(
             $this->createMock(HttpKernelInterface::class),
             $request,
-            HttpKernelInterface::MASTER_REQUEST
+            // @TODO: Use "HttpKernelInterface::MAIN_REQUEST" when support of Symfony <5.2 is dropped
+            \defined(HttpKernelInterface::class.'::MAIN_REQUEST')
+                ? HttpKernelInterface::MAIN_REQUEST
+                : HttpKernelInterface::MASTER_REQUEST
         );
     }
 }

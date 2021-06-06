@@ -40,6 +40,11 @@ class User implements UserInterface
         return 'username';
     }
 
+    public function getUserIdentifier(): string
+    {
+        return 'username';
+    }
+
     public function eraseCredentials(): void
     {
     }
