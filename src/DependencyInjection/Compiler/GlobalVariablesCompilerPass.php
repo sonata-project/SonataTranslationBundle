@@ -18,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @internal
  */
 final class GlobalVariablesCompilerPass implements CompilerPassInterface
 {

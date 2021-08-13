@@ -19,6 +19,8 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
+ *
+ * @internal
  */
 final class AdminExtensionCompilerPass implements CompilerPassInterface
 {
