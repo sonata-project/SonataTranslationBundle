@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslation;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
@@ -29,8 +28,7 @@ final class GedmoTest extends TestCase
         $model = new ModelTranslatable();
         $model->setLocale('fr');
 
-        $this->assertSame('fr', $model->getLocale());
-        $this->assertInstanceOf(TranslatableInterface::class, $model);
+        self::assertSame('fr', $model->getLocale());
     }
 
     public function testPersonalTranslatableModel(): void
@@ -38,17 +36,16 @@ final class GedmoTest extends TestCase
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');
 
-        $this->assertSame('fr', $model->getLocale());
-        $this->assertInstanceOf(TranslatableInterface::class, $model);
+        self::assertSame('fr', $model->getLocale());
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));
         $model->addTranslation(new ModelPersonalTranslation('es', 'title', 'Title es'));
 
-        $this->assertSame('Title en', $model->getTranslation('title', 'en'));
-        $this->assertSame('Title it', $model->getTranslation('title', 'it'));
-        $this->assertSame('Title es', $model->getTranslation('title', 'es'));
+        self::assertSame('Title en', $model->getTranslation('title', 'en'));
+        self::assertSame('Title it', $model->getTranslation('title', 'it'));
+        self::assertSame('Title es', $model->getTranslation('title', 'es'));
 
-        $this->assertCount(3, $model->getTranslations());
+        self::assertCount(3, $model->getTranslations());
     }
 }

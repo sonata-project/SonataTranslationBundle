@@ -51,7 +51,7 @@ abstract class DoctrineOrmTestCase extends TestCase
             'memory' => true,
         ];
 
-        $em = EntityManager::create($conn, $config ?: $this->getMockAnnotatedConfig(), $evm ?: new EventManager());
+        $em = EntityManager::create($conn, $config ?? $this->getMockAnnotatedConfig(), $evm ?? new EventManager());
 
         $schema = array_map(static function (string $class) use ($em): ClassMetadata {
             return $em->getClassMetadata($class);

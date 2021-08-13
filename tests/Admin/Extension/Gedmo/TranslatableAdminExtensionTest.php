@@ -84,14 +84,14 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $this->extension->alterNewInstance($this->admin, $this->object);
 
-        $this->assertSame('es', $this->object->getLocale());
+        self::assertSame('es', $this->object->getLocale());
     }
 
     public function testAlterObjectForTranslatableObject(): void
     {
         $this->extension->alterObject($this->admin, $this->object);
 
-        $this->assertSame('es', $this->object->getLocale());
+        self::assertSame('es', $this->object->getLocale());
     }
 
     public function testConfigureQuery(): void

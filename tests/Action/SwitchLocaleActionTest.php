@@ -32,6 +32,6 @@ final class SwitchLocaleActionTest extends TestCase
         $request->setSession($session);
         $action = new SwitchLocaleAction();
         $action($request, 'fr');
-        $this->assertSame('fr', $session->get('_locale'));
+        self::assertSame('fr', $session->get('_locale'));
     }
 }

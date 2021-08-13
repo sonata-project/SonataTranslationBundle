@@ -65,20 +65,20 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $this->extension->alterNewInstance($this->admin, $this->object);
 
-        $this->assertSame('es', $this->object->getLocale());
+        self::assertSame('es', $this->object->getLocale());
     }
 
     public function testAlterObjectForTranslatableObject(): void
     {
         $this->extension->alterObject($this->admin, $this->object);
 
-        $this->assertSame('es', $this->object->getLocale());
+        self::assertSame('es', $this->object->getLocale());
     }
 
     public function testPreUpdate(): void
     {
         $object = $this->createMock(TranslatableEntity::class);
-        $object->expects($this->once())->method('mergeNewTranslations');
+        $object->expects(self::once())->method('mergeNewTranslations');
 
         $this->extension->preUpdate($this->admin, $object);
     }
@@ -86,7 +86,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     public function testPrePersist(): void
     {
         $object = $this->createMock(TranslatableEntity::class);
-        $object->expects($this->once())->method('mergeNewTranslations');
+        $object->expects(self::once())->method('mergeNewTranslations');
 
         $this->extension->prePersist($this->admin, $object);
     }
