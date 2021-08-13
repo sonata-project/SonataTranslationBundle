@@ -16,7 +16,6 @@ namespace Sonata\TranslationBundle\Filter;
 use Doctrine\ORM\Query\Expr\Join;
 use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\AdminBundle\Form\Type\Filter\DefaultType;
-use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\Filter;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -43,13 +42,11 @@ final class TranslationFieldFilter extends Filter
 
         $value = trim((string) $data->getValue());
 
-        if (0 === \strlen($value)) {
+        if ('' === $value) {
             return;
         }
         $joinAlias = 'tff';
         $filterMode = (string) $this->getOption('filter_mode');
-
-        \assert($query instanceof ProxyQuery);
 
         // verify if the join is not already done
         $aliasAlreadyExists = false;
