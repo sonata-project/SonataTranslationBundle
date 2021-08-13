@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 
 /**
@@ -27,7 +26,6 @@ final class KnplabsTest extends TestCase
         $model = new TranslatableEntity();
         $model->setLocale('fr');
 
-        $this->assertSame('fr', $model->getLocale());
-        $this->assertInstanceOf(TranslatableInterface::class, $model);
+        self::assertSame('fr', $model->getLocale());
     }
 }

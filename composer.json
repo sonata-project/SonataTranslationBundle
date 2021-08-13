@@ -50,6 +50,7 @@
         "phpstan/phpstan": "^0.12.48",
         "phpstan/phpstan-doctrine": "^0.12.26",
         "phpstan/phpstan-phpunit": "^0.12.16",
+        "phpstan/phpstan-strict-rules": "^0.12.10",
         "phpstan/phpstan-symfony": "^0.12.11",
         "psalm/plugin-phpunit": "^0.15.0",
         "psalm/plugin-symfony": "^2.0",

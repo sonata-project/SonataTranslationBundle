@@ -52,7 +52,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         $admin->method('getRequest')->willReturn($request);
         $admin->method('hasRequest')->willReturn(true);
 
-        $this->assertSame('es', $this->extension->getTranslatableLocale($admin));
+        self::assertSame('es', $this->extension->getTranslatableLocale($admin));
     }
 
     public function testGetTranslatableLocaleFromDefaultWithRequestWithNoLocale(): void
@@ -64,7 +64,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         $admin->method('getRequest')->willReturn($request);
         $admin->method('hasRequest')->willReturn(true);
 
-        $this->assertSame('en', $this->extension->getTranslatableLocale($admin));
+        self::assertSame('en', $this->extension->getTranslatableLocale($admin));
     }
 
     public function testGetTranslatableLocaleFromDefault(): void
@@ -73,6 +73,6 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
 
         $admin->method('hasRequest')->willReturn(false);
 
-        $this->assertSame('en', $this->extension->getTranslatableLocale($admin));
+        self::assertSame('en', $this->extension->getTranslatableLocale($admin));
     }
 }

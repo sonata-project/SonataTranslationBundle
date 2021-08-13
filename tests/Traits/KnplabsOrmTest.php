@@ -39,7 +39,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         parent::setUp();
 
         if (!class_exists(EntityManager::class)) {
-            $this->markTestSkipped('Doctrine ORM is not available.');
+            self::markTestSkipped('Doctrine ORM is not available.');
         }
 
         $evm = new EventManager();
@@ -62,12 +62,12 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
-        $this->assertSame(
+        self::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        $this->assertTrue($filter->isActive());
+        self::assertTrue($filter->isActive());
     }
 
     public function testTranslationFieldFilterWithoutValue(): void
@@ -81,11 +81,11 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => null]));
-        $this->assertSame(
+        self::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a',
             $builder->getDQL()
         );
-        $this->assertFalse($filter->isActive());
+        self::assertFalse($filter->isActive());
     }
 
     public function testTranslationFieldFilterIfAlreadyJoined(): void
@@ -100,12 +100,12 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
-        $this->assertSame(
+        self::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        $this->assertTrue($filter->isActive());
+        self::assertTrue($filter->isActive());
     }
 
     protected function getUsedEntityFixtures(): array
