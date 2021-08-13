@@ -3,7 +3,9 @@
  */
 .sonata-bc {
 
-    .sonata-ba-form, .sonata-ba-show, .box-primary {
+    .sonata-ba-form,
+    .sonata-ba-show,
+    .box-primary {
         .locale_switcher {
             padding: 1px 0 0 0;
             text-align: right;
@@ -23,60 +25,10 @@
                 }
             }
         }
-        label.wysiwyg.locale,
-        label.checkbox.locale,
-        input.locale,
-        textarea.locale,
-        select.locale,
-        li.locale a {
-            background-repeat: no-repeat;
-        }
-        input[type="text"].locale,
-        select.locale {
-            padding-left: 35px !important;
-            background-position: 5px center;
-        }
-        textarea.locale {
-            padding-left: 35px;
-            background-position: 5px 5px;
-        }
-        label.wysiwyg.locale, label.checkbox.locale {
-            padding-right: 35px;
-            background-position: right bottom;
-        }
-        .form-horizontal .controls input[type="checkbox"] {
-            /*top: 5px;*/
-            position: relative;
-            width: 15px;
-
-            &.locale {
-                width: 65px;
-                background-position: 0 center;
-            }
-
-            &:before {
-                margin-right: 35px;
-            }
-        }
     }
     .sonata-ba-show {
         .locale_switcher {
             margin-right: 15px;
         }
     }
-    @languages: 'fr', 'en', 'it', 'es', 'nl';
-    @path: '/bundles/sonatatranslation/img/flags/';
-
-    .-(@i: length(@languages)) when (@i > 0) {
-        @language: e(extract(@languages, @i));
-        &.locale_@{language} {
-            label.wysiwyg.locale, label.checkbox.locale, input.locale, textarea.locale, select.locale, li.locale a {
-                background-image: url('@{path}@{language}.png');
-            }
-            input[type="checkbox"].locale:before {
-                content: url('@{path}@{language}.png');
-            }
-        }
-        .-((@i - 1));
-    } .-;
 }
