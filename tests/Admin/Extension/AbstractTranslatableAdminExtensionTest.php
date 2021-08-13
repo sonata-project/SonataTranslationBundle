@@ -32,6 +32,9 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
      */
     private $translatableChecker;
 
+    /**
+     * @psalm-suppress InternalClass https://github.com/vimeo/psalm/issues/6315
+     */
     protected function setUp(): void
     {
         $this->translatableChecker = new TranslatableChecker();

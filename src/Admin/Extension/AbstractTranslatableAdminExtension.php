@@ -22,6 +22,8 @@ use Sonata\TranslationBundle\Model\TranslatableInterface;
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
  * @phpstan-extends AbstractAdminExtension<TranslatableInterface>
+ *
+ * @internal
  */
 abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 {
