@@ -34,11 +34,6 @@ final class SonataTranslationExtension extends AbstractExtension
         $this->translatableChecker = $translatableChecker;
     }
 
-    public function getName(): string
-    {
-        return 'sonata_translation';
-    }
-
     public function setTranslatableChecker(TranslatableChecker $translatableChecker): void
     {
         $this->translatableChecker = $translatableChecker;
