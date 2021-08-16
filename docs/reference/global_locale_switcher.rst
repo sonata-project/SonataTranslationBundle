@@ -53,4 +53,4 @@ interface. Well, let's find out by going to `/admin`
    :alt: Sonata Dashboard with locale switcher
    :width: 700px
 
-.. _`Sonata Intl Bundle`: https://sonata-project.org/bundles/intl
+.. _`Sonata Intl Bundle`: https://docs.sonata-project.org/projects/SonataIntlBundle/en/2.x/
