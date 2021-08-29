@@ -87,4 +87,4 @@ Add CSS file to your SonataAdminBundle config:
 Now, you're good to go!
 
 .. _installation chapter: https://getcomposer.org/doc/00-intro.md
-.. _SonataDoctrineORMAdminBundle: https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/index.html
+.. _SonataDoctrineORMAdminBundle: https://docs.sonata-project.org/projects/SonataDoctrineORMAdminBundle/en/3.x/
