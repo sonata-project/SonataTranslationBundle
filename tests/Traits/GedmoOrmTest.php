@@ -36,7 +36,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         parent::setUp();
 
         if (!class_exists(EntityManager::class)) {
-            self::markTestSkipped('Doctrine ORM is not available.');
+            static::markTestSkipped('Doctrine ORM is not available.');
         }
 
         $evm = new EventManager();
@@ -80,7 +80,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $article = $this->em->find(self::ARTICLE, ['id' => 1]);
         \assert($article instanceof ArticlePersonalTranslatable);
         $translations = $article->getTranslations();
-        self::assertCount(3, $translations);
+        static::assertCount(3, $translations);
     }
 
     public function testTranslationFieldFilter(): void
@@ -94,12 +94,12 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
-        self::assertSame(
+        static::assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        self::assertTrue($filter->isActive());
+        static::assertTrue($filter->isActive());
     }
 
     public function testTranslationFieldFilterWithoutValue(): void
@@ -113,11 +113,11 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => null]));
-        self::assertSame(
+        static::assertSame(
             'SELECT o FROM '.self::ARTICLE.' o',
             $builder->getDQL()
         );
-        self::assertFalse($filter->isActive());
+        static::assertFalse($filter->isActive());
     }
 
     public function testTranslationFieldFilterIfAlreadyJoined(): void
@@ -132,12 +132,12 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'o', 'title', FilterData::fromArray(['type' => null, 'value' => 'foo']));
-        self::assertSame(
+        static::assertSame(
             'SELECT o FROM '.self::ARTICLE.' o LEFT JOIN o.translations tff'
             ." WHERE (tff.field = 'title' AND tff.content LIKE '%foo%') OR o.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        self::assertTrue($filter->isActive());
+        static::assertTrue($filter->isActive());
     }
 
     protected function getUsedEntityFixtures(): array

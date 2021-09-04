@@ -29,12 +29,12 @@ final class TranslatableCheckerForKnpTest extends TestCase
 
         $object = new TranslatableEntity();
 
-        self::assertFalse($translatableChecker->isTranslatable($object));
+        static::assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedInterfaces([
             TranslatableInterface::class,
         ]);
 
-        self::assertTrue($translatableChecker->isTranslatable($object));
+        static::assertTrue($translatableChecker->isTranslatable($object));
     }
 }

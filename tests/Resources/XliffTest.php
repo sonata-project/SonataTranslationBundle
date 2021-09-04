@@ -44,7 +44,7 @@ final class XliffTest extends TestCase
     {
         $this->validatePath($path);
 
-        self::assertCount(0, $this->errors, sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
+        static::assertCount(0, $this->errors, sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
     }
 
     /**

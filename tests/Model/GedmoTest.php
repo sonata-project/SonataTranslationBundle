@@ -28,7 +28,7 @@ final class GedmoTest extends TestCase
         $model = new ModelTranslatable();
         $model->setLocale('fr');
 
-        self::assertSame('fr', $model->getLocale());
+        static::assertSame('fr', $model->getLocale());
     }
 
     public function testPersonalTranslatableModel(): void
@@ -36,16 +36,16 @@ final class GedmoTest extends TestCase
         $model = new ModelPersonalTranslatable();
         $model->setLocale('fr');
 
-        self::assertSame('fr', $model->getLocale());
+        static::assertSame('fr', $model->getLocale());
 
         $model->addTranslation(new ModelPersonalTranslation('en', 'title', 'Title en'));
         $model->addTranslation(new ModelPersonalTranslation('it', 'title', 'Title it'));
         $model->addTranslation(new ModelPersonalTranslation('es', 'title', 'Title es'));
 
-        self::assertSame('Title en', $model->getTranslation('title', 'en'));
-        self::assertSame('Title it', $model->getTranslation('title', 'it'));
-        self::assertSame('Title es', $model->getTranslation('title', 'es'));
+        static::assertSame('Title en', $model->getTranslation('title', 'en'));
+        static::assertSame('Title it', $model->getTranslation('title', 'it'));
+        static::assertSame('Title es', $model->getTranslation('title', 'es'));
 
-        self::assertCount(3, $model->getTranslations());
+        static::assertCount(3, $model->getTranslations());
     }
 }
