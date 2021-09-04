@@ -38,6 +38,7 @@
         "knplabs/doctrine-behaviors": "<2.0 || >=3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/orm": "^2.5",
         "doctrine/persistence": "^2.0",
         "gedmo/doctrine-extensions": "^3.0",
@@ -51,8 +52,10 @@
         "phpstan/phpstan-strict-rules": "^0.12.10",
         "phpstan/phpstan-symfony": "^0.12.11",
         "psalm/plugin-phpunit": "^0.16",
-        "psalm/plugin-symfony": "^2.0",
+        "psalm/plugin-symfony": "^3.0",
         "sonata-project/doctrine-orm-admin-bundle": "^4.0@rc",
+        "symfony/browser-kit": "^4.4 || ^5.3",
+        "symfony/css-selector": "^4.4 || ^5.3",
         "symfony/framework-bundle": "^4.4 || ^5.3",
         "symfony/phpunit-bridge": "^5.3",
         "vimeo/psalm": "^4.3.2",

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\AdminBundle\Tests\Checker;
+namespace Sonata\TranslationBundle\Tests\Checker;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
