@@ -41,7 +41,7 @@ final class LocaleSubscriberTest extends TestCase
         $event = $this->getEvent($request);
         $localeSubscriber = new LocaleSubscriber();
         $localeSubscriber->onKernelRequest($event);
-        $this->assertSame('fr', $request->getLocale());
+        static::assertSame('fr', $request->getLocale());
     }
 
     /**
@@ -60,7 +60,7 @@ final class LocaleSubscriberTest extends TestCase
         $event = $this->getEvent($request);
         $localeSubscriber = new LocaleSubscriber();
         $localeSubscriber->onKernelRequest($event);
-        $this->assertSame('fr', $session->get('_locale'));
+        static::assertSame('fr', $session->get('_locale'));
     }
 
     /**
@@ -77,7 +77,7 @@ final class LocaleSubscriberTest extends TestCase
         $event = $this->getEvent($request);
         $localeSubscriber = new LocaleSubscriber('fr');
         $localeSubscriber->onKernelRequest($event);
-        $this->assertSame('fr', $request->getLocale());
+        static::assertSame('fr', $request->getLocale());
     }
 
     private function getEvent(Request $request): RequestEvent

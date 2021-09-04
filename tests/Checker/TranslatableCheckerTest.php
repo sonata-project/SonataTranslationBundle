@@ -31,13 +31,13 @@ final class TranslatableCheckerTest extends TestCase
 
         $object = new ModelTranslatable();
 
-        $this->assertFalse($translatableChecker->isTranslatable($object));
+        static::assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedInterfaces([
             TranslatableInterface::class,
         ]);
 
-        $this->assertTrue($translatableChecker->isTranslatable($object));
+        static::assertTrue($translatableChecker->isTranslatable($object));
     }
 
     public function testIsTranslatableOnModel(): void
@@ -46,13 +46,13 @@ final class TranslatableCheckerTest extends TestCase
 
         $object = new ModelCustomTranslatable();
 
-        $this->assertFalse($translatableChecker->isTranslatable($object));
+        static::assertFalse($translatableChecker->isTranslatable($object));
 
         $translatableChecker->setSupportedModels([
             ModelCustomTranslatable::class,
         ]);
 
-        $this->assertTrue($translatableChecker->isTranslatable($object));
+        static::assertTrue($translatableChecker->isTranslatable($object));
     }
 
     public function testIsTranslatableOnTrait(): void
@@ -61,6 +61,6 @@ final class TranslatableCheckerTest extends TestCase
 
         $object = new ModelUsingTraitTranslatable();
 
-        $this->assertTrue($translatableChecker->isTranslatable($object));
+        static::assertTrue($translatableChecker->isTranslatable($object));
     }
 }

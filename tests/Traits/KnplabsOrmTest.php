@@ -38,7 +38,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         parent::setUp();
 
         if (!class_exists(EntityManager::class)) {
-            $this->markTestSkipped('Doctrine ORM is not available.');
+            static::markTestSkipped('Doctrine ORM is not available.');
         }
 
         $evm = new EventManager();
@@ -61,12 +61,12 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => 'foo']);
-        $this->assertSame(
+        static::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        $this->assertTrue($filter->isActive());
+        static::assertTrue($filter->isActive());
     }
 
     public function testTranslationFieldFilterWithoutValue(): void
@@ -80,11 +80,11 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => null]);
-        $this->assertSame(
+        static::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a',
             $builder->getDQL()
         );
-        $this->assertFalse($filter->isActive());
+        static::assertFalse($filter->isActive());
     }
 
     public function testTranslationFieldFilterIfAlreadyJoined(): void
@@ -99,12 +99,12 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $filter->initialize('title');
 
         $filter->filter($builder, 'a', 'title', ['type' => null, 'value' => 'foo']);
-        $this->assertSame(
+        static::assertSame(
             'SELECT a FROM '.self::ARTICLE.' a LEFT JOIN a.translations tff'
             ." WHERE tff.title LIKE '%foo%'",
             $builder->getDQL()
         );
-        $this->assertTrue($filter->isActive());
+        static::assertTrue($filter->isActive());
     }
 
     protected function getUsedEntityFixtures(): array

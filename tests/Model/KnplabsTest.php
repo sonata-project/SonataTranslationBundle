@@ -27,7 +27,7 @@ final class KnplabsTest extends TestCase
         $model = new TranslatableEntity();
         $model->setLocale('fr');
 
-        $this->assertSame('fr', $model->getLocale());
-        $this->assertInstanceOf(TranslatableInterface::class, $model);
+        static::assertSame('fr', $model->getLocale());
+        static::assertInstanceOf(TranslatableInterface::class, $model);
     }
 }

@@ -40,9 +40,9 @@ final class UserLocaleSubscriberTest extends TestCase
         $request->setSession($session);
         $event = $this->getEvent($request, $user);
         $userLocaleSubscriber = new UserLocaleSubscriber();
-        $this->assertTrue($session->isStarted());
+        static::assertTrue($session->isStarted());
         $userLocaleSubscriber->onInteractiveLogin($event);
-        $this->assertSame($expectedLocale, $session->get('_locale'));
+        static::assertSame($expectedLocale, $session->get('_locale'));
     }
 
     /**
@@ -68,12 +68,12 @@ final class UserLocaleSubscriberTest extends TestCase
         $event = $this->getEvent($request, $user);
         $userLocaleSubscriber = new UserLocaleSubscriber();
         $userLocaleSubscriber->onInteractiveLogin($event);
-        $this->assertFalse($session->isStarted());
-        $this->assertNull($session->get('_locale'));
+        static::assertFalse($session->isStarted());
+        static::assertNull($session->get('_locale'));
         $session->set('_locale', 'en');
-        $this->assertTrue($session->isStarted());
+        static::assertTrue($session->isStarted());
         $userLocaleSubscriber->onInteractiveLogin($event);
-        $this->assertSame('en', $session->get('_locale'));
+        static::assertSame('en', $session->get('_locale'));
     }
 
     private function getEvent(Request $request, UserInterface $user): InteractiveLoginEvent
