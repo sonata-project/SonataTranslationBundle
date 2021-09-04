@@ -40,7 +40,7 @@ final class GedmoCRUDTest extends WebTestCase
 
         $this->client->request(Request::METHOD_GET, $url);
 
-        self::assertSelectorTextContains('.sonata-ba-list-field-text[objectid="category_novel"] .sonata-link-identifier', $name);
+        self::assertSelectorTextContains('.sonata-ba-list-field-string[objectid="category_novel"] .sonata-link-identifier', $name);
     }
 
     /**
@@ -83,7 +83,7 @@ final class GedmoCRUDTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $url);
 
         self::assertSelectorTextContains(
-            sprintf('.sonata-ba-list-field-text[objectid="%s"] .sonata-link-identifier', $newId),
+            sprintf('.sonata-ba-list-field-string[objectid="%s"] .sonata-link-identifier', $newId),
             $newName
         );
     }
@@ -124,7 +124,7 @@ final class GedmoCRUDTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $url);
 
         self::assertSelectorTextContains(
-            '.sonata-ba-list-field-text[objectid="category_novel"] .sonata-link-identifier',
+            '.sonata-ba-list-field-string[objectid="category_novel"] .sonata-link-identifier',
             $editedName
         );
     }

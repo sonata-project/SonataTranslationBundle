@@ -91,23 +91,13 @@ final class AppKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
-        // NEXT_MAJOR: Remove the next following 2 lines.
-        $loader->load(__DIR__.'/config/config_v4.yml');
-        $loader->load(__DIR__.'/config/security_v4.yml');
-
-        // NEXT_MAJOR: Uncomment the following lines.
-//        if (interface_exists(AuthenticatorFactoryInterface::class)) {
-//            $loader->load(__DIR__.'/config/config_v5.yml');
-//            $loader->load(__DIR__.'/config/security_v5.yml');
-//        } else {
-//            $loader->load(__DIR__.'/config/config_v4.yml');
-//            $loader->load(__DIR__.'/config/security_v4.yml');
-//        }
-
-        $gedmoMappingDir = is_dir(__DIR__.'/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity')
-            ? '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity'
-            // NEXT_MAJOR: Remove next line.
-            : '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity';
+        if (interface_exists(AuthenticatorFactoryInterface::class)) {
+            $loader->load(__DIR__.'/config/config_v5.yml');
+            $loader->load(__DIR__.'/config/security_v5.yml');
+        } else {
+            $loader->load(__DIR__.'/config/config_v4.yml');
+            $loader->load(__DIR__.'/config/security_v4.yml');
+        }
 
         $container
             ->loadFromExtension('doctrine', [
@@ -125,7 +115,7 @@ final class AppKernel extends Kernel
                         'gedmo_translatable' => [
                             'type' => 'annotation',
                             'prefix' => 'Gedmo\Translatable\Entity',
-                            'dir' => $gedmoMappingDir,
+                            'dir' => '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
                             'is_bundle' => false,
                         ],
                     ],
@@ -136,7 +126,6 @@ final class AppKernel extends Kernel
             ->loadFromExtension('sonata_translation', [
                 'default_locale' => 'en',
                 'locales' => ['en', 'es', 'fr'],
-                'locale_switcher_show_country_flags' => false,
                 'gedmo' => [
                     'enabled' => true,
                     'translatable_listener_service' => 'app.gedmo.translation_listener',

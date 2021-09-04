@@ -79,8 +79,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->load([
             'gedmo' => [
                 'enabled' => true,
-                // NEXT_MAJOR: Remove next line.
-                'translatable_listener_service' => null,
             ],
         ]);
 
