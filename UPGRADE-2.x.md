@@ -26,6 +26,19 @@ sonata_translation:
         translatable_listener_service: stof_doctrine_extensions.listener.translatable
 ```
 
+### Deprecated abstract models and traits
+
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`.
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation`.
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`.
+- `Sonata\TranslationBundle\Model\AbstractTranslatable`.
+- `Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait`.
+- `Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait`.
+- `Sonata\TranslationBundle\Traits\TranslatableTrait`.
+
+All abstract models and traits for translatable models have been deprecated without replacement, you should create
+your own.
+
 UPGRADE FROM 2.1 to 2.7
 =======================
 

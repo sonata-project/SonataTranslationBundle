@@ -14,9 +14,13 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Traits;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * If you don't want to use trait, you can extend AbstractTranslatable instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @deprecated since version 2.x and will be removed in 3.0.
  */
 trait TranslatableTrait
 {

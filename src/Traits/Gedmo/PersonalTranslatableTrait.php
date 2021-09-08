@@ -17,7 +17,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * If you don't want to use trait, you can extend AbstractPersonalTranslatable instead.
+ *
+ * @deprecated since version 2.x, to be removed in 3.0. Create your own trait instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */

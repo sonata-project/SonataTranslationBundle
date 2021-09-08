@@ -95,20 +95,6 @@ class TranslatableChecker
             return false;
         }
 
-        // NEXT_MAJOR: remove Translateable and PersonalTrait.
-        $translateTraits = [
-            Translatable::class,
-            TranslatableTrait::class,
-            PersonalTranslatable::class,
-            PersonalTranslatableTrait::class,
-        ];
-
-        $traits = class_uses($object);
-        \assert(\is_array($traits));
-        if (\count(array_intersect($translateTraits, $traits)) > 0) {
-            return true;
-        }
-
         $objectInterfaces = class_implements($object);
         \assert(\is_array($objectInterfaces));
         foreach ($this->getSupportedInterfaces() as $interface) {
@@ -121,6 +107,28 @@ class TranslatableChecker
             if ($object instanceof $model) {
                 return true;
             }
+        }
+
+        // NEXT_MAJOR: remove Translateable and PersonalTrait.
+        $translateTraits = [
+            Translatable::class,
+            TranslatableTrait::class,
+            PersonalTranslatable::class,
+            PersonalTranslatableTrait::class,
+        ];
+
+        $traits = class_uses($object);
+        \assert(\is_array($traits));
+        if (\count(array_intersect($translateTraits, $traits)) > 0) {
+            @trigger_error(sprintf(
+                'Using traits to specify that a model is translatable is deprecated since'
+                .' sonata-project/translation-bundle 2.x and will be not possible in version 3.0. To mark "%s" class'
+                .' as translatable you should implement one of "%s" interfaces.',
+                \is_string($object) ? $object : \get_class($object),
+                implode(', ', $this->getSupportedInterfaces())
+            ), \E_USER_DEPRECATED);
+
+            return true;
         }
 
         return false;
