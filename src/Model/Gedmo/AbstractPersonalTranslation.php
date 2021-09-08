@@ -16,8 +16,11 @@ namespace Sonata\TranslationBundle\Model\Gedmo;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation as GedmoAbstractPersonalTranslation;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
+ * @deprecated since version 2.x, to be removed in 3.0. Create your own instead.
  * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md : Personal translations
  */
 class AbstractPersonalTranslation extends GedmoAbstractPersonalTranslation

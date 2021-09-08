@@ -15,6 +15,9 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Model;
 
 use Sonata\TranslationBundle\Traits\TranslatableTrait;
 
+/**
+ * NEXT_MAJOR: Remove this class.
+ */
 class ModelUsingTraitTranslatable
 {
     use TranslatableTrait;
