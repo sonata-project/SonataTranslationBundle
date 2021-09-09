@@ -18,15 +18,7 @@ namespace Sonata\TranslationBundle\Model;
  */
 interface TranslatableInterface
 {
-    /**
-     * @param string $locale
-     *
-     * @return void
-     */
-    public function setLocale($locale);
+    public function setLocale(string $locale): void;
 
-    /**
-     * @return string|null
-     */
-    public function getLocale();
+    public function getLocale(): ?string;
 }
