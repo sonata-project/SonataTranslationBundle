@@ -18,9 +18,10 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
 
+// NEXT_MAJOR: Remove this file.
 // @todo Remove check and else part when dropping support for knplabs/doctrine-behaviors < 2.0
 if (interface_exists(KNPTranslatableInterface::class)) {
-    class TranslatableEntity implements KNPTranslatableInterface
+    class DeprecatedTranslatableEntity implements TranslatableInterface, KNPTranslatableInterface
     {
         use TranslatableTrait;
 
@@ -33,9 +34,19 @@ if (interface_exists(KNPTranslatableInterface::class)) {
         {
             return $this->id;
         }
+
+        public function setLocale($locale)
+        {
+            $this->setCurrentLocale($locale);
+        }
+
+        public function getLocale()
+        {
+            return $this->getCurrentLocale();
+        }
     }
 } else {
-    class TranslatableEntity implements TranslatableInterface
+    class DeprecatedTranslatableEntity implements TranslatableInterface
     {
         use Translatable;
 

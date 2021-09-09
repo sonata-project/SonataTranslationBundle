@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Knplabs;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
+use Sonata\TranslationBundle\Model\TranslatableInterface;
 
 /**
  * @final since sonata-project/translation-bundle 2.7
@@ -26,14 +28,42 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     public function alterNewInstance(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $object->setLocale($this->getTranslatableLocale($admin));
+            // NEXT_MAJOR: Only call to: $object->setCurrentLocale($this->getTranslatableLocale($admin));
+            if ($object instanceof TranslatableInterface && interface_exists(KnpTranslatableInterface::class)) {
+                @trigger_error(sprintf(
+                    'Implementing "%1$s" for entities using "knplabs/doctrine-behaviors" >= 3 is deprecated'
+                    .' since sonata-project/translation-bundle 2.x and "%1$s::setLocale()" method will not be called'
+                    .' anymore in version 3.0.',
+                    TranslatableInterface::class
+                ), \E_USER_DEPRECATED);
+            }
+
+            if ($object instanceof KnpTranslatableInterface && !$object instanceof TranslatableInterface) {
+                $object->setCurrentLocale($this->getTranslatableLocale($admin));
+            } else {
+                $object->setLocale($this->getTranslatableLocale($admin));
+            }
         }
     }
 
     public function alterObject(AdminInterface $admin, $object)
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $object->setLocale($this->getTranslatableLocale($admin));
+            // NEXT_MAJOR: Only call to: $object->setCurrentLocale($this->getTranslatableLocale($admin));
+            if ($object instanceof TranslatableInterface && interface_exists(KnpTranslatableInterface::class)) {
+                @trigger_error(sprintf(
+                    'Implementing "%1$s" for entities using "knplabs/doctrine-behaviors" >= 3 is deprecated'
+                    .' since sonata-project/translation-bundle 2.x and "%1$s::setLocale()" method will not be called'
+                    .' anymore in version 3.0.',
+                    TranslatableInterface::class
+                ), \E_USER_DEPRECATED);
+            }
+
+            if ($object instanceof KnpTranslatableInterface && !$object instanceof TranslatableInterface) {
+                $object->setCurrentLocale($this->getTranslatableLocale($admin));
+            } else {
+                $object->setLocale($this->getTranslatableLocale($admin));
+            }
         }
     }
 
