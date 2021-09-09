@@ -31,7 +31,7 @@ class TranslatableEntity implements TranslatableInterface, KNPTranslatableInterf
         return $this->id;
     }
 
-    public function setLocale($locale): void
+    public function setLocale(string $locale): void
     {
         $this->setCurrentLocale($locale);
     }

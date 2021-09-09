@@ -25,18 +25,12 @@ class ModelTranslatable implements TranslatableInterface
      */
     private $locale;
 
-    /**
-     * @param string $locale
-     */
-    public function setLocale($locale): void
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getLocale()
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
