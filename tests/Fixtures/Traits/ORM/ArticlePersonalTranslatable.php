@@ -16,8 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * @Gedmo\TranslationEntity(class="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation")
@@ -26,8 +25,6 @@ use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
  */
 class ArticlePersonalTranslatable
 {
-    use PersonalTranslatableTrait;
-
     /**
      * @var ArrayCollection<array-key, AbstractPersonalTranslation>
      *
@@ -38,6 +35,13 @@ class ArticlePersonalTranslatable
      * )
      */
     protected $translations;
+
+    /**
+     * @Gedmo\Locale
+     *
+     * @var string|null
+     */
+    protected $locale;
 
     /**
      * @var int|null
@@ -61,6 +65,22 @@ class ArticlePersonalTranslatable
         $this->translations = new ArrayCollection();
     }
 
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale): void
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,5 +94,36 @@ class ArticlePersonalTranslatable
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    /**
+     * @return ArrayCollection
+     *
+     * @phpstan-return ArrayCollection<array-key, AbstractPersonalTranslation>
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function getTranslation(string $field, string $locale): ?string
+    {
+        foreach ($this->getTranslations() as $translation) {
+            if (0 === strcmp($translation->getField(), $field) && 0 === strcmp($translation->getLocale(), $locale)) {
+                return $translation->getContent();
+            }
+        }
+
+        return null;
+    }
+
+    public function addTranslation(AbstractPersonalTranslation $translation): self
+    {
+        if (!$this->translations->contains($translation)) {
+            $translation->setObject($this);
+            $this->translations->add($translation);
+        }
+
+        return $this;
     }
 }

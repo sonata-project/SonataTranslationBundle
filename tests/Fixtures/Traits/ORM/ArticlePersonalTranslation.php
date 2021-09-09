@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * @ORM\Table(name="article_translation")

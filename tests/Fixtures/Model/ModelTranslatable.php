@@ -13,9 +13,31 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Model;
 
-use Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 
-class ModelTranslatable extends AbstractTranslatable implements TranslatableInterface
+class ModelTranslatable implements TranslatableInterface
 {
+    /**
+     * @Gedmo\Locale()
+     *
+     * @var string|null
+     */
+    private $locale;
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale): void
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
 }
