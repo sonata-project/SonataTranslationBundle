@@ -22,12 +22,6 @@ Implement the TranslatableInterface
 
 First step, your entities have to implement the `TranslatableInterface`_.
 
-To do so ``SonataTranslationBundle`` brings some base classes you can extend.
-Depending on how you want to save translations you can choose between:
-
-* ``Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable``
-* ``Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable``
-
 Define translatable Fields
 --------------------------
 
@@ -42,7 +36,6 @@ Example using Personal Translation
 
     namespace Presta\CMSFAQBundle\Entity;
 
-    use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
     use Gedmo\Mapping\Annotation as Gedmo;
     use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
@@ -53,7 +46,7 @@ Example using Personal Translation
      * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
      * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
      */
-    class FAQCategory extends AbstractPersonalTranslatable implements TranslatableInterface
+    class FAQCategory implements TranslatableInterface
     {
         /**
          * @ORM\Id
@@ -98,47 +91,6 @@ Example using Personal Translation
         // ...
     }
 
-.. note::
-
-    If you prefer to use `traits`, we provide:
-
-    * ``Sonata\TranslationBundle\Traits\TranslatableTrait``
-    * ``Sonata\TranslationBundle\Traits\PersonalTranslatableTrait``
-
-Example using Personal Translation with Traits
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: php
-
-    // src/Entity/FAQCategory.php
-
-    namespace Presta\CMSFAQBundle\Entity;
-
-    use Gedmo\Mapping\Annotation as Gedmo;
-    use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-    use Doctrine\ORM\Mapping as ORM;
-    use Doctrine\Common\Collections\ArrayCollection;
-    use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-
-    /**
-     * @ORM\Table(name="presta_cms_faq_category")
-     * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
-     * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
-     */
-    class FAQCategory implements TranslatableInterface
-    {
-        use PersonalTranslatableTrait;
-
-        /**
-         * @ORM\Id
-         * @ORM\Column(type="integer")
-         * @ORM\GeneratedValue(strategy="AUTO")
-         */
-        private $id;
-
-        // ...
-    }
-
 Define your translation Table
 -----------------------------
 
@@ -155,7 +107,7 @@ Example for translation class for Personal Translation
     namespace Presta\CMSFAQBundle\Entity\FAQCategory;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
+    use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
     /**
      * @ORM\Entity
