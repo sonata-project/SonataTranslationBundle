@@ -18,7 +18,6 @@ use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
-use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -51,15 +50,6 @@ final class TranslatableCheckerTest extends TestCase
         $translatableChecker->setSupportedModels([
             ModelCustomTranslatable::class,
         ]);
-
-        static::assertTrue($translatableChecker->isTranslatable($object));
-    }
-
-    public function testIsTranslatableOnTrait(): void
-    {
-        $translatableChecker = new TranslatableChecker();
-
-        $object = new ModelUsingTraitTranslatable();
 
         static::assertTrue($translatableChecker->isTranslatable($object));
     }

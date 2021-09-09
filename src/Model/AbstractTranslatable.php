@@ -14,9 +14,13 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Model;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * If you don't want to extend this class, you can use Translatable trait instead.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @deprecated since version 2.x, to be removed in 3.0.
  */
 abstract class AbstractTranslatable
 {

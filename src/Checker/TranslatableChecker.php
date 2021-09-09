@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Checker;
 
-use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-use Sonata\TranslationBundle\Traits\TranslatableTrait;
-
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
@@ -83,17 +80,6 @@ final class TranslatableChecker
     {
         if (null === $object) {
             return false;
-        }
-
-        $translateTraits = [
-            TranslatableTrait::class,
-            PersonalTranslatableTrait::class,
-        ];
-
-        $traits = class_uses($object);
-        \assert(\is_array($traits));
-        if (\count(array_intersect($translateTraits, $traits)) > 0) {
-            return true;
         }
 
         $objectInterfaces = class_implements($object);

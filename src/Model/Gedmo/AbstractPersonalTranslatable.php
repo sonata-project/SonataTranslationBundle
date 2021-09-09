@@ -17,11 +17,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * This is your base class if you want to use gedmo personal translation
  * ie: if you want to have a dedicated translation table by model table.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
+ * @deprecated since version 2.x, to be removed in 3.0. Create your own instead.
  * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md : Personal translations
  */
 abstract class AbstractPersonalTranslatable extends AbstractTranslatable
