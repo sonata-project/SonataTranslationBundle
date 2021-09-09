@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Checker;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
@@ -31,9 +32,14 @@ final class TranslatableCheckerForKnpTest extends TestCase
 
         static::assertFalse($translatableChecker->isTranslatable($object));
 
-        $translatableChecker->setSupportedInterfaces([
-            TranslatableInterface::class,
-        ]);
+        // NEXT_MAJOR: Only leave KnpTranslatableInterface.
+        $knpInterfaces = [TranslatableInterface::class];
+
+        if (interface_exists(KnpTranslatableInterface::class)) {
+            $knpInterfaces[] = KnpTranslatableInterface::class;
+        }
+
+        $translatableChecker->setSupportedInterfaces($knpInterfaces);
 
         static::assertTrue($translatableChecker->isTranslatable($object));
     }

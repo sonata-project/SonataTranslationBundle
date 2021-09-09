@@ -9,16 +9,6 @@ parameters:
         # src/Block/LocaleSwitcherBlockService.php issues will be solved in next major version
 
         -
-            message: "#^Call to function is_object\\(\\) with string\\|null will always evaluate to false\\.$#"
-            count: 1
-            path: src/Block/LocaleSwitcherBlockService.php
-
-        -
-            message: "#^Result of \\|\\| is always true\\.$#"
-            count: 1
-            path: src/Block/LocaleSwitcherBlockService.php
-
-        -
             message: "#^Method Sonata\\\\BlockBundle\\\\Block\\\\Service\\\\AbstractBlockService\\:\\:__construct\\(\\) invoked with 2 parameters, 1 required\\.$#"
             count: 1
             path: src/Block/LocaleSwitcherBlockService.php

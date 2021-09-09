@@ -39,6 +39,11 @@ sonata_translation:
 All abstract models and traits for translatable models have been deprecated without replacement, you should create
 your own.
 
+### Deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` with `knplabs/doctrine-behaviors`
+
+It is deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` when using
+`knplabs/doctrine-behaviors` >= 3
+
 UPGRADE FROM 2.1 to 2.7
 =======================
 

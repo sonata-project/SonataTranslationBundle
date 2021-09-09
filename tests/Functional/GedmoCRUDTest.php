@@ -27,7 +27,7 @@ final class GedmoCRUDTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client = static::createClient(['package' => 'gedmo']);
+        $this->client = static::createClient();
         $this->client->followRedirects();
     }
 

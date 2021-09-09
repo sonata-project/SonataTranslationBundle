@@ -14,9 +14,10 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\DependencyInjection;
 
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
 use Sonata\TranslationBundle\Model\Phpcr\TranslatableInterface as PHPCRTranslatableInterface;
-use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInterface;
+use Sonata\TranslationBundle\Model\TranslatableInterface as SonataTranslatableInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -87,11 +88,19 @@ class SonataTranslationExtension extends Extension
             $isEnabled = true;
             $loader->load('service_knplabs.xml');
 
+            // NEXT_MAJOR: Replace by KNPTranslatableInterface
+            $knpInterfaces = [SonataTranslatableInterface::class];
+
+            // NEXT_MAJOR: Remove this block.
+            if (interface_exists(KNPTranslatableInterface::class)) {
+                $knpInterfaces[] = KNPTranslatableInterface::class;
+            }
+
             /**
              * @phpstan-var list<class-string>
              */
             $listOfInterfaces = array_merge(
-                [KNPTranslatableInterface::class],
+                $knpInterfaces,
                 $config['knplabs']['implements']
             );
             $translationTargets['knplabs']['implements'] = $listOfInterfaces;
