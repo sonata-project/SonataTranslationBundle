@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\App;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Sonata\AdminBundle\SonataAdminBundle;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
@@ -59,6 +60,7 @@ final class AppKernel extends Kernel
             new SonataTwigBundle(),
             new SonataTranslationBundle(),
             new TwigBundle(),
+            new DoctrineBehaviorsBundle(),
         ];
     }
 
@@ -140,6 +142,9 @@ final class AppKernel extends Kernel
                 'gedmo' => [
                     'enabled' => true,
                     'translatable_listener_service' => 'app.gedmo.translation_listener',
+                ],
+                'knplabs' => [
+                    'enabled' => true,
                 ],
             ]);
 
