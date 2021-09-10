@@ -15,27 +15,24 @@ namespace Sonata\TranslationBundle\Tests\App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
+use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
 
-final class GedmoCategoryFixtures extends Fixture
+final class KnpCategoryFixtures extends Fixture
 {
     public const CATEGORY = 'category_novel';
 
     public function load(ObjectManager $manager): void
     {
-        $novelCategory = new GedmoCategory(self::CATEGORY, 'Novel');
+        $novelCategory = new KnpCategory(self::CATEGORY, 'Novel');
 
-        $manager->persist($novelCategory);
-        $manager->flush();
-
-        $novelCategory->setLocale('es');
+        $novelCategory->setCurrentLocale('es');
         $novelCategory->setName('Novela');
-
-        $manager->flush();
-
-        $novelCategory->setLocale('fr');
+        $novelCategory->setCurrentLocale('fr');
         $novelCategory->setName('Roman');
 
+        $novelCategory->mergeNewTranslations();
+
+        $manager->persist($novelCategory);
         $manager->flush();
     }
 }
