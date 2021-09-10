@@ -51,14 +51,11 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $translatableChecker = new TranslatableChecker();
 
-        // NEXT_MAJOR: Only leave KnpTranslatableInterface.
-        $knpInterfaces = [TranslatableInterface::class];
-
-        if (interface_exists(KnpTranslatableInterface::class)) {
-            $knpInterfaces[] = KnpTranslatableInterface::class;
-        }
-
-        $translatableChecker->setSupportedInterfaces($knpInterfaces);
+        $translatableChecker->setSupportedInterfaces([
+            KnpTranslatableInterface::class,
+            // NEXT_MAJOR: Remove next line.
+            TranslatableInterface::class,
+        ]);
         $this->extension = new TranslatableAdminExtension($translatableChecker, 'es');
 
         $request = new Request();
@@ -88,9 +85,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $object = new DeprecatedTranslatableEntity();
 
-        if (interface_exists(KnpTranslatableInterface::class)) {
-            $this->expectDeprecation('Implementing "Sonata\TranslationBundle\Model\TranslatableInterfaceSonata\TranslationBundle\Model\TranslatableInterface" for entities using "knplabs/doctrine-behaviors" >= 3 is deprecated since sonata-project/translation-bundle 2.x and "Sonata\TranslationBundle\Model\TranslatableInterface::setLocale()" method will not be called anymore in version 3.0.');
-        }
+        $this->expectDeprecation('Implementing "Sonata\TranslationBundle\Model\TranslatableInterface" for entities using "knplabs/doctrine-behaviors" is deprecated since sonata-project/translation-bundle 2.x and "Sonata\TranslationBundle\Model\TranslatableInterface::setLocale()" method will not be called anymore in version 3.0.');
 
         $this->extension->alterNewInstance($this->admin, $object);
 

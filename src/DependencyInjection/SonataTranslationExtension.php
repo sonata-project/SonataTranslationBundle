@@ -88,19 +88,16 @@ class SonataTranslationExtension extends Extension
             $isEnabled = true;
             $loader->load('service_knplabs.xml');
 
-            // NEXT_MAJOR: Replace by KNPTranslatableInterface
-            $knpInterfaces = [SonataTranslatableInterface::class];
-
-            // NEXT_MAJOR: Remove this block.
-            if (interface_exists(KNPTranslatableInterface::class)) {
-                $knpInterfaces[] = KNPTranslatableInterface::class;
-            }
-
             /**
              * @phpstan-var list<class-string>
              */
             $listOfInterfaces = array_merge(
-                $knpInterfaces,
+                [
+                    // NEXT_MAJOR: Remove next line.
+                    SonataTranslatableInterface::class,
+                    KNPTranslatableInterface::class,
+
+                ],
                 $config['knplabs']['implements']
             );
             $translationTargets['knplabs']['implements'] = $listOfInterfaces;
