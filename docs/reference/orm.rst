@@ -164,12 +164,6 @@ Example for configure search filter
 Using KnpLabs Doctrine Behaviors
 ================================
 
-Implement TranslatableInterface
--------------------------------
-
-Your entities have to implement `Model\\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/src/Model/TranslatableInterface.php>`_.
-
-Your entities need to explicitly implement getter and setter methods for the knp doctrine extensions.
 Due to Sonata internals, the `magic method <https://github.com/KnpLabs/DoctrineBehaviors#proxy-translations>`_
 of Doctrine Behavior does not work. For more background on that topic, see this
 `post <https://web.archive.org/web/20150224121239/http://thewebmason.com/tutorial-using-sonata-admin-with-magic-__call-method/>`_::
@@ -179,8 +173,8 @@ of Doctrine Behavior does not work. For more background on that topic, see this
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-    use Sonata\TranslationBundle\Model\TranslatableInterface;
+    use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+    use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
     /**
      * @ORM\Table(name="app_translatable_entity")
@@ -188,7 +182,7 @@ of Doctrine Behavior does not work. For more background on that topic, see this
      */
     class TranslatableEntity implements TranslatableInterface
     {
-        use ORMBehaviors\Translatable\Translatable;
+        use TranslatableTrait;
 
         /**
          * @var integer
@@ -251,24 +245,6 @@ of Doctrine Behavior does not work. For more background on that topic, see this
 
             return $this;
         }
-
-        /**
-         * @param string $locale
-         */
-        public function setLocale($locale)
-        {
-            $this->setCurrentLocale($locale);
-
-            return $this;
-        }
-
-        /**
-         * @return string
-         */
-        public function getLocale()
-        {
-            return $this->getCurrentLocale();
-        }
     }
 
 Define your translation table
@@ -283,14 +259,15 @@ Here is an example::
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+    use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+    use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
     /**
      * @ORM\Entity
      */
-    class TranslatableEntityTranslation
+    class TranslatableEntityTranslation implements TranslationInterface
     {
-        use ORMBehaviors\Translatable\Translation;
+        use TranslationTrait;
 
         /**
          * @var string

@@ -32,14 +32,11 @@ final class TranslatableCheckerForKnpTest extends TestCase
 
         static::assertFalse($translatableChecker->isTranslatable($object));
 
-        // NEXT_MAJOR: Only leave KnpTranslatableInterface.
-        $knpInterfaces = [TranslatableInterface::class];
-
-        if (interface_exists(KnpTranslatableInterface::class)) {
-            $knpInterfaces[] = KnpTranslatableInterface::class;
-        }
-
-        $translatableChecker->setSupportedInterfaces($knpInterfaces);
+        $translatableChecker->setSupportedInterfaces([
+            KnpTranslatableInterface::class,
+            // NEXT_MAJOR: Remove next line.
+            TranslatableInterface::class,
+        ]);
 
         static::assertTrue($translatableChecker->isTranslatable($object));
     }
