@@ -44,6 +44,12 @@ your own.
 It is deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` when using
 `knplabs/doctrine-behaviors` >= 3
 
+### Deprecated constructing admin translatable extensions without an instance of `LocaleProviderInterface`
+
+`Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension` and
+`Sonata\TranslationBundle\Admin\Extension\Phpcr\TranslatableAdminExtension` classes must receive an instance of
+`LocaleProviderInterface` as second argument.
+
 UPGRADE FROM 2.1 to 2.7
 =======================
 

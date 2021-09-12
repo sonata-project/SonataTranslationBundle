@@ -19,6 +19,7 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\DeprecatedTranslatableEntity;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
@@ -56,7 +57,15 @@ final class TranslatableAdminExtensionTest extends WebTestCase
             // NEXT_MAJOR: Remove next line.
             TranslatableInterface::class,
         ]);
-        $this->extension = new TranslatableAdminExtension($translatableChecker, 'es');
+
+        $localeProvider = new class() implements LocaleProviderInterface {
+            public function get(): string
+            {
+                return 'es';
+            }
+        };
+
+        $this->extension = new TranslatableAdminExtension($translatableChecker, $localeProvider);
 
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');

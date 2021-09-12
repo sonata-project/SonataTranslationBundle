@@ -13,13 +13,11 @@ declare(strict_types=1);
 
 use Gedmo\Translatable\TranslatableListener;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
-use Knp\DoctrineBehaviors\Contract\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterfaceAlias;
 use Sonata\TranslationBundle\Tests\App\Admin\GedmoCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Admin\KnpCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
-use Sonata\TranslationBundle\Tests\App\Knplabs\LocaleProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -59,10 +57,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->call('setDefaultLocale', ['%locale%'])
             ->call('setTranslationFallback', [false])
             ->tag('doctrine.event_subscriber')
-
-        ->set(LocaleProvider::class)
-
-        ->alias(LocaleProviderInterface::class, LocaleProvider::class)
 
         ->set(KnpCategoryAdmin::class)
         ->tag('sonata.admin', [

@@ -19,6 +19,7 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @final since sonata-project/translation-bundle 2.7
@@ -34,13 +35,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
     /**
      * NEXT_MAJOR: Make $defaultLocale mandatory.
+     *
+     * @param string|LocaleProviderInterface|null $defaultTranslationLocaleOrLocaleProvider
      */
     public function __construct(
         TranslatableChecker $translatableChecker,
         LocaleChooser $localeChooser,
-        ?string $defaultTranslationLocale = null
+        $defaultTranslationLocaleOrLocaleProvider = null
     ) {
-        parent::__construct($translatableChecker, $defaultTranslationLocale);
+        parent::__construct($translatableChecker, $defaultTranslationLocaleOrLocaleProvider);
         $this->localeChooser = $localeChooser;
     }
 
