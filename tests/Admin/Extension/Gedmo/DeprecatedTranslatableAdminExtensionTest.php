@@ -65,7 +65,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
             TranslatableInterface::class,
         ]);
 
-        $this->expectDeprecation('Omitting the argument 2 or passing other type than "string" to "Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.');
+        $this->expectDeprecation('Omitting the argument 2 or passing other type than "Sonata\TranslationBundle\Provider\LocaleProviderInterface" to "Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.');
         $this->expectDeprecation('Not passing an instance of "Gedmo\Translatable\TranslatableListener" as argument 2 to "Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.');
         $this->expectDeprecation('Not passing an instance of "Doctrine\Persistence\ManagerRegistry" as argument 3 to "Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.7 and will be mandatory in 3.0.');
 

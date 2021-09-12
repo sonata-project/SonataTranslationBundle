@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -42,27 +43,30 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected $translatableChecker;
 
     /**
-     * @var string|null
+     * @var string|LocaleProviderInterface|null
      */
-    private $defaultTranslationLocale;
+    private $defaultTranslationLocaleOrLocaleProvider;
 
     /**
-     * NEXT_MAJOR: Make $defaultTranslationLocale mandatory.
+     * NEXT_MAJOR: Change $defaultTranslationLocaleOrLocaleProvider to LocaleProviderInterface $localeOrLocaleProvider.
+     *
+     * @param string|LocaleProviderInterface|null $defaultTranslationLocaleOrLocaleProvider
      */
-    public function __construct(TranslatableChecker $translatableChecker, ?string $defaultTranslationLocale = null)
+    public function __construct(TranslatableChecker $translatableChecker, $defaultTranslationLocaleOrLocaleProvider = null)
     {
         $this->translatableChecker = $translatableChecker;
 
         // NEXT_MAJOR: Remove this block.
-        if (null === $defaultTranslationLocale) {
+        if (!$defaultTranslationLocaleOrLocaleProvider instanceof LocaleProviderInterface) {
             @trigger_error(sprintf(
-                'Omitting the argument 2 or passing other type than "string" to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.',
+                'Omitting the argument 2 or passing other type than "%s" to "%s()" is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.',
+                LocaleProviderInterface::class,
                 __METHOD__
             ), \E_USER_DEPRECATED);
         }
 
-        $this->defaultTranslationLocale = $defaultTranslationLocale;
+        $this->defaultTranslationLocaleOrLocaleProvider = $defaultTranslationLocaleOrLocaleProvider;
     }
 
     /**
@@ -94,12 +98,17 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     public function getTranslatableLocale(AdminInterface $admin)
     {
         if (null === $this->translatableLocale) {
-            if ($admin->hasRequest()) {
-                $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
-            }
-            if (null === $this->translatableLocale) {
-                // NEXT_MAJOR: Remove the call to $this->getDefaultTranslationLocale($admin).
-                $this->translatableLocale = $this->defaultTranslationLocale ?? $this->getDefaultTranslationLocale($admin);
+            // NEXT_MAJOR: Remove the "else" part and remove the "if" check.
+            if ($this->defaultTranslationLocaleOrLocaleProvider instanceof LocaleProviderInterface) {
+                $this->translatableLocale = $this->defaultTranslationLocaleOrLocaleProvider->get();
+            } else {
+                if ($admin->hasRequest()) {
+                    $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
+                }
+
+                if (null === $this->translatableLocale) {
+                    $this->translatableLocale = $this->defaultTranslationLocaleOrLocaleProvider ?? $this->getDefaultTranslationLocale($admin);
+                }
             }
         }
 
