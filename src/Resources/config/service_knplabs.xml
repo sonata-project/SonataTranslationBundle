@@ -7,7 +7,12 @@
         <service id="sonata_translation.admin.extension.knplabs_translatable" class="%sonata_translation.admin.extension.knplabs_translatable.class%">
             <tag name="sonata.admin.extension"/>
             <argument type="service" id="sonata_translation.checker.translatable"/>
-            <argument>%sonata_translation.default_locale%</argument>
+            <argument type="service" id="sonata_translation.admin.provider.request_locale_provider"/>
+        </service>
+        <service id="sonata_translation.admin.provider.knplabs_locale_provider" class="Sonata\TranslationBundle\Provider\Knplabs\LocaleProvider" decorates="Knp\DoctrineBehaviors\Contract\Provider\LocaleProviderInterface">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="sonata_translation.admin.provider.knplabs_locale_provider.inner"/>
+            <argument type="service" id="sonata_translation.admin.provider.request_locale_provider"/>
         </service>
     </services>
 </container>

@@ -21,6 +21,7 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @final since sonata-project/translation-bundle 2.7
@@ -40,15 +41,18 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
     private $managerRegistry;
 
     /**
-     * NEXT_MAJOR: Make $translatableListener, $defaultLocale and $managerRegistry mandatory.
+     * NEXT_MAJOR: Make $translatableListener and $managerRegistry mandatory, change
+     * $defaultTranslationLocaleOrLocaleProvider to LocaleProviderInterface $localeOrLocaleProvider.
+     *
+     * @param string|LocaleProviderInterface|null $defaultTranslationLocaleOrLocaleProvider
      */
     public function __construct(
         TranslatableChecker $translatableChecker,
         ?TranslatableListener $translatableListener = null,
         ?ManagerRegistry $managerRegistry = null,
-        ?string $defaultTranslationLocale = null
+        $defaultTranslationLocaleOrLocaleProvider = null
     ) {
-        parent::__construct($translatableChecker, $defaultTranslationLocale);
+        parent::__construct($translatableChecker, $defaultTranslationLocaleOrLocaleProvider);
 
         if (null === $translatableListener) {
             @trigger_error(sprintf(

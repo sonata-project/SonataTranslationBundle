@@ -8,7 +8,7 @@
             <tag name="sonata.admin.extension"/>
             <argument type="service" id="sonata_translation.checker.translatable"/>
             <argument type="service" id="doctrine_phpcr.odm.locale_chooser"/>
-            <argument>%sonata_translation.default_locale%</argument>
+            <argument type="service" id="sonata_translation.admin.provider.request_locale_provider"/>
         </service>
     </services>
 </container>

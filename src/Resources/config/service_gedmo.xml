@@ -9,7 +9,7 @@
             <argument type="service" id="sonata_translation.checker.translatable"/>
             <argument type="service" id="sonata_translation.listener.translatable"/>
             <argument type="service" id="doctrine"/>
-            <argument>%sonata_translation.default_locale%</argument>
+            <argument type="service" id="sonata_translation.admin.provider.request_locale_provider"/>
         </service>
     </services>
 </container>
