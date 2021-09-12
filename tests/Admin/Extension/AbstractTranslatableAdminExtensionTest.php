@@ -20,6 +20,7 @@ use Sonata\AdminBundle\Admin\Pool;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,10 +46,20 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             TranslatableInterface::class,
         ]);
 
-        $this->extension = new class($this->translatableChecker, 'es') extends AbstractTranslatableAdminExtension {
+        $localeProvider = new class() implements LocaleProviderInterface {
+            public function get(): string
+            {
+                return 'es';
+            }
+        };
+
+        $this->extension = new class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {
         };
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     */
     public function testGetTranslatableLocaleFromRequest(): void
     {
         $request = new Request();
@@ -62,6 +73,9 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
         static::assertSame('es', $this->extension->getTranslatableLocale($admin));
     }
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     */
     public function testGetTranslatableLocaleFromDefault(): void
     {
         $admin = $this->createStub(AdminInterface::class);
@@ -91,7 +105,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             ->method('getConfigurationPool')
             ->willReturn($pool);
 
-        $this->expectDeprecation('Omitting the argument 2 or passing other type than "string" to "Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.7 and will be not possible in version 3.0.');
+        $this->expectDeprecation('Omitting the argument 2 or passing other type than "Sonata\TranslationBundle\Provider\LocaleProviderInterface" to "Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension::__construct()" is deprecated since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.');
 
         $extension = new class($this->translatableChecker) extends AbstractTranslatableAdminExtension {
         };
