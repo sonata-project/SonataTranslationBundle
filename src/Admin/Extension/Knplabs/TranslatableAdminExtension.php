@@ -31,7 +31,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             if ($object instanceof TranslatableInterface) {
                 @trigger_error(sprintf(
                     'Implementing "%1$s" for entities using "knplabs/doctrine-behaviors" is deprecated'
-                    .' since sonata-project/translation-bundle 2.x and "%1$s::setLocale()" method will not be called'
+                    .' since sonata-project/translation-bundle 2.9 and "%1$s::setLocale()" method will not be called'
                     .' anymore in version 3.0.',
                     TranslatableInterface::class
                 ), \E_USER_DEPRECATED);
@@ -52,7 +52,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             if ($object instanceof TranslatableInterface) {
                 @trigger_error(sprintf(
                     'Implementing "%1$s" for entities using "knplabs/doctrine-behaviors" 3 is deprecated'
-                    .' since sonata-project/translation-bundle 2.x and "%1$s::setLocale()" method will not be called'
+                    .' since sonata-project/translation-bundle 2.9 and "%1$s::setLocale()" method will not be called'
                     .' anymore in version 3.0.',
                     TranslatableInterface::class
                 ), \E_USER_DEPRECATED);

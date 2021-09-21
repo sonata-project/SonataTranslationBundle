@@ -122,7 +122,7 @@ class TranslatableChecker
         if (\count(array_intersect($translateTraits, $traits)) > 0) {
             @trigger_error(sprintf(
                 'Using traits to specify that a model is translatable is deprecated since'
-                .' sonata-project/translation-bundle 2.x and will be not possible in version 3.0. To mark "%s" class'
+                .' sonata-project/translation-bundle 2.9 and will be not possible in version 3.0. To mark "%s" class'
                 .' as translatable you should implement one of "%s" interfaces.',
                 \is_string($object) ? $object : \get_class($object),
                 implode(', ', $this->getSupportedInterfaces())

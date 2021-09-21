@@ -68,7 +68,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue(static function (): string {
                                 @trigger_error(
                                     'Not specifying the translatable listener service when using'
-                                    .' gedmo/doctrine-extensions is deprecated since sonata-project/translation-bundle 2.x.'
+                                    .' gedmo/doctrine-extensions is deprecated since sonata-project/translation-bundle 2.8.'
                                     .' If you are using a bundle that integrates this library, it is likely that it'
                                     .' registers that service for you. In case of "stof/doctrine-extensions-bundle", it is:'
                                     .' "stof_doctrine_extensions.listener.translatable".'

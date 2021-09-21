@@ -20,7 +20,7 @@ namespace Sonata\TranslationBundle\Model;
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
- * @deprecated since version 2.x, to be removed in 3.0.
+ * @deprecated since version 2.9, to be removed in 3.0.
  */
 abstract class AbstractTranslatable
 {
