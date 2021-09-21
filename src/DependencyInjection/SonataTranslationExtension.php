@@ -14,8 +14,9 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\DependencyInjection;
 
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
-use Sonata\TranslationBundle\Model\TranslatableInterface as KNPTranslatableInterface;
+use Sonata\TranslationBundle\Model\TranslatableInterface as SonataTranslatableInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,6 +41,7 @@ final class SonataTranslationExtension extends Extension
 
         $isEnabled = false;
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('provider.php');
         $loader->load('twig_intl.php');
 
         if ($config['locale_switcher']) {
@@ -85,7 +87,12 @@ final class SonataTranslationExtension extends Extension
              * @phpstan-var list<class-string>
              */
             $listOfInterfaces = array_merge(
-                [KNPTranslatableInterface::class],
+                [
+                    // NEXT_MAJOR: Remove next line.
+                    SonataTranslatableInterface::class,
+                    KNPTranslatableInterface::class,
+
+                ],
                 $config['knplabs']['implements']
             );
             $translationTargets['knplabs']['implements'] = $listOfInterfaces;

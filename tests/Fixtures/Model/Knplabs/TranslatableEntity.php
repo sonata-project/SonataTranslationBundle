@@ -15,9 +15,8 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs;
 
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 
-class TranslatableEntity implements TranslatableInterface, KNPTranslatableInterface
+class TranslatableEntity implements KNPTranslatableInterface
 {
     use TranslatableTrait;
 
@@ -29,15 +28,5 @@ class TranslatableEntity implements TranslatableInterface, KNPTranslatableInterf
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setLocale(string $locale): void
-    {
-        $this->setCurrentLocale($locale);
-    }
-
-    public function getLocale(): string
-    {
-        return $this->getCurrentLocale();
     }
 }

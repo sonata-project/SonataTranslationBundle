@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.9.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.8.1...2.9.0) - 2021-09-21
+### Added
+- [[#543](https://github.com/sonata-project/SonataTranslationBundle/pull/543)] Added `LocaleProviderInterface` and `RequestLocaleProvider` to get the locale based on the parameter from the URL or the default configured one ([@franmomu](https://github.com/franmomu))
+- [[#543](https://github.com/sonata-project/SonataTranslationBundle/pull/543)] Added `LocaleProvider` service when `knplabs` is enabled to be able to show the content in the proper language ([@franmomu](https://github.com/franmomu))
+
+### Deprecated
+- [[#542](https://github.com/sonata-project/SonataTranslationBundle/pull/542)] Deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` in an Entity implementing `Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface` ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable` class ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation` class ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable` class ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Model\AbstractTranslatable` class ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait` trait ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait` trait ([@franmomu](https://github.com/franmomu))
+- [[#537](https://github.com/sonata-project/SonataTranslationBundle/pull/537)] `Sonata\TranslationBundle\Traits\TranslatableTrait` trait ([@franmomu](https://github.com/franmomu))
+
+### Removed
+- [[#542](https://github.com/sonata-project/SonataTranslationBundle/pull/542)] Removed support of `knplabs/doctrine-behaviors` < 2.2 ([@franmomu](https://github.com/franmomu))
+
 ## [2.8.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.8.0...2.8.1) - 2021-05-18
 ### Fixed
 - [[#491](https://github.com/sonata-project/SonataTranslationBundle/pull/491)] Fixed registering `sonata_translation.listener.translatable` when no `translatable_listener_service` is defined ([@franmomu](https://github.com/franmomu))

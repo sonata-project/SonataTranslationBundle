@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Admin\Extension\Knplabs;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,10 +48,19 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     protected function setUp(): void
     {
         $translatableChecker = new TranslatableChecker();
+
         $translatableChecker->setSupportedInterfaces([
-            TranslatableInterface::class,
+            KnpTranslatableInterface::class,
         ]);
-        $this->extension = new TranslatableAdminExtension($translatableChecker, 'es');
+
+        $localeProvider = new class() implements LocaleProviderInterface {
+            public function get(): string
+            {
+                return 'es';
+            }
+        };
+
+        $this->extension = new TranslatableAdminExtension($translatableChecker, $localeProvider);
 
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
@@ -63,16 +74,18 @@ final class TranslatableAdminExtensionTest extends WebTestCase
 
     public function testSetLocaleForTranslatableObject(): void
     {
+        // @phpstan-ignore-next-line
         $this->extension->alterNewInstance($this->admin, $this->object);
 
-        static::assertSame('es', $this->object->getLocale());
+        static::assertSame('es', $this->object->getCurrentLocale());
     }
 
     public function testAlterObjectForTranslatableObject(): void
     {
+        // @phpstan-ignore-next-line
         $this->extension->alterObject($this->admin, $this->object);
 
-        static::assertSame('es', $this->object->getLocale());
+        static::assertSame('es', $this->object->getCurrentLocale());
     }
 
     public function testPreUpdate(): void
@@ -80,6 +93,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $object = $this->createMock(TranslatableEntity::class);
         $object->expects(static::once())->method('mergeNewTranslations');
 
+        // @phpstan-ignore-next-line
         $this->extension->preUpdate($this->admin, $object);
     }
 
@@ -88,6 +102,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $object = $this->createMock(TranslatableEntity::class);
         $object->expects(static::once())->method('mergeNewTranslations');
 
+        // @phpstan-ignore-next-line
         $this->extension->prePersist($this->admin, $object);
     }
 }

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Knplabs;
 
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 
@@ -25,40 +24,24 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
     public function alterNewInstance(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $object->setLocale($this->getTranslatableLocale($admin));
+            $object->setCurrentLocale($this->getTranslatableLocale($admin));
         }
     }
 
     public function alterObject(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $object->setLocale($this->getTranslatableLocale($admin));
+            $object->setCurrentLocale($this->getTranslatableLocale($admin));
         }
     }
 
     public function preUpdate(AdminInterface $admin, object $object): void
     {
-        if (!$object instanceof TranslatableInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'The object passed to "%s()" method MUST be properly configured using'
-                .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
-                __METHOD__
-            ));
-        }
-
         $object->mergeNewTranslations();
     }
 
     public function prePersist(AdminInterface $admin, object $object): void
     {
-        if (!$object instanceof TranslatableInterface) {
-            throw new \InvalidArgumentException(sprintf(
-                'The object passed to "%s()" method MUST be properly configured using'
-                .' "knplabs/doctrine-behaviors" in order to have a "mergeNewTranslations" method.',
-                __METHOD__
-            ));
-        }
-
         $object->mergeNewTranslations();
     }
 }

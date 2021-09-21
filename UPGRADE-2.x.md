@@ -1,7 +1,34 @@
 UPGRADE 2.x
 ===========
 
-UPGRADE FROM 2.x to 2.x
+UPGRADE FROM 2.8 to 2.9
+=======================
+
+### Deprecated abstract models and traits
+
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`.
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation`.
+- `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`.
+- `Sonata\TranslationBundle\Model\AbstractTranslatable`.
+- `Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait`.
+- `Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait`.
+- `Sonata\TranslationBundle\Traits\TranslatableTrait`.
+
+All abstract models and traits for translatable models have been deprecated without replacement, you should create
+your own.
+
+### Deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` with `knplabs/doctrine-behaviors`
+
+It is deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterface` when using
+`knplabs/doctrine-behaviors` >= 3
+
+### Deprecated constructing admin translatable extensions without an instance of `LocaleProviderInterface`
+
+`Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension` and
+`Sonata\TranslationBundle\Admin\Extension\Phpcr\TranslatableAdminExtension` classes must receive an instance of
+`LocaleProviderInterface` as second argument.
+
+UPGRADE FROM 2.7 to 2.8
 =======================
 
 If you are using this bundle with "gedmo/doctrine-extensions", you MUST to specify the translatable listener service
@@ -25,19 +52,6 @@ sonata_translation:
         # in case you are using stof/doctrine-extensions-bundle
         translatable_listener_service: stof_doctrine_extensions.listener.translatable
 ```
-
-### Deprecated abstract models and traits
-
-- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable`.
-- `Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation`.
-- `Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable`.
-- `Sonata\TranslationBundle\Model\AbstractTranslatable`.
-- `Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait`.
-- `Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait`.
-- `Sonata\TranslationBundle\Traits\TranslatableTrait`.
-
-All abstract models and traits for translatable models have been deprecated without replacement, you should create
-your own.
 
 UPGRADE FROM 2.1 to 2.7
 =======================

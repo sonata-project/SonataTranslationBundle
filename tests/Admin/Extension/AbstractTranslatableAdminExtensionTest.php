@@ -14,11 +14,10 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Admin\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 final class AbstractTranslatableAdminExtensionTest extends TestCase
 {
@@ -42,40 +41,14 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             TranslatableInterface::class,
         ]);
 
-        $this->extension = new class($this->translatableChecker, 'en') extends AbstractTranslatableAdminExtension {};
-    }
+        $localeProvider = new class() implements LocaleProviderInterface {
+            public function get(): string
+            {
+                return 'es';
+            }
+        };
 
-    public function testGetTranslatableLocaleFromRequest(): void
-    {
-        $request = new Request();
-        $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
-
-        $admin = $this->createStub(AdminInterface::class);
-
-        $admin->method('getRequest')->willReturn($request);
-        $admin->method('hasRequest')->willReturn(true);
-
-        static::assertSame('es', $this->extension->getTranslatableLocale($admin));
-    }
-
-    public function testGetTranslatableLocaleFromDefaultWithRequestWithNoLocale(): void
-    {
-        $request = new Request();
-
-        $admin = $this->createStub(AdminInterface::class);
-
-        $admin->method('getRequest')->willReturn($request);
-        $admin->method('hasRequest')->willReturn(true);
-
-        static::assertSame('en', $this->extension->getTranslatableLocale($admin));
-    }
-
-    public function testGetTranslatableLocaleFromDefault(): void
-    {
-        $admin = $this->createStub(AdminInterface::class);
-
-        $admin->method('hasRequest')->willReturn(false);
-
-        static::assertSame('en', $this->extension->getTranslatableLocale($admin));
+        $this->extension = new class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {
+        };
     }
 }

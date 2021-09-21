@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension;
+use Sonata\TranslationBundle\Provider\RequestLocaleProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
@@ -20,12 +20,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
     $containerConfigurator->services()
 
-        ->set('sonata_translation.admin.extension.gedmo_translatable', TranslatableAdminExtension::class)
-            ->tag('sonata.admin.extension')
+        ->set('sonata_translation.admin.provider.request_locale_provider', RequestLocaleProvider::class)
             ->args([
-                new ReferenceConfigurator('sonata_translation.checker.translatable'),
-                new ReferenceConfigurator('sonata_translation.listener.translatable'),
-                new ReferenceConfigurator('doctrine'),
-                new ReferenceConfigurator('sonata_translation.admin.provider.request_locale_provider'),
+                new ReferenceConfigurator('request_stack'),
+                '%sonata_translation.default_locale%',
             ]);
 };

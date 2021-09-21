@@ -22,12 +22,6 @@ Implement the TranslatableInterface
 
 First step, your entities have to implement the `TranslatableInterface`_.
 
-To do so ``SonataTranslationBundle`` brings some base classes you can extend.
-Depending on how you want to save translations you can choose between:
-
-* ``Sonata\TranslationBundle\Model\Gedmo\AbstractTranslatable``
-* ``Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable``
-
 Define translatable Fields
 --------------------------
 
@@ -42,7 +36,6 @@ Example using Personal Translation
 
     namespace Presta\CMSFAQBundle\Entity;
 
-    use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
     use Gedmo\Mapping\Annotation as Gedmo;
     use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
@@ -53,7 +46,7 @@ Example using Personal Translation
      * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
      * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
      */
-    class FAQCategory extends AbstractPersonalTranslatable implements TranslatableInterface
+    class FAQCategory implements TranslatableInterface
     {
         /**
          * @ORM\Id
@@ -98,47 +91,6 @@ Example using Personal Translation
         // ...
     }
 
-.. note::
-
-    If you prefer to use `traits`, we provide:
-
-    * ``Sonata\TranslationBundle\Traits\TranslatableTrait``
-    * ``Sonata\TranslationBundle\Traits\PersonalTranslatableTrait``
-
-Example using Personal Translation with Traits
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: php
-
-    // src/Entity/FAQCategory.php
-
-    namespace Presta\CMSFAQBundle\Entity;
-
-    use Gedmo\Mapping\Annotation as Gedmo;
-    use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-    use Doctrine\ORM\Mapping as ORM;
-    use Doctrine\Common\Collections\ArrayCollection;
-    use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
-
-    /**
-     * @ORM\Table(name="presta_cms_faq_category")
-     * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
-     * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
-     */
-    class FAQCategory implements TranslatableInterface
-    {
-        use PersonalTranslatableTrait;
-
-        /**
-         * @ORM\Id
-         * @ORM\Column(type="integer")
-         * @ORM\GeneratedValue(strategy="AUTO")
-         */
-        private $id;
-
-        // ...
-    }
-
 Define your translation Table
 -----------------------------
 
@@ -155,7 +107,7 @@ Example for translation class for Personal Translation
     namespace Presta\CMSFAQBundle\Entity\FAQCategory;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslation;
+    use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
     /**
      * @ORM\Entity
@@ -212,12 +164,6 @@ Example for configure search filter
 Using KnpLabs Doctrine Behaviors
 ================================
 
-Implement TranslatableInterface
--------------------------------
-
-Your entities have to implement `Model\\TranslatableInterface <https://github.com/sonata-project/SonataTranslationBundle/blob/master/src/Model/TranslatableInterface.php>`_.
-
-Your entities need to explicitly implement getter and setter methods for the knp doctrine extensions.
 Due to Sonata internals, the `magic method <https://github.com/KnpLabs/DoctrineBehaviors#proxy-translations>`_
 of Doctrine Behavior does not work. For more background on that topic, see this
 `post <https://web.archive.org/web/20150224121239/http://thewebmason.com/tutorial-using-sonata-admin-with-magic-__call-method/>`_::
@@ -227,8 +173,8 @@ of Doctrine Behavior does not work. For more background on that topic, see this
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-    use Sonata\TranslationBundle\Model\TranslatableInterface;
+    use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+    use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
     /**
      * @ORM\Table(name="app_translatable_entity")
@@ -236,7 +182,7 @@ of Doctrine Behavior does not work. For more background on that topic, see this
      */
     class TranslatableEntity implements TranslatableInterface
     {
-        use ORMBehaviors\Translatable\Translatable;
+        use TranslatableTrait;
 
         /**
          * @var integer
@@ -299,24 +245,6 @@ of Doctrine Behavior does not work. For more background on that topic, see this
 
             return $this;
         }
-
-        /**
-         * @param string $locale
-         */
-        public function setLocale($locale)
-        {
-            $this->setCurrentLocale($locale);
-
-            return $this;
-        }
-
-        /**
-         * @return string
-         */
-        public function getLocale()
-        {
-            return $this->getCurrentLocale();
-        }
     }
 
 Define your translation table
@@ -331,14 +259,15 @@ Here is an example::
     namespace App\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+    use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+    use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
     /**
      * @ORM\Entity
      */
-    class TranslatableEntityTranslation
+    class TranslatableEntityTranslation implements TranslationInterface
     {
-        use ORMBehaviors\Translatable\Translation;
+        use TranslationTrait;
 
         /**
          * @var string

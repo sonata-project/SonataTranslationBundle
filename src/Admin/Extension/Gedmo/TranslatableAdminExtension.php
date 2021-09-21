@@ -20,6 +20,7 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -40,9 +41,9 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         TranslatableChecker $translatableChecker,
         TranslatableListener $translatableListener,
         ManagerRegistry $managerRegistry,
-        string $defaultTranslationLocale
+        LocaleProviderInterface $localeProvider
     ) {
-        parent::__construct($translatableChecker, $defaultTranslationLocale);
+        parent::__construct($translatableChecker, $localeProvider);
 
         $this->translatableListener = $translatableListener;
         $this->managerRegistry = $managerRegistry;

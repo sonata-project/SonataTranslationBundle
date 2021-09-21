@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -43,14 +44,14 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     protected $translatableChecker;
 
     /**
-     * @var string
+     * @var LocaleProviderInterface
      */
-    private $defaultTranslationLocale;
+    private $localeProvider;
 
-    public function __construct(TranslatableChecker $translatableChecker, string $defaultTranslationLocale)
+    public function __construct(TranslatableChecker $translatableChecker, LocaleProviderInterface $localeProvider)
     {
         $this->translatableChecker = $translatableChecker;
-        $this->defaultTranslationLocale = $defaultTranslationLocale;
+        $this->localeProvider = $localeProvider;
     }
 
     public function setTranslatableChecker(TranslatableChecker $translatableChecker): void
@@ -69,10 +70,10 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      *
      * @phpstan-param AdminInterface<TranslatableInterface> $admin
      */
-    public function getTranslatableLocale(AdminInterface $admin): string
+    public function getTranslatableLocale(): string
     {
         if (null === $this->translatableLocale) {
-            $this->translatableLocale = $this->getLocaleFromAdmin($admin);
+            $this->translatableLocale = $this->localeProvider->get();
         }
 
         return $this->translatableLocale;
@@ -80,7 +81,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     public function configurePersistentParameters(AdminInterface $admin, array $parameters): array
     {
-        $parameters[self::TRANSLATABLE_LOCALE_PARAMETER] = $this->getTranslatableLocale($admin);
+        $parameters[self::TRANSLATABLE_LOCALE_PARAMETER] = $this->getTranslatableLocale();
 
         return $parameters;
     }
@@ -88,25 +89,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
     public function alterNewInstance(AdminInterface $admin, object $object): void
     {
         if (null === $object->getLocale()) {
-            $object->setLocale($this->getTranslatableLocale($admin));
+            $object->setLocale($this->getTranslatableLocale());
         }
-    }
-
-    /**
-     * @phpstan-param AdminInterface<TranslatableInterface> $admin
-     */
-    private function getLocaleFromAdmin(AdminInterface $admin): string
-    {
-        if (!$admin->hasRequest()) {
-            return $this->defaultTranslationLocale;
-        }
-
-        $locale = (string) $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
-
-        if ('' !== $locale) {
-            return $locale;
-        }
-
-        return $this->defaultTranslationLocale;
     }
 }

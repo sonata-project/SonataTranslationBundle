@@ -1,3 +1,6 @@
+includes:
+    - vendor/knplabs/doctrine-behaviors/phpstan-extension.neon
+
 parameters:
     level: max
 
@@ -7,3 +10,6 @@ parameters:
     paths:
         - src
         - tests
+
+    treatPhpDocTypesAsCertain: false
+
