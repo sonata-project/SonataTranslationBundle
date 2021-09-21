@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
@@ -34,6 +35,8 @@ class KnpCategory implements TranslatableInterface
     public function __construct(string $id = '', string $name = '')
     {
         $this->id = $id;
+        $this->translations = new ArrayCollection();
+        $this->newTranslations = new ArrayCollection();
         $this->setName($name);
     }
 

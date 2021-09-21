@@ -20,10 +20,15 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
+ *
+ * @phpstan-extends AbstractTranslatableAdminExtension<TranslatableInterface>
+ *
+ * @internal
  */
 final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
@@ -49,10 +54,17 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         $this->managerRegistry = $managerRegistry;
     }
 
+    public function alterNewInstance(AdminInterface $admin, object $object): void
+    {
+        if (null === $object->getLocale()) {
+            $object->setLocale($this->getTranslatableLocale());
+        }
+    }
+
     public function alterObject(AdminInterface $admin, object $object): void
     {
         if ($this->getTranslatableChecker()->isTranslatable($object)) {
-            $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+            $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale());
             $this->translatableListener->setTranslationFallback(false);
 
             $objectManager = $this->managerRegistry->getManagerForClass(\get_class($object));
@@ -60,13 +72,13 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
             \assert($objectManager instanceof ObjectManager);
 
             $objectManager->refresh($object);
-            $object->setLocale($this->getTranslatableLocale($admin));
+            $object->setLocale($this->getTranslatableLocale());
         }
     }
 
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query): void
     {
-        $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
+        $this->translatableListener->setTranslatableLocale($this->getTranslatableLocale());
         $this->translatableListener->setTranslationFallback(false);
     }
 }

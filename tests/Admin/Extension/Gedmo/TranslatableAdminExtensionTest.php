@@ -22,7 +22,7 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Admin\Extension;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
@@ -22,7 +23,7 @@ use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 final class AbstractTranslatableAdminExtensionTest extends TestCase
 {
     /**
-     * @var AbstractTranslatableAdminExtension
+     * @var AbstractTranslatableAdminExtension<object>
      */
     private $extension;
 
@@ -48,7 +49,13 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             }
         };
 
-        $this->extension = new class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {
-        };
+        $this->extension = new class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
+    }
+
+    public function testSetsPersistentParameters(): void
+    {
+        $parameters = $this->extension->configurePersistentParameters($this->createStub(AdminInterface::class), []);
+
+        static::assertSame(['tl' => 'es'], $parameters);
     }
 }

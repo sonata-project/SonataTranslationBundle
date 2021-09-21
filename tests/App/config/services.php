@@ -12,8 +12,6 @@ declare(strict_types=1);
  */
 
 use Gedmo\Translatable\TranslatableListener;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterfaceAlias;
 use Sonata\TranslationBundle\Tests\App\Admin\GedmoCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Admin\KnpCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
@@ -22,20 +20,8 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    // NEXT_MAJOR: Remove this parameter.
-    $containerConfigurator->parameters()
-        ->set('sonata_translation.targets', [
-            'gedmo' => [
-                'implements' => [GedmoTranslatableInterfaceAlias::class],
-                'instanceof' => [],
-            ],
-            'knplabs' => [
-                'implements' => [KnpTranslatableInterface::class],
-                'instanceof' => [],
-            ],
-        ]);
+    $containerConfigurator->services()
 
-    $services = $containerConfigurator->services()
         ->defaults()
         ->autowire()
         ->autoconfigure()
@@ -52,20 +38,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 null,
             ])
 
+        ->set(KnpCategoryAdmin::class)
+            ->tag('sonata.admin', [
+                'manager_type' => 'orm',
+                'label' => 'Knp Category',
+            ])
+            ->args([
+                '',
+                KnpCategory::class,
+                null,
+            ])
+
         ->set('app.gedmo.translation_listener', TranslatableListener::class)
             ->call('setAnnotationReader', [new Reference('annotation_reader')])
             ->call('setDefaultLocale', ['%locale%'])
             ->call('setTranslationFallback', [false])
-            ->tag('doctrine.event_subscriber')
-
-        ->set(KnpCategoryAdmin::class)
-        ->tag('sonata.admin', [
-            'manager_type' => 'orm',
-            'label' => 'Knp Category',
-        ])
-        ->args([
-            '',
-            KnpCategory::class,
-            null,
-        ]);
+            ->tag('doctrine.event_subscriber');
 };

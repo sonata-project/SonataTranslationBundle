@@ -16,13 +16,13 @@ namespace Sonata\TranslationBundle\Admin\Extension;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
- * @phpstan-extends AbstractAdminExtension<TranslatableInterface>
+ * @phpstan-template T of object
+ * @phpstan-extends AbstractAdminExtension<T>
  *
  * @internal
  */
@@ -54,31 +54,6 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         $this->localeProvider = $localeProvider;
     }
 
-    public function setTranslatableChecker(TranslatableChecker $translatableChecker): void
-    {
-        $this->translatableChecker = $translatableChecker;
-    }
-
-    public function getTranslatableChecker(): TranslatableChecker
-    {
-        return $this->translatableChecker;
-    }
-
-    /**
-     * Return current translatable locale
-     * ie: the locale used to load object translations != current request locale.
-     *
-     * @phpstan-param AdminInterface<TranslatableInterface> $admin
-     */
-    public function getTranslatableLocale(): string
-    {
-        if (null === $this->translatableLocale) {
-            $this->translatableLocale = $this->localeProvider->get();
-        }
-
-        return $this->translatableLocale;
-    }
-
     public function configurePersistentParameters(AdminInterface $admin, array $parameters): array
     {
         $parameters[self::TRANSLATABLE_LOCALE_PARAMETER] = $this->getTranslatableLocale();
@@ -86,10 +61,21 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return $parameters;
     }
 
-    public function alterNewInstance(AdminInterface $admin, object $object): void
+    final protected function getTranslatableChecker(): TranslatableChecker
     {
-        if (null === $object->getLocale()) {
-            $object->setLocale($this->getTranslatableLocale());
+        return $this->translatableChecker;
+    }
+
+    /**
+     * Return current translatable locale
+     * ie: the locale used to load object translations != current request locale.
+     */
+    final protected function getTranslatableLocale(): string
+    {
+        if (null === $this->translatableLocale) {
+            $this->translatableLocale = $this->localeProvider->get();
         }
+
+        return $this->translatableLocale;
     }
 }

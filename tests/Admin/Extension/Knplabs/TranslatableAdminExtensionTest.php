@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Admin\Extension\Knplabs;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -74,7 +74,6 @@ final class TranslatableAdminExtensionTest extends WebTestCase
 
     public function testSetLocaleForTranslatableObject(): void
     {
-        // @phpstan-ignore-next-line
         $this->extension->alterNewInstance($this->admin, $this->object);
 
         static::assertSame('es', $this->object->getCurrentLocale());
@@ -82,7 +81,6 @@ final class TranslatableAdminExtensionTest extends WebTestCase
 
     public function testAlterObjectForTranslatableObject(): void
     {
-        // @phpstan-ignore-next-line
         $this->extension->alterObject($this->admin, $this->object);
 
         static::assertSame('es', $this->object->getCurrentLocale());
@@ -93,7 +91,6 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $object = $this->createMock(TranslatableEntity::class);
         $object->expects(static::once())->method('mergeNewTranslations');
 
-        // @phpstan-ignore-next-line
         $this->extension->preUpdate($this->admin, $object);
     }
 
@@ -102,7 +99,6 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $object = $this->createMock(TranslatableEntity::class);
         $object->expects(static::once())->method('mergeNewTranslations');
 
-        // @phpstan-ignore-next-line
         $this->extension->prePersist($this->admin, $object);
     }
 }
