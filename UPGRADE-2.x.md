@@ -1,30 +1,8 @@
 UPGRADE 2.x
 ===========
 
-UPGRADE FROM 2.x to 2.x
+UPGRADE FROM 2.8 to 2.9
 =======================
-
-If you are using this bundle with "gedmo/doctrine-extensions", you MUST to specify the translatable listener service
-name in the configuration.
-
-Before:
-```yaml
-# config/packages/sonata_translation.yaml
-
-sonata_translation:
-    gedmo:
-      enabled: true
-```
-After:
-```yaml
-# config/packages/sonata_translation.yaml
-
-sonata_translation:
-    gedmo:
-        enabled: true
-        # in case you are using stof/doctrine-extensions-bundle
-        translatable_listener_service: stof_doctrine_extensions.listener.translatable
-```
 
 ### Deprecated abstract models and traits
 
@@ -49,6 +27,31 @@ It is deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterf
 `Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension` and
 `Sonata\TranslationBundle\Admin\Extension\Phpcr\TranslatableAdminExtension` classes must receive an instance of
 `LocaleProviderInterface` as second argument.
+
+UPGRADE FROM 2.7 to 2.8
+=======================
+
+If you are using this bundle with "gedmo/doctrine-extensions", you MUST to specify the translatable listener service
+name in the configuration.
+
+Before:
+```yaml
+# config/packages/sonata_translation.yaml
+
+sonata_translation:
+    gedmo:
+      enabled: true
+```
+After:
+```yaml
+# config/packages/sonata_translation.yaml
+
+sonata_translation:
+    gedmo:
+        enabled: true
+        # in case you are using stof/doctrine-extensions-bundle
+        translatable_listener_service: stof_doctrine_extensions.listener.translatable
+```
 
 UPGRADE FROM 2.1 to 2.7
 =======================

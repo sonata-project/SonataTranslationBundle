@@ -71,7 +71,7 @@ final class TranslatableCheckerTest extends TestCase
 
         $object = new ModelUsingTraitTranslatable();
 
-        $this->expectDeprecation('Using traits to specify that a model is translatable is deprecated since sonata-project/translation-bundle 2.x and will be not possible in version 3.0. To mark "Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable" class as translatable you should implement one of "Gedmo\Translatable\Translatable" interfaces.');
+        $this->expectDeprecation('Using traits to specify that a model is translatable is deprecated since sonata-project/translation-bundle 2.9 and will be not possible in version 3.0. To mark "Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable" class as translatable you should implement one of "Gedmo\Translatable\Translatable" interfaces.');
 
         static::assertTrue($translatableChecker->isTranslatable($object));
     }

@@ -94,7 +94,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $object = new DeprecatedTranslatableEntity();
 
-        $this->expectDeprecation('Implementing "Sonata\TranslationBundle\Model\TranslatableInterface" for entities using "knplabs/doctrine-behaviors" is deprecated since sonata-project/translation-bundle 2.x and "Sonata\TranslationBundle\Model\TranslatableInterface::setLocale()" method will not be called anymore in version 3.0.');
+        $this->expectDeprecation('Implementing "Sonata\TranslationBundle\Model\TranslatableInterface" for entities using "knplabs/doctrine-behaviors" is deprecated since sonata-project/translation-bundle 2.9 and "Sonata\TranslationBundle\Model\TranslatableInterface::setLocale()" method will not be called anymore in version 3.0.');
 
         $this->extension->alterNewInstance($this->admin, $object);
 

@@ -24,7 +24,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  *
- * @deprecated since version 2.x, to be removed in 3.0. Create your own instead.
+ * @deprecated since version 2.9, to be removed in 3.0. Create your own instead.
  * @see https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md : Personal translations
  */
 abstract class AbstractPersonalTranslatable extends AbstractTranslatable

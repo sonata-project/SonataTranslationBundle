@@ -60,7 +60,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         if (!$defaultTranslationLocaleOrLocaleProvider instanceof LocaleProviderInterface) {
             @trigger_error(sprintf(
                 'Omitting the argument 2 or passing other type than "%s" to "%s()" is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will be not possible in version 3.0.',
+                .' since sonata-project/translation-bundle 2.9 and will be not possible in version 3.0.',
                 LocaleProviderInterface::class,
                 __METHOD__
             ), \E_USER_DEPRECATED);
