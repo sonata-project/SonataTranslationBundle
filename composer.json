@@ -6,7 +6,7 @@
         "translation",
         "i18n"
     ],
-    "homepage": "http://sonata-project.org/bundles/translation",
+    "homepage": "https://docs.sonata-project.org/projects/SonataTranslationBundle",
     "license": "MIT",
     "authors": [
         {
