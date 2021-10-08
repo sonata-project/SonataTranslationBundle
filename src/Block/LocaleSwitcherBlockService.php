@@ -15,14 +15,27 @@ namespace Sonata\TranslationBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 final class LocaleSwitcherBlockService extends AbstractBlockService
 {
+    /**
+     * @var LocaleProviderInterface
+     */
+    private $localeProvider;
+
+    public function __construct(Environment $twig, LocaleProviderInterface $localeProvider)
+    {
+        parent::__construct($twig);
+        $this->localeProvider = $localeProvider;
+    }
+
     public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
@@ -32,6 +45,7 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
                 'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
+                'current_locale' => $this->localeProvider->get(),
             ]
         );
     }
