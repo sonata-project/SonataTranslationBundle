@@ -15,27 +15,28 @@ namespace Sonata\TranslationBundle\Tests\App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Gedmo\Translatable\Entity\Repository\TranslationRepository;
+use Gedmo\Translatable\Entity\Translation;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 
 final class GedmoCategoryFixtures extends Fixture
 {
     public const CATEGORY = 'category_novel';
 
+    /**
+     * @psalm-suppress RedundantCondition psalm does not need the assertion of the repository class
+     */
     public function load(ObjectManager $manager): void
     {
         $novelCategory = new GedmoCategory(self::CATEGORY, 'Novel');
 
+        $repository = $manager->getRepository(Translation::class);
+        \assert($repository instanceof TranslationRepository);
+        $repository
+            ->translate($novelCategory, 'name', 'es', 'Novela')
+            ->translate($novelCategory, 'name', 'fr', 'Roman');
+
         $manager->persist($novelCategory);
-        $manager->flush();
-
-        $novelCategory->setLocale('es');
-        $novelCategory->setName('Novela');
-
-        $manager->flush();
-
-        $novelCategory->setLocale('fr');
-        $novelCategory->setName('Roman');
-
         $manager->flush();
     }
 }
