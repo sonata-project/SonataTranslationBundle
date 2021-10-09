@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Tests\App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Gedmo\Translatable\Entity\Translation;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 
 final class GedmoCategoryFixtures extends Fixture
@@ -25,17 +26,12 @@ final class GedmoCategoryFixtures extends Fixture
     {
         $novelCategory = new GedmoCategory(self::CATEGORY, 'Novel');
 
+        $repository = $manager->getRepository(Translation::class);
+        $repository
+            ->translate($novelCategory, 'name', 'es', 'Novela')
+            ->translate($novelCategory, 'name', 'fr', 'Roman');
+
         $manager->persist($novelCategory);
-        $manager->flush();
-
-        $novelCategory->setLocale('es');
-        $novelCategory->setName('Novela');
-
-        $manager->flush();
-
-        $novelCategory->setLocale('fr');
-        $novelCategory->setName('Roman');
-
         $manager->flush();
     }
 }

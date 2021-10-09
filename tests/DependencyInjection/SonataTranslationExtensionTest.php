@@ -92,6 +92,12 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
             'setAnnotationReader',
             [new Reference('annotation_reader')]
         );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sonata_translation.listener.translatable',
+            'setTranslatableLocale',
+            ['%locale%']
+        );
     }
 
     protected function getContainerExtensions(): array
