@@ -155,6 +155,7 @@ final class SonataTranslationExtension extends Extension
         $container->register('sonata_translation.listener.translatable', TranslatableListener::class)
             ->addMethodCall('setAnnotationReader', [new Reference('annotation_reader')])
             ->addMethodCall('setDefaultLocale', ['%locale%'])
+            ->addMethodCall('setTranslatableLocale', ['%locale%'])
             ->addMethodCall('setTranslationFallback', [false])
             ->addTag('doctrine.event_subscriber');
     }
