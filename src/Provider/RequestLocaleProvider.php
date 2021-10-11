@@ -18,20 +18,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RequestLocaleProvider implements LocaleProviderInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var string
-     */
-    private $defaultTranslationLocale;
+    private string $defaultTranslationLocale;
 
-    /**
-     * @var string|null
-     */
-    private $translatableLocale;
+    private ?string $translatableLocale = null;
 
     public function __construct(RequestStack $requestStack, string $defaultTranslationLocale)
     {

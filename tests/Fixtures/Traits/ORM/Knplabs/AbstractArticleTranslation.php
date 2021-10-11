@@ -18,13 +18,11 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class AbstractArticleTranslation
 {
     /**
-     * @var int|null
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    protected $id;
+    protected ?int $id = null;
 
     /**
      * @var Article|null
@@ -36,14 +34,12 @@ abstract class AbstractArticleTranslation
      * )
      * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    protected $translatable;
+    protected $translatable = null;
 
     /**
      * @ORM\Column(length=128)
-     *
-     * @var string|null
      */
-    protected $title;
+    protected ?string $title = null;
 
     public function getTitle(): ?string
     {

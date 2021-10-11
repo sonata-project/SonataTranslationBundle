@@ -25,10 +25,7 @@ use Twig\Environment;
  */
 final class LocaleSwitcherBlockService extends AbstractBlockService
 {
-    /**
-     * @var LocaleProviderInterface
-     */
-    private $localeProvider;
+    private LocaleProviderInterface $localeProvider;
 
     public function __construct(Environment $twig, LocaleProviderInterface $localeProvider)
     {

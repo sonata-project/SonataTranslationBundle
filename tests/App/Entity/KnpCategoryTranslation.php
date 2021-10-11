@@ -23,20 +23,16 @@ class KnpCategoryTranslation implements TranslationInterface
     use TranslationTrait;
 
     /**
-     * @var int|null
-     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private ?string $name = null;
 
     public function getId(): ?int
     {

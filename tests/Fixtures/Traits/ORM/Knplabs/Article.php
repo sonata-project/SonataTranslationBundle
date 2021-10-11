@@ -29,10 +29,8 @@ final class Article extends TranslatableEntity
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @var int|null
      */
-    public $id;
+    public ?int $id = null;
 
     /**
      * @psalm-suppress NonInvariantDocblockPropertyType
@@ -60,10 +58,5 @@ final class Article extends TranslatableEntity
     public static function getTranslationEntityClass(): string
     {
         return ArticleTranslation::class;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 }

@@ -35,11 +35,6 @@ use PHPUnit\Framework\TestCase;
 abstract class DoctrineOrmTestCase extends TestCase
 {
     /**
-     * @var EntityManager
-     */
-    protected $em;
-
-    /**
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
      * database in memory.
@@ -61,7 +56,7 @@ abstract class DoctrineOrmTestCase extends TestCase
         $schemaTool->dropSchema([]);
         $schemaTool->createSchema($schema);
 
-        return $this->em = $em;
+        return $em;
     }
 
     /**

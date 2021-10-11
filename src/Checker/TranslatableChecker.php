@@ -23,14 +23,14 @@ final class TranslatableChecker
      *
      * @phpstan-var class-string[]
      */
-    private $supportedInterfaces = [];
+    private array $supportedInterfaces = [];
 
     /**
      * @var string[]
      *
      * @phpstan-var class-string[]
      */
-    private $supportedModels = [];
+    private array $supportedModels = [];
 
     /**
      * @param string[] $supportedInterfaces

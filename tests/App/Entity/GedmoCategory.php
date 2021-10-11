@@ -21,28 +21,21 @@ use Gedmo\Translatable\Translatable;
 class GedmoCategory implements Translatable
 {
     /**
+     * @Gedmo\Locale
+     */
+    public ?string $locale = null;
+    /**
      * @ORM\Id
      * @ORM\Column(type="string")
      * @ORM\GeneratedValue(strategy="NONE")
-     *
-     * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(type="string")
-     *
-     * @var string
      */
-    private $name;
-
-    /**
-     * @Gedmo\Locale
-     *
-     * @var string|null
-     */
-    private $locale = null;
+    private string $name;
 
     public function __construct(string $id = '', string $name = '')
     {
@@ -73,15 +66,5 @@ class GedmoCategory implements Translatable
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    public function setLocale(string $locale): void
-    {
-        $this->locale = $locale;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
     }
 }

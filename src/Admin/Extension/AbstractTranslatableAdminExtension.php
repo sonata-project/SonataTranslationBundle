@@ -33,20 +33,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
      */
     public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
-    /**
-     * @var string|null
-     */
-    protected $translatableLocale;
+    protected ?string $translatableLocale = null;
 
-    /**
-     * @var TranslatableChecker
-     */
-    protected $translatableChecker;
+    protected TranslatableChecker $translatableChecker;
 
-    /**
-     * @var LocaleProviderInterface
-     */
-    private $localeProvider;
+    private LocaleProviderInterface $localeProvider;
 
     public function __construct(TranslatableChecker $translatableChecker, LocaleProviderInterface $localeProvider)
     {

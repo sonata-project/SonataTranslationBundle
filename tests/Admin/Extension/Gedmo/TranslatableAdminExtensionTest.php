@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Admin\Extension\Gedmo;
 
 use Doctrine\Common\EventManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Translatable\TranslatableListener;
@@ -34,17 +35,13 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
     /**
      * @var AdminInterface<TranslatableInterface>&Stub
      */
-    private $admin;
+    private Stub $admin;
 
-    /**
-     * @var TranslatableAdminExtension
-     */
-    private $extension;
+    private TranslatableAdminExtension $extension;
 
-    /**
-     * @var TranslatableListener
-     */
-    private $translatableListener;
+    private TranslatableListener $translatableListener;
+
+    private EntityManager $em;
 
     protected function setUp(): void
     {
@@ -60,7 +57,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
         $this->translatableListener->setTranslatableLocale('en');
         $this->translatableListener->setDefaultLocale('en');
         $evm->addEventSubscriber($this->translatableListener);
-        $this->getMockSqliteEntityManager($evm);
+        $this->em = $this->getMockSqliteEntityManager($evm);
         $managerRegistry = $this->createStub(ManagerRegistry::class);
         $managerRegistry
             ->method('getManagerForClass')
