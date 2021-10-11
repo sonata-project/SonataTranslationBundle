@@ -34,15 +34,9 @@ use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
  */
 final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
-    /**
-     * @var TranslatableListener
-     */
-    private $translatableListener;
+    private TranslatableListener $translatableListener;
 
-    /**
-     * @var ManagerRegistry
-     */
-    private $managerRegistry;
+    private ManagerRegistry $managerRegistry;
 
     public function __construct(
         TranslatableChecker $translatableChecker,

@@ -24,15 +24,11 @@ class ModelTranslatable implements Translatable
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int|null
      */
-    public $id;
+    public ?int $id = null;
 
     /**
      * @Gedmo\Locale()
-     *
-     * @var string|null
      */
-    public $locale = null;
+    public ?string $locale = null;
 }

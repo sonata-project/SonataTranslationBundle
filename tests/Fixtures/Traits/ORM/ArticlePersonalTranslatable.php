@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
@@ -26,13 +27,16 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 class ArticlePersonalTranslatable
 {
     /**
-     * @var int|null
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    public $id;
+    public ?int $id = null;
+
+    /**
+     * @Gedmo\Locale
+     */
+    public ?string $locale = null;
 
     /**
      * @var ArrayCollection<array-key, AbstractPersonalTranslation>
@@ -43,42 +47,17 @@ class ArticlePersonalTranslatable
      *     cascade={"persist", "remove"}
      * )
      */
-    protected $translations;
+    protected Collection $translations;
 
     /**
-     * @Gedmo\Locale
-     *
-     * @var string|null
-     */
-    protected $locale;
-
-    /**
-     * @var string|null
-     *
      * @Gedmo\Translatable
      * @ORM\Column(length=128)
      */
-    private $title;
+    private ?string $title = null;
 
     public function __construct()
     {
         $this->translations = new ArrayCollection();
-    }
-
-    /**
-     * @param string $locale
-     */
-    public function setLocale($locale): void
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getLocale()
-    {
-        return $this->locale;
     }
 
     public function getId(): ?int
@@ -97,11 +76,9 @@ class ArticlePersonalTranslatable
     }
 
     /**
-     * @return ArrayCollection
-     *
-     * @phpstan-return ArrayCollection<array-key, AbstractPersonalTranslation>
+     * @phpstan-return Collection<array-key, AbstractPersonalTranslation>
      */
-    public function getTranslations()
+    public function getTranslations(): Collection
     {
         return $this->translations;
     }

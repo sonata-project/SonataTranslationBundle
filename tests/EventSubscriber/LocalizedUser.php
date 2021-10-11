@@ -18,10 +18,7 @@ namespace Sonata\TranslationBundle\Tests\EventSubscriber;
  */
 final class LocalizedUser extends User
 {
-    /**
-     * @var string
-     */
-    private $locale;
+    private string $locale;
 
     public function __construct(string $locale)
     {

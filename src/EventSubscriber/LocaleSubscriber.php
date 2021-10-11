@@ -22,10 +22,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 final class LocaleSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var string
-     */
-    private $defaultLocale;
+    private string $defaultLocale;
 
     public function __construct(string $defaultLocale = 'en')
     {

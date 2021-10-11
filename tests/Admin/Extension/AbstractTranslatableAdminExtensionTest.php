@@ -25,12 +25,9 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
     /**
      * @var AbstractTranslatableAdminExtension<object>
      */
-    private $extension;
+    private AbstractTranslatableAdminExtension $extension;
 
-    /**
-     * @var TranslatableChecker
-     */
-    private $translatableChecker;
+    private TranslatableChecker $translatableChecker;
 
     /**
      * @psalm-suppress InternalClass https://github.com/vimeo/psalm/issues/6315

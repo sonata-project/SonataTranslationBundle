@@ -28,8 +28,9 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
     public const ARTICLE = ArticlePersonalTranslatable::class;
     public const TRANSLATION = ArticlePersonalTranslation::class;
 
-    /** @var TranslatableListener */
-    private $translatableListener;
+    private TranslatableListener $translatableListener;
+
+    private EntityManager $em;
 
     protected function setUp(): void
     {
@@ -45,7 +46,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $this->translatableListener->setDefaultLocale('en');
         $evm->addEventSubscriber($this->translatableListener);
 
-        $this->getMockSqliteEntityManager($evm);
+        $this->em = $this->getMockSqliteEntityManager($evm);
     }
 
     public function testPersonalTranslatableEntity(): void
@@ -70,7 +71,7 @@ final class GedmoOrmTest extends DoctrineOrmTestCase
         $this->em->flush();
 
         // Tests if Gedmo\Locale annotation exists
-        $article->setLocale('pl');
+        $article->locale = 'pl';
         $article->setTitle('pl');
         $this->em->persist($article);
         $this->em->flush();

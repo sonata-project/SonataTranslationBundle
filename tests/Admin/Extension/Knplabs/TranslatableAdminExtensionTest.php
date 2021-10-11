@@ -33,17 +33,11 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     /**
      * @var AdminInterface<TranslatableInterface>&Stub
      */
-    private $admin;
+    private Stub $admin;
 
-    /**
-     * @var TranslatableEntity
-     */
-    private $object;
+    private TranslatableEntity $object;
 
-    /**
-     * @var TranslatableAdminExtension
-     */
-    private $extension;
+    private TranslatableAdminExtension $extension;
 
     protected function setUp(): void
     {

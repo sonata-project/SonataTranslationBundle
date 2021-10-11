@@ -19,20 +19,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class LocaleProvider implements KnpLocaleProviderInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var KnpLocaleProviderInterface
-     */
-    private $localeProvider;
+    private KnpLocaleProviderInterface $localeProvider;
 
-    /**
-     * @var SonataLocaleProviderInterface
-     */
-    private $sonataLocaleProvider;
+    private SonataLocaleProviderInterface $sonataLocaleProvider;
 
     public function __construct(
         RequestStack $requestStack,

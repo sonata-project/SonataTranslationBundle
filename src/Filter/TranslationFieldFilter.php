@@ -24,10 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class TranslationFieldFilter extends Filter
 {
-    /**
-     * @var string
-     */
-    private $filterMode;
+    private string $filterMode;
 
     public function __construct(string $filterMode = TranslationFilterMode::GEDMO)
     {

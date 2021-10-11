@@ -20,10 +20,7 @@ class TranslatableEntityTranslation implements TranslationInterface
 {
     use TranslationTrait;
 
-    /**
-     * @var string|null
-     */
-    private $title;
+    private ?string $title = null;
 
     public function getTitle(): ?string
     {

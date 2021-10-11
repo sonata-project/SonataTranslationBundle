@@ -27,10 +27,8 @@ class KnpCategory implements TranslatableInterface
      * @ORM\Id
      * @ORM\Column(type="string")
      * @ORM\GeneratedValue(strategy="NONE")
-     *
-     * @var string
      */
-    private $id;
+    private string $id;
 
     public function __construct(string $id = '', string $name = '')
     {
@@ -60,7 +58,7 @@ class KnpCategory implements TranslatableInterface
      */
     public function getName(): ?string
     {
-        return $this->translate(null, true)->getName();
+        return $this->translate()->getName();
     }
 
     /**
@@ -68,6 +66,6 @@ class KnpCategory implements TranslatableInterface
      */
     public function setName(string $name): void
     {
-        $this->translate(null, true)->setName($name);
+        $this->translate()->setName($name);
     }
 }

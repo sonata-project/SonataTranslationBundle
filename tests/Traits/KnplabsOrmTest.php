@@ -31,8 +31,9 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
     private const ARTICLE = Article::class;
     private const TRANSLATION = ArticleTranslation::class;
 
-    /** @var TranslatableListener */
-    private $translatableListener;
+    private TranslatableListener $translatableListener;
+
+    private EntityManager $em;
 
     protected function setUp(): void
     {
@@ -48,7 +49,7 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
         $this->translatableListener->setDefaultLocale('en');
         $evm->addEventSubscriber($this->translatableListener);
 
-        $this->getMockSqliteEntityManager($evm);
+        $this->em = $this->getMockSqliteEntityManager($evm);
     }
 
     public function testTranslationFieldFilter(): void

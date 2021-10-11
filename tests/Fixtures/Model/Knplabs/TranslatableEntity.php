@@ -20,13 +20,5 @@ class TranslatableEntity implements KNPTranslatableInterface
 {
     use TranslatableTrait;
 
-    /**
-     * @var int|null
-     */
-    public $id;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    public ?int $id = null;
 }

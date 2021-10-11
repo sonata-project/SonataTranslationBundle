@@ -24,10 +24,7 @@ use Twig\TwigTest;
  */
 final class SonataTranslationExtension extends AbstractExtension
 {
-    /**
-     * @var TranslatableChecker
-     */
-    protected $translatableChecker;
+    protected TranslatableChecker $translatableChecker;
 
     public function __construct(TranslatableChecker $translatableChecker)
     {

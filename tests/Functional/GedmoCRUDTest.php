@@ -20,10 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class GedmoCRUDTest extends WebTestCase
 {
-    /**
-     * @var KernelBrowser
-     */
-    private $client;
+    private KernelBrowser $client;
 
     protected function setUp(): void
     {
