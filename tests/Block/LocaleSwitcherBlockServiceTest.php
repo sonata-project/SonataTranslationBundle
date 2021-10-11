@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Tests\Block;
 
 use Sonata\BlockBundle\Test\BlockServiceTestCase;
 use Sonata\TranslationBundle\Block\LocaleSwitcherBlockService;
+use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Twig\Environment;
 
 final class LocaleSwitcherBlockServiceTest extends BlockServiceTestCase
@@ -22,8 +23,10 @@ final class LocaleSwitcherBlockServiceTest extends BlockServiceTestCase
     public function testDefaultSettings(): void
     {
         $environment = $this->createStub(Environment::class);
+        $localeProvider = $this->createStub(LocaleProviderInterface::class);
+        $localeProvider->method('get')->willReturn('en');
 
-        $localeSwitcherBlock = new LocaleSwitcherBlockService($environment);
+        $localeSwitcherBlock = new LocaleSwitcherBlockService($environment, $localeProvider);
 
         $blockContext = $this->getBlockContext($localeSwitcherBlock);
 
@@ -33,6 +36,7 @@ final class LocaleSwitcherBlockServiceTest extends BlockServiceTestCase
             'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
             'locale_switcher_route' => null,
             'locale_switcher_route_parameters' => [],
+            'current_locale' => 'en',
         ], $blockContext);
     }
 }

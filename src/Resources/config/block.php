@@ -21,5 +21,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata_translation.block.locale_switcher', LocaleSwitcherBlockService::class)
             ->tag('sonata.block')
-            ->args([new ReferenceConfigurator('twig')]);
+            ->args([
+                new ReferenceConfigurator('twig'),
+                new ReferenceConfigurator('sonata_translation.admin.provider.request_locale_provider'),
+            ]);
 };

@@ -2,16 +2,9 @@
 
 {% if admin.class is translatable %}
     {% set object = block_context.settings.object %}
-    {% set currentLocale = object.locale|default(null) %}
     {% set object_id = object ? admin.id(object) : null %}
     {% set locale_switcher_route = block_context.settings.locale_switcher_route|default(object_id is not null ? 'edit' : 'create') %}
     {% set locale_switcher_route_parameters = block_context.settings.locale_switcher_route_parameters %}
-
-    {% for extension in admin.extensions %}
-        {% if extension.translatableLocale is defined %}
-            {% set currentLocale = extension.translatableLocale(admin) %}
-        {% endif %}
-    {% endfor %}
 
     <div class="locale_switcher">
         {% apply spaceless %}
@@ -21,7 +14,7 @@
                     {'id': object_id, 'tl': locale}|merge(locale_switcher_route_parameters)
                 ) }}"
                    accesskey=""
-                   {% if currentLocale == locale %}class="active"{% endif %}
+                   {% if block_context.settings.current_locale == locale %}class="active"{% endif %}
                    title="{{ 'admin.locale_switcher.tooltip' |trans([], 'SonataTranslationBundle') }}">
                     {{ locale|localeName(app.request.locale) }}
                 </a>
