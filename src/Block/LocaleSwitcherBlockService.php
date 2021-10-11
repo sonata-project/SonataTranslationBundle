@@ -30,10 +30,7 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
      */
     private $localeProvider;
 
-    /**
-     * NEXT_MAJOR: Make the $localeProvider mandatory
-     */
-    public function __construct(Environment $twig, ?LocaleProviderInterface $localeProvider = null)
+    public function __construct(Environment $twig, LocaleProviderInterface $localeProvider)
     {
         parent::__construct($twig);
         $this->localeProvider = $localeProvider;
@@ -48,7 +45,7 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
                 'template' => '@SonataTranslation/Block/block_locale_switcher.html.twig',
                 'locale_switcher_route' => null,
                 'locale_switcher_route_parameters' => [],
-                'current_locale' => $this->localeProvider ? $this->localeProvider->get() : null,
+                'current_locale' => $this->localeProvider->get(),
             ]
         );
     }
