@@ -23,7 +23,7 @@ class ModelTranslatable implements TranslatableInterface
      *
      * @var string|null
      */
-    private $locale;
+    private $locale = null;
 
     public function setLocale(string $locale): void
     {
