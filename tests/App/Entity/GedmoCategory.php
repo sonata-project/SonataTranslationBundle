@@ -42,7 +42,7 @@ class GedmoCategory implements TranslatableInterface
      *
      * @var string|null
      */
-    private $locale;
+    private $locale = null;
 
     public function __construct(string $id = '', string $name = '')
     {
@@ -75,10 +75,7 @@ class GedmoCategory implements TranslatableInterface
         $this->name = $name;
     }
 
-    /**
-     * @param string $locale
-     */
-    public function setLocale($locale): void
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }
