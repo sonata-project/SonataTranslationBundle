@@ -5,9 +5,6 @@ includes:
 parameters:
     level: max
 
-    bootstrapFiles:
-        - vendor/bin/.phpunit/phpunit/vendor/autoload.php
-
     doctrine:
         objectManagerLoader: phpstan-object-manager.php
 
