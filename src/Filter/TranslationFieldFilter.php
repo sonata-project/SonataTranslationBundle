@@ -41,7 +41,7 @@ final class TranslationFieldFilter extends Filter
 
         $data['value'] = trim($data['value']);
 
-        if (0 === \strlen($data['value'])) {
+        if ('' === $data['value']) {
             return;
         }
         $joinAlias = 'tff';
