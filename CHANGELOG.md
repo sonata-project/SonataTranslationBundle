@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.9.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.9.0...2.9.1) - 2021-10-19
+### Fixed
+- [[#557](https://github.com/sonata-project/SonataTranslationBundle/pull/557)] Setting the proper locale to Gedmo translatable listener ([@franmomu](https://github.com/franmomu))
+
 ## [2.9.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.8.1...2.9.0) - 2021-09-21
 ### Added
 - [[#543](https://github.com/sonata-project/SonataTranslationBundle/pull/543)] Added `LocaleProviderInterface` and `RequestLocaleProvider` to get the locale based on the parameter from the URL or the default configured one ([@franmomu](https://github.com/franmomu))
