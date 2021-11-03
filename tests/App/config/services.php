@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use Gedmo\Translatable\Translatable as GedmoTranslatable;
 use Gedmo\Translatable\TranslatableListener;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterfaceAlias;
@@ -26,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->parameters()
         ->set('sonata_translation.targets', [
             'gedmo' => [
-                'implements' => [GedmoTranslatableInterfaceAlias::class],
+                'implements' => [GedmoTranslatable::class, GedmoTranslatableInterfaceAlias::class],
                 'instanceof' => [],
             ],
             'knplabs' => [

@@ -28,6 +28,18 @@ It is deprecated implementing `Sonata\TranslationBundle\Model\TranslatableInterf
 `Sonata\TranslationBundle\Admin\Extension\Phpcr\TranslatableAdminExtension` classes must receive an instance of
 `LocaleProviderInterface` as second argument.
 
+### Deprecated `Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface`
+
+When using `gedmo/doctrine-extensions` you MUST implement `Gedmo\Translatable\Translatable` instead.
+
+### Deprecated `Sonata\TranslationBundle\Model\TranslatableInterface`
+
+This interface has been deprecated without replacement, you MUST implement the specific interface based on the
+translation package you are using:
+
+- knplabs: `Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface`
+- gedmo: `Gedmo\Translatable\Translatable`
+
 UPGRADE FROM 2.7 to 2.8
 =======================
 

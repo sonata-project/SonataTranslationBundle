@@ -34,8 +34,6 @@ final class TranslationFieldFilter extends Filter
     }
 
     /**
-     * $data is an array according to phpdoc.
-     *
      * @psalm-suppress RedundantCondition
      */
     public function filter(ProxyQueryInterface $query, $alias, $field, $data): void

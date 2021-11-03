@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Gedmo;
 
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
+use Gedmo\Translatable\Translatable;
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -77,21 +79,65 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         $this->managerRegistry = $managerRegistry;
     }
 
+    public function alterNewInstance(AdminInterface $admin, $object)
+    {
+        // NEXT_MAJOR: Remove the entire "if" block.
+        if ($object instanceof TranslatableInterface) {
+            @trigger_error(sprintf(
+                'Implementing "%s" for entities using gedmo/doctrine-extensions is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will not work in 3.0. You MUST implement "%s"'
+                .' instead.',
+                TranslatableInterface::class,
+                Translatable::class,
+            ), \E_USER_DEPRECATED);
+
+            if (null === $object->getLocale()) {
+                $object->setLocale($this->getTranslatableLocale($admin));
+            }
+
+            return;
+        }
+
+        if (!$this->getTranslatableChecker()->isTranslatable($object)) {
+            return;
+        }
+
+        $this->setLocale($object, $admin);
+    }
+
     public function alterObject(AdminInterface $admin, $object)
     {
-        if ($this->getTranslatableChecker()->isTranslatable($object)) {
+        if (!$this->getTranslatableChecker()->isTranslatable($object)) {
+            return;
+        }
+
+        // NEXT_MAJOR: Use $this->managerRegistry directly.
+        $objectManager = $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object));
+
+        \assert($objectManager instanceof ObjectManager);
+
+        // NEXT_MAJOR: Remove the entire "if" block.
+        if ($object instanceof TranslatableInterface) {
+            @trigger_error(sprintf(
+                'Implementing "%s" for entities using gedmo/doctrine-extensions is deprecated'
+                .' since sonata-project/translation-bundle 2.x and will not work in 3.0. You MUST implement "%s"'
+                .' instead.',
+                TranslatableInterface::class,
+                Translatable::class,
+            ), \E_USER_DEPRECATED);
+
             $translatableListener = $this->getTranslatableListener($admin);
             $translatableListener->setTranslatableLocale($this->getTranslatableLocale($admin));
             $translatableListener->setTranslationFallback(false);
 
-            // NEXT_MAJOR: Use $this->managerRegistry directly.
-            $objectManager = $this->getManagerRegistry($admin)->getManagerForClass(\get_class($object));
-
-            \assert($objectManager instanceof ObjectManager);
-
             $objectManager->refresh($object);
             $object->setLocale($this->getTranslatableLocale($admin));
+
+            return;
         }
+
+        $objectManager->refresh($object);
+        $this->setLocale($object, $admin);
     }
 
     public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = 'list')
@@ -137,5 +183,37 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         \assert($managerRegistry instanceof ManagerRegistry);
 
         return $managerRegistry;
+    }
+
+    /**
+     * @phpstan-param AdminInterface<TranslatableInterface> $admin
+     */
+    private function setLocale(object $object, AdminInterface $admin): void
+    {
+        $translatableLocale = $this->getTranslatableLocale($admin);
+        $translatableListener = $this->getTranslatableListener($admin);
+        $translatableListener->setTranslatableLocale($translatableLocale);
+        $translatableListener->setTranslationFallback(false);
+
+        $objectClassName = ClassUtils::getClass($object);
+
+        // NEXT_MAJOR: Use $this->managerRegistry directly.
+        $objectManager = $this->getManagerRegistry($admin)->getManagerForClass($objectClassName);
+
+        \assert($objectManager instanceof ObjectManager);
+
+        $configuration = $translatableListener->getConfiguration($objectManager, $objectClassName);
+        if (!isset($configuration['locale'])) {
+            throw new \LogicException(sprintf(
+                'There is no locale or language property found on class: "%s"',
+                \get_class($object)
+            ));
+        }
+
+        $reflClass = $objectManager->getClassMetadata($objectClassName)->getReflectionClass();
+
+        $reflectionProperty = $reflClass->getProperty($configuration['locale']);
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($object, $translatableLocale);
     }
 }

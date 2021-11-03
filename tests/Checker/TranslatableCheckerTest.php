@@ -17,8 +17,8 @@ use Gedmo\Translatable\Translatable;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\DeprecatedModelTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
-use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelUsingTraitTranslatable;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 
@@ -29,11 +29,14 @@ final class TranslatableCheckerTest extends TestCase
 {
     use ExpectDeprecationTrait;
 
+    /**
+     * NEXT_MAJOR: Remove this test.
+     */
     public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();
 
-        $object = new ModelTranslatable();
+        $object = new DeprecatedModelTranslatable();
 
         static::assertFalse($translatableChecker->isTranslatable($object));
 
