@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\DependencyInjection;
 
+use Gedmo\Translatable\Translatable as GedmoTranslatable;
 use Gedmo\Translatable\TranslatableListener;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
@@ -74,7 +75,11 @@ class SonataTranslationExtension extends Extension
              * @phpstan-var list<class-string>
              */
             $listOfInterfaces = array_merge(
-                [GedmoTranslatableInterface::class],
+                [
+                    // NEXT_MAJOR: Remove next line.
+                    GedmoTranslatableInterface::class,
+                    GedmoTranslatable::class,
+                ],
                 $config['gedmo']['implements']
             );
             $translationTargets['gedmo']['implements'] = $listOfInterfaces;

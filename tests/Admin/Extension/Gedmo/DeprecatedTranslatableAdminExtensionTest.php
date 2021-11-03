@@ -23,7 +23,7 @@ use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
-use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\DeprecatedModelTranslatable;
 use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Container;
@@ -44,7 +44,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
     private $admin;
 
     /**
-     * @var ModelTranslatable
+     * @var DeprecatedModelTranslatable
      */
     private $object;
 
@@ -100,7 +100,7 @@ final class DeprecatedTranslatableAdminExtensionTest extends WebTestCase
             ->method('getConfigurationPool')
             ->willReturn($pool);
 
-        $this->object = new ModelTranslatable();
+        $this->object = new DeprecatedModelTranslatable();
     }
 
     public function testSetLocaleForTranslatableObject(): void

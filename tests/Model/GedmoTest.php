@@ -15,9 +15,9 @@ namespace Sonata\TranslationBundle\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Tests\Fixtures\Model\DeprecatedModelTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslatable;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelPersonalTranslation;
-use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -26,7 +26,7 @@ final class GedmoTest extends TestCase
 {
     public function testTranslatableModel(): void
     {
-        $model = new ModelTranslatable();
+        $model = new DeprecatedModelTranslatable();
         $model->setLocale('fr');
 
         static::assertSame('fr', $model->getLocale());
