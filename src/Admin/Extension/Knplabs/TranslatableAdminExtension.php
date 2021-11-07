@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Admin\Extension\Knplabs;
 
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Model\TranslatableInterface;
@@ -41,6 +42,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
                 return;
             }
 
+            \assert($object instanceof KnpTranslatableInterface);
+
             $object->setCurrentLocale($this->getTranslatableLocale($admin));
         }
     }
@@ -61,6 +64,8 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
                 return;
             }
+
+            \assert($object instanceof KnpTranslatableInterface);
 
             $object->setCurrentLocale($this->getTranslatableLocale($admin));
         }
