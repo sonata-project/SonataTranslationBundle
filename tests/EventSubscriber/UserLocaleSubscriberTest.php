@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Authorization\Voter\CacheableVoterInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
@@ -76,9 +77,22 @@ final class UserLocaleSubscriberTest extends TestCase
         static::assertSame('en', $session->get('_locale'));
     }
 
+    /**
+     * @psalm-suppress UndefinedClass, InvalidArgument
+     *
+     * UsernamePasswordToken changed its signature in 5.4, we check for CacheableVoterInterface
+     * because it is a class also introduced on 5.4.
+     *
+     * TODO: This could be simplified once we remove support for Symfony < 5.4.
+     */
     private function getEvent(Request $request, UserInterface $user): InteractiveLoginEvent
     {
-        $token = new UsernamePasswordToken($user, null, 'dev', []);
+        if (interface_exists(CacheableVoterInterface::class)) {
+            // @phpstan-ignore-next-line
+            $token = new UsernamePasswordToken($user, 'dev', []);
+        } else {
+            $token = new UsernamePasswordToken($user, null, 'dev', []);
+        }
 
         return new InteractiveLoginEvent($request, $token);
     }
