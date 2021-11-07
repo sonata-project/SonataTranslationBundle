@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": "^7.3 || ^8.0",
-        "sonata-project/admin-bundle": "^4.0@rc",
+        "sonata-project/admin-bundle": "^4.0",
         "sonata-project/block-bundle": "^4.0",
         "symfony/config": "^4.4 || ^5.3",
         "symfony/dependency-injection": "^4.4 || ^5.3",
@@ -55,7 +55,7 @@
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16",
         "psalm/plugin-symfony": "^3.0",
-        "sonata-project/doctrine-orm-admin-bundle": "^4.0@rc",
+        "sonata-project/doctrine-orm-admin-bundle": "^4.0",
         "symfony/browser-kit": "^4.4 || ^5.3",
         "symfony/css-selector": "^4.4 || ^5.3",
         "symfony/framework-bundle": "^4.4 || ^5.3",
