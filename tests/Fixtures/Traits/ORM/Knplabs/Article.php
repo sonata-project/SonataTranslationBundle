@@ -26,8 +26,17 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 final class Article extends TranslatableEntity
 {
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     *
+     * @var int|null
+     */
+    public $id;
+
+    /**
      * @psalm-var TranslationInterface[]|Collection
-     * @phpstan-var Collection<array-key, ArticleTranslation>
+     * @phpstan-var TranslationInterface[]|Collection<array-key, TranslationInterface>
      *
      * @ORM\OneToMany(
      *     indexBy="locale",
@@ -38,15 +47,6 @@ final class Article extends TranslatableEntity
      * )
      */
     protected $translations;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     *
-     * @var int|null
-     */
-    private $id;
 
     public function __construct()
     {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd" errorLevel="2" findUnusedPsalmSuppress="true">
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" errorLevel="2" findUnusedPsalmSuppress="true" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd">
     <projectFiles>
         <directory name="src"/>
         <directory name="tests"/>
@@ -7,24 +7,6 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
-    <issueHandlers>
-        <NonInvariantDocblockPropertyType>
-            <errorLevel type="suppress">
-                <!-- We specify a more specific type for $object property -->
-                <file name="tests/Fixtures/Traits/ORM/ArticlePersonalTranslation.php"/>
-            </errorLevel>
-        </NonInvariantDocblockPropertyType>
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <!-- False positive, see https://github.com/vimeo/psalm/issues/5593 -->
-                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$id"/>
-                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$locale"/>
-                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$field"/>
-                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$content"/>
-                <referencedProperty name="Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation::$object"/>
-            </errorLevel>
-        </PropertyNotSetInConstructor>
-    </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
