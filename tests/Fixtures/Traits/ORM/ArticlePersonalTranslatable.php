@@ -26,6 +26,15 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 class ArticlePersonalTranslatable
 {
     /**
+     * @var int|null
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    public $id;
+
+    /**
      * @var ArrayCollection<array-key, AbstractPersonalTranslation>
      *
      * @ORM\OneToMany(
@@ -42,15 +51,6 @@ class ArticlePersonalTranslatable
      * @var string|null
      */
     protected $locale;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @var string|null

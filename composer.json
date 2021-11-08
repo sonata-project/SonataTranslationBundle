@@ -47,11 +47,11 @@
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^0.12.48",
-        "phpstan/phpstan-doctrine": "^0.12.26",
-        "phpstan/phpstan-phpunit": "^0.12.16",
-        "phpstan/phpstan-strict-rules": "^0.12.10",
-        "phpstan/phpstan-symfony": "^0.12.11",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-doctrine": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "phpstan/phpstan-symfony": "^1.0",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16",
         "psalm/plugin-symfony": "^3.0",
@@ -61,7 +61,7 @@
         "symfony/framework-bundle": "^4.4 || ^5.3 || ^6.0",
         "symfony/phpunit-bridge": "^5.3 || ^6.0",
         "vimeo/psalm": "^4.3.2",
-        "weirdan/doctrine-psalm-plugin": "^1.0"
+        "weirdan/doctrine-psalm-plugin": "^2.0"
     },
     "suggest": {
         "gedmo/doctrine-extensions": "if you translate orm entities with the gedmo extensions",

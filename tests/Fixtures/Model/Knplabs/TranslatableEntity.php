@@ -23,7 +23,7 @@ class TranslatableEntity implements KNPTranslatableInterface
     /**
      * @var int|null
      */
-    private $id;
+    public $id;
 
     public function getId(): ?int
     {
