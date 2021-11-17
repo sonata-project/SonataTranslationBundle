@@ -18,7 +18,7 @@ use Sonata\TranslationBundle\Model\TranslatableInterface as GenericTranslatableI
 /**
  * This is a Convenient interface made to easily plug Gedmo admin extension on models.
  *
- * @deprecated since sonata-project/translation-bundle 2.x, to be removed in 3.0.
+ * @deprecated since sonata-project/translation-bundle 2.10, to be removed in 3.0.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */

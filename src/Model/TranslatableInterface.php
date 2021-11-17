@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Model;
 
 /**
- * @deprecated since sonata-project/translation-bundle 2.x, to be removed in 3.0.
+ * @deprecated since sonata-project/translation-bundle 2.10, to be removed in 3.0.
  *
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */

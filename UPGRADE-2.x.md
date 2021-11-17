@@ -1,8 +1,8 @@
 UPGRADE 2.x
 ===========
 
-UPGRADE FROM 2.9 to 2.x
-=======================
+UPGRADE FROM 2.9 to 2.10
+========================
 
 ### Deprecated `Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface`
 
