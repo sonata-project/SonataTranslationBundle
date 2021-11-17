@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.9.1...2.10.0) - 2021-11-17
+### Added
+- [[#578](https://github.com/sonata-project/SonataTranslationBundle/pull/578)] Support for 5.x versions in `symfony/browser-kit`, `symfony/config`, `symfony/css-selector`, `symfony/dependency-injection`, `symfony/http-foundation`, `symfony/intl`, `symfony/options-resolver`, `symfony/phpunit-bridge` and `symfony/templating` ([@phansys](https://github.com/phansys))
+
+### Deprecated
+- [[#571](https://github.com/sonata-project/SonataTranslationBundle/pull/571)] `Sonata\TranslationBundle\Model\TranslatableInterface` in favor of specific package interfaces (gedmo or knplabs) ([@franmomu](https://github.com/franmomu))
+- [[#571](https://github.com/sonata-project/SonataTranslationBundle/pull/571)] `Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface` in favor of `Gedmo\Translatable\Translatable` ([@franmomu](https://github.com/franmomu))
+
 ## [2.9.1](https://github.com/sonata-project/SonataTranslationBundle/compare/2.9.0...2.9.1) - 2021-10-19
 ### Fixed
 - [[#557](https://github.com/sonata-project/SonataTranslationBundle/pull/557)] Setting the proper locale to Gedmo translatable listener ([@franmomu](https://github.com/franmomu))

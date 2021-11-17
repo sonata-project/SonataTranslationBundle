@@ -85,7 +85,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if ($object instanceof TranslatableInterface) {
             @trigger_error(sprintf(
                 'Implementing "%s" for entities using gedmo/doctrine-extensions is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will not work in 3.0. You MUST implement "%s"'
+                .' since sonata-project/translation-bundle 2.10 and will not work in 3.0. You MUST implement "%s"'
                 .' instead.',
                 TranslatableInterface::class,
                 Translatable::class,
@@ -120,7 +120,7 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
         if ($object instanceof TranslatableInterface) {
             @trigger_error(sprintf(
                 'Implementing "%s" for entities using gedmo/doctrine-extensions is deprecated'
-                .' since sonata-project/translation-bundle 2.x and will not work in 3.0. You MUST implement "%s"'
+                .' since sonata-project/translation-bundle 2.10 and will not work in 3.0. You MUST implement "%s"'
                 .' instead.',
                 TranslatableInterface::class,
                 Translatable::class,
