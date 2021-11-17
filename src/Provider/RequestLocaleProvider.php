@@ -56,10 +56,6 @@ final class RequestLocaleProvider implements LocaleProviderInterface
             return $this->defaultTranslationLocale;
         }
 
-        $locale = $currentRequest->query->get(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, $this->defaultTranslationLocale);
-
-        \assert(\is_string($locale));
-
-        return $locale;
+        return $currentRequest->query->get(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, $this->defaultTranslationLocale);
     }
 }
