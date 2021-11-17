@@ -1,6 +1,21 @@
 UPGRADE 2.x
 ===========
 
+UPGRADE FROM 2.9 to 2.10
+========================
+
+### Deprecated `Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface`
+
+When using `gedmo/doctrine-extensions` you MUST implement `Gedmo\Translatable\Translatable` instead.
+
+### Deprecated `Sonata\TranslationBundle\Model\TranslatableInterface`
+
+This interface has been deprecated without replacement, you MUST implement the specific interface based on the
+translation package you are using:
+
+- knplabs: `Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface`
+- gedmo: `Gedmo\Translatable\Translatable`
+
 UPGRADE FROM 2.8 to 2.9
 =======================
 

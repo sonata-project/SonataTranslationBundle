@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Admin\Extension\Gedmo;
 
+use Doctrine\Common\EventManager;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
+use Gedmo\Translatable\Translatable;
 use Gedmo\Translatable\TranslatableListener;
 use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -25,20 +26,15 @@ use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Sonata\TranslationBundle\Tests\Traits\DoctrineOrmTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-final class TranslatableAdminExtensionTest extends WebTestCase
+final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 {
     /**
      * @var AdminInterface<TranslatableInterface>&Stub
      */
     private $admin;
-
-    /**
-     * @var ModelTranslatable
-     */
-    private $object;
 
     /**
      * @var TranslatableAdminExtension
@@ -54,15 +50,21 @@ final class TranslatableAdminExtensionTest extends WebTestCase
     {
         $translatableChecker = new TranslatableChecker();
         $translatableChecker->setSupportedInterfaces([
+            // NEXT_MAJOR: Remove next line
             TranslatableInterface::class,
+            Translatable::class,
         ]);
 
+        $evm = new EventManager();
         $this->translatableListener = new TranslatableListener();
-        $objectManager = $this->createStub(ObjectManager::class);
+        $this->translatableListener->setTranslatableLocale('en');
+        $this->translatableListener->setDefaultLocale('en');
+        $evm->addEventSubscriber($this->translatableListener);
+        $this->getMockSqliteEntityManager($evm);
         $managerRegistry = $this->createStub(ManagerRegistry::class);
         $managerRegistry
             ->method('getManagerForClass')
-            ->willReturn($objectManager);
+            ->willReturn($this->em);
 
         $localeProvider = new class() implements LocaleProviderInterface {
             public function get(): string
@@ -84,22 +86,35 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $this->admin = $this->createStub(AdminInterface::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
-
-        $this->object = new ModelTranslatable();
     }
 
+    /**
+     * @psalm-suppress InvalidArgument Each extension will handle specific type on NEXT_MAJOR
+     */
     public function testSetLocaleForTranslatableObject(): void
     {
-        $this->extension->alterNewInstance($this->admin, $this->object);
+        $object = new ModelTranslatable();
+        $this->em->persist($object);
 
-        static::assertSame('es', $this->object->getLocale());
+        // @phpstan-ignore-next-line Each extension will handle specific type
+        $this->extension->alterNewInstance($this->admin, $object);
+
+        static::assertSame('es', $object->locale);
     }
 
+    /**
+     * @psalm-suppress InvalidArgument Each extension will handle specific type on NEXT_MAJOR
+     */
     public function testAlterObjectForTranslatableObject(): void
     {
-        $this->extension->alterObject($this->admin, $this->object);
+        $object = new ModelTranslatable();
+        $this->em->persist($object);
+        $this->em->flush();
 
-        static::assertSame('es', $this->object->getLocale());
+        // @phpstan-ignore-next-line Each extension will handle specific type
+        $this->extension->alterObject($this->admin, $object);
+
+        static::assertSame('es', $object->locale);
     }
 
     public function testConfigureQuery(): void
@@ -110,5 +125,10 @@ final class TranslatableAdminExtensionTest extends WebTestCase
 
         static::assertSame('es', $this->translatableListener->getListenerLocale());
         static::assertFalse($this->translatableListener->getTranslationFallback());
+    }
+
+    protected function getUsedEntityFixtures(): array
+    {
+        return [ModelTranslatable::class];
     }
 }

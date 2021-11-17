@@ -17,10 +17,10 @@ Gedmo has two ways to handle translations.
 Either everything is saved in a unique table, this is easier to set up but can lead to bad performance if your project
 grows or it can have one translation table for every model table. This second way is called personal translation.
 
-Implement the TranslatableInterface
------------------------------------
+Implement Translatable
+----------------------
 
-First step, your entities have to implement the `TranslatableInterface`_.
+First step, your entities have to implement `Gedmo\Translatable\Translatable`.
 
 Define translatable Fields
 --------------------------
@@ -36,17 +36,17 @@ Example using Personal Translation
 
     namespace Presta\CMSFAQBundle\Entity;
 
-    use Gedmo\Mapping\Annotation as Gedmo;
-    use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
+    use Gedmo\Mapping\Annotation as Gedmo;
+    use Gedmo\Translatable\Translatable;
 
     /**
      * @ORM\Table(name="presta_cms_faq_category")
      * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
      * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
      */
-    class FAQCategory implements TranslatableInterface
+    class FAQCategory implements Translatable
     {
         /**
          * @ORM\Id
@@ -307,4 +307,3 @@ Here is an example::
 
 .. _Gedmo translatable extension: https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md
 .. _Gedmo translatable documentation: https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md
-.. _TranslatableInterface: https://github.com/sonata-project/SonataTranslationBundle/blob/master/src/Model/Gedmo/TranslatableInterface.php

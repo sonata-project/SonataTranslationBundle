@@ -13,25 +13,26 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Model;
 
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Gedmo\Translatable\Translatable;
 
-class ModelTranslatable implements TranslatableInterface
+/** @ORM\Entity() */
+class ModelTranslatable implements Translatable
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int|null
+     */
+    public $id;
+
     /**
      * @Gedmo\Locale()
      *
      * @var string|null
      */
-    private $locale = null;
-
-    public function setLocale(string $locale): void
-    {
-        $this->locale = $locale;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
-    }
+    public $locale = null;
 }

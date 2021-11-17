@@ -15,10 +15,10 @@ namespace Sonata\TranslationBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Gedmo\Translatable\Translatable;
 
 /** @ORM\Entity */
-class GedmoCategory implements TranslatableInterface
+class GedmoCategory implements Translatable
 {
     /**
      * @ORM\Id

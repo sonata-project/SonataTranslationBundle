@@ -15,30 +15,13 @@ namespace Sonata\TranslationBundle\Tests\Checker;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
-use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
  */
 final class TranslatableCheckerTest extends TestCase
 {
-    public function testIsTranslatableOnInterface(): void
-    {
-        $translatableChecker = new TranslatableChecker();
-
-        $object = new ModelTranslatable();
-
-        static::assertFalse($translatableChecker->isTranslatable($object));
-
-        $translatableChecker->setSupportedInterfaces([
-            TranslatableInterface::class,
-        ]);
-
-        static::assertTrue($translatableChecker->isTranslatable($object));
-    }
-
     public function testIsTranslatableOnModel(): void
     {
         $translatableChecker = new TranslatableChecker();
