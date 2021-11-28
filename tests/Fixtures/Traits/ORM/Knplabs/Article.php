@@ -35,7 +35,10 @@ final class Article extends TranslatableEntity
     public $id;
 
     /**
-     * @psalm-var TranslationInterface[]|Collection
+     * @psalm-suppress NonInvariantDocblockPropertyType
+     *
+     * @see https://github.com/KnpLabs/DoctrineBehaviors/pull/675
+     *
      * @phpstan-var TranslationInterface[]|Collection<array-key, TranslationInterface>
      *
      * @ORM\OneToMany(
