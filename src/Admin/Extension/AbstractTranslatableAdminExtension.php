@@ -103,10 +103,12 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
                 $this->translatableLocale = $this->defaultTranslationLocaleOrLocaleProvider->get();
             } else {
                 if ($admin->hasRequest()) {
-                    $this->translatableLocale = $admin->getRequest()->get(self::TRANSLATABLE_LOCALE_PARAMETER);
+                    $translatableLocale = $admin->getRequest()->query->get(self::TRANSLATABLE_LOCALE_PARAMETER);
                 }
 
-                if (null === $this->translatableLocale) {
+                if (isset($translatableLocale)) {
+                    $this->translatableLocale = (string) $translatableLocale;
+                } else {
                     $this->translatableLocale = $this->defaultTranslationLocaleOrLocaleProvider ?? $this->getDefaultTranslationLocale($admin);
                 }
             }
