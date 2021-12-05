@@ -149,9 +149,9 @@ Example for configure search filter
 
     final class FAQCategoryAdmin extends AbstractAdmin
     {
-        protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+        protected function configureDatagridFilters(DatagridMapper $filter): void
         {
-            $datagridMapper
+            $filter
                 ->add('title', TranslationFieldFilter::class, [
                     // if not specified, it will default to the value
                     // you set in `default_filter_mode`
@@ -185,61 +185,40 @@ of Doctrine Behavior does not work. For more background on that topic, see this
         use TranslatableTrait;
 
         /**
-         * @var integer
-         *
          * @ORM\Column(name="id", type="integer")
          * @ORM\Id
          * @ORM\GeneratedValue(strategy="AUTO")
          */
-        private $id;
+        private int $id;
 
         /**
-         * @var string
-         *
          * @ORM\Column(type="string", length=255)
          */
-        private $nonTranslatedField;
+        private string $nonTranslatedField;
 
-        /**
-         * @return integer
-         */
-        public function getId()
+        public function getId(): int
         {
             return $this->id;
         }
 
-        /**
-         * @return string
-         */
-        public function getNonTranslatableField()
+        public function getNonTranslatableField(): string
         {
             return $this->nonTranslatedField;
         }
 
-        /**
-         * @param string $nonTranslatedField
-         *
-         * @return TranslatableEntity
-         */
-        public function setNonTranslatableField($nonTranslatedField)
+        public function setNonTranslatableField(string $nonTranslatedField): TranslatableEntity
         {
             $this->nonTranslatedField = $nonTranslatedField;
 
             return $this;
         }
 
-        /**
-         * @return mixed
-         */
-        public function getName()
+        public function getName(): string
         {
             return $this->translate(null, false)->getName();
         }
 
-        /**
-         * @param string $name
-         */
-        public function setName($name)
+        public function setName(string $name): TranslatableEntity
         {
             $this->translate(null, false)->setName($name);
 
@@ -270,34 +249,21 @@ Here is an example::
         use TranslationTrait;
 
         /**
-         * @var string
-         *
          * @ORM\Column(type="string", length=255)
          */
-        private $name;
+        private string $name;
 
-        /**
-         * @return integer
-         */
-        public function getId()
+        public function getId(): int
         {
             return $this->id;
         }
 
-        /**
-         * @return string
-         */
-        public function getName()
+        public function getName(): string
         {
             return $this->name;
         }
 
-        /**
-         * @param string $name
-         *
-         * @return TranslatableEntityTranslation
-         */
-        public function setName($name)
+        public function setName(string $name): TranslatableEntityTranslation
         {
             $this->name = $name;
 
