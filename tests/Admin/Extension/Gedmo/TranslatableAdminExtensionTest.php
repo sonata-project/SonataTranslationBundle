@@ -24,7 +24,6 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelTranslatable;
 use Sonata\TranslationBundle\Tests\Traits\DoctrineOrmTestCase;
@@ -33,7 +32,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 {
     /**
-     * @var AdminInterface<TranslatableInterface>&Stub
+     * @var AdminInterface<Translatable>&Stub
      */
     private Stub $admin;
 
@@ -47,8 +46,6 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
     {
         $translatableChecker = new TranslatableChecker();
         $translatableChecker->setSupportedInterfaces([
-            // NEXT_MAJOR: Remove next line
-            TranslatableInterface::class,
             Translatable::class,
         ]);
 
@@ -85,30 +82,22 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
         $this->admin->method('hasRequest')->willReturn(true);
     }
 
-    /**
-     * @psalm-suppress InvalidArgument Each extension will handle specific type on NEXT_MAJOR
-     */
     public function testSetLocaleForTranslatableObject(): void
     {
         $object = new ModelTranslatable();
         $this->em->persist($object);
 
-        // @phpstan-ignore-next-line Each extension will handle specific type
         $this->extension->alterNewInstance($this->admin, $object);
 
         static::assertSame('es', $object->locale);
     }
 
-    /**
-     * @psalm-suppress InvalidArgument Each extension will handle specific type on NEXT_MAJOR
-     */
     public function testAlterObjectForTranslatableObject(): void
     {
         $object = new ModelTranslatable();
         $this->em->persist($object);
         $this->em->flush();
 
-        // @phpstan-ignore-next-line Each extension will handle specific type
         $this->extension->alterObject($this->admin, $object);
 
         static::assertSame('es', $object->locale);

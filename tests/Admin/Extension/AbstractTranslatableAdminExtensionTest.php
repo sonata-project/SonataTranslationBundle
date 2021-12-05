@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
-use Sonata\TranslationBundle\Model\TranslatableInterface;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
 
 final class AbstractTranslatableAdminExtensionTest extends TestCase
@@ -35,9 +34,6 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
     protected function setUp(): void
     {
         $this->translatableChecker = new TranslatableChecker();
-        $this->translatableChecker->setSupportedInterfaces([
-            TranslatableInterface::class,
-        ]);
 
         $localeProvider = new class() implements LocaleProviderInterface {
             public function get(): string

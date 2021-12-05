@@ -7,14 +7,6 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
-    <!-- NEXT_MAJOR: Remove this issueHandlers -->
-    <issueHandlers>
-        <DeprecatedClass>
-            <errorLevel type="suppress">
-                <referencedClass name="Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface"/>
-            </errorLevel>
-        </DeprecatedClass>
-    </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
