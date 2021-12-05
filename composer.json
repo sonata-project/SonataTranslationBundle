@@ -1,13 +1,12 @@
 {
     "name": "sonata-project/translation-bundle",
-    "type": "symfony-bundle",
     "description": "SonataTranslationBundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
     "keywords": [
         "translation",
         "i18n"
     ],
-    "homepage": "https://docs.sonata-project.org/projects/SonataTranslationBundle",
-    "license": "MIT",
     "authors": [
         {
             "name": "Nicolas Bastien",
@@ -19,6 +18,7 @@
             "homepage": "https://github.com/sonata-project/SonataTranslationBundle/contributors"
         }
     ],
+    "homepage": "https://docs.sonata-project.org/projects/SonataTranslationBundle",
     "require": {
         "php": "^7.4 || ^8.0",
         "sonata-project/admin-bundle": "^4.0",
@@ -31,11 +31,6 @@
         "symfony/intl": "^4.4 || ^5.3 || ^6.0",
         "symfony/options-resolver": "^4.4 || ^5.3 || ^6.0",
         "twig/twig": "^2.12 || ^3.0"
-    },
-    "conflict": {
-        "doctrine/persistence": "<2.0",
-        "gedmo/doctrine-extensions": "<3.0",
-        "knplabs/doctrine-behaviors": "<2.2 || >=3.0"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.1",
@@ -63,13 +58,15 @@
         "vimeo/psalm": "^4.3.2",
         "weirdan/doctrine-psalm-plugin": "^2.0"
     },
+    "conflict": {
+        "doctrine/persistence": "<2.0",
+        "gedmo/doctrine-extensions": "<3.0",
+        "knplabs/doctrine-behaviors": "<2.2 || >=3.0"
+    },
     "suggest": {
         "gedmo/doctrine-extensions": "if you translate orm entities with the gedmo extensions",
         "knplabs/doctrine-behaviors": "if you translate orm entities with the knplabs behaviours",
         "sonata-project/doctrine-orm-admin-bundle": "if you translate orm entities and search on translated fields"
-    },
-    "config": {
-        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -80,5 +77,8 @@
         "psr-4": {
             "Sonata\\TranslationBundle\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
