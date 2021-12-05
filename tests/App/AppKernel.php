@@ -33,7 +33,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
-use Symfony\Component\Routing\RouteCollectionBuilder;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor https://github.com/vimeo/psalm/issues/2319 comming from
@@ -84,11 +83,9 @@ final class AppKernel extends Kernel
     }
 
     /**
-     * TODO: Use RoutingConfigurator when dropping support of symfony < 5.1.
+     * TODO: Add typehint when dropping support of symfony < 5.1.
      *
-     * @param RoutingConfigurator|RouteCollectionBuilder $routes
-     *
-     * @psalm-suppress DeprecatedClass
+     * @param RoutingConfigurator $routes
      */
     protected function configureRoutes($routes): void
     {
