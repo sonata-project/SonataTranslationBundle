@@ -151,7 +151,7 @@ Example for configure search filter
     {
         protected function configureDatagridFilters(DatagridMapper $filter): void
         {
-            $datagridMapper
+            $filter
                 ->add('title', TranslationFieldFilter::class, [
                     // if not specified, it will default to the value
                     // you set in `default_filter_mode`
