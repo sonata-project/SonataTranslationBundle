@@ -149,7 +149,7 @@ Example for configure search filter
 
     final class FAQCategoryAdmin extends AbstractAdmin
     {
-        protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+        protected function configureDatagridFilters(DatagridMapper $filter): void
         {
             $datagridMapper
                 ->add('title', TranslationFieldFilter::class, [
