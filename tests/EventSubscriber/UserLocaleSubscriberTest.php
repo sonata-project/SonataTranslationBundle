@@ -78,7 +78,7 @@ final class UserLocaleSubscriberTest extends TestCase
     }
 
     /**
-     * @psalm-suppress UndefinedClass, InvalidArgument
+     * @psalm-suppress InvalidArgument, TooManyArguments
      *
      * UsernamePasswordToken changed its signature in 5.4, we check for CacheableVoterInterface
      * because it is a class also introduced on 5.4.
@@ -88,9 +88,9 @@ final class UserLocaleSubscriberTest extends TestCase
     private function getEvent(Request $request, UserInterface $user): InteractiveLoginEvent
     {
         if (interface_exists(CacheableVoterInterface::class)) {
-            // @phpstan-ignore-next-line
             $token = new UsernamePasswordToken($user, 'dev', []);
         } else {
+            // @phpstan-ignore-next-line
             $token = new UsernamePasswordToken($user, null, 'dev', []);
         }
 
