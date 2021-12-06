@@ -24,12 +24,12 @@ Add new route to your Admin
 .. code-block:: php
 
     // src/Admin/QuestionnaireAdmin.php
-    
-    use Sonata\AdminBundle\Route\RouteCollection;
-    
+
+    use Sonata\AdminBundle\Route\RouteCollectionInterface;
+
     final class QuestionnaireAdmin extends AbstractAdmin
     {
-        protected function configureRoutes(RouteCollection $collection)
+        protected function configureRoutes(RouteCollectionInterface $collection): void
         {
             $collection
                 ->add('show_question_answer', sprintf('%s/show_question_answer', $this->getRouterIdParameter()))
@@ -51,17 +51,17 @@ First update your admin configuration to point to a custom controller:
     .. code-block:: yaml
 
         # config/services.yaml
-        
+
         admin.questionnaire:
             class: App\Admin\QuestionnaireAdmin
             arguments: [~, App\Entity\Questionnaire, App:Admin/Questionnaire]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: 'dashboard.label_questionnaire' }
-            
+
     .. code-block:: xml
 
         <!-- config/services.xml -->
-    
+
         <service id="admin.questionnaire" class="App\Admin\QuestionnaireAdmin">
             <argument/>
             <argument>App\Entity\Questionnaire</argument>
@@ -69,7 +69,7 @@ First update your admin configuration to point to a custom controller:
             <tag name="sonata.admin" manager_type="orm" label="dashboard.label_questionnaire"/>
         </service>
 
-Then implement your controller. 
+Then implement your controller.
 
 To benefit from Sonata powerful feature, we need to extend the class ``CRUDController`` and load our current
 object the same way as Sonata does in edit or show action::
@@ -85,7 +85,7 @@ object the same way as Sonata does in edit or show action::
         {
             /** @var App\Entity\Questionnaire $questionnaire */
             $questionnaire = $this->admin->getSubject($id);
-    
+
             if (!$questionnaire) {
                 $id = $request->get($this->admin->getIdParameter());
                 throw $this->createNotFoundException(sprintf(
@@ -93,11 +93,11 @@ object the same way as Sonata does in edit or show action::
                     $id
                 ));
             }
-    
+
             return $this->render('admin/questionnaire/show_question_answer.html.twig', [
                 'questionnaire' => $questionnaire,
             ]);
-        }    
+        }
     }
 
 Add locale switcher block
@@ -107,9 +107,9 @@ As we are implementing a 'show' actions type, your template should extend your a
 If you are working on an edit action you should work with the edit block instead.
 
 .. code-block:: jinja
-    
+
     {# templates/admin/questionnaire/show_question_answer.html.twig #}
-    
+
     {% extends ':admin:layout.html.twig' %}
 
     {% block show %}
@@ -124,8 +124,7 @@ If you are working on an edit action you should work with the edit block instead
 At this point, you should have a working locale switcher in your actions.
 
 .. note::
-    
+
     You had noticed that I don't use ``$object`` variable in my custom action like it's the case in ``CRUDController``.
     This is made on purpose cause we are not in a generic action and if your actions manipulate several kind of objects
     you will notice that it's really meaningful to do it this way.
-    

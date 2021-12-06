@@ -16,7 +16,6 @@ namespace Sonata\TranslationBundle\DependencyInjection;
 use Gedmo\Translatable\Translatable as GedmoTranslatable;
 use Gedmo\Translatable\TranslatableListener;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatableInterface;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface as GedmoTranslatableInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -68,8 +67,6 @@ final class SonataTranslationExtension extends Extension
              */
             $listOfInterfaces = array_merge(
                 [
-                    // NEXT_MAJOR: Remove next line.
-                    GedmoTranslatableInterface::class,
                     GedmoTranslatable::class,
                 ],
                 $config['gedmo']['implements']
