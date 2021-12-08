@@ -136,7 +136,6 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
             return;
         }
 
-        $objectManager->refresh($object);
         $this->setLocale($object, $admin);
     }
 
@@ -214,6 +213,15 @@ class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 
         $reflectionProperty = $reflClass->getProperty($configuration['locale']);
         $reflectionProperty->setAccessible(true);
+
+        if ($reflectionProperty->getValue($object) === $translatableLocale) {
+            return;
+        }
+
         $reflectionProperty->setValue($object, $translatableLocale);
+
+        if ($objectManager->contains($object)) {
+            $objectManager->refresh($object);
+        }
     }
 }

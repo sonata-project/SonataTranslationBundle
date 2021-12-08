@@ -35,4 +35,11 @@ class ModelTranslatable implements Translatable
      * @var string|null
      */
     public $locale = null;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     *
+     * @var string
+     */
+    public $refreshableField = '';
 }
