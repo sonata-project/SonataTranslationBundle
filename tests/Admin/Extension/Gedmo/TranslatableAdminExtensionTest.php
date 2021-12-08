@@ -93,7 +93,6 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
     public function testSetLocaleForTranslatableObject(): void
     {
         $object = new ModelTranslatable();
-        $this->em->persist($object);
 
         // @phpstan-ignore-next-line Each extension will handle specific type
         $this->extension->alterNewInstance($this->admin, $object);
@@ -124,6 +123,48 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
         static::assertSame('es', $this->translatableListener->getListenerLocale());
         static::assertFalse($this->translatableListener->getTranslationFallback());
+    }
+
+    public function testRefreshIsCalledWithDifferentLocale(): void
+    {
+        $object = new ModelTranslatable();
+        $object->locale = 'en';
+        $this->em->persist($object);
+        $this->em->flush();
+
+        $object->refreshableField = 'new value';
+
+        /**
+         * NEXT_MAJOR: Remove this comment, each extension will handle specific type.
+         *
+         * @psalm-suppress InvalidArgument
+         * @phpstan-ignore-next-line
+         */
+        $this->extension->alterObject($this->admin, $object);
+
+        /** @psalm-suppress TypeDoesNotContainType */
+        static::assertSame('', $object->refreshableField);
+    }
+
+    public function testRefreshIsNotCalledWithTheSameLocale(): void
+    {
+        $object = new ModelTranslatable();
+        $object->locale = 'es';
+        $this->em->persist($object);
+        $this->em->flush();
+
+        $object->refreshableField = 'new value';
+
+        /**
+         * NEXT_MAJOR: Remove this comment, each extension will handle specific type.
+         *
+         * @psalm-suppress InvalidArgument
+         * @phpstan-ignore-next-line
+         */
+        $this->extension->alterObject($this->admin, $object);
+
+        /** @psalm-suppress RedundantCondition */
+        static::assertSame('new value', $object->refreshableField);
     }
 
     protected function getUsedEntityFixtures(): array
