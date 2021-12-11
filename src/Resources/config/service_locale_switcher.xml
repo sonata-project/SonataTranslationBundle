@@ -5,11 +5,14 @@
         <parameter key="sonata_translation.locale_switcher.user_locale_subscriber.class">Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber</parameter>
     </parameters>
     <services>
+        <!-- NEXT_MAJOR: Remove this file -->
         <service id="sonata_translation.locale_switcher.locale_subscriber" class="%sonata_translation.locale_switcher.locale_subscriber.class%">
             <argument key="$defaultLocale">%kernel.default_locale%</argument>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.</deprecated>
             <tag name="kernel.event_subscriber"/>
         </service>
         <service id="sonata_translation.locale_switcher.user_locale_subscriber" class="%sonata_translation.locale_switcher.user_locale_subscriber.class%">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/translation-bundle 2.x and will be removed in 3.0.</deprecated>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>

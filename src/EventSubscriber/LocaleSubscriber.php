@@ -18,7 +18,11 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
+ *
+ * @deprecated since sonata-project/translation-bundle 2.x, to be removed in 3.0.
  */
 final class LocaleSubscriber implements EventSubscriberInterface
 {

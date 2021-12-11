@@ -19,10 +19,14 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
 /**
+ * NEXT_MAJOR: Remove this file.
+ *
  * Stores the locale of the user in the session after the
  * login. This can be used by the LocaleSubscriber afterwards.
  *
  * @author Jonathan Vautrin <jvautrin@pro-info.be>
+ *
+ * @deprecated since sonata-project/translation-bundle 2.x, to be removed in 3.0.
  */
 final class UserLocaleSubscriber implements EventSubscriberInterface
 {

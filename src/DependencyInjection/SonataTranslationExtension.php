@@ -52,6 +52,7 @@ class SonataTranslationExtension extends Extension
         $loader->load('provider.xml');
         $loader->load('twig_intl.xml');
 
+        // NEXT_MAJOR: Remove the "if" block.
         if ($config['locale_switcher']) {
             $loader->load('service_locale_switcher.xml');
         }

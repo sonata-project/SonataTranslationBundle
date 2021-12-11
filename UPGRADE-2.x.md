@@ -1,6 +1,15 @@
 UPGRADE 2.x
 ===========
 
+### Deprecated `locale_switcher` option
+
+This option registers two event subscribers that have been also deprecated:
+
+- `Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber`: Without replacement since Symfony executes
+the same logic.
+- `Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber`: If you need to set the locale based on the user
+preference, you MUST implement your own listener, for this you can follow Symfony docs: https://symfony.com/index.php/doc/current/session/locale_sticky_session.html#setting-the-locale-based-on-the-user-s-preferences
+
 UPGRADE FROM 2.9 to 2.10
 ========================
 

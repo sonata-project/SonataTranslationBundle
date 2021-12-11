@@ -33,15 +33,6 @@ Configure route:
     sonata_translation:
         resource: '@SonataTranslationBundle/Resources/config/routes.yaml'
 
-Enable ``locale_switcher``:
-
-.. code-block:: yaml
-
-    # config/packages/sonata_translation.yaml
-
-    sonata_translation:
-        locale_switcher: true
-
 How it looks
 ------------
 

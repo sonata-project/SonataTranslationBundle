@@ -105,7 +105,13 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                // NEXT_MAJOR: Remove this option.
                 ->booleanNode('locale_switcher')
+                    ->setDeprecated(
+                        'The "%node%" option is deprecated since sonata-project/translation-bundle 3.x. If you want to'
+                        .'set the locale based on the user preference, create your own event listener following'
+                        .'https://symfony.com/index.php/doc/current/session/locale_sticky_session.html#setting-the-locale-based-on-the-user-s-preferences'
+                    )
                     ->info('Enable the global locale switcher services.')
                     ->defaultFalse()
                 ->end()
