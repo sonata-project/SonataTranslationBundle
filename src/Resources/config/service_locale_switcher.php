@@ -12,7 +12,6 @@ declare(strict_types=1);
  */
 
 use Sonata\TranslationBundle\EventSubscriber\LocaleSubscriber;
-use Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -24,8 +23,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('kernel.event_subscriber')
             ->args([
                 '%kernel.default_locale%',
-            ])
-
-        ->set('sonata_translation.locale_switcher.user_locale_subscriber', UserLocaleSubscriber::class)
-            ->tag('kernel.event_subscriber');
+            ]);
 };

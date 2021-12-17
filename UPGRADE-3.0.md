@@ -1,6 +1,11 @@
 UPGRADE FROM 2.x to 3.0
 =======================
 
+## Removed `Sonata\TranslationBundle\EventSubscriber\UserLocaleSubscriber`
+
+In case you need to set the locale based on the user's preferences, you MUST implement your own event
+listener, for that you can follow https://symfony.com/index.php/doc/4.4/session/locale_sticky_session.html#setting-the-locale-based-on-the-user-s-preferences
+
 ## Dropped support for PHPCR
 
 This bundle no longer supports `doctrine/phpcr-odm`, the implementation was based on having installed
