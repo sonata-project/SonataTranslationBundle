@@ -64,11 +64,6 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
             return;
         }
 
-        $objectManager = $this->managerRegistry->getManagerForClass(\get_class($object));
-
-        \assert($objectManager instanceof ObjectManager);
-
-        $objectManager->refresh($object);
         $this->setLocale($object);
     }
 
@@ -102,6 +97,15 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
 
         $reflectionProperty = $reflClass->getProperty($configuration['locale']);
         $reflectionProperty->setAccessible(true);
+
+        if ($reflectionProperty->getValue($object) === $translatableLocale) {
+            return;
+        }
+
         $reflectionProperty->setValue($object, $translatableLocale);
+
+        if ($objectManager->contains($object)) {
+            $objectManager->refresh($object);
+        }
     }
 }

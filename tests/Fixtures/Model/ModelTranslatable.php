@@ -31,4 +31,9 @@ class ModelTranslatable implements Translatable
      * @Gedmo\Locale()
      */
     public ?string $locale = null;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    public string $refreshableField = '';
 }
