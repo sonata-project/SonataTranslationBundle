@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0-rc.1](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.0-alpha.1...3.0.0-rc.1) - 2021-12-31
+### Added
+- [[#572](https://github.com/sonata-project/SonataTranslationBundle/pull/572)] Added support for Symfony 6. ([@jordisala1991](https://github.com/jordisala1991))
+
+### Changed
+- [[#550](https://github.com/sonata-project/SonataTranslationBundle/pull/550)] `Sonata\TranslationBundle\Admin\Extension\Knplabs\TranslatableAdminExtension` has been marked as `@internal` ([@franmomu](https://github.com/franmomu))
+- [[#550](https://github.com/sonata-project/SonataTranslationBundle/pull/550)] `Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension` has been marked as `@internal` ([@franmomu](https://github.com/franmomu))
+
+### Fixed
+- [[#556](https://github.com/sonata-project/SonataTranslationBundle/pull/556)] Fixed accessing current locale from `block_locale_switcher.html.twig` template ([@ggabrovski](https://github.com/ggabrovski))
+
+### Removed
+- [[#599](https://github.com/sonata-project/SonataTranslationBundle/pull/599)] `UserLocaleSubscriber` class in favor of implementing its own solution ([@franmomu](https://github.com/franmomu))
+- [[#558](https://github.com/sonata-project/SonataTranslationBundle/pull/558)] Dropped support for PHP 7.3 ([@franmomu](https://github.com/franmomu))
+- [[#559](https://github.com/sonata-project/SonataTranslationBundle/pull/559)] Removed `TranslatableInterface::getLocale()` method ([@franmomu](https://github.com/franmomu))
+
 ## [2.10.0](https://github.com/sonata-project/SonataTranslationBundle/compare/2.9.1...2.10.0) - 2021-11-17
 ### Added
 - [[#578](https://github.com/sonata-project/SonataTranslationBundle/pull/578)] Support for 5.x versions in `symfony/browser-kit`, `symfony/config`, `symfony/css-selector`, `symfony/dependency-injection`, `symfony/http-foundation`, `symfony/intl`, `symfony/options-resolver`, `symfony/phpunit-bridge` and `symfony/templating` ([@phansys](https://github.com/phansys))
