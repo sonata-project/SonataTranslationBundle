@@ -30,27 +30,32 @@ final class AdminExtensionCompilerPass implements CompilerPassInterface
         \assert(\is_array($translationTargets));
         $adminExtensionReferences = $this->getAdminExtensionReferenceByTypes(array_keys($translationTargets));
 
-        foreach ($container->findTaggedServiceIds('sonata.admin') as $id => $attributes) {
+        foreach ($container->findTaggedServiceIds('sonata.admin') as $id => $tags) {
             $admin = $container->getDefinition($id);
 
-            // NEXT_MAJOR: Remove the $admin->getArguments()[1] fallback.
-            $modelClassName = $attributes[0]['model_class'] ?? $admin->getArguments()[1] ?? null;
+            // NEXT_MAJOR: Remove this line.
+            $defaultModelClass = $admin->getArguments()[1] ?? null;
+            foreach ($tags as $attributes) {
+                // NEXT_MAJOR: Remove the fallback to $defaultModelClass and use null instead.
+                $modelClassName = $attributes['model_class'] ?? $defaultModelClass;
 
-            $modelClass = $container->getParameterBag()->resolveValue($modelClassName);
-            if (!$modelClass || !class_exists($modelClass)) {
-                continue;
-            }
-            $modelClassReflection = new \ReflectionClass($modelClass);
+                $modelClass = $container->getParameterBag()->resolveValue($modelClassName);
 
-            foreach ($adminExtensionReferences as $type => $reference) {
-                foreach ($translationTargets[$type]['implements'] as $interface) {
-                    if ($modelClassReflection->implementsInterface($interface)) {
-                        $admin->addMethodCall('addExtension', [$reference]);
-                    }
+                if (!$modelClass || !class_exists($modelClass)) {
+                    continue;
                 }
-                foreach ($translationTargets[$type]['instanceof'] as $class) {
-                    if ($modelClassReflection->getName() === $class || $modelClassReflection->isSubclassOf($class)) {
-                        $admin->addMethodCall('addExtension', [$reference]);
+                $modelClassReflection = new \ReflectionClass($modelClass);
+
+                foreach ($adminExtensionReferences as $type => $reference) {
+                    foreach ($translationTargets[$type]['implements'] as $interface) {
+                        if ($modelClassReflection->implementsInterface($interface)) {
+                            $admin->addMethodCall('addExtension', [$reference]);
+                        }
+                    }
+                    foreach ($translationTargets[$type]['instanceof'] as $class) {
+                        if ($modelClassReflection->getName() === $class || $modelClassReflection->isSubclassOf($class)) {
+                            $admin->addMethodCall('addExtension', [$reference]);
+                        }
                     }
                 }
             }
