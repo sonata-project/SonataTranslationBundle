@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.1](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.0...3.0.1) - 2022-03-22
+### Fixed
+- [[#630](https://github.com/sonata-project/SonataTranslationBundle/pull/630)] Support of new admin declaration with `model_class` as attribute ([@fransweerts](https://github.com/fransweerts))
+
 ## [3.0.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.0-rc.1...3.0.0) - 2022-01-27
 No changes.
 
