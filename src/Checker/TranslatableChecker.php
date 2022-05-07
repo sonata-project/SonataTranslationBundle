@@ -75,6 +75,8 @@ final class TranslatableChecker
      * Check if $object is translatable.
      *
      * @param object|string|null $object
+     *
+     * @phpstan-param object|class-string|null $object
      */
     public function isTranslatable($object): bool
     {
@@ -82,20 +84,22 @@ final class TranslatableChecker
             return false;
         }
 
-        $objectInterfaces = class_implements($object);
-        \assert(\is_array($objectInterfaces));
-        foreach ($this->getSupportedInterfaces() as $interface) {
-            if (\in_array($interface, $objectInterfaces, true)) {
-                return true;
-            }
-        }
-
-        foreach ($this->getSupportedModels() as $model) {
-            if ($object instanceof $model) {
+        foreach ($this->getSupportedClasses() as $interface) {
+            if (is_a($object, $interface, true)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * @return string[]
+     *
+     * @phpstan-return class-string[]
+     */
+    private function getSupportedClasses(): array
+    {
+        return array_merge($this->getSupportedInterfaces(), $this->getSupportedModels());
     }
 }
