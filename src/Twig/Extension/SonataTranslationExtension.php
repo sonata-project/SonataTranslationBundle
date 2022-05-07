@@ -59,6 +59,8 @@ final class SonataTranslationExtension extends AbstractExtension
      * Check if $object is translatable.
      *
      * @param object|string|null $object
+     *
+     * @phpstan-param object|class-string|null $object
      */
     public function isTranslatable($object): bool
     {

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Checker;
 
+use Gedmo\Translatable\Translatable;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
@@ -22,18 +23,70 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
  */
 final class TranslatableCheckerTest extends TestCase
 {
-    public function testIsTranslatableOnModel(): void
+    private TranslatableChecker $translatableChecker;
+
+    protected function setUp(): void
     {
-        $translatableChecker = new TranslatableChecker();
+        $this->translatableChecker = new TranslatableChecker();
+    }
 
-        $object = new ModelCustomTranslatable();
+    /**
+     * @return iterable<array{object|class-string, array<class-string>, array<class-string>}>
+     */
+    public function provideTestIsTranslatable(): iterable
+    {
+        yield 'object-by-model' => [
+            new ModelCustomTranslatable(),
+            [ModelCustomTranslatable::class],
+            [],
+        ];
 
-        static::assertFalse($translatableChecker->isTranslatable($object));
-
-        $translatableChecker->setSupportedModels([
+        yield 'class-by-model' => [
             ModelCustomTranslatable::class,
-        ]);
+            [ModelCustomTranslatable::class],
+            [],
+        ];
 
-        static::assertTrue($translatableChecker->isTranslatable($object));
+        yield 'object-by-interfaces' => [
+            $this->createMock(Translatable::class),
+            [],
+            [Translatable::class],
+        ];
+
+        yield 'class-by-interfaces' => [
+            Translatable::class,
+            [],
+            [Translatable::class],
+        ];
+    }
+
+    /**
+     * @dataProvider provideTestIsTranslatable
+     *
+     * @phpstan-param object|class-string $classOrObject
+     * @phpstan-param class-string[] $supportedModels
+     * @phpstan-param class-string[] $supportedInterfaces
+     */
+    public function testIsTranslatable($classOrObject, array $supportedModels, array $supportedInterfaces): void
+    {
+        static::assertFalse($this->translatableChecker->isTranslatable($classOrObject));
+
+        $this->translatableChecker->setSupportedModels($supportedModels);
+        $this->translatableChecker->setSupportedInterfaces($supportedInterfaces);
+
+        static::assertTrue($this->translatableChecker->isTranslatable($classOrObject));
+    }
+
+    public function testIsTranslatableNull(): void
+    {
+        static::assertFalse($this->translatableChecker->isTranslatable(null));
+    }
+
+    public function testIsTranslatableNoMatch(): void
+    {
+        $this->translatableChecker->setSupportedModels([ModelCustomTranslatable::class]);
+        $this->translatableChecker->setSupportedInterfaces([Translatable::class]);
+
+        static::assertFalse($this->translatableChecker->isTranslatable(\stdClass::class));
     }
 }
