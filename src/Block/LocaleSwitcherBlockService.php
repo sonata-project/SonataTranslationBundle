@@ -53,7 +53,7 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
 
         \assert(\is_string($template));
 
-        return $this->renderPrivateResponse($template, [
+        return $this->renderResponse($template, [
             'block_context' => $blockContext,
             'block' => $blockContext->getBlock(),
         ], $response);

@@ -21,5 +21,6 @@ parameters:
     locale: 'en'
 
 sonata_block:
+    http_cache: false
     blocks:
         sonata_translation.block.locale_switcher: ~
