@@ -30,23 +30,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set(GedmoCategoryAdmin::class)
             ->tag('sonata.admin', [
                 'manager_type' => 'orm',
+                'model_class' => GedmoCategory::class,
                 'label' => 'Gedmo Category',
-            ])
-            ->args([
-                '',
-                GedmoCategory::class,
-                null,
             ])
 
         ->set(KnpCategoryAdmin::class)
             ->tag('sonata.admin', [
                 'manager_type' => 'orm',
+                'model_class' => KnpCategory::class,
                 'label' => 'Knp Category',
-            ])
-            ->args([
-                '',
-                KnpCategory::class,
-                null,
             ])
 
         ->set('app.gedmo.translation_listener', TranslatableListener::class)
