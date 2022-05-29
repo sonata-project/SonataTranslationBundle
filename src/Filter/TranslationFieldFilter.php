@@ -101,9 +101,13 @@ final class TranslationFieldFilter extends Filter
 
     protected function association(ProxyQueryInterface $query, FilterData $data): array
     {
-        $alias = $query->entityJoin($this->getParentAssociationMappings());
+        $defaultAlias = $query->entityJoin($this->getParentAssociationMappings());
+        /** @var literal-string $alias */
+        $alias = $this->getOption('alias', $defaultAlias);
+        /** @var literal-string $fieldName */
+        $fieldName = $this->getFieldName();
 
-        return [(string) $this->getOption('alias', $alias), $this->getFieldName()];
+        return [$alias, $fieldName];
     }
 
     private function applyGedmoFilters(ProxyQueryInterface $query, string $joinAlias, string $alias, string $field, string $value): void
