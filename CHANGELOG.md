@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.1...3.1.0) - 2022-06-10
+### Changed
+- [[#636](https://github.com/sonata-project/SonataTranslationBundle/pull/636)] Sonata\TranslationBundle\Checker\TranslationChecker rely on 'is_a' instead of insteance of to fully support string parameter. ([@mpoiriert](https://github.com/mpoiriert))
+- [[#637](https://github.com/sonata-project/SonataTranslationBundle/pull/637)] Locale block response is not rendered as private anymore to be compatible with SonataBlockBundle 5 ([@franmomu](https://github.com/franmomu))
+
+### Removed
+- [[#640](https://github.com/sonata-project/SonataTranslationBundle/pull/640)] Support of Symfony 5.3 ([@franmomu](https://github.com/franmomu))
+
 ## [3.0.1](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.0...3.0.1) - 2022-03-22
 ### Fixed
 - [[#630](https://github.com/sonata-project/SonataTranslationBundle/pull/630)] Support of new admin declaration with `model_class` as attribute ([@fransweerts](https://github.com/fransweerts))
