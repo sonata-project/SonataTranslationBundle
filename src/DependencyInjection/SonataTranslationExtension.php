@@ -130,8 +130,8 @@ final class SonataTranslationExtension extends Extension
         $supportedInterfaces = [];
         $supportedModels = [];
         foreach ($translationTargets as $targets) {
-            $supportedInterfaces = array_merge($supportedInterfaces, $targets['implements']);
-            $supportedModels = array_merge($supportedModels, $targets['instanceof']);
+            $supportedInterfaces = [...$supportedInterfaces, ...$targets['implements']];
+            $supportedModels = [...$supportedModels, ...$targets['instanceof']];
         }
 
         $translatableCheckerDefinition->addMethodCall('setSupportedInterfaces', [$supportedInterfaces]);
