@@ -16,10 +16,11 @@ namespace Sonata\TranslationBundle\Tests\App\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * @phpstan-extends AbstractAdmin<\Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory>
+ * @phpstan-extends AbstractAdmin<GedmoCategory>
  */
 final class GedmoCategoryAdmin extends AbstractAdmin
 {
