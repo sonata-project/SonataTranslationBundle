@@ -16,10 +16,11 @@ namespace Sonata\TranslationBundle\Tests\App\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * @phpstan-extends AbstractAdmin<\Sonata\TranslationBundle\Tests\App\Entity\KnpCategory>
+ * @phpstan-extends AbstractAdmin<KnpCategory>
  */
 final class KnpCategoryAdmin extends AbstractAdmin
 {
