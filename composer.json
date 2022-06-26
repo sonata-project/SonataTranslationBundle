@@ -37,7 +37,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/orm": "^2.5",
-        "doctrine/persistence": "^2.0",
+        "doctrine/persistence": "^2.0 || ^3.0",
         "friendsofphp/php-cs-fixer": "^3.4",
         "gedmo/doctrine-extensions": "^3.0",
         "knplabs/doctrine-behaviors": "^2.2",
