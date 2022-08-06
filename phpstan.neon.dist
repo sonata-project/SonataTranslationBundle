@@ -1,6 +1,3 @@
-includes:
-    - vendor/knplabs/doctrine-behaviors/phpstan-extension.neon
-
 parameters:
     level: 8
     doctrine:
