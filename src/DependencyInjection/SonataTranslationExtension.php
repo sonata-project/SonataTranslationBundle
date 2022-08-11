@@ -90,7 +90,6 @@ final class SonataTranslationExtension extends Extension
             $listOfInterfaces = array_merge(
                 [
                     KNPTranslatableInterface::class,
-
                 ],
                 $config['knplabs']['implements']
             );
