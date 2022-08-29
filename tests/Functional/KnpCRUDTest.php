@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Functional;
 
-use Sonata\TranslationBundle\Tests\App\AppKernel;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -135,11 +134,6 @@ final class KnpCRUDTest extends WebTestCase
         yield 'english' => ['en', 'Edited Novel'];
         yield 'spanish' => ['es', 'Novela editada'];
         yield 'french' => ['fr', 'Roman édité'];
-    }
-
-    protected static function getKernelClass(): string
-    {
-        return AppKernel::class;
     }
 
     private function generateUrlWithLocale(string $url, string $locale): string

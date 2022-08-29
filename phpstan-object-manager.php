@@ -15,7 +15,7 @@ use Sonata\TranslationBundle\Tests\App\AppKernel;
 
 require __DIR__.'/vendor/autoload.php';
 
-$kernel = new AppKernel();
+$kernel = new AppKernel('test', false);
 $kernel->boot();
 
 return $kernel->getContainer()->get('doctrine')->getManager();
