@@ -34,18 +34,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor https://github.com/vimeo/psalm/issues/2319 comming from
- * https://github.com/psalm/psalm-plugin-symfony/blob/65586604237c9062c15adc92faee5f84d1698af6/src/Stubs/common/Component/HttpKernel/Kernel.stubphp
- */
 final class AppKernel extends Kernel
 {
     use MicroKernelTrait;
-
-    public function __construct()
-    {
-        parent::__construct('test', true);
-    }
 
     public function registerBundles(): iterable
     {
@@ -94,6 +85,8 @@ final class AppKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
+        $container->setParameter('app.base_dir', $this->getBaseDir());
+
         if (interface_exists(AuthenticatorFactoryInterface::class)) {
             $loader->load(__DIR__.'/config/config_v5.yml');
             $loader->load(__DIR__.'/config/security_v5.yml');
