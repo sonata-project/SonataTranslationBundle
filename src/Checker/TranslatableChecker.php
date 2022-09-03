@@ -54,6 +54,7 @@ final class TranslatableChecker
 
     /**
      * @param string[] $supportedModels
+     *
      * @phpstan-param class-string[] $supportedModels
      */
     public function setSupportedModels(array $supportedModels): void
