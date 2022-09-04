@@ -112,6 +112,9 @@ final class TranslationFieldFilter extends Filter
         return [$alias, $fieldName];
     }
 
+    /**
+     * @phpstan-param ProxyQueryInterface<object> $query
+     */
     private function applyGedmoFilters(ProxyQueryInterface $query, string $joinAlias, string $alias, string $field, string $value): void
     {
         $this->applyWhere($query, $query->getQueryBuilder()->expr()->orX(
@@ -129,6 +132,9 @@ final class TranslationFieldFilter extends Filter
         ));
     }
 
+    /**
+     * @phpstan-param ProxyQueryInterface<object> $query
+     */
     private function applyKnplabsFilters(ProxyQueryInterface $query, string $joinAlias, string $field, string $value): void
     {
         $this->applyWhere(
