@@ -7,11 +7,11 @@ includes:
 
 parameters:
     level: 8
+    doctrine:
+        allowNullablePropertyForRequiredField: true
     paths:
         - src
         - tests
-    doctrine:
-        allowNullablePropertyForRequiredField: true
     scanFiles:
         - vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php
     treatPhpDocTypesAsCertain: false
