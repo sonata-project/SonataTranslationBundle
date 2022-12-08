@@ -21,7 +21,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
  * @ORM\Table(name="article_translation")
  * @ORM\Entity
  */
-final class ArticleTranslation extends AbstractArticleTranslation implements TranslationInterface
+class ArticleTranslation extends AbstractArticleTranslation implements TranslationInterface
 {
     use TranslationTrait;
 
