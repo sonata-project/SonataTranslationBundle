@@ -21,7 +21,7 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
  * @ORM\Table(name="article")
  * @ORM\Entity
  */
-final class Article extends TranslatableEntity
+class Article extends TranslatableEntity
 {
     /**
      * @ORM\Id

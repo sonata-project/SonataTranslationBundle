@@ -17,7 +17,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * @Gedmo\TranslationEntity(class="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation")
@@ -39,7 +38,7 @@ class ArticlePersonalTranslatable
     public ?string $locale = null;
 
     /**
-     * @var ArrayCollection<array-key, AbstractPersonalTranslation>
+     * @var Collection<array-key, ArticlePersonalTranslation>
      *
      * @ORM\OneToMany(
      *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation",
@@ -76,7 +75,7 @@ class ArticlePersonalTranslatable
     }
 
     /**
-     * @phpstan-return Collection<array-key, AbstractPersonalTranslation>
+     * @phpstan-return Collection<array-key, ArticlePersonalTranslation>
      */
     public function getTranslations(): Collection
     {
@@ -94,7 +93,7 @@ class ArticlePersonalTranslatable
         return null;
     }
 
-    public function addTranslation(AbstractPersonalTranslation $translation): self
+    public function addTranslation(ArticlePersonalTranslation $translation): self
     {
         if (!$this->translations->contains($translation)) {
             $translation->setObject($this);
