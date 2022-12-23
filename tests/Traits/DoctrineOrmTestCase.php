@@ -38,6 +38,8 @@ abstract class DoctrineOrmTestCase extends TestCase
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
      * database in memory.
+     *
+     * @psalm-suppress DeprecatedMethod
      */
     final protected function getMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null): EntityManager
     {
