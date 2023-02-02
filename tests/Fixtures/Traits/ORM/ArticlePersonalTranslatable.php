@@ -20,6 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @Gedmo\TranslationEntity(class="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation")
+ *
  * @ORM\Table(name="article")
  * @ORM\Entity
  */
@@ -50,6 +51,7 @@ class ArticlePersonalTranslatable
 
     /**
      * @Gedmo\Translatable
+     *
      * @ORM\Column(length=128)
      */
     private ?string $title = null;
