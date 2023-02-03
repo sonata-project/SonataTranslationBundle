@@ -33,6 +33,7 @@ class GedmoCategory implements Translatable
 
     /**
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(type="string")
      */
     private string $name;
