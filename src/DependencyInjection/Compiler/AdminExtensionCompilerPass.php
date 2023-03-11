@@ -24,6 +24,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class AdminExtensionCompilerPass implements CompilerPassInterface
 {
+    /**
+     * @psalm-suppress RedundantCondition -- https://github.com/vimeo/psalm/issues/9489
+     */
     public function process(ContainerBuilder $container): void
     {
         $translationTargets = $container->getParameter('sonata_translation.targets');
