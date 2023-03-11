@@ -18,21 +18,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-/** @ORM\Entity */
-class KnpCategory implements TranslatableInterface
+#[ORM\Entity]
+class KnpCategory implements TranslatableInterface, \Stringable
 {
     use TranslatableTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="string")
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private string $id;
-
-    public function __construct(string $id = '', string $name = '')
-    {
-        $this->id = $id;
+    public function __construct(
+        #[ORM\Id]
+        #[ORM\Column]
+        #[ORM\GeneratedValue(strategy: 'NONE')]
+        private string $id = '',
+        string $name = ''
+    ) {
         $this->translations = new ArrayCollection();
         $this->newTranslations = new ArrayCollection();
         $this->setName($name);

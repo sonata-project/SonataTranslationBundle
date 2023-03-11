@@ -15,45 +15,35 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * @Gedmo\TranslationEntity(class="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation")
- *
- * @ORM\Table(name="article")
- * @ORM\Entity
- */
+#[Gedmo\TranslationEntity(class: ArticlePersonalTranslation::class)]
+#[ORM\Table(name: 'article')]
+#[ORM\Entity]
 class ArticlePersonalTranslatable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: Types::INTEGER)]
     public ?int $id = null;
 
-    /**
-     * @Gedmo\Locale
-     */
+    #[Gedmo\Locale]
     public ?string $locale = null;
 
     /**
      * @var Collection<array-key, ArticlePersonalTranslation>
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\ArticlePersonalTranslation",
-     *     mappedBy="object",
-     *     cascade={"persist", "remove"}
-     * )
      */
+    #[ORM\OneToMany(
+        targetEntity: ArticlePersonalTranslation::class,
+        mappedBy: 'object',
+        cascade: ['persist', 'remove'],
+    )]
     protected Collection $translations;
 
-    /**
-     * @Gedmo\Translatable
-     *
-     * @ORM\Column(length=128)
-     */
+    #[Gedmo\Translatable]
+    #[ORM\Column(length: 128)]
     private ?string $title = null;
 
     public function __construct()

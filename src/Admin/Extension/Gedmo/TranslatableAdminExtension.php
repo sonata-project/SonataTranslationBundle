@@ -33,20 +33,13 @@ use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
  */
 final class TranslatableAdminExtension extends AbstractTranslatableAdminExtension
 {
-    private TranslatableListener $translatableListener;
-
-    private ManagerRegistry $managerRegistry;
-
     public function __construct(
         TranslatableChecker $translatableChecker,
-        TranslatableListener $translatableListener,
-        ManagerRegistry $managerRegistry,
+        private TranslatableListener $translatableListener,
+        private ManagerRegistry $managerRegistry,
         LocaleProviderInterface $localeProvider
     ) {
         parent::__construct($translatableChecker, $localeProvider);
-
-        $this->translatableListener = $translatableListener;
-        $this->managerRegistry = $managerRegistry;
     }
 
     public function alterNewInstance(AdminInterface $admin, object $object): void
@@ -89,7 +82,7 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         if (!isset($configuration['locale'])) {
             throw new \LogicException(sprintf(
                 'There is no locale or language property found on class: "%s"',
-                \get_class($object)
+                $object::class
             ));
         }
 

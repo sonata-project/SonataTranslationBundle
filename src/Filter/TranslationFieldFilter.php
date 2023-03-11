@@ -23,11 +23,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class TranslationFieldFilter extends Filter
 {
-    private string $filterMode;
-
-    public function __construct(string $filterMode = TranslationFilterMode::GEDMO)
+    public function __construct(private string $filterMode = TranslationFilterMode::GEDMO)
     {
-        $this->filterMode = $filterMode;
     }
 
     public function filter(ProxyQueryInterface $query, string $alias, string $field, FilterData $data): void
