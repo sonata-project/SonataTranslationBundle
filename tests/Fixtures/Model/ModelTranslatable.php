@@ -13,27 +13,22 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Model;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 
-/** @ORM\Entity() */
+#[ORM\Entity]
 class ModelTranslatable implements Translatable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     public ?int $id = null;
 
-    /**
-     * @Gedmo\Locale()
-     */
+    #[Gedmo\Locale]
     public ?string $locale = null;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(length: 10)]
     public string $refreshableField = '';
 }

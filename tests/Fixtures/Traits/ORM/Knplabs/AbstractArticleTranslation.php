@@ -13,32 +13,28 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 abstract class AbstractArticleTranslation
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: Types::INTEGER)]
     protected ?int $id = null;
 
     /**
      * @var Article|null
-     *
-     * @ORM\ManyToOne(
-     *     targetEntity="Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM\Knplabs\ArticleTranslation",
-     *     inversedBy="translations",
-     *     cascade={"persist", "merge"}
-     * )
-     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", onDelete="CASCADE")
      */
+    #[ORM\ManyToOne(
+        targetEntity: ArticleTranslation::class,
+        inversedBy: 'translations',
+        cascade: ['persist', 'merge'],
+    )]
+    #[ORM\JoinColumn(name: 'translatable_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     protected $translatable = null;
 
-    /**
-     * @ORM\Column(length=128)
-     */
+    #[ORM\Column(length: 128)]
     protected ?string $title = null;
 
     public function getTitle(): ?string

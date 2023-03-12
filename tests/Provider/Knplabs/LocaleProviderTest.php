@@ -62,11 +62,8 @@ final class LocaleProviderTest extends TestCase
     private function createKnpProvider(string $locale): LocaleProviderInterface
     {
         return new class($locale) implements LocaleProviderInterface {
-            private string $locale;
-
-            public function __construct(string $locale)
+            public function __construct(private string $locale)
             {
-                $this->locale = $locale;
             }
 
             public function provideCurrentLocale(): ?string
@@ -84,11 +81,8 @@ final class LocaleProviderTest extends TestCase
     private function createSonataProvider(string $locale): SonataLocaleProviderInterface
     {
         return new class($locale) implements SonataLocaleProviderInterface {
-            private string $locale;
-
-            public function __construct(string $locale)
+            public function __construct(private string $locale)
             {
-                $this->locale = $locale;
             }
 
             public function get(): string

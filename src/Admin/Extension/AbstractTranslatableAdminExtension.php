@@ -35,14 +35,10 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     protected ?string $translatableLocale = null;
 
-    protected TranslatableChecker $translatableChecker;
-
-    private LocaleProviderInterface $localeProvider;
-
-    public function __construct(TranslatableChecker $translatableChecker, LocaleProviderInterface $localeProvider)
-    {
-        $this->translatableChecker = $translatableChecker;
-        $this->localeProvider = $localeProvider;
+    public function __construct(
+        protected TranslatableChecker $translatableChecker,
+        private LocaleProviderInterface $localeProvider
+    ) {
     }
 
     public function configurePersistentParameters(AdminInterface $admin, array $parameters): array

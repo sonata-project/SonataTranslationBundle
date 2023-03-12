@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Traits;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\TestCase;
 
@@ -38,17 +38,20 @@ abstract class DoctrineOrmTestCase extends TestCase
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
      * database in memory.
-     *
-     * @psalm-suppress DeprecatedMethod
      */
-    final protected function getMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null): EntityManager
+    final protected function getMockSqliteEntityManager(?EventManager $evm = null): EntityManager
     {
         $conn = [
             'driver' => 'pdo_sqlite',
             'memory' => true,
         ];
 
-        $em = EntityManager::create($conn, $config ?? $this->getMockAnnotatedConfig(), $evm ?? new EventManager());
+        $config = $this->getConfiguration();
+
+        $em = new EntityManager(
+            DriverManager::getConnection($conn, $config, $evm ?? new EventManager()),
+            $config
+        );
 
         $schema = array_map(
             static fn (string $class): ClassMetadata => $em->getClassMetadata($class),
@@ -63,14 +66,6 @@ abstract class DoctrineOrmTestCase extends TestCase
     }
 
     /**
-     * Creates default mapping driver.
-     */
-    final protected function getMetadataDriverImplementation(): AnnotationDriver
-    {
-        return new AnnotationDriver(new AnnotationReader());
-    }
-
-    /**
      * Get a list of used fixture classes.
      *
      * @phpstan-return list<class-string>
@@ -80,13 +75,12 @@ abstract class DoctrineOrmTestCase extends TestCase
     /**
      * Get annotation mapping configuration.
      */
-    final protected function getMockAnnotatedConfig(): Configuration
+    final protected function getConfiguration(): Configuration
     {
-        $config = new Configuration();
-        $config->setProxyDir(sys_get_temp_dir().'/sonata-translation-bundle');
-        $config->setProxyNamespace('Proxy');
-        $config->setMetadataDriverImpl($this->getMetadataDriverImplementation());
-
-        return $config;
+        return ORMSetup::createAttributeMetadataConfiguration(
+            [],
+            false,
+            sys_get_temp_dir().'/sonata-translation-bundle'
+        );
     }
 }

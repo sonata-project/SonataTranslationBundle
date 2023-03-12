@@ -103,13 +103,13 @@ final class AppKernel extends Kernel
                     'auto_mapping' => true,
                     'mappings' => [
                         'tests' => [
-                            'type' => 'annotation',
+                            'type' => 'attribute',
                             'dir' => '%kernel.project_dir%/Entity',
                             'is_bundle' => false,
                             'prefix' => 'Sonata\TranslationBundle\Tests\App\Entity',
                         ],
                         'gedmo_translatable' => [
-                            'type' => 'annotation',
+                            'type' => 'attribute',
                             'prefix' => 'Gedmo\Translatable\Entity',
                             'dir' => '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
                             'is_bundle' => false,

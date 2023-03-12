@@ -34,7 +34,7 @@ final class IntlExtension extends AbstractExtension
     {
         try {
             return Languages::getName($language, $locale);
-        } catch (MissingResourceException $exception) {
+        } catch (MissingResourceException) {
             return $language;
         }
     }
