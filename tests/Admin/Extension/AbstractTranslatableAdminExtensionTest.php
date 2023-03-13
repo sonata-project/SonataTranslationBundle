@@ -42,7 +42,9 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
             }
         };
 
-        $this->extension = new class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
+        $this->extension = new /**
+             * @template-extends AbstractTranslatableAdminExtension<object>
+             */ class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
     }
 
     public function testSetsPersistentParameters(): void
