@@ -102,9 +102,9 @@ final class SonataTranslationExtension extends Extension
             $translationTargets['knplabs']['instanceof'] = $listOfClasses;
         }
 
+        $loader->load('checker.php'); // NEXT_MAJOR: Move this line inside the `if`
         if (true === $isEnabled) {
             $loader->load('block.php');
-            $loader->load('checker.php');
             $loader->load('listener.php');
             $loader->load('twig.php');
         }
