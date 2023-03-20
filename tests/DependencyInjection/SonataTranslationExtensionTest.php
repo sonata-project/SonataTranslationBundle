@@ -15,7 +15,6 @@ namespace Sonata\TranslationBundle\Tests\DependencyInjection;
 
 use Gedmo\Translatable\TranslatableListener;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
 use Symfony\Component\DependencyInjection\Reference;
@@ -46,12 +45,12 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadServiceDefinitionNoCheckerTranslatable(): void
+    public function testLoadServiceDefinitionCheckerTranslatable(): void
     {
         $this->container->setParameter('kernel.bundles', []);
         $this->load();
 
-        $this->assertContainerBuilderNotHasService('sonata_translation.checker.translatable');
+        $this->assertContainerBuilderHasService('sonata_translation.checker.translatable');
     }
 
     public function testCreatesAnAliasWhenUsingGedmo(): void
