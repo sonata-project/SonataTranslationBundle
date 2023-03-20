@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
+use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -19,9 +19,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
     $containerConfigurator->services()
 
-        ->set('sonata_translation.filter.type.translation_field', TranslationFieldFilter::class)
-            ->tag('sonata.admin.filter.type')
-            ->args([
-                '%sonata_translation.default_filter_mode%',
-            ]);
+        ->set('sonata_translation.checker.translatable', TranslatableChecker::class);
 };
