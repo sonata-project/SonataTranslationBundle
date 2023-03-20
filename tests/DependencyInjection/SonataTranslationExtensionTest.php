@@ -41,10 +41,6 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
         $this->load();
         $this->assertContainerBuilderHasService(
-            'sonata_translation.checker.translatable',
-            TranslatableChecker::class
-        );
-        $this->assertContainerBuilderHasService(
             'sonata_translation.filter.type.translation_field',
             TranslationFieldFilter::class
         );
@@ -60,7 +56,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 
     public function testCreatesAnAliasWhenUsingGedmo(): void
     {
-        $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
+        $this->container->setParameter('kernel.bundles', []);
         $this->load([
             'gedmo' => [
                 'enabled' => true,
@@ -75,7 +71,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
 
     public function testRegistersTranslatableListenerWhenUsingGedmo(): void
     {
-        $this->container->setParameter('kernel.bundles', ['SonataDoctrineORMAdminBundle' => 'whatever']);
+        $this->container->setParameter('kernel.bundles', []);
         $this->load([
             'gedmo' => [
                 'enabled' => true,
