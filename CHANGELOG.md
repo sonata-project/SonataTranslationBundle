@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.1](https://github.com/sonata-project/SonataTranslationBundle/compare/3.1.0...3.1.1) - 2023-03-21
+### Fixed
+- [[#674](https://github.com/sonata-project/SonataTranslationBundle/pull/674)] Always load the TranslatableChecker ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [3.1.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.1...3.1.0) - 2022-06-10
 ### Changed
 - [[#636](https://github.com/sonata-project/SonataTranslationBundle/pull/636)] Sonata\TranslationBundle\Checker\TranslationChecker rely on 'is_a' instead of insteance of to fully support string parameter. ([@mpoiriert](https://github.com/mpoiriert))
