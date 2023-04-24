@@ -11,13 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Gedmo\Translatable\TranslatableListener;
 use Sonata\TranslationBundle\Tests\App\Admin\GedmoCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Admin\KnpCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
@@ -25,7 +25,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->defaults()
         ->autowire()
         ->autoconfigure()
-        ->load('Sonata\\TranslationBundle\\Tests\\App\\DataFixtures\\', dirname(__DIR__).'/DataFixtures')
+        ->load('Sonata\\TranslationBundle\\Tests\\App\\DataFixtures\\', \dirname(__DIR__).'/DataFixtures')
 
         ->set(GedmoCategoryAdmin::class)
             ->tag('sonata.admin', [
@@ -42,8 +42,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
 
         ->set('app.gedmo.translation_listener', TranslatableListener::class)
-            ->call('setAnnotationReader', [new Reference('annotation_reader')])
-            ->call('setDefaultLocale', ['%locale%'])
+            ->call('setAnnotationReader', [service('annotation_reader')])
+            ->call('setDefaultLocale', [param('locale')])
             ->call('setTranslationFallback', [false])
             ->tag('doctrine.event_subscriber');
 };

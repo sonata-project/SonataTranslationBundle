@@ -11,18 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Sonata\TranslationBundle\Twig\Extension\SonataTranslationExtension;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    // Use "service" function for creating references to services when dropping support for Symfony 4.4
-    // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
     $containerConfigurator->services()
 
         ->set('sonata_translation.twig.sonata_translation_extension', SonataTranslationExtension::class)
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata_translation.checker.translatable'),
+                service('sonata_translation.checker.translatable'),
             ]);
 };

@@ -5,12 +5,21 @@ framework:
     form:
         enabled: true
     session:
-        handler_id: session.handler.native_file
-        storage_id: session.storage.mock_file
+        storage_factory_id: session.storage.factory.mock_file
         name: MOCKSESSID
     test: true
     translator:
         enabled: true
+    router:
+        utf8: true
+
+security:
+    providers:
+        in_memory:
+            memory: null
+    firewalls:
+        main:
+            lazy: true
 
 twig:
     exception_controller: null
@@ -21,6 +30,5 @@ parameters:
     locale: 'en'
 
 sonata_block:
-    http_cache: false
     blocks:
         sonata_translation.block.locale_switcher: ~
