@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.1.1...3.2.0) - 2023-04-24
+### Removed
+- [[#682](https://github.com/sonata-project/SonataTranslationBundle/pull/682)] Support for Symfony 4 ([@jordisala1991](https://github.com/jordisala1991))
+- [[#682](https://github.com/sonata-project/SonataTranslationBundle/pull/682)] Support for Twig 2 ([@jordisala1991](https://github.com/jordisala1991))
+- [[#682](https://github.com/sonata-project/SonataTranslationBundle/pull/682)] Support for `doctrine/persistence` ^2 ([@jordisala1991](https://github.com/jordisala1991))
+
 ## [3.1.1](https://github.com/sonata-project/SonataTranslationBundle/compare/3.1.0...3.1.1) - 2023-03-21
 ### Fixed
 - [[#674](https://github.com/sonata-project/SonataTranslationBundle/pull/674)] Always load the TranslatableChecker ([@VincentLanglet](https://github.com/VincentLanglet))
