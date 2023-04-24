@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Sonata\TranslationBundle\Provider\RequestLocaleProvider;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     // Use "service" function for creating references to services when dropping support for Symfony 4.4
@@ -22,7 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata_translation.admin.provider.request_locale_provider', RequestLocaleProvider::class)
             ->args([
-                new ReferenceConfigurator('request_stack'),
-                '%sonata_translation.default_locale%',
+                service('request_stack'),
+                param('sonata_translation.default_locale'),
             ]);
 };
