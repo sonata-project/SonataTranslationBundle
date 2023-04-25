@@ -18,6 +18,7 @@ use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Sonata\AdminBundle\SonataAdminBundle;
+use Sonata\BlockBundle\Cache\HttpCacheHandler;
 use Sonata\BlockBundle\SonataBlockBundle;
 use Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle;
 use Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle;
@@ -26,13 +27,13 @@ use Sonata\TranslationBundle\SonataTranslationBundle;
 use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\AuthenticatorFactoryInterface;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class AppKernel extends Kernel
 {
@@ -73,26 +74,27 @@ final class AppKernel extends Kernel
         return __DIR__;
     }
 
-    /**
-     * TODO: Add typehint when dropping support of symfony < 5.1.
-     *
-     * @param RoutingConfigurator $routes
-     */
-    protected function configureRoutes($routes): void
+    protected function configureRoutes(RoutingConfigurator $routes): void
     {
         $routes->import(sprintf('%s/config/routes.yaml', $this->getProjectDir()));
     }
 
+    /**
+     * @psalm-suppress DeprecatedClass
+     */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         $container->setParameter('app.base_dir', $this->getBaseDir());
 
-        if (interface_exists(AuthenticatorFactoryInterface::class)) {
-            $loader->load(__DIR__.'/config/config_v5.yml');
-            $loader->load(__DIR__.'/config/security_v5.yml');
-        } else {
-            $loader->load(__DIR__.'/config/config_v4.yml');
-            $loader->load(__DIR__.'/config/security_v4.yml');
+        $loader->load(__DIR__.'/config/config.yaml');
+
+        // TODO: Simplify this when dropping support for Symfony 5.4
+        if (!class_exists(IsGranted::class)) {
+            $loader->load(__DIR__.'/config/config_symfony_v5.yaml');
+        }
+
+        if (class_exists(HttpCacheHandler::class)) {
+            $loader->load(__DIR__.'/config/config_sonata_block_v4.yaml');
         }
 
         $container

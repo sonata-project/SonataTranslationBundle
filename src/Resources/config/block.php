@@ -11,18 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Sonata\TranslationBundle\Block\LocaleSwitcherBlockService;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    // Use "service" function for creating references to services when dropping support for Symfony 4.4
     $containerConfigurator->services()
 
         ->set('sonata_translation.block.locale_switcher', LocaleSwitcherBlockService::class)
             ->tag('sonata.block')
             ->args([
-                new ReferenceConfigurator('twig'),
-                new ReferenceConfigurator('sonata_translation.admin.provider.request_locale_provider'),
+                service('twig'),
+                service('sonata_translation.admin.provider.request_locale_provider'),
             ]);
 };
