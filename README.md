@@ -42,9 +42,9 @@ This package is available under the [MIT license](LICENSE).
 [test_unstable_badge]: https://github.com/sonata-project/SonataTranslationBundle/workflows/Test/badge.svg?branch=4.x
 [test_unstable_link]: https://github.com/sonata-project/SonataTranslationBundle/actions?query=workflow:test+branch:4.x
 [coverage_stable_badge]: https://codecov.io/gh/sonata-project/SonataTranslationBundle/branch/3.x/graph/badge.svg
-[coverage_stable_link]: https://codecov.io/gh/sonata-project/SonataTranslationBundle/branch/3.x
+[coverage_stable_link]: https://app.codecov.io/gh/sonata-project/SonataTranslationBundle/tree/3.x
 [coverage_unstable_badge]: https://codecov.io/gh/sonata-project/SonataTranslationBundle/branch/4.x/graph/badge.svg
-[coverage_unstable_link]: https://codecov.io/gh/sonata-project/SonataTranslationBundle/branch/4.x
+[coverage_unstable_link]: https://app.codecov.io/gh/sonata-project/SonataTranslationBundle/tree/4.x
 [shepherd_stable_badge]: https://shepherd.dev/github/sonata-project/SonataTranslationBundle/coverage.svg
 [shepherd_stable_link]: https://shepherd.dev/github/sonata-project/SonataTranslationBundle
 [documentation_stable_badge]: https://readthedocs.org/projects/sonatatranslationbundle/badge/?version=3.x
