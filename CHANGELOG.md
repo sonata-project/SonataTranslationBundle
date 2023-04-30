@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - [[#674](https://github.com/sonata-project/SonataTranslationBundle/pull/674)] Always load the TranslatableChecker ([@VincentLanglet](https://github.com/VincentLanglet))
 
+### Removed
+- [[#667](https://github.com/sonata-project/SonataTranslationBundle/pull/667)] Support for PHP 7.4 ([@SonataCI](https://github.com/SonataCI))
+- [[#667](https://github.com/sonata-project/SonataTranslationBundle/pull/667)] Support for Symfony 6.0 and 6.1 ([@SonataCI](https://github.com/SonataCI))
+
 ## [3.1.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.0.1...3.1.0) - 2022-06-10
 ### Changed
 - [[#636](https://github.com/sonata-project/SonataTranslationBundle/pull/636)] Sonata\TranslationBundle\Checker\TranslationChecker rely on 'is_a' instead of insteance of to fully support string parameter. ([@mpoiriert](https://github.com/mpoiriert))
