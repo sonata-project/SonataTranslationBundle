@@ -72,6 +72,8 @@
         "knplabs/doctrine-behaviors": "if you translate orm entities with the knplabs behaviours",
         "sonata-project/doctrine-orm-admin-bundle": "if you translate orm entities and search on translated fields"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Sonata\\TranslationBundle\\": "src/"
