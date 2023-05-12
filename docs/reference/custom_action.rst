@@ -46,28 +46,15 @@ Create a custom controller with this actions
 
 First update your admin configuration to point to a custom controller:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/services.yaml
 
-        # config/services.yaml
-
-        admin.questionnaire:
-            class: App\Admin\QuestionnaireAdmin
-            arguments: [~, App\Entity\Questionnaire, App:Admin/Questionnaire]
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: 'dashboard.label_questionnaire' }
-
-    .. code-block:: xml
-
-        <!-- config/services.xml -->
-
-        <service id="admin.questionnaire" class="App\Admin\QuestionnaireAdmin">
-            <argument/>
-            <argument>App\Entity\Questionnaire</argument>
-            <argument>App:Admin/Questionnaire</argument>
-            <tag name="sonata.admin" manager_type="orm" label="dashboard.label_questionnaire"/>
-        </service>
+    admin.questionnaire:
+        class: App\Admin\QuestionnaireAdmin
+        arguments: [~, App\Entity\Questionnaire, App:Admin/Questionnaire]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'dashboard.label_questionnaire' }
 
 Then implement your controller.
 
@@ -106,7 +93,7 @@ Add locale switcher block
 As we are implementing a 'show' actions type, your template should extend your admin layout and override the show block.
 If you are working on an edit action you should work with the edit block instead.
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {# templates/admin/questionnaire/show_question_answer.html.twig #}
 

@@ -26,31 +26,29 @@ Configure the Bundle
 
 To use the ``TranslationBundle``, add the following lines to your application configuration file:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_translation.yaml
 
-        # config/packages/sonata_translation.yaml
+    sonata_translation:
+        locales: [en, fr, it, nl, es]
+        default_locale: en
+        # change default behavior for translated field filtering.
+        default_filter_mode: gedmo # must be either 'gedmo' or 'knplabs', default: gedmo
+        # here enable the types you need
+        gedmo:
+            enabled: true
+            # when using gedmo/doctrine-extensions, you have to register a translatable listener
+            # service or if you are using a bundle that integrates the library, it will be registered
+            # by the bundle (e.g. "stof_doctrine_extensions.listener.translatable" for "stof/doctrine-extensions-bundle").
+            # here you can provide a custom translatable listener service name.
+            translatable_listener_service: Gedmo\Translatable\TranslatableListener
+        knplabs:
+            enabled: true
 
-        sonata_translation:
-            locales: [en, fr, it, nl, es]
-            default_locale: en
-            # change default behavior for translated field filtering.
-            default_filter_mode: gedmo # must be either 'gedmo' or 'knplabs', default: gedmo
-            # here enable the types you need
-            gedmo:
-                enabled: true
-                # when using gedmo/doctrine-extensions, you have to register a translatable listener
-                # service or if you are using a bundle that integrates the library, it will be registered
-                # by the bundle (e.g. "stof_doctrine_extensions.listener.translatable" for "stof/doctrine-extensions-bundle").
-                # here you can provide a custom translatable listener service name.
-                translatable_listener_service: Gedmo\Translatable\TranslatableListener
-            knplabs:
-                enabled: true
-
-        sonata_block:
-            blocks:
-                sonata_translation.block.locale_switcher:
+    sonata_block:
+        blocks:
+            sonata_translation.block.locale_switcher:
 
 ==================  ============================================================================
 Key                 Description
