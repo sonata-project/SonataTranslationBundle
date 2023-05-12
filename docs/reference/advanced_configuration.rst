@@ -7,20 +7,18 @@ If you have specific needs and can't use them, but this bundle gives you other w
 
 Here is an example with Gedmo :
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_translation.yaml
 
-        # config/packages/sonata_translation.yaml
+    sonata_translation:
+        gedmo:
+            enabled: true
+            implements:
 
-        sonata_translation:
-            gedmo:
-                enabled: true
-                implements:
+                # list your custom interfaces here
+                - MyProject\MyBundle\Model\CustomTranslatableInterface
+            instanceof:
 
-                    # list your custom interfaces here
-                    - MyProject\MyBundle\Model\CustomTranslatableInterface
-                instanceof:
-
-                    # list your specific models or abstract classes here
-                    - MyProject\MyBundle\Model\AbstractCustomTranslatable
+                # list your specific models or abstract classes here
+                - MyProject\MyBundle\Model\AbstractCustomTranslatable
