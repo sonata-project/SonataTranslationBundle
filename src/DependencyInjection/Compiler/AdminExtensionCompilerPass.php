@@ -44,7 +44,7 @@ final class AdminExtensionCompilerPass implements CompilerPassInterface
 
                 $modelClass = $container->getParameterBag()->resolveValue($modelClassName);
 
-                if (!$modelClass || !class_exists($modelClass)) {
+                if (null === $modelClass || !class_exists($modelClass)) {
                     continue;
                 }
                 $modelClassReflection = new \ReflectionClass($modelClass);
