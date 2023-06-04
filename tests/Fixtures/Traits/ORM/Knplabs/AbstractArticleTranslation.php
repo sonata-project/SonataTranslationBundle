@@ -32,7 +32,7 @@ abstract class AbstractArticleTranslation
         cascade: ['persist', 'merge'],
     )]
     #[ORM\JoinColumn(name: 'translatable_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    protected $translatable = null;
+    protected $translatable;
 
     #[ORM\Column(length: 128)]
     protected ?string $title = null;
