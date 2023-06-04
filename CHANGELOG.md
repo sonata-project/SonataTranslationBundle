@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.2.0...3.3.0) - 2023-06-04
+### Added
+- [[#693](https://github.com/sonata-project/SonataTranslationBundle/pull/693)] Support for SonataBlockBundle 5.0 ([@jordisala1991](https://github.com/jordisala1991))
+
 ## [3.2.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.1.1...3.2.0) - 2023-04-24
 ### Removed
 - [[#682](https://github.com/sonata-project/SonataTranslationBundle/pull/682)] Support for Symfony 4 ([@jordisala1991](https://github.com/jordisala1991))
