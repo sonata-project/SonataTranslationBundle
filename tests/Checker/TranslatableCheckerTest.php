@@ -33,7 +33,7 @@ final class TranslatableCheckerTest extends TestCase
     /**
      * @return iterable<array{object|class-string, array<class-string>, array<class-string>}>
      */
-    public function provideTestIsTranslatable(): iterable
+    public function provideIsTranslatableCases(): iterable
     {
         yield 'object-by-model' => [
             new ModelCustomTranslatable(),
@@ -61,7 +61,7 @@ final class TranslatableCheckerTest extends TestCase
     }
 
     /**
-     * @dataProvider provideTestIsTranslatable
+     * @dataProvider provideIsTranslatableCases
      *
      * @phpstan-param object|class-string $classOrObject
      * @phpstan-param class-string[] $supportedModels
