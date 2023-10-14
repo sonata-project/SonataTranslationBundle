@@ -42,7 +42,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
 
         ->set('app.gedmo.translation_listener', TranslatableListener::class)
-            ->call('setAnnotationReader', [service('annotation_reader')])
+            ->call('setAnnotationReader', [service('annotation_reader')->ignoreOnInvalid()])
             ->call('setDefaultLocale', [param('locale')])
             ->call('setTranslationFallback', [false])
             ->tag('doctrine.event_subscriber');
