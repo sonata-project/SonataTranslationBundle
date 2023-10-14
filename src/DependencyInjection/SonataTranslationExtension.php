@@ -19,6 +19,7 @@ use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KNPTranslatab
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -155,7 +156,7 @@ final class SonataTranslationExtension extends Extension
         // Registration based on the documentation
         // see https://github.com/doctrine-extensions/DoctrineExtensions/blob/7c0d5aeab0f840d2a18a18c3dc10b0117c597a42/doc/symfony4.md#doctrine-extension-listener-services
         $container->register('sonata_translation.listener.translatable', TranslatableListener::class)
-            ->addMethodCall('setAnnotationReader', [new Reference('annotation_reader')])
+            ->addMethodCall('setAnnotationReader', [new Reference('annotation_reader', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)])
             ->addMethodCall('setDefaultLocale', ['%locale%'])
             ->addMethodCall('setTranslatableLocale', ['%locale%'])
             ->addMethodCall('setTranslationFallback', [false])
