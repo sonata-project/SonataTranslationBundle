@@ -160,6 +160,10 @@ final class SonataTranslationExtension extends Extension
             ->addMethodCall('setDefaultLocale', ['%locale%'])
             ->addMethodCall('setTranslatableLocale', ['%locale%'])
             ->addMethodCall('setTranslationFallback', [false])
-            ->addTag('doctrine.event_subscriber');
+            ->addTag('doctrine.event_listener', ['event' => 'postLoad'])
+            ->addTag('doctrine.event_listener', ['event' => 'postPersist'])
+            ->addTag('doctrine.event_listener', ['event' => 'preFlush'])
+            ->addTag('doctrine.event_listener', ['event' => 'onFlush'])
+            ->addTag('doctrine.event_listener', ['event' => 'loadClassMetadata']);
     }
 }

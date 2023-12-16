@@ -17,6 +17,7 @@ use Gedmo\Translatable\TranslatableListener;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\TranslationBundle\DependencyInjection\SonataTranslationExtension;
 use Sonata\TranslationBundle\Filter\TranslationFieldFilter;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -85,7 +86,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'sonata_translation.listener.translatable',
             'setAnnotationReader',
-            [new Reference('annotation_reader')]
+            [new Reference('annotation_reader', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
