@@ -36,57 +36,41 @@ Example using Personal Translation
 
     namespace Presta\CMSFAQBundle\Entity;
 
+    use Doctrine\Common\Collections\Collection;
+    use Doctrine\DBAL\Types;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
     use Gedmo\Mapping\Annotation as Gedmo;
     use Gedmo\Translatable\Translatable;
+    use Presta\CMSFAQBundle\Entity\FAQCategory\Repository;
+    use Presta\CMSFAQBundle\Entity\FAQCategory\Translation;
 
-    /**
-     * @ORM\Table(name="presta_cms_faq_category")
-     * @ORM\Entity(repositoryClass="Presta\CMSFAQBundle\Entity\FAQCategory\Repository")
-     * @Gedmo\TranslationEntity(class="Presta\CMSFAQBundle\Entity\FAQCategory\Translation")
-     */
+    #[ORM\Table(name: 'presta_cms_faq_category')]
+    #[ORM\Entity(repositoryClass: Repository::class)]
+    #[Gedmo\TranslationEntity(class: Translation::class)]
     class FAQCategory implements Translatable
     {
-        /**
-         * @ORM\Id
-         * @ORM\Column(type="integer")
-         * @ORM\GeneratedValue(strategy="AUTO")
-         */
-        private $id;
+        #[ORM\Id]
+        #[ORM\Column(type: Types::INTEGER)]
+        #[ORM\GeneratedValue(strategy: 'AUTO')]
+        private ?int $id;
 
-        /**
-         * @var string $title
-         *
-         * @Gedmo\Translatable
-         * @ORM\Column(name="title", type="string", length=255, nullable=true)
-         */
-        private $title;
+        #[Gedmo\Translatable]
+        #[ORM\Column(name: 'title', type: Types::STRING, length: 255, nullable: true)]
+        private string $title;
 
-        /**
-         * @var boolean $enabled
-         *
-         * @ORM\Column(name="enabled", type="boolean", nullable=false)
-         */
-        private $enabled = false;
+        #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+        private bool $enabled = false;
 
-        /**
-         * @var integer $position
-         *
-         * @ORM\Column(name="position", type="integer", length=2, nullable=true)
-         */
-        private $position;
+        #[ORM\Column(type: Types::INTEGER, length: 2, nullable: true)]
+        private int $position;
 
-        /**
-         * @var ArrayCollection
-         *
-         * @ORM\OneToMany(
-         *     targetEntity="Presta\CMSFAQBundle\Entity\FAQCategory\Translation",
-         *     mappedBy="object",
-         *     cascade={"persist", "remove"}
-         * )
-         */
-        protected $translations;
+        #[ORM\OneToMany(
+            targetEntity: Translation::class,
+            mappedBy: 'object',
+            cascade: ['persist', 'remove']
+        )]
+        protected Collection $translations;
 
         // ...
     }
@@ -108,21 +92,25 @@ Example for translation class for Personal Translation
 
     use Doctrine\ORM\Mapping as ORM;
     use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
+    use Presta\CMSFAQBundle\Entity\FAQCategory;
 
-    /**
-     * @ORM\Entity
-     * @ORM\Table(name="presta_cms_faq_category_translation",
-     *     uniqueConstraints={@ORM\UniqueConstraint(name="lookup_unique_faq_category_translation_idx", columns={
-     *         "locale", "object_id", "field"
-     *     })}
-     * )
-     */
+    #[ORM\Entity]
+    #[ORM\Table(name: 'presta_cms_faq_category_translation')]
+    #[ORM\UniqueConstraint(
+        name: 'lookup_unique_faq_category_translation_idx',
+        columns: ['locale', 'object_id', 'field']
+    )]
     class Translation extends AbstractPersonalTranslation
     {
-        /**
-         * @ORM\ManyToOne(targetEntity="Presta\CMSFAQBundle\Entity\FAQCategory", inversedBy="translations")
-         * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
-         */
+        #[ORM\ManyToOne(
+            targetEntity: FAQCategory::class,
+            inversedBy: 'translations'
+        )]
+        #[ORM\JoinColumn(
+            name: 'object_id',
+            referencedColumnName: 'id',
+            onDelete: 'CASCADE'
+        )]
         protected $object;
     }
 
@@ -172,28 +160,23 @@ of Doctrine Behavior does not work. For more background on that topic, see this
 
     namespace App\Entity;
 
+    use Doctrine\DBAL\Types;
     use Doctrine\ORM\Mapping as ORM;
     use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
     use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-    /**
-     * @ORM\Table(name="app_translatable_entity")
-     * @ORM\Entity()
-     */
+    #[ORM\Table(name: 'app_translatable_entity')]
+    #[ORM\Entity()]
     class TranslatableEntity implements TranslatableInterface
     {
         use TranslatableTrait;
 
-        /**
-         * @ORM\Column(name="id", type="integer")
-         * @ORM\Id
-         * @ORM\GeneratedValue(strategy="AUTO")
-         */
+        #[ORM\Id]
+        #[ORM\Column(type: Types::INTEGER)]
+        #[ORM\GeneratedValue(strategy: 'AUTO')]
         private int $id;
 
-        /**
-         * @ORM\Column(type="string", length=255)
-         */
+        #[ORM\Column(type: Types::STRING, length: 255)]
         private string $nonTranslatedField;
 
         public function getId(): int
@@ -237,20 +220,17 @@ Here is an example::
 
     namespace App\Entity;
 
+    use Doctrine\DBAL\Types;
     use Doctrine\ORM\Mapping as ORM;
     use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
     use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
-    /**
-     * @ORM\Entity
-     */
+    #[ORM\Entity]
     class TranslatableEntityTranslation implements TranslationInterface
     {
         use TranslationTrait;
 
-        /**
-         * @ORM\Column(type="string", length=255)
-         */
+        #[ORM\Column(type: Types::STRING, length: 255)]
         private string $name;
 
         public function getId(): int
