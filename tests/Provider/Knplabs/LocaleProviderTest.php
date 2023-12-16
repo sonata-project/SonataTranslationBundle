@@ -66,12 +66,12 @@ final class LocaleProviderTest extends TestCase
             {
             }
 
-            public function provideCurrentLocale(): ?string
+            public function provideCurrentLocale(): string
             {
                 return $this->locale;
             }
 
-            public function provideFallbackLocale(): ?string
+            public function provideFallbackLocale(): string
             {
                 return $this->locale;
             }

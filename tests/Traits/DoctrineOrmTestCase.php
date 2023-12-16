@@ -80,7 +80,9 @@ abstract class DoctrineOrmTestCase extends TestCase
         return ORMSetup::createAttributeMetadataConfiguration(
             [],
             false,
-            sys_get_temp_dir().'/sonata-translation-bundle'
+            sys_get_temp_dir().'/sonata-translation-bundle',
+            null,
+            true,
         );
     }
 }
