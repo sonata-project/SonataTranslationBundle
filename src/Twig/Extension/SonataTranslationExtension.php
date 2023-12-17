@@ -64,7 +64,7 @@ final class SonataTranslationExtension extends AbstractExtension
         return $this->getTranslatableChecker()->isTranslatable($object);
     }
 
-    public function getLocaleName(string $locale, ?string $displayLocale = null): ?string
+    public function getLocaleName(string $locale, ?string $displayLocale = null): string
     {
         return Locales::getName($locale, $displayLocale);
     }

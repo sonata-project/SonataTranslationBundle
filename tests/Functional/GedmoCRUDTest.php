@@ -28,7 +28,7 @@ final class GedmoCRUDTest extends WebTestCase
     }
 
     /**
-     * @dataProvider provideLocales
+     * @dataProvider provideListCases
      */
     public function testList(string $locale, string $name): void
     {
@@ -42,7 +42,7 @@ final class GedmoCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideLocales(): iterable
+    public function provideListCases(): iterable
     {
         yield 'default english' => ['', 'Novel'];
         yield 'english' => ['en', 'Novel'];
@@ -51,7 +51,7 @@ final class GedmoCRUDTest extends WebTestCase
     }
 
     /**
-     * @dataProvider provideLocalesToCreate
+     * @dataProvider provideCreateCases
      */
     public function testCreate(string $locale, string $newName): void
     {
@@ -87,7 +87,7 @@ final class GedmoCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideLocalesToCreate(): iterable
+    public function provideCreateCases(): iterable
     {
         yield 'default english' => ['', 'Default New Novel'];
         yield 'english' => ['en', 'New Novel'];
@@ -96,7 +96,7 @@ final class GedmoCRUDTest extends WebTestCase
     }
 
     /**
-     * @dataProvider provideLocalesToEdit
+     * @dataProvider provideEditCases
      */
     public function testEdit(string $locale, string $editedName): void
     {
@@ -128,7 +128,7 @@ final class GedmoCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideLocalesToEdit(): iterable
+    public function provideEditCases(): iterable
     {
         yield 'default english' => ['', 'Edited Default Novel'];
         yield 'english' => ['en', 'Edited Novel'];

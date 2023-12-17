@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 final class LocaleProviderTest extends TestCase
 {
     /**
-     * @dataProvider provideValues
+     * @dataProvider provideUsesTheProperProviderBasedOnRequestCases
      */
     public function testUsesTheProperProviderBasedOnRequest(
         string $expectedLocale,
@@ -53,7 +53,7 @@ final class LocaleProviderTest extends TestCase
     /**
      * @return iterable<array{string, string, string, bool}>
      */
-    public function provideValues(): iterable
+    public function provideUsesTheProperProviderBasedOnRequestCases(): iterable
     {
         yield 'with sonata enabled it uses sonata provider' => ['en', 'es', 'en', true];
         yield 'with sonata disabled it uses knp provider' => ['es', 'es', 'en', false];
@@ -66,12 +66,12 @@ final class LocaleProviderTest extends TestCase
             {
             }
 
-            public function provideCurrentLocale(): ?string
+            public function provideCurrentLocale(): string
             {
                 return $this->locale;
             }
 
-            public function provideFallbackLocale(): ?string
+            public function provideFallbackLocale(): string
             {
                 return $this->locale;
             }

@@ -14,10 +14,12 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\Provider\UserProvider;
 use Sonata\TranslationBundle\Tests\App\Admin\GedmoCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Admin\KnpCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Entity\GedmoCategory;
 use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
+use Sonata\TranslationBundle\Tests\App\Provider\DummyUserProvider;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
@@ -42,8 +44,16 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
 
         ->set('app.gedmo.translation_listener', TranslatableListener::class)
-            ->call('setAnnotationReader', [service('annotation_reader')])
+            ->call('setAnnotationReader', [service('annotation_reader')->nullOnInvalid()])
             ->call('setDefaultLocale', [param('locale')])
             ->call('setTranslationFallback', [false])
-            ->tag('doctrine.event_subscriber');
+            ->tag('doctrine.event_listener', ['event' => 'postLoad'])
+            ->tag('doctrine.event_listener', ['event' => 'postPersist'])
+            ->tag('doctrine.event_listener', ['event' => 'preFlush'])
+            ->tag('doctrine.event_listener', ['event' => 'onFlush'])
+            ->tag('doctrine.event_listener', ['event' => 'loadClassMetadata'])
+
+        // Temporary fix to decorate User Provider from KNP (see https://github.com/KnpLabs/DoctrineBehaviors/pull/727)
+        ->set(DummyUserProvider::class)
+            ->decorate(UserProvider::class);
 };
