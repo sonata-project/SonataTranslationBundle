@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\EventSubscriber\TranslatableEventSubscriber;
 use Knp\DoctrineBehaviors\Provider\UserProvider;
 use Sonata\TranslationBundle\Tests\App\Admin\GedmoCategoryAdmin;
 use Sonata\TranslationBundle\Tests\App\Admin\KnpCategoryAdmin;
@@ -55,5 +56,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         // Temporary fix to decorate User Provider from KNP (see https://github.com/KnpLabs/DoctrineBehaviors/pull/727)
         ->set(DummyUserProvider::class)
-            ->decorate(UserProvider::class);
+            ->decorate(UserProvider::class)
+
+        // Temporary fix to use event listeners instead of subscriber (see https://github.com/KnpLabs/DoctrineBehaviors/pull/738)
+        ->set('app.knplabs.translation_listener', TranslatableEventSubscriber::class)
+            ->arg('$translatableFetchMode', 'LAZY')
+            ->arg('$translationFetchMode', 'LAZY')
+            ->tag('doctrine.event_listener', ['event' => 'postLoad'])
+            ->tag('doctrine.event_listener', ['event' => 'loadClassMetadata'])
+            ->tag('doctrine.event_listener', ['event' => 'prePersist']);
 };

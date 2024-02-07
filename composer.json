@@ -40,9 +40,9 @@
         "doctrine/persistence": "^3.0.2",
         "friendsofphp/php-cs-fixer": "^3.4",
         "gedmo/doctrine-extensions": "^3.11",
-        "knplabs/doctrine-behaviors": "^2.2",
-        "matthiasnoback/symfony-config-test": "^4.2",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+        "knplabs/doctrine-behaviors": "^2.6.2",
+        "matthiasnoback/symfony-config-test": "^4.2 || ^5.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0 || ^5.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-doctrine": "^1.0",
@@ -54,18 +54,18 @@
         "psalm/plugin-symfony": "^5.0",
         "rector/rector": "^0.19",
         "sonata-project/doctrine-orm-admin-bundle": "^4.0",
-        "symfony/browser-kit": "^5.4 || ^6.2",
-        "symfony/css-selector": "^5.4 || ^6.2",
-        "symfony/doctrine-bridge": "^5.4 || ^6.2",
-        "symfony/filesystem": "^5.4 || ^6.2",
-        "symfony/phpunit-bridge": "^6.2",
+        "symfony/browser-kit": "^5.4 || ^6.2 || ^7.0",
+        "symfony/css-selector": "^5.4 || ^6.2 || ^7.0",
+        "symfony/doctrine-bridge": "^5.4 || ^6.2 || ^7.0",
+        "symfony/filesystem": "^5.4 || ^6.2 || ^7.0",
+        "symfony/phpunit-bridge": "^7.0",
         "vimeo/psalm": "^5.8",
         "weirdan/doctrine-psalm-plugin": "^2.0"
     },
     "conflict": {
         "doctrine/persistence": "<3.0.2",
         "gedmo/doctrine-extensions": "<3.11",
-        "knplabs/doctrine-behaviors": "<2.2 || >=3.0"
+        "knplabs/doctrine-behaviors": "<2.6.2 || >=3.0"
     },
     "suggest": {
         "gedmo/doctrine-extensions": "if you translate orm entities with the gedmo extensions",
