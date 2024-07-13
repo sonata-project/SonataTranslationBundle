@@ -41,7 +41,7 @@ final class AppKernel extends Kernel
 
     public function registerBundles(): iterable
     {
-        return [
+        $bundles = [
             new FrameworkBundle(),
             new KnpMenuBundle(),
             new SecurityBundle(),
@@ -55,8 +55,13 @@ final class AppKernel extends Kernel
             new SonataTwigBundle(),
             new SonataTranslationBundle(),
             new TwigBundle(),
-            new DoctrineBehaviorsBundle(),
         ];
+
+        if (class_exists(DoctrineBehaviorsBundle::class)) {
+            $bundles[] = new DoctrineBehaviorsBundle();
+        }
+
+        return $bundles;
     }
 
     public function getCacheDir(): string
@@ -94,41 +99,58 @@ final class AppKernel extends Kernel
             $loader->load(__DIR__.'/config/config_sonata_block_v4.yaml');
         }
 
+        $mappings = [
+            'tests' => [
+                'type' => 'attribute',
+                'dir' => '%kernel.project_dir%/Entity',
+                'is_bundle' => false,
+                'prefix' => 'Sonata\TranslationBundle\Tests\App\Entity',
+            ],
+            'gedmo_translatable' => [
+                'type' => 'attribute',
+                'prefix' => 'Gedmo\Translatable\Entity',
+                'dir' => '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
+                'is_bundle' => false,
+            ],
+        ];
+
+        if (class_exists(DoctrineBehaviorsBundle::class)) {
+            $mappings['knp_translatable'] = [
+                'type' => 'attribute',
+                'prefix' => 'Sonata\TranslationBundle\Tests\App\KnpEntity',
+                'dir' => '%kernel.project_dir%/KnpEntity',
+                'is_bundle' => false,
+            ];
+        }
+
         $container
             ->loadFromExtension('doctrine', [
                 'dbal' => ['url' => '%env(resolve:DATABASE_URL)%'],
                 'orm' => [
                     'auto_generate_proxy_classes' => true,
                     'auto_mapping' => true,
-                    'mappings' => [
-                        'tests' => [
-                            'type' => 'attribute',
-                            'dir' => '%kernel.project_dir%/Entity',
-                            'is_bundle' => false,
-                            'prefix' => 'Sonata\TranslationBundle\Tests\App\Entity',
-                        ],
-                        'gedmo_translatable' => [
-                            'type' => 'attribute',
-                            'prefix' => 'Gedmo\Translatable\Entity',
-                            'dir' => '%kernel.project_dir%/../../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
-                            'is_bundle' => false,
-                        ],
-                    ],
+                    'mappings' => $mappings,
                 ],
             ]);
+
+        $extensionsConfig = [
+            'gedmo' => [
+                'enabled' => true,
+                'translatable_listener_service' => 'app.gedmo.translation_listener',
+            ],
+        ];
+
+        if (class_exists(DoctrineBehaviorsBundle::class)) {
+            $extensionsConfig['knplabs'] = [
+                'enabled' => true,
+            ];
+        }
 
         $container
             ->loadFromExtension('sonata_translation', [
                 'default_locale' => 'en',
                 'locales' => ['en', 'es', 'fr'],
-                'gedmo' => [
-                    'enabled' => true,
-                    'translatable_listener_service' => 'app.gedmo.translation_listener',
-                ],
-                'knplabs' => [
-                    'enabled' => true,
-                ],
-            ]);
+            ] + $extensionsConfig);
 
         $loader->load(__DIR__.'/config/services.php');
     }

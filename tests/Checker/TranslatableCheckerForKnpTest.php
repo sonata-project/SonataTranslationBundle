@@ -23,6 +23,13 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
  */
 final class TranslatableCheckerForKnpTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        if (!interface_exists(KnpTranslatableInterface::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+    }
+
     public function testIsTranslatableOnInterface(): void
     {
         $translatableChecker = new TranslatableChecker();

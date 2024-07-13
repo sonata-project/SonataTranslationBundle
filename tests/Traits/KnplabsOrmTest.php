@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -41,6 +42,10 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
 
         if (!class_exists(EntityManager::class)) {
             static::markTestSkipped('Doctrine ORM is not available.');
+        }
+
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
         }
 
         $evm = new EventManager();
