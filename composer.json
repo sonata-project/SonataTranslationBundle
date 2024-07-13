@@ -21,7 +21,7 @@
     "homepage": "https://docs.sonata-project.org/projects/SonataTranslationBundle",
     "require": {
         "php": "^8.0",
-        "sonata-project/admin-bundle": "^4.14",
+        "sonata-project/admin-bundle": "^4.15",
         "sonata-project/block-bundle": "^4.11 || ^5.0",
         "symfony/config": "^5.4 || ^6.2",
         "symfony/dependency-injection": "^5.4 || ^6.2 || ^7.0",
