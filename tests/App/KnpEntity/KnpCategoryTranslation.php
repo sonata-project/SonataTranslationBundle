@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Tests\App\Entity;
+namespace Sonata\TranslationBundle\Tests\App\KnpEntity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

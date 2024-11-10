@@ -16,7 +16,7 @@ namespace Sonata\TranslationBundle\Tests\App\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
+use Sonata\TranslationBundle\Tests\App\KnpEntity\KnpCategory;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
@@ -24,6 +24,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
  */
 final class KnpCategoryAdmin extends AbstractAdmin
 {
+    protected function generateBaseRouteName(bool $isChildAdmin = false): string
+    {
+        return 'admin_app_knpcategory';
+    }
+
+    protected function generateBaseRoutePattern(bool $isChildAdmin = false): string
+    {
+        return 'tests/app/knpcategory';
+    }
+
     protected function configureListFields(ListMapper $list): void
     {
         $list

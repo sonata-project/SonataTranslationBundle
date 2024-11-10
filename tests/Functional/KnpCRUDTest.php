@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Functional;
 
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,10 @@ final class KnpCRUDTest extends WebTestCase
 
     protected function setUp(): void
     {
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+
         $this->client = static::createClient();
         $this->client->followRedirects();
     }
