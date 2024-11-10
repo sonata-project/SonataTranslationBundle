@@ -23,21 +23,39 @@ jobs:
         continue-on-error: ${{ matrix.allowed-to-fail }}
 
         env:
-            SYMFONY_REQUIRE: ${{matrix.symfony-require}}
+            SYMFONY_REQUIRE: ${{ matrix.symfony-require }}
 
         strategy:
             matrix:
+                php-version:
+                    - '8.0'
+                    - '8.1'
+                    - '8.2'
+                    - '8.3'
+                dependencies: [ highest ]
+                allowed-to-fail: [ false ]
+                symfony-require: [ '' ]
+                variant: [ normal ]
                 include:
-                    - php-version: '8.2'
-                      dependencies: highest
+                    - php-version: '8.0'
+                      dependencies: lowest
                       allowed-to-fail: false
-                      symfony-require: 7.0.*
-                      variant: symfony/symfony:"7.0.*"
+                      variant: normal
                     - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
-                      symfony-require: 7.0.*
-                      variant: symfony/symfony:"7.0.*"
+                      symfony-require: 5.4.*
+                      variant: symfony/symfony:"5.4.*"
+                    - php-version: '8.3'
+                      dependencies: highest
+                      allowed-to-fail: false
+                      symfony-require: 6.3.*
+                      variant: symfony/symfony:"6.3.*"
+                    - php-version: '8.3'
+                      dependencies: highest
+                      allowed-to-fail: false
+                      symfony-require: 6.4.*
+                      variant: symfony/symfony:"6.4.*"
 
         steps:
             - name: Checkout
@@ -53,8 +71,8 @@ jobs:
             - name: Add PHPUnit matcher
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Remove knplabs/doctrine-behaviors
-              run: composer remove knplabs/doctrine-behaviors --dev --no-update
+            - name: Add knplabs/doctrine-behaviors
+              run: composer require knplabs/doctrine-behaviors --dev --no-update
 
             - name: Install variant
               if: matrix.variant != 'normal' && !startsWith(matrix.variant, 'symfony/symfony')
