@@ -32,10 +32,10 @@ jobs:
                     - '8.1'
                     - '8.2'
                     - '8.3'
-                dependencies: [ highest ]
-                allowed-to-fail: [ false ]
-                symfony-require: [ '' ]
-                variant: [ normal ]
+                dependencies: [highest]
+                allowed-to-fail: [false]
+                symfony-require: ['']
+                variant: [normal]
                 include:
                     - php-version: '8.0'
                       dependencies: lowest
