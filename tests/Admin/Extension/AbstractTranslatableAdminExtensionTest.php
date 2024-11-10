@@ -26,11 +26,9 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
      */
     private AbstractTranslatableAdminExtension $extension;
 
-    private TranslatableChecker $translatableChecker;
-
     protected function setUp(): void
     {
-        $this->translatableChecker = new TranslatableChecker();
+        $translatableChecker = new TranslatableChecker();
 
         $localeProvider = new class() implements LocaleProviderInterface {
             public function get(): string
@@ -41,7 +39,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
 
         $this->extension = new /**
              * @template-extends AbstractTranslatableAdminExtension<object>
-             */ class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
+             */ class($translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
     }
 
     public function testSetsPersistentParameters(): void
