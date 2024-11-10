@@ -28,7 +28,7 @@ class KnpCategory implements TranslatableInterface, \Stringable
         #[ORM\Column]
         #[ORM\GeneratedValue(strategy: 'NONE')]
         private string $id = '',
-        string $name = ''
+        string $name = '',
     ) {
         $this->translations = new ArrayCollection();
         $this->newTranslations = new ArrayCollection();

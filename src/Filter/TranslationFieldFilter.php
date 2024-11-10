@@ -70,7 +70,7 @@ final class TranslationFieldFilter extends Filter
 
             $this->setActive(true);
         } else {
-            throw new \LogicException(sprintf('Invalid filter mode given: "%s"', $filterMode));
+            throw new \LogicException(\sprintf('Invalid filter mode given: "%s"', $filterMode));
         }
     }
 
@@ -123,7 +123,7 @@ final class TranslationFieldFilter extends Filter
                 )
             ),
             $query->getQueryBuilder()->expr()->like(
-                sprintf('%s.%s', $alias, $field),
+                \sprintf('%s.%s', $alias, $field),
                 $query->getQueryBuilder()->expr()->literal('%'.$value.'%')
             )
         ));

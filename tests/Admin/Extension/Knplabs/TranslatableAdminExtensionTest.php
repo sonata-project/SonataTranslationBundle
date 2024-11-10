@@ -51,7 +51,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
             KnpTranslatableInterface::class,
         ]);
 
-        $localeProvider = new class() implements LocaleProviderInterface {
+        $localeProvider = new class implements LocaleProviderInterface {
             public function get(): string
             {
                 return 'es';

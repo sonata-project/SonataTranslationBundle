@@ -39,7 +39,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     public function __construct(
         protected TranslatableChecker $translatableChecker,
-        private LocaleProviderInterface $localeProvider
+        private LocaleProviderInterface $localeProvider,
     ) {
     }
 
