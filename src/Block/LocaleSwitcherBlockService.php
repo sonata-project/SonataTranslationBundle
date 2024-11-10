@@ -27,7 +27,7 @@ final class LocaleSwitcherBlockService extends AbstractBlockService
 {
     public function __construct(
         Environment $twig,
-        private LocaleProviderInterface $localeProvider
+        private LocaleProviderInterface $localeProvider,
     ) {
         parent::__construct($twig);
     }

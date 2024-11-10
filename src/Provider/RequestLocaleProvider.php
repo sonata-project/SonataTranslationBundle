@@ -22,7 +22,7 @@ final class RequestLocaleProvider implements LocaleProviderInterface
 
     public function __construct(
         private RequestStack $requestStack,
-        private string $defaultTranslationLocale
+        private string $defaultTranslationLocale,
     ) {
     }
 

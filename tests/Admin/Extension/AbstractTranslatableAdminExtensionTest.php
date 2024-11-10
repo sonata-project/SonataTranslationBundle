@@ -30,7 +30,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
     {
         $translatableChecker = new TranslatableChecker();
 
-        $localeProvider = new class() implements LocaleProviderInterface {
+        $localeProvider = new class implements LocaleProviderInterface {
             public function get(): string
             {
                 return 'es';

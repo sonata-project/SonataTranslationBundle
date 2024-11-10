@@ -37,7 +37,7 @@ final class LocaleProviderTest extends TestCase
         string $expectedLocale,
         string $knpLocale,
         string $sonataLocale,
-        bool $isAdminEnabled
+        bool $isAdminEnabled,
     ): void {
         $request = new Request();
 

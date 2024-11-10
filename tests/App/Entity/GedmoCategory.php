@@ -30,7 +30,7 @@ class GedmoCategory implements Translatable, \Stringable
         private string $id = '',
         #[Gedmo\Translatable(fallback: true)]
         #[ORM\Column]
-        private string $name = ''
+        private string $name = '',
     ) {
     }
 
