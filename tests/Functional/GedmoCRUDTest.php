@@ -71,7 +71,7 @@ final class GedmoCRUDTest extends WebTestCase
 
         self::assertSelectorTextContains(
             '.alert-success',
-            sprintf('"%s" has been successfully created.', $newName)
+            \sprintf('"%s" has been successfully created.', $newName)
         );
 
         $url = $this->generateUrlWithLocale('/admin/tests/app/gedmocategory/list', $locale);
@@ -79,7 +79,7 @@ final class GedmoCRUDTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $url);
 
         self::assertSelectorTextContains(
-            sprintf('.sonata-ba-list-field-string[objectid="%s"] .sonata-link-identifier', $newId),
+            \sprintf('.sonata-ba-list-field-string[objectid="%s"] .sonata-link-identifier', $newId),
             $newName
         );
     }
@@ -112,7 +112,7 @@ final class GedmoCRUDTest extends WebTestCase
 
         self::assertSelectorTextContains(
             '.alert-success',
-            sprintf('"%s" has been successfully updated.', $editedName)
+            \sprintf('"%s" has been successfully updated.', $editedName)
         );
 
         $url = $this->generateUrlWithLocale('/admin/tests/app/gedmocategory/list', $locale);

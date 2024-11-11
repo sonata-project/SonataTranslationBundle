@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\TranslationBundle\Tests\App\Entity;
+namespace Sonata\TranslationBundle\Tests\App\KnpEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,7 +28,7 @@ class KnpCategory implements TranslatableInterface, \Stringable
         #[ORM\Column]
         #[ORM\GeneratedValue(strategy: 'NONE')]
         private string $id = '',
-        string $name = ''
+        string $name = '',
     ) {
         $this->translations = new ArrayCollection();
         $this->newTranslations = new ArrayCollection();

@@ -37,7 +37,7 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         TranslatableChecker $translatableChecker,
         private TranslatableListener $translatableListener,
         private ManagerRegistry $managerRegistry,
-        LocaleProviderInterface $localeProvider
+        LocaleProviderInterface $localeProvider,
     ) {
         parent::__construct($translatableChecker, $localeProvider);
     }
@@ -79,9 +79,9 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         \assert($objectManager instanceof ObjectManager);
 
         $configuration = $this->translatableListener->getConfiguration($objectManager, $objectClassName);
-        /** @psalm-suppress InvalidArrayOffset */
+
         if (!isset($configuration['locale'])) {
-            throw new \LogicException(sprintf(
+            throw new \LogicException(\sprintf(
                 'There is no locale or language property found on class: "%s"',
                 $object::class
             ));

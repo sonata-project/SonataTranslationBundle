@@ -15,7 +15,8 @@ namespace Sonata\TranslationBundle\Tests\App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Sonata\TranslationBundle\Tests\App\Entity\KnpCategory;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
+use Sonata\TranslationBundle\Tests\App\KnpEntity\KnpCategory;
 
 final class KnpCategoryFixtures extends Fixture
 {
@@ -23,6 +24,10 @@ final class KnpCategoryFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            return;
+        }
+
         $novelCategory = new KnpCategory(self::CATEGORY, 'Novel');
 
         $novelCategory->setCurrentLocale('es');

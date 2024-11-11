@@ -16,6 +16,7 @@ namespace Sonata\TranslationBundle\Tests\Traits;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Translatable\TranslatableListener;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Sonata\AdminBundle\Filter\Model\FilterData;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\TranslationBundle\Enum\TranslationFilterMode;
@@ -31,8 +32,6 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
     private const ARTICLE = Article::class;
     private const TRANSLATION = ArticleTranslation::class;
 
-    private TranslatableListener $translatableListener;
-
     private EntityManager $em;
 
     protected function setUp(): void
@@ -43,11 +42,15 @@ final class KnplabsOrmTest extends DoctrineOrmTestCase
             static::markTestSkipped('Doctrine ORM is not available.');
         }
 
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+
         $evm = new EventManager();
-        $this->translatableListener = new TranslatableListener();
-        $this->translatableListener->setTranslatableLocale('en');
-        $this->translatableListener->setDefaultLocale('en');
-        $evm->addEventSubscriber($this->translatableListener);
+        $translatableListener = new TranslatableListener();
+        $translatableListener->setTranslatableLocale('en');
+        $translatableListener->setDefaultLocale('en');
+        $evm->addEventSubscriber($translatableListener);
 
         $this->em = $this->getMockSqliteEntityManager($evm);
     }

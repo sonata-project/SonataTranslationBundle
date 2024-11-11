@@ -60,7 +60,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
             ->method('getManagerForClass')
             ->willReturn($this->em);
 
-        $localeProvider = new class() implements LocaleProviderInterface {
+        $localeProvider = new class implements LocaleProviderInterface {
             public function get(): string
             {
                 return 'es';

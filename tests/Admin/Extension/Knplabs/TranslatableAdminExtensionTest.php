@@ -41,13 +41,17 @@ final class TranslatableAdminExtensionTest extends WebTestCase
 
     protected function setUp(): void
     {
+        if (!interface_exists(KnpTranslatableInterface::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+
         $translatableChecker = new TranslatableChecker();
 
         $translatableChecker->setSupportedInterfaces([
             KnpTranslatableInterface::class,
         ]);
 
-        $localeProvider = new class() implements LocaleProviderInterface {
+        $localeProvider = new class implements LocaleProviderInterface {
             public function get(): string
             {
                 return 'es';

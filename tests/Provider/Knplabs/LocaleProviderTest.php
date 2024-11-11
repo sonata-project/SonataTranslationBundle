@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Provider\Knplabs;
 
 use Knp\DoctrineBehaviors\Contract\Provider\LocaleProviderInterface;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Provider\Knplabs\LocaleProvider;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface as SonataLocaleProviderInterface;
@@ -22,6 +23,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class LocaleProviderTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+    }
+
     /**
      * @dataProvider provideUsesTheProperProviderBasedOnRequestCases
      */
@@ -29,7 +37,7 @@ final class LocaleProviderTest extends TestCase
         string $expectedLocale,
         string $knpLocale,
         string $sonataLocale,
-        bool $isAdminEnabled
+        bool $isAdminEnabled,
     ): void {
         $request = new Request();
 

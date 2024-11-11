@@ -30,6 +30,8 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 {
     /**
      * Request parameter.
+     *
+     * @psalm-suppress MissingClassConstType
      */
     public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
@@ -37,7 +39,7 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
 
     public function __construct(
         protected TranslatableChecker $translatableChecker,
-        private LocaleProviderInterface $localeProvider
+        private LocaleProviderInterface $localeProvider,
     ) {
     }
 

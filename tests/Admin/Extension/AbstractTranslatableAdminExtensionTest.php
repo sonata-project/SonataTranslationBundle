@@ -26,16 +26,11 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
      */
     private AbstractTranslatableAdminExtension $extension;
 
-    private TranslatableChecker $translatableChecker;
-
-    /**
-     * @psalm-suppress InternalClass https://github.com/vimeo/psalm/issues/6315
-     */
     protected function setUp(): void
     {
-        $this->translatableChecker = new TranslatableChecker();
+        $translatableChecker = new TranslatableChecker();
 
-        $localeProvider = new class() implements LocaleProviderInterface {
+        $localeProvider = new class implements LocaleProviderInterface {
             public function get(): string
             {
                 return 'es';
@@ -44,7 +39,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
 
         $this->extension = new /**
              * @template-extends AbstractTranslatableAdminExtension<object>
-             */ class($this->translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
+             */ class($translatableChecker, $localeProvider) extends AbstractTranslatableAdminExtension {};
     }
 
     public function testSetsPersistentParameters(): void

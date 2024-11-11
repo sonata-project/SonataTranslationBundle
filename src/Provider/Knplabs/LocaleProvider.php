@@ -22,7 +22,7 @@ final class LocaleProvider implements KnpLocaleProviderInterface
     public function __construct(
         private RequestStack $requestStack,
         private KnpLocaleProviderInterface $localeProvider,
-        private SonataLocaleProviderInterface $sonataLocaleProvider
+        private SonataLocaleProviderInterface $sonataLocaleProvider,
     ) {
     }
 

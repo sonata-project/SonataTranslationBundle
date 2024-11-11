@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Functional;
 
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,10 @@ final class KnpCRUDTest extends WebTestCase
 
     protected function setUp(): void
     {
+        if (!class_exists(DoctrineBehaviorsBundle::class)) {
+            static::markTestSkipped('The "knplabs/doctrine-behaviors" package is not installed.');
+        }
+
         $this->client = static::createClient();
         $this->client->followRedirects();
     }
@@ -71,7 +76,7 @@ final class KnpCRUDTest extends WebTestCase
 
         self::assertSelectorTextContains(
             '.alert-success',
-            sprintf('"%s" has been successfully created.', $newName)
+            \sprintf('"%s" has been successfully created.', $newName)
         );
 
         $url = $this->generateUrlWithLocale('/admin/tests/app/knpcategory/list', $locale);
@@ -79,7 +84,7 @@ final class KnpCRUDTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $url);
 
         self::assertSelectorTextContains(
-            sprintf('.sonata-ba-list-field-string[objectid="%s"] .sonata-link-identifier', $newId),
+            \sprintf('.sonata-ba-list-field-string[objectid="%s"] .sonata-link-identifier', $newId),
             $newName
         );
     }
@@ -112,7 +117,7 @@ final class KnpCRUDTest extends WebTestCase
 
         self::assertSelectorTextContains(
             '.alert-success',
-            sprintf('"%s" has been successfully updated.', $editedName)
+            \sprintf('"%s" has been successfully updated.', $editedName)
         );
 
         $url = $this->generateUrlWithLocale('/admin/tests/app/knpcategory/list', $locale);
