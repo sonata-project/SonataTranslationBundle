@@ -16,7 +16,7 @@ permissions:
 
 jobs:
     test:
-        name: PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }} + ${{ matrix.variant }} (Symfony 7)
+        name: PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }} + ${{ matrix.variant }} (+ knplabs)
 
         runs-on: ubuntu-latest
 
@@ -28,7 +28,6 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - '8.0'
                     - '8.1'
                     - '8.2'
                     - '8.3'
@@ -37,20 +36,10 @@ jobs:
                 symfony-require: ['']
                 variant: [normal]
                 include:
-                    - php-version: '8.0'
+                    - php-version: '8.1'
                       dependencies: lowest
                       allowed-to-fail: false
                       variant: normal
-                    - php-version: '8.3'
-                      dependencies: highest
-                      allowed-to-fail: false
-                      symfony-require: 5.4.*
-                      variant: symfony/symfony:"5.4.*"
-                    - php-version: '8.3'
-                      dependencies: highest
-                      allowed-to-fail: false
-                      symfony-require: 6.3.*
-                      variant: symfony/symfony:"6.3.*"
                     - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
