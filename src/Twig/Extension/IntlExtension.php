@@ -23,7 +23,7 @@ final class IntlExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('sonata_language_name', [$this, 'getLanguageName']),
+            new TwigFilter('sonata_language_name', $this->getLanguageName(...)),
         ];
     }
 
