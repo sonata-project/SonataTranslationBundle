@@ -41,14 +41,14 @@ final class SonataTranslationExtension extends AbstractExtension
     public function getTests(): array
     {
         return [
-            new TwigTest('translatable', [$this, 'isTranslatable']),
+            new TwigTest('translatable', $this->isTranslatable(...)),
         ];
     }
 
     public function getFilters(): array
     {
         return [
-            new TwigFilter('localeName', [$this, 'getLocaleName']),
+            new TwigFilter('localeName', $this->getLocaleName(...)),
         ];
     }
 
