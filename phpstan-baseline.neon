@@ -1,0 +1,128 @@
+parameters:
+	excludePaths:
+			analyseAndScan:
+				- tests/Traits/KnplabsOrmTest.php
+				- tests/Fixtures/Traits/ORM/Knplabs/
+				- tests/Fixtures/Model/Knplabs/
+				- src/Provider/Knplabs/
+				- tests/App/Provider/
+				- tests/Provider/Knplabs/
+				- tests/App/KnpEntity/
+				- tests/App/DataFixtures
+				- tests/Checker/TranslatableCheckerForKnpTest.php
+				- tests/App/Admin/KnpCategoryAdmin.php
+	ignoreErrors:
+		-
+			message: "#^Call to method mergeNewTranslations\\(\\) on an unknown class Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 2
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Call to method setCurrentLocale\\(\\) on an unknown class Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 2
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^PHPDoc tag @extends has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$admin of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterNewInstance\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$admin of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterObject\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$admin of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:prePersist\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$admin of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:preUpdate\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterNewInstance\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterObject\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:prePersist\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Parameter \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:preUpdate\\(\\) has invalid type Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface\\.$#"
+			count: 1
+			path: src/Admin/Extension/Knplabs/TranslatableAdminExtension.php
+
+		-
+			message: "#^Class Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface not found\\.$#"
+			count: 1
+			path: src/DependencyInjection/SonataTranslationExtension.php
+
+		-
+			message: "#^Class Knp\\\\DoctrineBehaviors\\\\Contract\\\\Provider\\\\LocaleProviderInterface not found\\.$#"
+			count: 1
+			path: src/Resources/config/service_knplabs.php
+
+		-
+			message: "#^Call to an undefined method Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity\\:\\:getCurrentLocale\\(\\)\\.$#"
+			count: 2
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterNewInstance\\(\\) expects Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface, Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity given\\.$#"
+			count: 1
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:alterObject\\(\\) expects Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface, Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity given\\.$#"
+			count: 1
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:prePersist\\(\\) expects Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject&Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity given\\.$#"
+			count: 1
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$object of method Sonata\\\\TranslationBundle\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtension\\:\\:preUpdate\\(\\) expects Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject&Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity given\\.$#"
+			count: 1
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Property Sonata\\\\TranslationBundle\\\\Tests\\\\Admin\\\\Extension\\\\Knplabs\\\\TranslatableAdminExtensionTest\\:\\:\\$admin has unknown class Knp\\\\DoctrineBehaviors\\\\Contract\\\\Entity\\\\TranslatableInterface as its type\\.$#"
+			count: 1
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Trying to mock an undefined method mergeNewTranslations\\(\\) on class Sonata\\\\TranslationBundle\\\\Tests\\\\Fixtures\\\\Model\\\\Knplabs\\\\TranslatableEntity\\.$#"
+			count: 2
+			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
+
+		-
+			message: "#^Method Sonata\\\\TranslationBundle\\\\Tests\\\\App\\\\AppKernel\\:\\:registerBundles\\(\\) should return iterable\\<Symfony\\\\Component\\\\HttpKernel\\\\Bundle\\\\BundleInterface\\> but returns array\\<int, Doctrine\\\\Bundle\\\\DoctrineBundle\\\\DoctrineBundle\\|Doctrine\\\\Bundle\\\\FixturesBundle\\\\DoctrineFixturesBundle\\|Knp\\\\Bundle\\\\MenuBundle\\\\KnpMenuBundle\\|Knp\\\\DoctrineBehaviors\\\\DoctrineBehaviorsBundle\\|Sonata\\\\AdminBundle\\\\SonataAdminBundle\\|Sonata\\\\BlockBundle\\\\SonataBlockBundle\\|Sonata\\\\Doctrine\\\\Bridge\\\\Symfony\\\\SonataDoctrineBundle\\|Sonata\\\\DoctrineORMAdminBundle\\\\SonataDoctrineORMAdminBundle\\|Sonata\\\\Form\\\\Bridge\\\\Symfony\\\\SonataFormBundle\\|Sonata\\\\TranslationBundle\\\\SonataTranslationBundle\\|Sonata\\\\Twig\\\\Bridge\\\\Symfony\\\\SonataTwigBundle\\|Symfony\\\\Bundle\\\\FrameworkBundle\\\\FrameworkBundle\\|Symfony\\\\Bundle\\\\SecurityBundle\\\\SecurityBundle\\|Symfony\\\\Bundle\\\\TwigBundle\\\\TwigBundle\\>\\.$#"
+			count: 1
+			path: tests/App/AppKernel.php
+
+		-
+			message: "#^Class Knp\\\\DoctrineBehaviors\\\\EventSubscriber\\\\TranslatableEventSubscriber not found\\.$#"
+			count: 1
+			path: tests/App/config/services.php
+
+		-
+			message: "#^Class Knp\\\\DoctrineBehaviors\\\\Provider\\\\UserProvider not found\\.$#"
+			count: 1
+			path: tests/App/config/services.php
