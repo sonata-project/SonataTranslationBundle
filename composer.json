@@ -36,7 +36,7 @@
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.9",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "doctrine/orm": "^2.14",
+        "doctrine/orm": "^2.14 || ^3.0",
         "doctrine/persistence": "^3.0.2",
         "friendsofphp/php-cs-fixer": "^3.4",
         "gedmo/doctrine-extensions": "^3.11",
