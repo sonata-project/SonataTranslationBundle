@@ -19,6 +19,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+/**
+ * @psalm-suppress ClassMustBeFinal
+ */
 #[Gedmo\TranslationEntity(class: ArticlePersonalTranslation::class)]
 #[ORM\Table(name: 'article')]
 #[ORM\Entity]
