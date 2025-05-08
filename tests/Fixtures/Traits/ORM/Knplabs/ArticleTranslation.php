@@ -17,6 +17,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
+/**
+ * @psalm-suppress ClassMustBeFinal
+ */
 #[ORM\Table(name: 'article_translation')]
 #[ORM\Entity]
 class ArticleTranslation extends AbstractArticleTranslation implements TranslationInterface

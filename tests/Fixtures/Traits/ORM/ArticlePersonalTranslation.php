@@ -16,6 +16,9 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Traits\ORM;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
+/**
+ * @psalm-suppress ClassMustBeFinal
+ */
 #[ORM\Table(name: 'article_translation')]
 #[ORM\Entity]
 class ArticlePersonalTranslation extends AbstractPersonalTranslation
