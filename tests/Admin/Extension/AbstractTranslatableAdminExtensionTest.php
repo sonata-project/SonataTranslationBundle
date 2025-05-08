@@ -44,7 +44,7 @@ final class AbstractTranslatableAdminExtensionTest extends TestCase
 
     public function testSetsPersistentParameters(): void
     {
-        $parameters = $this->extension->configurePersistentParameters($this->createStub(AdminInterface::class), []);
+        $parameters = $this->extension->configurePersistentParameters(static::createStub(AdminInterface::class), []);
 
         static::assertSame(['tl' => 'es'], $parameters);
     }

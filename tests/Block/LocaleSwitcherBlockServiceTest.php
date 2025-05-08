@@ -22,8 +22,8 @@ final class LocaleSwitcherBlockServiceTest extends BlockServiceTestCase
 {
     public function testDefaultSettings(): void
     {
-        $environment = $this->createStub(Environment::class);
-        $localeProvider = $this->createStub(LocaleProviderInterface::class);
+        $environment = static::createStub(Environment::class);
+        $localeProvider = static::createStub(LocaleProviderInterface::class);
         $localeProvider->method('get')->willReturn('en');
 
         $localeSwitcherBlock = new LocaleSwitcherBlockService($environment, $localeProvider);
