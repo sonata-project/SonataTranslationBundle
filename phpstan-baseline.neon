@@ -113,7 +113,7 @@ parameters:
 			path: tests/Admin/Extension/Knplabs/TranslatableAdminExtensionTest.php
 
 		-
-			message: "#^Method Sonata\\\\TranslationBundle\\\\Tests\\\\App\\\\AppKernel\\:\\:registerBundles\\(\\) should return iterable\\<Symfony\\\\Component\\\\HttpKernel\\\\Bundle\\\\BundleInterface\\> but returns array\\<int, Doctrine\\\\Bundle\\\\DoctrineBundle\\\\DoctrineBundle\\|Doctrine\\\\Bundle\\\\FixturesBundle\\\\DoctrineFixturesBundle\\|Knp\\\\Bundle\\\\MenuBundle\\\\KnpMenuBundle\\|Knp\\\\DoctrineBehaviors\\\\DoctrineBehaviorsBundle\\|Sonata\\\\AdminBundle\\\\SonataAdminBundle\\|Sonata\\\\BlockBundle\\\\SonataBlockBundle\\|Sonata\\\\Doctrine\\\\Bridge\\\\Symfony\\\\SonataDoctrineBundle\\|Sonata\\\\DoctrineORMAdminBundle\\\\SonataDoctrineORMAdminBundle\\|Sonata\\\\Form\\\\Bridge\\\\Symfony\\\\SonataFormBundle\\|Sonata\\\\TranslationBundle\\\\SonataTranslationBundle\\|Sonata\\\\Twig\\\\Bridge\\\\Symfony\\\\SonataTwigBundle\\|Symfony\\\\Bundle\\\\FrameworkBundle\\\\FrameworkBundle\\|Symfony\\\\Bundle\\\\SecurityBundle\\\\SecurityBundle\\|Symfony\\\\Bundle\\\\TwigBundle\\\\TwigBundle\\>\\.$#"
+			message: "#^Method Sonata\\\\TranslationBundle\\\\Tests\\\\App\\\\AppKernel\\:\\:registerBundles\\(\\) should return iterable\\<Symfony\\\\Component\\\\HttpKernel\\\\Bundle\\\\BundleInterface\\> but returns .*\\.$#"
 			count: 1
 			path: tests/App/AppKernel.php
 
