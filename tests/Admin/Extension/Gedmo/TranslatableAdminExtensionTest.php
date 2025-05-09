@@ -55,7 +55,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
         $this->translatableListener->setDefaultLocale('en');
         $evm->addEventSubscriber($this->translatableListener);
         $this->em = $this->getMockSqliteEntityManager($evm);
-        $managerRegistry = $this->createStub(ManagerRegistry::class);
+        $managerRegistry = static::createStub(ManagerRegistry::class);
         $managerRegistry
             ->method('getManagerForClass')
             ->willReturn($this->em);
@@ -77,7 +77,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = $this->createStub(AdminInterface::class);
+        $this->admin = static::createStub(AdminInterface::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
     }
@@ -104,7 +104,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
     public function testConfigureQuery(): void
     {
-        $query = $this->createStub(ProxyQueryInterface::class);
+        $query = static::createStub(ProxyQueryInterface::class);
 
         $this->extension->configureQuery($this->admin, $query);
 

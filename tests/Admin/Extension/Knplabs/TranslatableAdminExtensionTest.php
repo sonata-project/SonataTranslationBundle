@@ -63,7 +63,7 @@ final class TranslatableAdminExtensionTest extends WebTestCase
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = $this->createStub(AdminInterface::class);
+        $this->admin = static::createStub(AdminInterface::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
 
