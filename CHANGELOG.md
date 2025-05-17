@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.4.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.3.0...3.4.0) - 2025-05-16
+### Added
+- [[#716](https://github.com/sonata-project/SonataTranslationBundle/pull/716)] Support for Symfony 7. ([@franmomu](https://github.com/franmomu))
+
+### Fixed
+- [[#715](https://github.com/sonata-project/SonataTranslationBundle/pull/715)] Symfony 7.1 deprecation about `Symfony\Component\HttpKernel\DependencyInjection\Extension` usage ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [3.3.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.2.0...3.3.0) - 2023-06-04
 ### Added
 - [[#693](https://github.com/sonata-project/SonataTranslationBundle/pull/693)] Support for SonataBlockBundle 5.0 ([@jordisala1991](https://github.com/jordisala1991))
