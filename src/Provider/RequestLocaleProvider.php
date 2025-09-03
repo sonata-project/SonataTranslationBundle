@@ -15,8 +15,9 @@ namespace Sonata\TranslationBundle\Provider;
 
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Service\ResetInterface;
 
-final class RequestLocaleProvider implements LocaleProviderInterface
+final class RequestLocaleProvider implements LocaleProviderInterface, ResetInterface
 {
     private ?string $translatableLocale = null;
 
@@ -51,5 +52,10 @@ final class RequestLocaleProvider implements LocaleProviderInterface
         }
 
         return $this->defaultTranslationLocale;
+    }
+
+    public function reset(): void
+    {
+        $this->translatableLocale = null;
     }
 }
