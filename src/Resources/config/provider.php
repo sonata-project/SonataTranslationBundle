@@ -24,5 +24,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->args([
                 service('request_stack'),
                 param('sonata_translation.default_locale'),
-            ]);
+            ])
+            ->tag('kernel.reset', ['method' => 'reset']);
 };
