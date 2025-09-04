@@ -22,6 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata_translation.admin.extension.knplabs_translatable', TranslatableAdminExtension::class)
             ->tag('sonata.admin.extension')
+            ->tag('kernel.reset', ['method' => 'reset'])
             ->args([
                 service('sonata_translation.checker.translatable'),
                 service('sonata_translation.admin.provider.request_locale_provider'),
