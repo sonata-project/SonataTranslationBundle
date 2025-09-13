@@ -18,6 +18,7 @@ use Sonata\TranslationBundle\Admin\Extension\Gedmo\TranslatableAdminExtension;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
 
+        // @phpstan-ignore-next-line classConstant.internalClass
         ->set('sonata_translation.admin.extension.gedmo_translatable', TranslatableAdminExtension::class)
             ->tag('sonata.admin.extension')
             ->tag('kernel.reset', ['method' => 'reset'])
