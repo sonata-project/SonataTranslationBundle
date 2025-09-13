@@ -36,6 +36,11 @@ final class RequestLocaleProvider implements LocaleProviderInterface, ResetInter
         return $this->translatableLocale;
     }
 
+    public function reset(): void
+    {
+        $this->translatableLocale = null;
+    }
+
     private function getFromRequestOrDefault(): string
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
@@ -52,10 +57,5 @@ final class RequestLocaleProvider implements LocaleProviderInterface, ResetInter
         }
 
         return $this->defaultTranslationLocale;
-    }
-
-    public function reset(): void
-    {
-        $this->translatableLocale = null;
     }
 }

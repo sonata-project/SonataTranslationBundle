@@ -76,7 +76,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
             'gedmo' => [
                 'enabled' => true,
             ],
-            'default_locale' => 'testLocale'
+            'default_locale' => 'testLocale',
         ]);
 
         $this->assertContainerBuilderHasService(
@@ -105,7 +105,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
             'gedmo' => [
                 'enabled' => true,
             ],
-            'default_locale' => 'testLocale'
+            'default_locale' => 'testLocale',
         ]);
 
         $this->assertContainerBuilderHasService(
