@@ -51,6 +51,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         return $parameters;
     }
 
+    public function reset(): void
+    {
+        $this->translatableLocale = null;
+    }
+
     final protected function getTranslatableChecker(): TranslatableChecker
     {
         return $this->translatableChecker;
@@ -67,10 +72,5 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         }
 
         return $this->translatableLocale;
-    }
-
-    public function reset(): void
-    {
-        $this->translatableLocale = null;
     }
 }
