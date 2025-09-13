@@ -90,7 +90,6 @@ final class TranslatableAdminExtension extends AbstractTranslatableAdminExtensio
         $reflClass = $objectManager->getClassMetadata($objectClassName)->getReflectionClass();
 
         $reflectionProperty = $reflClass->getProperty($configuration['locale']);
-        $reflectionProperty->setAccessible(true);
 
         if ($reflectionProperty->getValue($object) === $translatableLocale) {
             return;
