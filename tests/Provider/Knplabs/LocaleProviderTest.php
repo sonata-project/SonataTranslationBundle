@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Tests\Provider\Knplabs;
 
 use Knp\DoctrineBehaviors\Contract\Provider\LocaleProviderInterface;
 use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Provider\Knplabs\LocaleProvider;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface as SonataLocaleProviderInterface;
@@ -30,9 +31,7 @@ final class LocaleProviderTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider provideUsesTheProperProviderBasedOnRequestCases
-     */
+    #[DataProvider('provideUsesTheProperProviderBasedOnRequestCases')]
     public function testUsesTheProperProviderBasedOnRequest(
         string $expectedLocale,
         string $knpLocale,
@@ -61,7 +60,7 @@ final class LocaleProviderTest extends TestCase
     /**
      * @return iterable<array{string, string, string, bool}>
      */
-    public function provideUsesTheProperProviderBasedOnRequestCases(): iterable
+    public static function provideUsesTheProperProviderBasedOnRequestCases(): iterable
     {
         yield 'with sonata enabled it uses sonata provider' => ['en', 'es', 'en', true];
         yield 'with sonata disabled it uses knp provider' => ['es', 'es', 'en', false];
