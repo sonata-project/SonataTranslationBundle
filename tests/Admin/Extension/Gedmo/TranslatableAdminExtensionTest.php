@@ -104,7 +104,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
     public function testConfigureQuery(): void
     {
-        $query = static::createStub(ProxyQueryInterface::class);
+        $query = $this->createMock(ProxyQueryInterface::class);
 
         $this->extension->configureQuery($this->admin, $query);
 
