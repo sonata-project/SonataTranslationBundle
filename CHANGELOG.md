@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.4.0...3.5.0) - 2025-09-13
+### Changed
+- [[#739](https://github.com/sonata-project/SonataTranslationBundle/pull/739)] Made the `RequestLocaleProvider` and `AbstractTranslatableAdminExtension` implement `ResetInterface` to make it work with long-running processes ([@RikudouSage](https://github.com/RikudouSage))
+
+### Fixed
+- [[#733](https://github.com/sonata-project/SonataTranslationBundle/pull/733)] Error 'You have requested a non-existent parameter "locale"' when using Symfony 7 ([@hithran](https://github.com/hithran))
+
 ## [3.4.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.3.0...3.4.0) - 2025-05-16
 ### Added
 - [[#716](https://github.com/sonata-project/SonataTranslationBundle/pull/716)] Support for Symfony 7. ([@franmomu](https://github.com/franmomu))

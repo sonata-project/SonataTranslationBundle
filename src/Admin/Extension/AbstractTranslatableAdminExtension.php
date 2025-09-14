@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
+use Symfony\Contracts\Service\ResetInterface;
 
 /**
  * @author Nicolas Bastien <nbastien.pro@gmail.com>
@@ -26,7 +27,7 @@ use Sonata\TranslationBundle\Provider\LocaleProviderInterface;
  *
  * @internal
  */
-abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
+abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension implements ResetInterface
 {
     /**
      * Request parameter.
@@ -48,6 +49,11 @@ abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension
         $parameters[self::TRANSLATABLE_LOCALE_PARAMETER] = $this->getTranslatableLocale();
 
         return $parameters;
+    }
+
+    public function reset(): void
+    {
+        $this->translatableLocale = null;
     }
 
     final protected function getTranslatableChecker(): TranslatableChecker

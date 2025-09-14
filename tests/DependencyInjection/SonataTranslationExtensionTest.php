@@ -76,6 +76,7 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
             'gedmo' => [
                 'enabled' => true,
             ],
+            'default_locale' => 'testLocale',
         ]);
 
         $this->assertContainerBuilderHasService(
@@ -92,7 +93,36 @@ final class SonataTranslationExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'sonata_translation.listener.translatable',
             'setTranslatableLocale',
-            ['%locale%']
+            ['testLocale']
+        );
+    }
+
+    public function testRegistersTranslatableListenerWhenUsingGedmoAndContainerParameter(): void
+    {
+        $this->container->setParameter('kernel.bundles', []);
+        $this->container->setParameter('locale', 'containerLocale');
+        $this->load([
+            'gedmo' => [
+                'enabled' => true,
+            ],
+            'default_locale' => 'testLocale',
+        ]);
+
+        $this->assertContainerBuilderHasService(
+            'sonata_translation.listener.translatable',
+            TranslatableListener::class
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sonata_translation.listener.translatable',
+            'setAnnotationReader',
+            [new Reference('annotation_reader', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sonata_translation.listener.translatable',
+            'setTranslatableLocale',
+            ['containerLocale']
         );
     }
 

@@ -59,7 +59,7 @@ final class SonataTranslationExtension extends Extension
         if ($this->isConfigEnabled($container, $config['gedmo'])) {
             $isEnabled = true;
 
-            $this->registerTranslatableListener($container, $config['gedmo']);
+            $this->registerTranslatableListener($container, $config['gedmo'], $config['default_locale']);
 
             $loader->load('service_gedmo.php');
 
@@ -142,7 +142,7 @@ final class SonataTranslationExtension extends Extension
     /**
      * @param array{enabled: bool, translatable_listener_service?: string, implements: list<class-string>, instanceof: list<class-string>} $gedmoConfig
      */
-    private function registerTranslatableListener(ContainerBuilder $container, array $gedmoConfig): void
+    private function registerTranslatableListener(ContainerBuilder $container, array $gedmoConfig, string $defaultLocale): void
     {
         if (isset($gedmoConfig['translatable_listener_service'])) {
             $container->setAlias(
@@ -153,12 +153,13 @@ final class SonataTranslationExtension extends Extension
             return;
         }
 
+        $locale = $container->hasParameter('locale') ? $container->getParameter('locale') : $defaultLocale;
         // Registration based on the documentation
         // see https://github.com/doctrine-extensions/DoctrineExtensions/blob/7c0d5aeab0f840d2a18a18c3dc10b0117c597a42/doc/symfony4.md#doctrine-extension-listener-services
         $container->register('sonata_translation.listener.translatable', TranslatableListener::class)
             ->addMethodCall('setAnnotationReader', [new Reference('annotation_reader', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)])
-            ->addMethodCall('setDefaultLocale', ['%locale%'])
-            ->addMethodCall('setTranslatableLocale', ['%locale%'])
+            ->addMethodCall('setDefaultLocale', [$locale])
+            ->addMethodCall('setTranslatableLocale', [$locale])
             ->addMethodCall('setTranslationFallback', [false])
             ->addTag('doctrine.event_listener', ['event' => 'postLoad'])
             ->addTag('doctrine.event_listener', ['event' => 'postPersist'])

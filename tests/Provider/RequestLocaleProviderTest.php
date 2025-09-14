@@ -50,4 +50,21 @@ final class RequestLocaleProviderTest extends TestCase
 
         static::assertSame('en', $requestLocaleProvider->get());
     }
+
+    public function testReset(): void
+    {
+        $request = new Request();
+        $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'cs');
+
+        $requestStack = new RequestStack();
+        $requestStack->push($request);
+
+        $requestLocaleProvider = new RequestLocaleProvider($requestStack, 'en');
+
+        static::assertSame('cs', $requestLocaleProvider->get());
+        $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
+        static::assertSame('cs', $requestLocaleProvider->get());
+        $requestLocaleProvider->reset();
+        static::assertSame('es', $requestLocaleProvider->get());
+    }
 }
