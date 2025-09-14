@@ -18,6 +18,40 @@ use Twig\Test\IntegrationTestCase;
 
 final class IntlExtensionTest extends IntegrationTestCase
 {
+    /**
+     * Hack since twig/twig 3 is not supporting PHPUnit 10.
+     */
+    public function testIntegration(
+        mixed $file = null,
+        mixed $message = null,
+        mixed $condition = null,
+        mixed $templates = null,
+        mixed $exception = null,
+        mixed $outputs = null,
+        mixed $deprecation = '',
+    ) {
+        foreach ($this->getTests('testIntegration') as [$a, $b, $c, $d, $e, $f]) {
+            parent::testIntegration($a, $b, $c, $d, $e, $f);
+        }
+    }
+
+    /**
+     * Hack since twig/twig 3 is not supporting PHPUnit 10.
+     */
+    public function testLegacyIntegration(
+        mixed $file = null,
+        mixed $message = null,
+        mixed $condition = null,
+        mixed $templates = null,
+        mixed $exception = null,
+        mixed $outputs = null,
+        mixed $deprecation = '',
+    ) {
+        foreach ($this->getTests('testLegacyIntegration', true) as [$a, $b, $c, $d, $e, $f]) {
+            parent::testLegacyIntegration($a, $b, $c, $d, $e, $f);
+        }
+    }
+
     protected function getExtensions(): array
     {
         return [
@@ -26,6 +60,11 @@ final class IntlExtensionTest extends IntegrationTestCase
     }
 
     protected function getFixturesDir(): string
+    {
+        return __DIR__.'/Fixtures/';
+    }
+
+    protected static function getFixturesDirectory(): string
     {
         return __DIR__.'/Fixtures/';
     }
