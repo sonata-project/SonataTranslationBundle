@@ -15,6 +15,7 @@ namespace Sonata\TranslationBundle\Tests\Admin\Extension\Knplabs;
 
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface as KnpTranslatableInterface;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\Stub;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
@@ -25,9 +26,7 @@ use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @group translatable-knplabs
- */
+#[Group('translatable-knplabs')]
 final class TranslatableAdminExtensionTest extends WebTestCase
 {
     /**

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Functional;
 
 use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +33,7 @@ final class KnpCRUDTest extends WebTestCase
         $this->client->followRedirects();
     }
 
-    /**
-     * @dataProvider provideListCases
-     */
+    #[DataProvider('provideListCases')]
     public function testList(string $locale, string $name): void
     {
         $url = $this->generateUrlWithLocale('/admin/tests/app/knpcategory/list', $locale);
@@ -47,7 +46,7 @@ final class KnpCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideListCases(): iterable
+    public static function provideListCases(): iterable
     {
         yield 'default english' => ['', 'Novel'];
         yield 'english' => ['en', 'Novel'];
@@ -55,9 +54,7 @@ final class KnpCRUDTest extends WebTestCase
         yield 'french' => ['fr', 'Roman'];
     }
 
-    /**
-     * @dataProvider provideCreateCases
-     */
+    #[DataProvider('provideCreateCases')]
     public function testCreate(string $locale, string $newName): void
     {
         $url = $this->generateUrlWithLocale('/admin/tests/app/knpcategory/create', $locale);
@@ -92,7 +89,7 @@ final class KnpCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideCreateCases(): iterable
+    public static function provideCreateCases(): iterable
     {
         yield 'default english' => ['', 'Default New Novel'];
         yield 'english' => ['en', 'New Novel'];
@@ -100,9 +97,7 @@ final class KnpCRUDTest extends WebTestCase
         yield 'french' => ['fr', 'Nouveau Roman'];
     }
 
-    /**
-     * @dataProvider provideEditCases
-     */
+    #[DataProvider('provideEditCases')]
     public function testEdit(string $locale, string $editedName): void
     {
         $url = $this->generateUrlWithLocale('/admin/tests/app/knpcategory/category_novel/edit', $locale);
@@ -133,7 +128,7 @@ final class KnpCRUDTest extends WebTestCase
     /**
      * @return iterable<array{string, string}>
      */
-    public function provideEditCases(): iterable
+    public static function provideEditCases(): iterable
     {
         yield 'default english' => ['', 'Edited Default Novel'];
         yield 'english' => ['en', 'Edited Novel'];

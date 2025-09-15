@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Translatable\TranslatableListener;
-use PHPUnit\Framework\MockObject\Stub;
+use PHPUnit\Framework\MockObject\MockObject;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\TranslationBundle\Admin\Extension\AbstractTranslatableAdminExtension;
@@ -32,9 +32,9 @@ use Symfony\Component\HttpFoundation\Request;
 final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 {
     /**
-     * @var AdminInterface<Translatable>&Stub
+     * @var AdminInterface<Translatable>&MockObject
      */
-    private Stub $admin;
+    private AdminInterface&MockObject $admin;
 
     private TranslatableAdminExtension $extension;
 
@@ -77,7 +77,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
         $request = new Request();
         $request->query->set(AbstractTranslatableAdminExtension::TRANSLATABLE_LOCALE_PARAMETER, 'es');
 
-        $this->admin = static::createStub(AdminInterface::class);
+        $this->admin = $this->createMock(AdminInterface::class);
         $this->admin->method('getRequest')->willReturn($request);
         $this->admin->method('hasRequest')->willReturn(true);
     }
@@ -104,7 +104,7 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
     public function testConfigureQuery(): void
     {
-        $query = static::createStub(ProxyQueryInterface::class);
+        $query = $this->createMock(ProxyQueryInterface::class);
 
         $this->extension->configureQuery($this->admin, $query);
 

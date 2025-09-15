@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\TranslationBundle\Tests\Checker;
 
 use Gedmo\Translatable\Translatable;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\TranslationBundle\Checker\TranslatableChecker;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\ModelCustomTranslatable;
@@ -33,7 +34,7 @@ final class TranslatableCheckerTest extends TestCase
     /**
      * @return iterable<array{object|class-string, array<class-string>, array<class-string>}>
      */
-    public function provideIsTranslatableCases(): iterable
+    public static function provideIsTranslatableCases(): iterable
     {
         yield 'object-by-model' => [
             new ModelCustomTranslatable(),
@@ -48,7 +49,7 @@ final class TranslatableCheckerTest extends TestCase
         ];
 
         yield 'object-by-interfaces' => [
-            $this->createMock(Translatable::class),
+            static::createStub(Translatable::class),
             [],
             [Translatable::class],
         ];
@@ -61,12 +62,11 @@ final class TranslatableCheckerTest extends TestCase
     }
 
     /**
-     * @dataProvider provideIsTranslatableCases
-     *
      * @phpstan-param object|class-string $classOrObject
      * @phpstan-param class-string[] $supportedModels
      * @phpstan-param class-string[] $supportedInterfaces
      */
+    #[DataProvider('provideIsTranslatableCases')]
     public function testIsTranslatable($classOrObject, array $supportedModels, array $supportedInterfaces): void
     {
         static::assertFalse($this->translatableChecker->isTranslatable($classOrObject));
