@@ -61,7 +61,7 @@ jobs:
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             - name: Add knplabs/doctrine-behaviors
-              run: composer require knplabs/doctrine-behaviors --dev --no-update
+              run: composer require knplabs/doctrine-behaviors "<3.0" --dev --no-update
 
             - name: Install variant
               if: matrix.variant != 'normal' && !startsWith(matrix.variant, 'symfony/symfony')

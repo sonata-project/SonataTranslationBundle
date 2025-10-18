@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\App;
 
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\CacheCompatibilityPass;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
@@ -33,7 +34,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\StimulusBundle\StimulusBundle;
 
 final class AppKernel extends Kernel
@@ -92,9 +92,17 @@ final class AppKernel extends Kernel
 
         $loader->load(__DIR__.'/config/config.yaml');
 
-        // TODO: Simplify this when dropping support for Symfony 5.4
-        if (!class_exists(IsGranted::class)) {
-            $loader->load(__DIR__.'/config/config_symfony_v5.yaml');
+        /* @phpstan-ignore classConstant.internalClass */
+        if (class_exists(CacheCompatibilityPass::class)) {
+            // doctrine-bundle v2
+            $container->loadFromExtension('doctrine', [
+                'dbal' => [
+                    'use_savepoints' => true,
+                ],
+                'orm' => [
+                    'auto_generate_proxy_classes' => true,
+                ],
+            ]);
         }
 
         if (class_exists(HttpCacheHandler::class)) {
@@ -129,7 +137,6 @@ final class AppKernel extends Kernel
             ->loadFromExtension('doctrine', [
                 'dbal' => ['url' => '%env(resolve:DATABASE_URL)%'],
                 'orm' => [
-                    'auto_generate_proxy_classes' => true,
                     'auto_mapping' => true,
                     'mappings' => $mappings,
                 ],

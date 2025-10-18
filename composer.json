@@ -34,10 +34,10 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-bundle": "^2.9",
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "doctrine/doctrine-bundle": "^2.9 || ^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4 || ^4.0",
         "doctrine/orm": "^2.14",
-        "doctrine/persistence": "^3.0.2",
+        "doctrine/persistence": "^3.0.2 || ^4.0",
         "friendsofphp/php-cs-fixer": "^3.4",
         "gedmo/doctrine-extensions": "^3.11",
         "matthiasnoback/symfony-config-test": "^6.1",
