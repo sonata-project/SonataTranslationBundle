@@ -18,9 +18,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 #[ORM\Entity]
 class KnpCategoryTranslation implements TranslationInterface
 {

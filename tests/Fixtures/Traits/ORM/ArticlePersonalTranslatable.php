@@ -19,9 +19,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 #[Gedmo\TranslationEntity(class: ArticlePersonalTranslation::class)]
 #[ORM\Table(name: 'article')]
 #[ORM\Entity]
@@ -39,8 +36,8 @@ class ArticlePersonalTranslatable
      * @var Collection<array-key, ArticlePersonalTranslation>
      */
     #[ORM\OneToMany(
-        targetEntity: ArticlePersonalTranslation::class,
         mappedBy: 'object',
+        targetEntity: ArticlePersonalTranslation::class,
         cascade: ['persist', 'remove'],
     )]
     protected Collection $translations;

@@ -29,11 +29,6 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 abstract class AbstractTranslatableAdminExtension extends AbstractAdminExtension implements ResetInterface
 {
-    /**
-     * Request parameter.
-     *
-     * @psalm-suppress MissingClassConstType
-     */
     public const TRANSLATABLE_LOCALE_PARAMETER = 'tl';
 
     protected ?string $translatableLocale = null;
