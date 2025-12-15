@@ -61,7 +61,7 @@
     "conflict": {
         "doctrine/persistence": "<3.0.2",
         "gedmo/doctrine-extensions": "<3.11",
-        "knplabs/doctrine-behaviors": "<2.6.2 || >=3.0"
+        "knplabs/doctrine-behaviors": "<2.6.2"
     },
     "suggest": {
         "gedmo/doctrine-extensions": "if you translate orm entities with the gedmo extensions",
