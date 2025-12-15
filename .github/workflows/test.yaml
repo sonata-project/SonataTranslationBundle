@@ -44,30 +44,30 @@ jobs:
                       dependencies: lowest
                       allowed-to-fail: false
                       variant: normal
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       variant: knplabs/doctrine-behaviors:"^2.6.2"
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       variant: knplabs/doctrine-behaviors:"^3.0"
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       symfony-require: 6.4.*
                       variant: symfony/symfony:"6.4.*"
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       symfony-require: 7.3.*
                       variant: symfony/symfony:"7.3.*"
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       symfony-require: 7.4.*
                       variant: symfony/symfony:"7.4.*"
-                    - php-version: '8.5'
+                    - php-version: '8.3'
                       dependencies: highest
                       allowed-to-fail: false
                       symfony-require: 8.0.*
