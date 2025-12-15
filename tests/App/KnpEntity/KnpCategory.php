@@ -18,9 +18,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 #[ORM\Entity]
 class KnpCategory implements TranslatableInterface, \Stringable
 {
@@ -53,17 +50,11 @@ class KnpCategory implements TranslatableInterface, \Stringable
         $this->id = $id;
     }
 
-    /**
-     * @psalm-suppress UndefinedInterfaceMethod
-     */
     public function getName(): ?string
     {
         return $this->translate()->getName();
     }
 
-    /**
-     * @psalm-suppress UndefinedInterfaceMethod
-     */
     public function setName(string $name): void
     {
         $this->translate()->setName($name);

@@ -17,7 +17,6 @@ use Doctrine\Common\EventManager;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\TestCase;
@@ -38,8 +37,6 @@ abstract class DoctrineOrmTestCase extends TestCase
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
      * database in memory.
-     *
-     * @psalm-suppress ArgumentTypeCoercion
      */
     final protected function getMockSqliteEntityManager(?EventManager $evm = null): EntityManager
     {
@@ -56,7 +53,7 @@ abstract class DoctrineOrmTestCase extends TestCase
         );
 
         $schema = array_map(
-            static fn (string $class): ClassMetadata => $em->getClassMetadata($class),
+            $em->getClassMetadata(...),
             $this->getUsedEntityFixtures()
         );
 
