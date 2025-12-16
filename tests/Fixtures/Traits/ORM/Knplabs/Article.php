@@ -18,9 +18,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs\TranslatableEntity;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 #[ORM\Table(name: 'article')]
 #[ORM\Entity]
 class Article extends TranslatableEntity
@@ -31,10 +28,10 @@ class Article extends TranslatableEntity
     public ?int $id = null;
 
     #[ORM\OneToMany(
-        targetEntity: ArticleTranslation::class,
         mappedBy: 'translatable',
-        orphanRemoval: true,
+        targetEntity: ArticleTranslation::class,
         cascade: ['persist', 'merge', 'remove'],
+        orphanRemoval: true,
         indexBy: 'locale'
     )]
     protected $translations;

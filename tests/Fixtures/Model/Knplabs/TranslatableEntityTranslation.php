@@ -16,9 +16,6 @@ namespace Sonata\TranslationBundle\Tests\Fixtures\Model\Knplabs;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 class TranslatableEntityTranslation implements TranslationInterface
 {
     use TranslationTrait;

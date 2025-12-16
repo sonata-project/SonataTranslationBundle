@@ -123,7 +123,6 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
         $this->extension->alterObject($this->admin, $object);
 
-        /** @psalm-suppress TypeDoesNotContainType */
         static::assertSame('', $object->refreshableField);
     }
 
@@ -138,7 +137,6 @@ final class TranslatableAdminExtensionTest extends DoctrineOrmTestCase
 
         $this->extension->alterObject($this->admin, $object);
 
-        /** @psalm-suppress RedundantCondition */
         static::assertSame('new value', $object->refreshableField);
     }
 

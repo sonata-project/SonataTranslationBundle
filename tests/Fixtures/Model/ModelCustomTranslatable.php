@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\TranslationBundle\Tests\Fixtures\Model;
 
-/**
- * @psalm-suppress ClassMustBeFinal
- */
 class ModelCustomTranslatable
 {
 }

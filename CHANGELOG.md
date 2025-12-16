@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.6.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.5.0...3.6.0) - 2025-12-15
+### Changed
+- [[#746](https://github.com/sonata-project/SonataTranslationBundle/pull/746)] Allowed use of knplabs/doctrine-behaviors 3.0 ([@p-golovin](https://github.com/p-golovin))
+
+### Removed
+- [[#749](https://github.com/sonata-project/SonataTranslationBundle/pull/749)] Support for PHP 8.1 ([@dmaicher](https://github.com/dmaicher))
+- [[#749](https://github.com/sonata-project/SonataTranslationBundle/pull/749)] Support for Symfony 7.1 and 7.2 ([@dmaicher](https://github.com/dmaicher))
+- [[#749](https://github.com/sonata-project/SonataTranslationBundle/pull/749)] Support for `sonata-project/block-bundle` v4 ([@dmaicher](https://github.com/dmaicher))
+
 ## [3.5.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.4.0...3.5.0) - 2025-09-13
 ### Changed
 - [[#739](https://github.com/sonata-project/SonataTranslationBundle/pull/739)] Made the `RequestLocaleProvider` and `AbstractTranslatableAdminExtension` implement `ResetInterface` to make it work with long-running processes ([@RikudouSage](https://github.com/RikudouSage))
