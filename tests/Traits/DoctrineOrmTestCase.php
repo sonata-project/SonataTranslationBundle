@@ -77,11 +77,17 @@ abstract class DoctrineOrmTestCase extends TestCase
      */
     final protected function getConfiguration(): Configuration
     {
-        return ORMSetup::createAttributeMetadataConfiguration(
-            [],
-            false,
-            sys_get_temp_dir().'/sonata-translation-bundle',
-            null,
-        );
+        /* @phpstan-ignore function.alreadyNarrowedType */
+        if (\PHP_VERSION_ID >= 80400 && method_exists(ORMSetup::class, 'createAttributeMetadataConfig')) {
+            $config = ORMSetup::createAttributeMetadataConfig([], true);
+        } else {
+            $config = ORMSetup::createAttributeMetadataConfiguration([], true);
+        }
+
+        if (\PHP_VERSION_ID >= 80400) {
+            $config->enableNativeLazyObjects(true);
+        }
+
+        return $config;
     }
 }
