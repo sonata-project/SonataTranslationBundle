@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.7.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.6.0...3.7.0) - 2025-12-19
+### Added
+- [[#753](https://github.com/sonata-project/SonataTranslationBundle/pull/753)] Symfony 8 support ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [3.6.0](https://github.com/sonata-project/SonataTranslationBundle/compare/3.5.0...3.6.0) - 2025-12-15
 ### Changed
 - [[#746](https://github.com/sonata-project/SonataTranslationBundle/pull/746)] Allowed use of knplabs/doctrine-behaviors 3.0 ([@p-golovin](https://github.com/p-golovin))
