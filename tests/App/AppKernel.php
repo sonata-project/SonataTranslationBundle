@@ -99,7 +99,7 @@ final class AppKernel extends Kernel
                     'use_savepoints' => true,
                 ],
                 'orm' => [
-                    'auto_generate_proxy_classes' => true,
+                    'enable_lazy_ghost_objects' => true,
                 ],
             ]);
         }
