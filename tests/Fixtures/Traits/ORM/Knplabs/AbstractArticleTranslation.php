@@ -29,7 +29,7 @@ abstract class AbstractArticleTranslation
     #[ORM\ManyToOne(
         targetEntity: ArticleTranslation::class,
         inversedBy: 'translations',
-        cascade: ['persist', 'merge'],
+        cascade: ['persist'],
     )]
     #[ORM\JoinColumn(name: 'translatable_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     protected $translatable;

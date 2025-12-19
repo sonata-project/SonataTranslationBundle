@@ -30,7 +30,7 @@ class Article extends TranslatableEntity
     #[ORM\OneToMany(
         mappedBy: 'translatable',
         targetEntity: ArticleTranslation::class,
-        cascade: ['persist', 'merge', 'remove'],
+        cascade: ['persist', 'remove'],
         orphanRemoval: true,
         indexBy: 'locale'
     )]
