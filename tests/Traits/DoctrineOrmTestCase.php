@@ -48,8 +48,9 @@ abstract class DoctrineOrmTestCase extends TestCase
         $config = $this->getConfiguration();
 
         $em = new EntityManager(
-            DriverManager::getConnection($conn, $config, $evm ?? new EventManager()),
-            $config
+            DriverManager::getConnection($conn, $config),
+            $config,
+            $evm
         );
 
         $schema = array_map(
@@ -81,7 +82,6 @@ abstract class DoctrineOrmTestCase extends TestCase
             false,
             sys_get_temp_dir().'/sonata-translation-bundle',
             null,
-            true,
         );
     }
 }
