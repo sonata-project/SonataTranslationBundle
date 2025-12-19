@@ -92,7 +92,6 @@ final class AppKernel extends Kernel
 
         $loader->load(__DIR__.'/config/config.yaml');
 
-        /* @phpstan-ignore classConstant.internalClass */
         if (class_exists(CacheCompatibilityPass::class)) {
             // doctrine-bundle v2
             $container->loadFromExtension('doctrine', [
