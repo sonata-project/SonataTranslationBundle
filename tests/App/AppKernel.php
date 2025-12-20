@@ -92,7 +92,6 @@ final class AppKernel extends Kernel
 
         $loader->load(__DIR__.'/config/config.yaml');
 
-        /* @phpstan-ignore classConstant.internalClass */
         if (class_exists(CacheCompatibilityPass::class)) {
             // doctrine-bundle v2
             $container->loadFromExtension('doctrine', [
@@ -100,7 +99,7 @@ final class AppKernel extends Kernel
                     'use_savepoints' => true,
                 ],
                 'orm' => [
-                    'auto_generate_proxy_classes' => true,
+                    'enable_lazy_ghost_objects' => true,
                 ],
             ]);
         }

@@ -48,8 +48,9 @@ abstract class DoctrineOrmTestCase extends TestCase
         $config = $this->getConfiguration();
 
         $em = new EntityManager(
-            DriverManager::getConnection($conn, $config, $evm ?? new EventManager()),
-            $config
+            DriverManager::getConnection($conn, $config),
+            $config,
+            $evm
         );
 
         $schema = array_map(
@@ -76,12 +77,17 @@ abstract class DoctrineOrmTestCase extends TestCase
      */
     final protected function getConfiguration(): Configuration
     {
-        return ORMSetup::createAttributeMetadataConfiguration(
-            [],
-            false,
-            sys_get_temp_dir().'/sonata-translation-bundle',
-            null,
-            true,
-        );
+        /* @phpstan-ignore function.alreadyNarrowedType */
+        if (\PHP_VERSION_ID >= 80400 && method_exists(ORMSetup::class, 'createAttributeMetadataConfig')) {
+            $config = ORMSetup::createAttributeMetadataConfig([], true);
+        } else {
+            $config = ORMSetup::createAttributeMetadataConfiguration([], true);
+        }
+
+        if (\PHP_VERSION_ID >= 80400) {
+            $config->enableNativeLazyObjects(true);
+        }
+
+        return $config;
     }
 }
